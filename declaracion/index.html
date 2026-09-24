@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0b26">
+<title>Tengo algo que preguntarte ✨</title>
+<meta name="description" content="Una sorpresa especial para ti.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fredoka:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cielo1:#0d0b26; --cielo2:#2b1450; --rosa:#ff4f8b; --rosa2:#ff9ec0; --lila:#b9a4ff; --texto:#fff6fb;
+    --manuscrita:'Caveat', cursive; --redonda:'Fredoka', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:var(--redonda);color:var(--texto);background:var(--cielo2);min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+  body:not(.celebrando){overflow:hidden;height:100vh;height:100svh}
+  canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}
+  .fondo{position:fixed;inset:0;z-index:0;background:linear-gradient(180deg,var(--cielo1) 0%,var(--cielo2) 100%)}
+  #cielo{z-index:0}
+  #fiesta{z-index:40}
+  .luna{position:fixed;top:-60px;left:50%;width:340px;height:340px;margin-left:-170px;border-radius:50%;background:radial-gradient(circle,rgba(255,79,139,.28),transparent 65%);z-index:0;pointer-events:none}
+
+  .app{position:relative;z-index:1;max-width:440px;margin:0 auto;min-height:100vh}
+  .pantalla{position:fixed;inset:0;max-width:440px;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;transition:opacity .8s ease,transform .8s ease}
+  .oculta{opacity:0;pointer-events:none;transform:scale(.96)}
+
+  /* ---------- Frases ---------- */
+  #escena{cursor:pointer}
+  .chip{position:absolute;top:22px;left:50%;transform:translateX(-50%);font-size:13px;letter-spacing:.08em;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);white-space:nowrap}
+  .frase{font-family:var(--manuscrita);font-weight:700;font-size:clamp(40px,11.5vw,54px);line-height:1.12;max-width:340px;text-shadow:0 0 24px rgba(255,79,139,.45)}
+  .frase span{display:inline-block;opacity:0;transform:translateY(14px);filter:blur(6px);animation:letra .6s ease forwards}
+  .frase.sale{animation:salir .45s ease forwards}
+  @keyframes letra{to{opacity:1;transform:none;filter:none}}
+  @keyframes salir{to{opacity:0;transform:translateY(-18px);filter:blur(8px)}}
+  .pista{position:absolute;bottom:64px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:14px;color:rgba(255,246,251,.7)}
+  .pista svg{width:34px;height:34px;color:var(--rosa2);animation:tocar 1.6s ease-in-out infinite}
+  @keyframes tocar{0%,100%{transform:translateY(0) scale(1)}40%{transform:translateY(4px) scale(.9)}}
+  .puntos{position:absolute;bottom:30px;display:flex;gap:7px}
+  .puntos i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.22);transition:all .4s}
+  .puntos i.on{background:var(--rosa);width:20px;border-radius:5px}
+
+  /* ---------- Pregunta ---------- */
+  .corazon-foto{width:min(58vw,230px);aspect-ratio:1;animation:latido 1.3s ease-in-out infinite;filter:drop-shadow(0 0 26px rgba(255,79,139,.6));margin-bottom:10px}
+  @keyframes latido{0%,100%{transform:scale(1)}15%{transform:scale(1.08)}30%{transform:scale(.98)}45%{transform:scale(1.05)}}
+  .pregunta{font-family:var(--manuscrita);font-weight:700;font-size:clamp(44px,12.5vw,58px);line-height:1.02;margin:6px 0 30px}
+  .pregunta small{display:block;font-family:var(--redonda);font-weight:400;font-size:16px;color:var(--rosa2);margin-bottom:6px;letter-spacing:.04em}
+  .botones{display:flex;align-items:center;justify-content:center;gap:16px;min-height:130px;flex-wrap:wrap}
+  .btn{border:0;border-radius:999px;font-family:var(--redonda);font-weight:600;cursor:pointer;touch-action:manipulation}
+  #btnSi{--s:0;font-size:calc(20px + var(--s) * 3.2px);padding:calc(14px + var(--s) * 1.6px) calc(34px + var(--s) * 3.5px);color:#fff;background:linear-gradient(135deg,#ff78a8,var(--rosa));box-shadow:0 10px 30px rgba(255,79,139,.55),inset 0 -3px 0 rgba(0,0,0,.12);transition:font-size .35s cubic-bezier(.3,1.6,.5,1),padding .35s cubic-bezier(.3,1.6,.5,1);animation:brillar 2s ease-in-out infinite}
+  @keyframes brillar{50%{box-shadow:0 10px 44px rgba(255,79,139,.85),inset 0 -3px 0 rgba(0,0,0,.12)}}
+  #btnNo{font-size:16px;padding:12px 22px;color:var(--texto);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);white-space:nowrap;transition:left .28s cubic-bezier(.3,1.3,.5,1),top .28s cubic-bezier(.3,1.3,.5,1),transform .2s}
+  #btnNo.suelto{position:fixed;z-index:30;margin:0}
+
+  /* ---------- Celebración ---------- */
+  .final{display:none;padding:70px 22px 20px;text-align:center}
+  .celebrando .final{display:block;animation:subir 1s ease both}
+  @keyframes subir{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+  .final h1{font-family:var(--manuscrita);font-weight:700;font-size:clamp(50px,14vw,64px);line-height:1;color:#fff;text-shadow:0 0 30px rgba(255,79,139,.7)}
+  .final .sub{font-size:17px;color:var(--rosa2);margin:12px 0 28px}
+  .fotos{position:relative;height:300px;margin:10px auto 34px;max-width:340px}
+  .fotos figure{position:absolute;top:10px;left:50%;width:170px;margin-left:-85px;background:#fff;padding:7px 7px 30px;border-radius:4px;box-shadow:0 14px 30px rgba(0,0,0,.45);transform:rotate(0) translateX(0);transition:transform 1s cubic-bezier(.3,1.4,.5,1)}
+  .fotos figure img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#ddd}
+  .fotos figure figcaption{position:absolute;bottom:4px;left:0;right:0;font-family:var(--manuscrita);font-size:20px;color:#3a2340}
+  .abanico figure:nth-child(1){transform:rotate(-12deg) translateX(-78px) translateY(14px)}
+  .abanico figure:nth-child(2){transform:rotate(2deg) translateY(-4px);z-index:2}
+  .abanico figure:nth-child(3){transform:rotate(12deg) translateX(78px) translateY(14px)}
+  .tarjeta{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:24px 20px;margin-bottom:22px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .tarjeta p{font-size:17px;line-height:1.65;color:rgba(255,246,251,.92)}
+  .tarjeta .firma{font-family:var(--manuscrita);font-size:30px;color:var(--rosa2);margin-top:12px}
+  .fecha{display:inline-flex;align-items:center;gap:8px;font-size:14px;padding:10px 16px;border-radius:999px;background:linear-gradient(135deg,rgba(255,79,139,.25),rgba(185,164,255,.25));border:1px solid rgba(255,255,255,.18)}
+  .otra{margin-top:24px;font-size:15px;padding:12px 22px;color:var(--texto);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25)}
+  footer{text-align:center;font-size:12px;color:rgba(255,246,251,.45);padding:34px 0 26px}
+
+  .musica{position:fixed;top:14px;right:max(14px,calc(50vw - 206px));z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(13,11,38,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--rosa2);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s}
+  .musica.visible{opacity:1;pointer-events:auto}
+  .musica svg{width:20px;height:20px}.musica .off{display:none}.musica.silencio .on{display:none}.musica.silencio .off{display:block}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  }
+</style>
+</head>
+<body>
+<!-- =========================================================
+     Plantilla: Declaración "¿Quieres ser mi enamorada?" · Clickea Studio
+     Para un pedido nuevo solo edita el bloque DATOS en el <script>.
+     ========================================================= -->
+<div class="fondo"></div>
+<canvas id="cielo"></canvas>
+<div class="luna"></div>
+
+<button class="musica" id="btnMusica" aria-label="Silenciar o activar música">
+  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M2 2l20 20"/></svg>
+</button>
+
+<div class="app">
+  <!-- Pantalla 1: frases -->
+  <div class="pantalla" id="escena" role="button" tabindex="0" aria-label="Toca para continuar">
+    <div class="chip" id="chip"></div>
+    <div class="frase" id="frase" aria-live="polite"></div>
+    <div class="pista" id="pista">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-1.2a6 6 0 0 1-4.6-2.2L4.6 14.4a1.5 1.5 0 0 1 2.2-2L9 14.5"/><path d="M6 3.5 4.8 2.3M10.5 1.8V.5M15 3.5l1.2-1.2" opacity=".6"/></svg>
+      <span id="textoPista"></span>
+    </div>
+    <div class="puntos" id="puntos"></div>
+  </div>
+
+  <!-- Pantalla 2: la pregunta -->
+  <div class="pantalla oculta" id="pantallaPregunta">
+    <svg class="corazon-foto" viewBox="0 0 100 92" aria-hidden="true">
+      <defs>
+        <clipPath id="formaCorazon"><path d="M50 90C22 70 2 52 2 29 2 14 13 3 27 3c10 0 18 5 23 13C55 8 63 3 73 3c14 0 25 11 25 26 0 23-20 41-48 61z"/></clipPath>
+        <linearGradient id="bordeCorazon" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb3cf"/><stop offset="1" stop-color="#ff4f8b"/></linearGradient>
+      </defs>
+      <image id="fotoCorazon" href="" x="0" y="0" width="100" height="92" preserveAspectRatio="xMidYMid slice" clip-path="url(#formaCorazon)"/>
+      <path d="M50 90C22 70 2 52 2 29 2 14 13 3 27 3c10 0 18 5 23 13C55 8 63 3 73 3c14 0 25 11 25 26 0 23-20 41-48 61z" fill="none" stroke="url(#bordeCorazon)" stroke-width="2.5"/>
+    </svg>
+    <h1 class="pregunta"><small id="preguntaNombre"></small><span id="preguntaTexto"></span></h1>
+    <div class="botones" id="botones">
+      <button class="btn" id="btnSi"></button>
+      <button class="btn" id="btnNo"></button>
+    </div>
+  </div>
+
+  <!-- Pantalla 3: celebración -->
+  <section class="final" id="final">
+    <h1 id="tituloFinal"></h1>
+    <p class="sub" id="subFinal"></p>
+    <div class="fotos" id="fotos"></div>
+    <div class="tarjeta">
+      <p id="mensajeFinal"></p>
+      <p class="firma" id="firma"></p>
+    </div>
+    <div class="fecha">💘 <span id="fechaHoy"></span></div>
+    <div><button class="btn otra" id="btnOtra">Más corazones 💖</button></div>
+    <footer>Hecho con 💜 por Clickea Studio</footer>
+  </section>
+</div>
+
+<canvas id="fiesta"></canvas>
+
+<script>
+/* =====================================================================
+   DATOS DEL PEDIDO  ✏️  (edita SOLO este bloque para cada cliente)
+   ===================================================================== */
+const DATOS = {
+  // --- Personas ---
+  para: "Camila",               // quién recibe la pregunta
+  de: "Sebastián",              // quién pregunta
+
+  // --- Frases de introducción: aparecen una por una al tocar la pantalla ---
+  frases: [
+    "Hola, Camila ✨",
+    "Tengo algo que decirte…",
+    "Desde que te conocí, mis días tienen otro color",
+    "Me encanta tu risa, tus audios de 3 minutos y cómo me miras",
+    "Así que me armé de valor…"
+  ],
+  textoPista: "Toca la pantalla",
+
+  // --- La pregunta ---
+  pregunta: "¿Quieres ser mi enamorada?",
+  fotoPregunta: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=75", // se ve dentro del corazón
+  textoSi: "¡Sí! 💖",
+  // Textos que va mostrando el botón "No" cada vez que intenta tocarlo (el primero es el inicial)
+  textosNo: ["No", "¿Segura? 🤨", "Piénsalo bien 🥺", "¿Ni un poquito?", "Te invito un helado 🍦", "Última oportunidad…", "Ya pues 🥹", "Ese botón no funciona 😅", "Mejor dale al Sí 💘"],
+
+  // --- Celebración (después del Sí) ---
+  tituloFinal: "¡Sabía que dirías que sí!",
+  subFinal: "Acabas de hacer a alguien muy feliz 🥰",
+  mensajeFinal: "Prometo cuidarte, hacerte reír aunque sea con mis chistes malos y acompañarte en todo lo que venga. Esto recién empieza y ya es lo mejor que me ha pasado.",
+  firma: "— Sebas",
+  textoFecha: "empieza nuestra historia",  // se muestra: "Hoy, <fecha de hoy>, empieza nuestra historia"
+  fotos: [   // 3 fotos en abanico (foto + pie corto)
+    { foto: "https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?auto=format&fit=crop&w=800&q=75", pie: "Tú" },
+    { foto: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=800&q=75", pie: "Nosotros ♡" },
+    { foto: "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?auto=format&fit=crop&w=800&q=75", pie: "Yo" }
+  ],
+
+  // --- Colores principales ---
+  colores: {
+    cielo1: "#0d0b26",   // parte alta del cielo
+    cielo2: "#2b1450",   // parte baja del cielo
+    rosa: "#ff4f8b",     // color principal (botón Sí, brillos)
+    rosa2: "#ff9ec0"     // rosa suave (textos secundarios)
+  },
+
+  // --- Música (melodía original generada en el navegador) ---
+  musica: { activa: true, volumen: 0.5 }
+};
+/* ===================== FIN DE DATOS — no hace falta tocar nada más ===================== */
+
+const $ = s => document.querySelector(s);
+const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const r = document.documentElement.style;
+Object.entries(DATOS.colores).forEach(([k, v]) => r.setProperty('--' + k, v));
+document.title = `${DATOS.para}, tengo algo que preguntarte ✨`;
+
+$('#chip').textContent = `Para ${DATOS.para} 💌`;
+$('#textoPista').textContent = DATOS.textoPista;
+$('#fotoCorazon').setAttribute('href', DATOS.fotoPregunta);
+$('#preguntaNombre').textContent = `${DATOS.para},`;
+$('#preguntaTexto').textContent = DATOS.pregunta;
+$('#btnSi').textContent = DATOS.textoSi;
+$('#btnNo').textContent = DATOS.textosNo[0];
+$('#tituloFinal').textContent = DATOS.tituloFinal;
+$('#subFinal').textContent = DATOS.subFinal;
+$('#mensajeFinal').textContent = DATOS.mensajeFinal;
+$('#firma').textContent = DATOS.firma;
+const hoy = new Date().toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric' });
+$('#fechaHoy').textContent = `Hoy, ${hoy}, ${DATOS.textoFecha}`;
+DATOS.fotos.slice(0, 3).forEach(f => {
+  const fig = document.createElement('figure');
+  fig.innerHTML = '<img alt=""><figcaption></figcaption>';
+  fig.querySelector('img').src = f.foto; fig.querySelector('img').alt = f.pie; fig.querySelector('figcaption').textContent = f.pie;
+  $('#fotos').appendChild(fig);
+});
+$('#puntos').innerHTML = DATOS.frases.map(() => '<i></i>').join('') + '<i></i>';
+
+/* ---------- Cielo estrellado ---------- */
+const cielo = $('#cielo'), cc = cielo.getContext('2d');
+let estrellas = [], fugaz = null;
+function tamCanvas(c, ctx) { const d = devicePixelRatio || 1; c.width = innerWidth * d; c.height = innerHeight * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
+function crearEstrellas() {
+  tamCanvas(cielo, cc);
+  estrellas = Array.from({ length: Math.round(innerWidth * innerHeight / 2600) }, () => ({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, r: Math.random() * 1.3 + .3, f: Math.random() * 6, v: .01 + Math.random() * .03 }));
+}
+crearEstrellas(); addEventListener('resize', () => { crearEstrellas(); tamCanvas(fiesta, fc); });
+function dibujarCielo() {
+  cc.clearRect(0, 0, innerWidth, innerHeight);
+  estrellas.forEach(e => { e.f += e.v; cc.globalAlpha = .35 + Math.abs(Math.sin(e.f)) * .65; cc.fillStyle = '#fff'; cc.beginPath(); cc.arc(e.x, e.y, e.r, 0, 7); cc.fill(); });
+  if (!fugaz && Math.random() < .004) fugaz = { x: Math.random() * innerWidth, y: Math.random() * innerHeight * .4, v: 7, vida: 1 };
+  if (fugaz) {
+    const g = cc.createLinearGradient(fugaz.x, fugaz.y, fugaz.x - 80, fugaz.y - 40);
+    g.addColorStop(0, 'rgba(255,255,255,' + fugaz.vida + ')'); g.addColorStop(1, 'rgba(255,255,255,0)');
+    cc.globalAlpha = 1; cc.strokeStyle = g; cc.lineWidth = 2; cc.beginPath(); cc.moveTo(fugaz.x, fugaz.y); cc.lineTo(fugaz.x - 80, fugaz.y - 40); cc.stroke();
+    fugaz.x += fugaz.v; fugaz.y += fugaz.v / 2; fugaz.vida -= .018; if (fugaz.vida <= 0) fugaz = null;
+  }
+  cc.globalAlpha = 1;
+  if (!reducir) requestAnimationFrame(dibujarCielo);
+}
+dibujarCielo();
+
+/* ---------- Música: melodía original (Web Audio API) ---------- */
+// Pop soñador en Re mayor: acorde arpegiado + melodía (8 corcheas por compás; null = silencio).
+const COMPASES = [
+  { a: ['D3', 'A3', 'D4', 'F#4'], m: ['F#5', null, 'A5', null, 'F#5', 'E5', 'D5', null] },
+  { a: ['A2', 'E3', 'A3', 'C#4'], m: ['E5', null, null, 'C#5', 'E5', null, 'A5', null] },
+  { a: ['B2', 'F#3', 'B3', 'D4'], m: ['D5', null, 'F#5', null, 'B5', null, 'A5', null] },
+  { a: ['G2', 'D3', 'G3', 'B3'],  m: ['G5', null, 'F#5', null, 'E5', null, null, null] },
+  { a: ['D3', 'A3', 'D4', 'F#4'], m: ['A5', null, 'F#5', null, 'D6', null, 'C#6', null] },
+  { a: ['A2', 'E3', 'A3', 'C#4'], m: ['B5', null, 'A5', null, 'E5', null, null, null] },
+  { a: ['G2', 'D3', 'G3', 'B3'],  m: ['D5', null, 'E5', null, 'F#5', null, 'G5', null] },
+  { a: ['A2', 'E3', 'A3', 'C#4'], m: ['A5', null, null, null, 'E5', null, null, null] }
+];
+function crearMusica(compases, tempo, volumen) {
+  const N = { C: 0, 'C#': 1, D: 2, 'D#': 3, E: 4, F: 5, 'F#': 6, G: 7, 'G#': 8, A: 9, 'A#': 10, B: 11 };
+  const frec = n => { const m = n.match(/^([A-G]#?)(\d)$/); return 440 * Math.pow(2, (N[m[1]] + (+m[2] + 1) * 12 - 69) / 12); };
+  const patron = [0, 1, 2, 3, 2, 3, 1, 2];
+  let ctx, salida, paso = 0, proximo = 0, silencio = false;
+  const dur = 60 / tempo / 2;
+  function nota(f, t, vel, largo) {
+    const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain(), g2 = ctx.createGain();
+    o.type = 'sine'; o.frequency.value = f; o2.type = 'sine'; o2.frequency.value = f * 2.01; g2.gain.value = .18;
+    o.connect(g); o2.connect(g2).connect(g); g.connect(salida);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vel, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + largo);
+    o.start(t); o2.start(t); o.stop(t + largo + .05); o2.stop(t + largo + .05);
+  }
+  function programar() {
+    while (proximo < ctx.currentTime + .15) {
+      const c = compases[Math.floor(paso / 8) % compases.length], i = paso % 8;
+      nota(frec(c.a[patron[i]]), proximo, i === 0 ? .13 : .07, 1.1);
+      if (c.m[i]) nota(frec(c.m[i]), proximo + .004, .15, 1.6);
+      proximo += dur; paso++;
+    }
+  }
+  return {
+    iniciar() {
+      if (ctx) return;
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      salida = ctx.createGain(); salida.gain.value = volumen;
+      const eco = ctx.createDelay(2); eco.delayTime.value = dur * 3; const fb = ctx.createGain(); fb.gain.value = .3;
+      const filtro = ctx.createBiquadFilter(); filtro.type = 'lowpass'; filtro.frequency.value = 3600;
+      salida.connect(filtro); filtro.connect(ctx.destination); filtro.connect(eco); eco.connect(fb).connect(eco); eco.connect(ctx.destination);
+      proximo = ctx.currentTime + .1; setInterval(programar, 40); programar();
+    },
+    floreo() { // arpegio de celebración
+      if (!ctx || silencio) return;
+      ['D5', 'F#5', 'A5', 'D6', 'F#6', 'A6'].forEach((n, i) => nota(frec(n), ctx.currentTime + i * .07, .16, 1.5));
+    },
+    alternar() { if (!ctx) return false; silencio = !silencio; silencio ? ctx.suspend() : ctx.resume(); return silencio; }
+  };
+}
+const musica = crearMusica(COMPASES, 92, DATOS.musica.volumen);
+function arrancarMusica() { if (DATOS.musica.activa) { musica.iniciar(); $('#btnMusica').classList.add('visible'); } }
+$('#btnMusica').addEventListener('click', e => { e.stopPropagation(); $('#btnMusica').classList.toggle('silencio', musica.alternar()); });
+
+/* ---------- Frases una por una ---------- */
+let indice = 0, bloqueo = false;
+function mostrarFrase(i) {
+  const f = $('#frase');
+  f.innerHTML = '';
+  DATOS.frases[i].split(' ').forEach((pal, k, arr) => {
+    const s = document.createElement('span');
+    s.textContent = pal; s.style.animationDelay = (k * 0.09) + 's';
+    f.appendChild(s); if (k < arr.length - 1) f.appendChild(document.createTextNode(' '));
+  });
+  f.classList.remove('sale');
+  document.querySelectorAll('#puntos i').forEach((p, k) => p.classList.toggle('on', k === i));
+}
+mostrarFrase(0);
+function avanzar() {
+  arrancarMusica();
+  if (bloqueo) return;
+  bloqueo = true;
+  $('#frase').classList.add('sale');
+  setTimeout(() => {
+    indice++;
+    if (indice < DATOS.frases.length) { mostrarFrase(indice); bloqueo = false; }
+    else irAPregunta();
+  }, reducir ? 10 : 420);
+}
+$('#escena').addEventListener('click', avanzar);
+$('#escena').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') avanzar(); });
+
+function irAPregunta() {
+  $('#escena').classList.add('oculta');
+  $('#pantallaPregunta').classList.remove('oculta');
+  document.querySelectorAll('#puntos i').forEach(p => p.classList.add('on'));
+}
+
+/* ---------- El "No" que huye ---------- */
+const no = $('#btnNo'), si = $('#btnSi');
+let intentos = 0;
+function huir(e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  intentos++;
+  // El Sí crece, el No cambia de texto
+  si.style.setProperty('--s', Math.min(intentos, 9));
+  no.textContent = DATOS.textosNo[Math.min(intentos, DATOS.textosNo.length - 1)];
+  if (navigator.vibrate) try { navigator.vibrate(20); } catch (_) {}
+  const antes = no.getBoundingClientRect();
+  if (!no.classList.contains('suelto')) {
+    document.body.appendChild(no);
+    no.classList.add('suelto');
+    no.style.left = antes.left + 'px'; no.style.top = antes.top + 'px';
+    no.getBoundingClientRect(); // fuerza el punto de partida
+  }
+  // Nueva posición: dentro de la pantalla, lejos del dedo y sin tapar el Sí
+  const w = no.offsetWidth, h = no.offsetHeight, m = 14;
+  const zonaSi = si.getBoundingClientRect();
+  const px = e && e.touches ? e.touches[0].clientX : (e && e.clientX) || antes.left + w / 2;
+  const py = e && e.touches ? e.touches[0].clientY : (e && e.clientY) || antes.top + h / 2;
+  let mejor = null;
+  for (let k = 0; k < 40; k++) {
+    const x = m + Math.random() * (innerWidth - w - m * 2), y = 70 + Math.random() * (innerHeight - h - 70 - m);
+    const choca = x < zonaSi.right + 10 && x + w > zonaSi.left - 10 && y < zonaSi.bottom + 10 && y + h > zonaSi.top - 10;
+    const dist = Math.hypot(x + w / 2 - px, y + h / 2 - py);
+    if (!choca && dist > 150) { mejor = { x, y }; break; }
+    if (!choca && (!mejor || dist > mejor.d)) mejor = { x, y, d: dist };
+  }
+  if (!mejor) mejor = { x: m, y: innerHeight - h - 40 };
+  no.style.left = mejor.x + 'px'; no.style.top = mejor.y + 'px';
+  no.style.transform = `rotate(${(Math.random() - .5) * 16}deg)`;
+}
+no.addEventListener('touchstart', huir, { passive: false });
+no.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') huir(e); });
+no.addEventListener('click', huir);
+
+/* ---------- ¡Sí! ---------- */
+si.addEventListener('click', () => {
+  arrancarMusica(); musica.floreo();
+  if (navigator.vibrate) try { navigator.vibrate([60, 40, 120]); } catch (_) {}
+  no.remove();
+  $('#pantallaPregunta').classList.add('oculta');
+  document.body.classList.add('celebrando');
+  scrollTo(0, 0);
+  fiestaDeCorazones(true);
+  setTimeout(() => $('#fotos').classList.add('abanico'), 500);
+});
+$('#btnOtra').addEventListener('click', () => { musica.floreo(); fiestaDeCorazones(false); });
+
+/* ---------- Confeti y corazones ---------- */
+const fiesta = $('#fiesta'), fc = fiesta.getContext('2d');
+tamCanvas(fiesta, fc);
+let piezas = [], corriendo = false;
+function corazon(s) {
+  fc.beginPath(); fc.moveTo(0, s * .3);
+  fc.bezierCurveTo(0, 0, -s * .5, 0, -s * .5, s * .3); fc.bezierCurveTo(-s * .5, s * .6, 0, s * .75, 0, s);
+  fc.bezierCurveTo(0, s * .75, s * .5, s * .6, s * .5, s * .3); fc.bezierCurveTo(s * .5, 0, 0, 0, 0, s * .3); fc.fill();
+}
+function fiestaDeCorazones(grande) {
+  const colores = [DATOS.colores.rosa, DATOS.colores.rosa2, '#ffd166', '#b9a4ff', '#ffffff', '#7ee0ff'];
+  const n = reducir ? 20 : (grande ? 220 : 120);
+  for (let i = 0; i < n; i++) {
+    const desdeLado = i % 2 ? 1 : -1, a = -Math.PI / 2 + desdeLado * (.25 + Math.random() * .5);
+    const v = 9 + Math.random() * 10;
+    piezas.push({
+      x: desdeLado < 0 ? -10 : innerWidth + 10, y: innerHeight * .75, vx: (desdeLado < 0 ? 1 : -1) * Math.abs(Math.cos(a)) * v, vy: -Math.abs(Math.sin(a)) * v,
+      tipo: Math.random() < .35 ? 'c' : 'p', s: 7 + Math.random() * 9, rot: Math.random() * 6, vr: (Math.random() - .5) * .3,
+      color: colores[i % colores.length], vida: 1
+    });
+  }
+  // corazones que suben desde abajo
+  for (let i = 0; i < (grande ? 30 : 16); i++) piezas.push({ x: Math.random() * innerWidth, y: innerHeight + 20 + Math.random() * 200, vx: 0, vy: -(2 + Math.random() * 2.5), sube: true, tipo: 'c', s: 14 + Math.random() * 16, rot: 0, vr: 0, color: colores[i % 3], vida: 1 });
+  if (!corriendo) { corriendo = true; requestAnimationFrame(animarFiesta); }
+}
+function animarFiesta() {
+  fc.clearRect(0, 0, innerWidth, innerHeight);
+  piezas.forEach(p => {
+    if (p.sube) { p.y += p.vy; p.x += Math.sin(p.y / 40) * .8; if (p.y < innerHeight * .3) p.vida -= .02; }
+    else { p.vx *= .985; p.vy = p.vy * .985 + .22; p.x += p.vx; p.y += p.vy; p.rot += p.vr; }
+    fc.save(); fc.translate(p.x, p.y); fc.rotate(p.rot); fc.globalAlpha = Math.max(p.vida, 0); fc.fillStyle = p.color;
+    if (p.tipo === 'c') corazon(p.s); else fc.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2);
+    fc.restore();
+  });
+  piezas = piezas.filter(p => p.vida > 0 && p.y < innerHeight + 260 && p.x > -60 && p.x < innerWidth + 60);
+  if (piezas.length) requestAnimationFrame(animarFiesta); else { corriendo = false; fc.clearRect(0, 0, innerWidth, innerHeight); }
+}
+</script>
+</body>
+</html>

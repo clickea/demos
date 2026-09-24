@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fbf6ef">
+<title>Para ti, mamá 💐</title>
+<meta name="description" content="Una cartita para el Día de la Madre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papel:#fbf6ef; --salvia:#7d9a7e; --salvia-osc:#5b7a5f; --rubor:#e7a79d; --rosa:#d9848a; --dorado:#b8925a; --tinta:#4a3b36;
+    --manuscrita:'Parisienne', cursive; --serif:'Cormorant Garamond', Georgia, serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:var(--serif);color:var(--tinta);background:#efe6da;min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+  body.cerrada{overflow:hidden;height:100vh}
+  .app{max-width:440px;margin:0 auto;min-height:100vh;background:var(--papel);background-image:radial-gradient(rgba(184,146,90,.09) 1px,transparent 1.2px);background-size:18px 18px;position:relative;overflow:hidden}
+  @media (min-width:700px){.app{box-shadow:0 0 60px rgba(74,59,54,.15)}}
+
+  /* ---------- Portada cerrada ---------- */
+  .portada{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:#efe6da;transition:opacity 1s ease,visibility 1s}
+  .portada__tarjeta{width:min(86vw,360px);aspect-ratio:3/4.3;background:var(--papel);border-radius:4px;box-shadow:0 30px 60px rgba(74,59,54,.18);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;position:relative;animation:entra 1.2s ease both}
+  .portada__tarjeta::before{content:"";position:absolute;inset:12px;border:1px solid rgba(184,146,90,.45);border-radius:2px}
+  .portada__tarjeta::after{content:"";position:absolute;inset:17px;border:1px solid rgba(184,146,90,.2);border-radius:2px}
+  @keyframes entra{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  .capullo{width:84px;margin-bottom:10px;animation:mecer 3s ease-in-out infinite;transform-origin:50% 100%}
+  @keyframes mecer{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+  .portada small{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--dorado)}
+  .portada h1{font-family:var(--manuscrita);font-weight:400;font-size:clamp(46px,13vw,58px);color:var(--rosa);line-height:1.1;margin:6px 0 4px}
+  .portada p{font-style:italic;font-size:19px;color:var(--salvia-osc)}
+  .btn{position:relative;z-index:1;margin-top:26px;border:1px solid var(--dorado);background:transparent;color:var(--tinta);font:600 17px var(--serif);letter-spacing:.14em;text-transform:uppercase;padding:13px 30px;border-radius:999px;cursor:pointer;transition:background .3s,color .3s}
+  .btn:active,.btn:hover{background:var(--dorado);color:#fff}
+  .abierta .portada{opacity:0;visibility:hidden}
+
+  /* ---------- Ramo que florece ---------- */
+  header{text-align:center;padding:40px 22px 10px}
+  .ramo{width:min(82vw,320px);margin:0 auto;display:block;overflow:visible}
+  .tallo{fill:none;stroke:var(--salvia);stroke-width:3;stroke-linecap:round;stroke-dasharray:260;stroke-dashoffset:260}
+  .hoja{fill:var(--salvia);transform-box:fill-box;transform-origin:0% 100%;transform:scale(0)}
+  .hoja.clara{fill:#a9bfa6}
+  .flor{transform:scale(0) rotate(-60deg)}
+  .puntito{fill:#fff;stroke:#e9dccb;transform:scale(0);transform-box:fill-box;transform-origin:center}
+  .lazo{opacity:0;transform:translateY(10px);transition:all .8s 2.4s}
+  .abierta .tallo{animation:dibujar 1.5s cubic-bezier(.4,0,.2,1) forwards;animation-delay:var(--d,0s)}
+  .abierta .hoja{animation:crecer .9s cubic-bezier(.3,1.5,.5,1) forwards;animation-delay:calc(var(--d,0s) + .7s)}
+  .abierta .flor{animation:florecer 1.3s cubic-bezier(.3,1.4,.5,1) forwards;animation-delay:calc(var(--d,0s) + 1.1s)}
+  .abierta .puntito{animation:crecer .6s ease forwards;animation-delay:calc(var(--d,0s) + 1.6s)}
+  .abierta .lazo{opacity:1;transform:none}
+  @keyframes dibujar{to{stroke-dashoffset:0}}
+  @keyframes crecer{to{transform:scale(1)}}
+  @keyframes florecer{to{transform:scale(1) rotate(0)}}
+  .titulo{opacity:0;transform:translateY(14px);transition:all 1.2s 2.3s ease}
+  .abierta .titulo{opacity:1;transform:none}
+  .titulo small{display:block;font-size:14px;letter-spacing:.34em;text-transform:uppercase;color:var(--dorado);margin-top:8px}
+  .titulo h2{font-family:var(--manuscrita);font-weight:400;font-size:clamp(50px,15vw,64px);line-height:1.05;color:var(--rosa);margin:4px 0}
+  .titulo p{font-style:italic;font-size:17px;color:var(--salvia-osc)}
+
+  .petalo{position:fixed;top:-20px;width:12px;height:16px;border-radius:80% 0 80% 0;background:var(--rubor);opacity:.0;pointer-events:none;z-index:5}
+  .abierta .petalo{animation:caer var(--dur,9s) linear var(--del,3s) infinite}
+  @keyframes caer{0%{opacity:0;transform:translate(0,0) rotate(0)}10%{opacity:.75}90%{opacity:.6}100%{opacity:0;transform:translate(var(--dx,40px),105vh) rotate(540deg)}}
+
+  main{padding:10px 22px 10px}
+  .separador{display:block;width:150px;margin:30px auto;color:var(--dorado)}
+  .carta{font-size:20px;line-height:1.7;text-align:left}
+  .carta p{margin-bottom:16px}
+  .carta p:first-child::first-letter{font-family:var(--manuscrita);font-size:66px;float:left;line-height:.9;margin:6px 10px 0 0;color:var(--rosa)}
+  .firma{font-family:var(--manuscrita);font-size:34px;color:var(--rosa);text-align:right;margin-top:4px}
+
+  .fotos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+  .fotos figure{text-align:center}
+  .fotos figure:first-child{grid-column:1/-1}
+  .fotos img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:999px 999px 10px 10px;border:6px solid #fff;box-shadow:0 12px 30px rgba(74,59,54,.14);background:#eadfd2}
+  .fotos figure:first-child img{aspect-ratio:4/3.4;border-radius:200px 200px 12px 12px}
+  .fotos figcaption{font-style:italic;font-size:16px;color:var(--salvia-osc);margin-top:6px}
+
+  h3{font-family:var(--manuscrita);font-weight:400;font-size:46px;color:var(--rosa);text-align:center;line-height:1.1}
+  .sub3{text-align:center;font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--dorado);margin-bottom:22px}
+  .gracias{list-style:none;display:grid;gap:12px}
+  .gracias li{display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:14px 16px;font-size:19px;line-height:1.35;box-shadow:0 6px 18px rgba(74,59,54,.06);border-left:3px solid var(--rubor)}
+  .gracias svg{flex:0 0 26px;width:26px;height:26px}
+  .revelar{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+  .revelar.visible{opacity:1;transform:none}
+  .cierre{text-align:center;padding:40px 0 10px}
+  .cierre p{font-size:20px;font-style:italic;line-height:1.6}
+  footer{text-align:center;font-size:13px;color:rgba(74,59,54,.5);padding:34px 0 30px}
+
+  .musica{position:fixed;top:14px;right:max(14px,calc(50vw - 206px));z-index:40;width:44px;height:44px;border-radius:50%;border:1px solid rgba(184,146,90,.5);background:rgba(251,246,239,.85);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--dorado);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s}
+  .musica.visible{opacity:1;pointer-events:auto}
+  .musica svg{width:20px;height:20px}.musica .off{display:none}.musica.silencio .on{display:none}.musica.silencio .off{display:block}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important;animation-delay:0s!important}
+    .petalo{display:none}
+    .revelar{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body class="cerrada">
+<!-- =========================================================
+     Plantilla: Carta Día de la Madre · Clickea Studio
+     Para un pedido nuevo solo edita el bloque DATOS en el <script>.
+     ========================================================= -->
+<div class="portada" id="portada">
+  <div class="portada__tarjeta">
+    <svg class="capullo" viewBox="0 0 80 110" aria-hidden="true">
+      <path d="M40 108V52" stroke="#7d9a7e" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M40 86c-14-2-22-12-22-22 12 0 20 8 22 22z" fill="#7d9a7e"/>
+      <path d="M40 76c12-2 20-10 20-20-11 0-18 7-20 20z" fill="#a9bfa6"/>
+      <path d="M40 56c-13 0-20-12-20-26 0-12 8-24 20-28 12 4 20 16 20 28 0 14-7 26-20 26z" fill="#e7a79d"/>
+      <path d="M40 56c-6-6-9-16-9-26 0-10 4-20 9-28 5 8 9 18 9 28 0 10-3 20-9 26z" fill="#d9848a"/>
+    </svg>
+    <small id="portadaSub"></small>
+    <h1 id="portadaTitulo"></h1>
+    <p id="portadaTexto"></p>
+    <button class="btn" id="btnAbrir"></button>
+  </div>
+</div>
+
+<button class="musica" id="btnMusica" aria-label="Silenciar o activar música">
+  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M2 2l20 20"/></svg>
+</button>
+
+<div class="app">
+  <header>
+    <svg class="ramo" id="ramo" viewBox="0 0 300 280" aria-hidden="true"></svg>
+    <div class="titulo">
+      <small id="tituloSub"></small>
+      <h2 id="tituloNombre"></h2>
+      <p id="tituloFrase"></p>
+    </div>
+  </header>
+
+  <main>
+    <svg class="separador" viewBox="0 0 150 20" fill="none" stroke="currentColor" stroke-width="1"><path d="M0 10h58M92 10h58"/><circle cx="75" cy="10" r="4"/><circle cx="64" cy="10" r="1.6" fill="currentColor"/><circle cx="86" cy="10" r="1.6" fill="currentColor"/></svg>
+
+    <section class="carta revelar">
+      <div id="mensaje"></div>
+      <p class="firma" id="firma"></p>
+    </section>
+
+    <svg class="separador" viewBox="0 0 150 20" fill="none" stroke="currentColor" stroke-width="1"><path d="M0 10h58M92 10h58"/><circle cx="75" cy="10" r="4"/><circle cx="64" cy="10" r="1.6" fill="currentColor"/><circle cx="86" cy="10" r="1.6" fill="currentColor"/></svg>
+
+    <section class="fotos" id="fotos"></section>
+
+    <section id="gracias" style="padding-top:40px">
+      <h3 class="revelar" id="tituloGracias"></h3>
+      <p class="sub3 revelar">de todo corazón</p>
+      <ul class="gracias" id="listaGracias"></ul>
+    </section>
+
+    <section class="cierre revelar">
+      <p id="cierre"></p>
+      <p class="firma" style="text-align:center" id="firmaCierre"></p>
+    </section>
+    <footer>Hecho con 💜 por Clickea Studio</footer>
+  </main>
+</div>
+
+<script>
+/* =====================================================================
+   DATOS DEL PEDIDO  ✏️  (edita SOLO este bloque para cada cliente)
+   ===================================================================== */
+const DATOS = {
+  // --- Mamá ---
+  mama: "Mamá Rosa",               // cómo se le dice (aparece grande)
+
+  // --- Portada (tarjeta cerrada) ---
+  portadaSub: "Día de la Madre",
+  portadaTitulo: "Para ti, mamá",
+  portadaTexto: "con todo nuestro cariño",
+  textoBoton: "Abrir",
+
+  // --- Encabezado tras abrir ---
+  tituloSub: "Feliz día",
+  tituloFrase: "La mujer más fuerte y bonita que conocemos",
+
+  // --- Mensaje (separa párrafos con una línea en blanco) ---
+  mensaje: `Gracias por cada desayuno antes del colegio, por cada "abrígate que hace frío" y por quedarte despierta esperándonos aunque estuvieras cansada.
+
+Hoy entendemos todo lo que hiciste (y sigues haciendo) por nosotros. Eres nuestro lugar seguro, mamá. Te queremos muchísimo.`,
+  firma: "Tus hijos",
+
+  // --- Fotos familiares (la primera sale grande) ---
+  fotos: [
+    { foto: "https://images.unsplash.com/photo-1476703993599-0035a21b17a9?auto=format&fit=crop&w=800&q=75", pie: "Nuestra casa, nuestro mundo" },
+    { foto: "https://images.unsplash.com/photo-1484665754804-74b091211472?auto=format&fit=crop&w=800&q=75", pie: "Tus abrazos" },
+    { foto: "https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=800&q=75", pie: "Flores para ti" }
+  ],
+
+  // --- "Gracias por…" (aparecen al bajar) ---
+  tituloGracias: "Gracias por…",
+  gracias: [
+    "Enseñarnos a no rendirnos nunca",
+    "Tu sazón, que ningún restaurante iguala",
+    "Tus consejos, incluso los que no pedimos",
+    "Celebrar cada logro como si fuera tuyo",
+    "Amarnos incluso en nuestros peores días",
+    "Ser mamá, amiga y hogar a la vez"
+  ],
+
+  // --- Cierre ---
+  cierre: "Que hoy te consientan como tú nos consientes todos los días.",
+  firmaCierre: "Lucía y Mateo",
+
+  // --- Colores principales ---
+  colores: {
+    papel: "#fbf6ef",    // fondo de la carta
+    rosa: "#d9848a",     // títulos y flores
+    rubor: "#e7a79d",    // pétalos
+    salvia: "#7d9a7e",   // hojas y tallos
+    dorado: "#b8925a"    // detalles finos
+  },
+
+  // --- Música (vals suave original generado en el navegador) ---
+  musica: { activa: true, volumen: 0.45 }
+};
+/* ===================== FIN DE DATOS — no hace falta tocar nada más ===================== */
+
+const $ = s => document.querySelector(s);
+const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+Object.entries(DATOS.colores).forEach(([k, v]) => document.documentElement.style.setProperty('--' + k, v));
+document.title = `Para ti, ${DATOS.mama.toLowerCase().startsWith('mamá') ? DATOS.mama : 'mamá'} 💐`;
+
+$('#portadaSub').textContent = DATOS.portadaSub;
+$('#portadaTitulo').textContent = DATOS.portadaTitulo;
+$('#portadaTexto').textContent = DATOS.portadaTexto;
+$('#btnAbrir').textContent = DATOS.textoBoton;
+$('#tituloSub').textContent = DATOS.tituloSub;
+$('#tituloNombre').textContent = DATOS.mama;
+$('#tituloFrase').textContent = DATOS.tituloFrase;
+$('#firma').textContent = DATOS.firma;
+$('#tituloGracias').textContent = DATOS.tituloGracias;
+$('#cierre').textContent = DATOS.cierre;
+$('#firmaCierre').textContent = DATOS.firmaCierre;
+DATOS.mensaje.split(/\n\s*\n/).forEach(t => { const p = document.createElement('p'); p.textContent = t.trim(); $('#mensaje').appendChild(p); });
+DATOS.fotos.forEach(f => {
+  const fig = document.createElement('figure'); fig.className = 'revelar';
+  fig.innerHTML = '<img loading="lazy" alt=""><figcaption></figcaption>';
+  fig.querySelector('img').src = f.foto; fig.querySelector('img').alt = f.pie; fig.querySelector('figcaption').textContent = f.pie;
+  $('#fotos').appendChild(fig);
+});
+const florcita = `<svg viewBox="0 0 26 26" aria-hidden="true"><g transform="translate(13 13)">${[0, 72, 144, 216, 288].map(a => `<ellipse cx="0" cy="-6" rx="4.2" ry="6.2" fill="${DATOS.colores.rubor}" transform="rotate(${a})"/>`).join('')}<circle r="3" fill="${DATOS.colores.dorado}"/></g></svg>`;
+DATOS.gracias.forEach((g, i) => {
+  const li = document.createElement('li'); li.className = 'revelar'; li.style.transitionDelay = (i % 3) * 0.08 + 's';
+  li.innerHTML = florcita + '<span></span>'; li.querySelector('span').textContent = g;
+  $('#listaGracias').appendChild(li);
+});
+
+/* ---------- Ramo en SVG (se dibuja al abrir) ---------- */
+(function () {
+  const base = [150, 272];
+  const flores = [ // x, y, tamaño, color de fuera, color de dentro, retraso
+    [150, 62, 1.25, '#f2c1b8', DATOS.colores.rosa, 0],
+    [92, 100, 1.0, '#fbe3d6', '#efb49a', .25],
+    [210, 96, 1.05, DATOS.colores.rubor, '#c9676f', .15],
+    [52, 156, .85, '#f6d2cc', DATOS.colores.rubor, .45],
+    [250, 150, .85, '#fbe3d6', '#e9a383', .5],
+    [124, 150, .7, '#ffffff', '#f2c1b8', .6],
+    [182, 146, .75, '#f6d2cc', DATOS.colores.rosa, .55]
+  ];
+  let svg = '';
+  flores.forEach(([x, y, s, , , d]) => {
+    const cx1 = (x + base[0]) / 2 + (x < 150 ? -18 : x > 150 ? 18 : 0);
+    svg += `<path class="tallo" style="--d:${d}s" d="M${base[0]} ${base[1]} Q ${cx1} ${(y + base[1]) / 2 + 20} ${x} ${y + 10 * s}"/>`;
+  });
+  // hojas
+  [[118, 200, -40, 0.2, ''], [182, 198, 40, .3, 'clara'], [96, 170, -70, .5, 'clara'], [206, 168, 65, .45, ''], [140, 226, -20, .1, 'clara'], [160, 222, 25, .15, '']].forEach(([x, y, r, d, c]) => {
+    svg += `<g transform="translate(${x} ${y}) rotate(${r})"><path class="hoja ${c}" style="--d:${d}s" d="M0 0c-6-12-2-26 10-34 6 12 2 26-10 34z"/></g>`;
+  });
+  // puntitos (flor de nube)
+  [[118, 88], [186, 70], [70, 128], [232, 118], [104, 128], [200, 124], [160, 104], [140, 108], [78, 190], [226, 186]].forEach(([x, y], i) => {
+    svg += `<circle class="puntito" style="--d:${.3 + i * .06}s" cx="${x}" cy="${y}" r="4.2"/>`;
+  });
+  // flores
+  flores.forEach(([x, y, s, fuera, dentro, d]) => {
+    let p = '';
+    for (let k = 0; k < 10; k++) p += `<ellipse cx="0" cy="-15" rx="9" ry="16" fill="${fuera}" transform="rotate(${k * 36})"/>`;
+    for (let k = 0; k < 7; k++) p += `<ellipse cx="0" cy="-9" rx="6.5" ry="10.5" fill="${dentro}" transform="rotate(${k * 51.4 + 20})"/>`;
+    p += `<circle r="6" fill="${DATOS.colores.dorado}"/><circle r="3.5" fill="#e3c48e"/>`;
+    svg += `<g transform="translate(${x} ${y}) scale(${s})"><g class="flor" style="--d:${d}s">${p}</g></g>`;
+  });
+  // lazo
+  svg += `<g class="lazo"><path d="M150 236c-18-14-36-12-36-2s18 12 36 2zM150 236c18-14 36-12 36-2s-18 12-36 2z" fill="${DATOS.colores.rubor}"/><path d="M146 238l-12 28 10-4 4 8 4-30zM154 238l12 28-10-4-4 8-4-30z" fill="${DATOS.colores.rosa}"/><circle cx="150" cy="236" r="6" fill="${DATOS.colores.rosa}"/></g>`;
+  $('#ramo').innerHTML = svg;
+})();
+
+// Pétalos que caen suavemente
+for (let i = 0; i < 9; i++) {
+  const p = document.createElement('span'); p.className = 'petalo';
+  p.style.left = (Math.random() * 100) + '%';
+  p.style.setProperty('--dur', (9 + Math.random() * 7) + 's'); p.style.setProperty('--del', (3 + Math.random() * 10) + 's'); p.style.setProperty('--dx', ((Math.random() - .5) * 160) + 'px');
+  p.style.background = [DATOS.colores.rubor, '#f2c1b8', '#fbe3d6'][i % 3];
+  document.body.appendChild(p);
+}
+
+/* ---------- Aparecer al bajar ---------- */
+const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: .2 });
+document.querySelectorAll('.revelar').forEach(el => obs.observe(el));
+
+/* ---------- Música: vals de caja musical original (Web Audio API) ---------- */
+// Sol mayor en 3/4: cada compás = 6 corcheas (bajo + arpegio) y la melodía encima (null = silencio).
+const COMPASES = [
+  { a: ['G3', 'D4', 'G4', 'B4'], m: ['B5', null, 'A5', null, 'G5', null] },
+  { a: ['D3', 'A3', 'D4', 'F#4'], m: ['A5', null, null, null, 'F#5', null] },
+  { a: ['E3', 'B3', 'E4', 'G4'], m: ['G5', null, 'B5', null, 'E6', null] },
+  { a: ['C3', 'G3', 'C4', 'E4'], m: ['D6', null, null, null, 'C6', 'B5'] },
+  { a: ['G3', 'D4', 'G4', 'B4'], m: ['B5', null, 'D6', null, 'G5', null] },
+  { a: ['C3', 'G3', 'C4', 'E4'], m: ['E5', null, 'G5', null, 'C6', null] },
+  { a: ['D3', 'A3', 'D4', 'F#4'], m: ['B5', null, 'A5', null, 'F#5', null] },
+  { a: ['G3', 'D4', 'G4', 'B4'], m: ['G5', null, null, null, null, null] }
+];
+function crearMusica(compases, tempo, volumen) {
+  const N = { C: 0, 'C#': 1, D: 2, 'D#': 3, E: 4, F: 5, 'F#': 6, G: 7, 'G#': 8, A: 9, 'A#': 10, B: 11 };
+  const frec = n => { const m = n.match(/^([A-G]#?)(\d)$/); return 440 * Math.pow(2, (N[m[1]] + (+m[2] + 1) * 12 - 69) / 12); };
+  const patron = [0, 2, 3, 1, 3, 2], largoCompas = 6;
+  let ctx, salida, paso = 0, proximo = 0, silencio = false;
+  const dur = 60 / tempo / 2;
+  function nota(f, t, vel, largo) {
+    const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain(), g2 = ctx.createGain();
+    o.type = 'sine'; o.frequency.value = f; o2.type = 'sine'; o2.frequency.value = f * 4; g2.gain.value = .05;
+    o.connect(g); o2.connect(g2).connect(g); g.connect(salida);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vel, t + .008); g.gain.exponentialRampToValueAtTime(.0001, t + largo);
+    o.start(t); o2.start(t); o.stop(t + largo + .05); o2.stop(t + largo + .05);
+  }
+  function programar() {
+    while (proximo < ctx.currentTime + .15) {
+      const c = compases[Math.floor(paso / largoCompas) % compases.length], i = paso % largoCompas;
+      nota(frec(c.a[patron[i]]), proximo, i === 0 ? .14 : .06, 1.3);
+      if (c.m[i]) nota(frec(c.m[i]), proximo + .004, .13, 2.4);
+      proximo += dur; paso++;
+    }
+  }
+  return {
+    iniciar() {
+      if (ctx) return;
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      salida = ctx.createGain(); salida.gain.value = volumen;
+      const eco = ctx.createDelay(2); eco.delayTime.value = dur * 3; const fb = ctx.createGain(); fb.gain.value = .25;
+      const filtro = ctx.createBiquadFilter(); filtro.type = 'lowpass'; filtro.frequency.value = 3000;
+      salida.connect(filtro); filtro.connect(ctx.destination); filtro.connect(eco); eco.connect(fb).connect(eco); eco.connect(ctx.destination);
+      proximo = ctx.currentTime + .1; setInterval(programar, 40); programar();
+    },
+    alternar() { if (!ctx) return false; silencio = !silencio; silencio ? ctx.suspend() : ctx.resume(); return silencio; }
+  };
+}
+const musica = crearMusica(COMPASES, 108, DATOS.musica.volumen);
+$('#btnMusica').addEventListener('click', () => $('#btnMusica').classList.toggle('silencio', musica.alternar()));
+
+/* ---------- Abrir ---------- */
+$('#btnAbrir').addEventListener('click', () => {
+  if (DATOS.musica.activa) { musica.iniciar(); $('#btnMusica').classList.add('visible'); }
+  document.body.classList.add('abierta');
+  document.body.classList.remove('cerrada');
+  scrollTo(0, 0);
+});
+</script>
+</body>
+</html>

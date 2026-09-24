@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2a0e18">
+<title>Una carta para ti 💌</title>
+<meta name="description" content="Una carta de aniversario hecha con mucho cariño.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fondo:#2a0e18; --fondo2:#4a1526; --principal:#9b1f3d; --acento:#d9ab5b; --papel:#fbf3e4; --tinta:#3b1d24;
+    --sobre:#e9d6b8; --sobre-osc:#d8bf98; --sobre-int:#b98f63;
+    --manuscrita:'Great Vibes', cursive; --texto:'Lora', Georgia, serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:var(--texto);color:var(--papel);background:radial-gradient(120% 80% at 50% 0%,var(--fondo2),var(--fondo) 60%) fixed,var(--fondo);min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+  body.bloqueado{overflow:hidden;height:100vh}
+  img{display:block;max-width:100%}
+  .app{max-width:440px;margin:0 auto;position:relative;min-height:100vh}
+  @media (min-width:700px){.app{box-shadow:0 0 90px rgba(0,0,0,.55);background:rgba(0,0,0,.08)}}
+
+  /* ---------- Intro: sobre ---------- */
+  .intro{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;background:radial-gradient(90% 60% at 50% 45%,#5a1a2e 0%,var(--fondo) 75%);cursor:pointer;transition:opacity .9s ease,transform .9s ease}
+  .intro.saliendo{opacity:0;transform:scale(1.08);pointer-events:none}
+  .intro__titulo{font-family:var(--manuscrita);font-size:clamp(34px,10vw,46px);color:var(--acento);text-align:center;line-height:1.1;text-shadow:0 2px 18px rgba(217,171,91,.35);opacity:0;animation:aparecer 1.2s .2s ease forwards}
+  .intro__sub{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:rgba(251,243,228,.75);display:flex;align-items:center;gap:10px;opacity:0;animation:aparecer 1s 1s ease forwards}
+  .intro__sub i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--acento);animation:latir 1.4s infinite}
+  .brillo{position:absolute;width:3px;height:3px;border-radius:50%;background:#f5d9a0;box-shadow:0 0 8px 2px rgba(245,217,160,.7);opacity:0;animation:titilar var(--d,4s) var(--r,0s) infinite ease-in-out}
+  @keyframes titilar{0%,100%{opacity:0;transform:translateY(0)}50%{opacity:.9;transform:translateY(-14px)}}
+  @keyframes aparecer{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @keyframes latir{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
+
+  .sobre-envoltura{--w:min(82vw,330px);filter:drop-shadow(0 22px 30px rgba(0,0,0,.45));animation:flotar 4s ease-in-out infinite;opacity:0;animation:entrarSobre 1s .4s ease forwards,flotar 4s 1.4s ease-in-out infinite}
+  @keyframes entrarSobre{from{opacity:0;transform:translateY(30px) rotate(-3deg)}to{opacity:1;transform:none}}
+  @keyframes flotar{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(-.6deg)}}
+  .abierto .sobre-envoltura{animation:none;opacity:1}
+  .sobre{position:relative;width:var(--w);height:calc(var(--w) * .64);perspective:1400px}
+  .sobre__fondo{position:absolute;inset:0;border-radius:6px;background:linear-gradient(180deg,var(--sobre-int),#a57b52)}
+  .sobre__carta{position:absolute;left:7%;right:7%;top:6%;height:90%;z-index:2;border-radius:4px;background:var(--papel);background-image:repeating-linear-gradient(0deg,transparent 0 23px,rgba(155,31,61,.08) 23px 24px);padding:18px 16px;color:var(--tinta);text-align:center;transition:transform 1.2s cubic-bezier(.2,.75,.25,1) .55s}
+  .sobre__carta b{display:block;font-family:var(--manuscrita);font-weight:400;font-size:30px;color:var(--principal);margin-top:6px}
+  .sobre__carta small{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8a6a5a}
+  .sobre__frente{position:absolute;inset:0;z-index:3;border-radius:6px;background:linear-gradient(160deg,var(--sobre) 0%,#e2cba7 100%);clip-path:polygon(0 0,50% 50%,100% 0,100% 100%,0 100%)}
+  .sobre__frente::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent 49.6%,rgba(120,80,40,.18) 50%,transparent 50.6%),linear-gradient(to top left,transparent 49.6%,rgba(120,80,40,.18) 50%,transparent 50.6%)}
+  .sobre__para{position:absolute;left:0;right:0;bottom:7%;z-index:4;text-align:center;font-family:var(--manuscrita);font-size:clamp(24px,7.4vw,30px);color:var(--principal)}
+  .sobre__solapa{position:absolute;left:0;right:0;top:0;height:50%;z-index:5;background:linear-gradient(180deg,var(--sobre-osc),#cfb189);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:50% 0;transition:transform .8s cubic-bezier(.5,0,.3,1),z-index 0s .4s}
+  .sello{position:absolute;left:50%;top:50%;z-index:6;width:54px;height:54px;margin:-30px 0 0 -27px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#c8324f,#7e1128 70%);box-shadow:0 3px 8px rgba(0,0,0,.35),inset 0 0 0 4px rgba(255,255,255,.06),inset 0 -3px 6px rgba(0,0,0,.3);font-family:var(--manuscrita);font-size:24px;color:#f3c7a0;transition:transform .5s ease,opacity .5s ease}
+  .sello::before{content:"";position:absolute;inset:-5px;border-radius:47% 53% 45% 55%;background:inherit;z-index:-1;opacity:.9}
+  .abierto .sello{transform:scale(0) rotate(40deg);opacity:0}
+  .abierto .sobre__solapa{transform:rotateX(180deg);z-index:1}
+  .abierto .sobre__carta{transform:translateY(-58%)}
+
+  /* ---------- Botón de música ---------- */
+  .musica{position:fixed;top:14px;right:max(14px,calc(50vw - 206px));z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid rgba(217,171,91,.5);background:rgba(42,14,24,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--acento);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s}
+  .musica.visible{opacity:1;pointer-events:auto}
+  .musica svg{width:20px;height:20px}
+  .musica .off{display:none}.musica.silencio .on{display:none}.musica.silencio .off{display:block}
+
+  /* ---------- Secciones ---------- */
+  main{padding:72px 18px 30px;opacity:0;transition:opacity 1s .2s}
+  .listo main{opacity:1}
+  section{margin:0 0 56px}
+  .etiqueta{display:block;text-align:center;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--acento);margin-bottom:6px}
+  h2{font-family:var(--manuscrita);font-weight:400;font-size:44px;line-height:1.05;text-align:center;color:var(--papel);margin-bottom:22px}
+  .adorno{display:block;margin:0 auto 16px;width:120px;color:var(--acento)}
+
+  .carta{position:relative;min-height:calc(100svh - 150px);background:var(--papel);color:var(--tinta);border-radius:6px;padding:34px 24px 30px;box-shadow:0 18px 50px rgba(0,0,0,.45);background-image:radial-gradient(120% 60% at 50% 0%,rgba(255,255,255,.7),transparent 70%),repeating-linear-gradient(0deg,transparent 0 29px,rgba(155,31,61,.07) 29px 30px);transform-origin:top center;animation:cartaEntra 1s ease both}
+  @keyframes cartaEntra{from{opacity:0;transform:translateY(30px) scale(.96)}to{opacity:1;transform:none}}
+  .carta::before{content:"";position:absolute;inset:8px;border:1px solid rgba(155,31,61,.18);border-radius:3px;pointer-events:none}
+  .carta__saludo{font-family:var(--manuscrita);font-size:38px;color:var(--principal);margin-bottom:12px}
+  .carta__cuerpo p{font-size:16.5px;line-height:1.75;margin-bottom:14px;min-height:1em}
+  .cursor{display:inline-block;width:2px;height:1.05em;background:var(--principal);vertical-align:-3px;margin-left:1px;animation:parpadeo .8s steps(1) infinite}
+  @keyframes parpadeo{50%{opacity:0}}
+  .carta__firma{font-family:var(--manuscrita);font-size:30px;color:var(--principal);text-align:right;opacity:0;transform:translateY(8px);transition:all .9s}
+  .carta__firma.ver{opacity:1;transform:none}
+  .carta__pista{position:absolute;bottom:-26px;left:0;right:0;text-align:center;font-size:12px;color:rgba(251,243,228,.55);transition:opacity .4s}
+
+  .contador{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .celda{border:1px solid rgba(217,171,91,.35);border-radius:14px;padding:14px 4px 10px;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.01))}
+  .celda b{display:block;font-family:var(--texto);font-weight:600;font-size:30px;color:var(--papel);font-variant-numeric:tabular-nums;line-height:1.1}
+  .celda span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--acento)}
+  .contador__nota{text-align:center;font-style:italic;color:rgba(251,243,228,.75);margin-top:16px;font-size:15px}
+
+  .linea{position:relative;padding-left:30px}
+  .linea::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--acento),rgba(217,171,91,.1))}
+  .hito{position:relative;margin-bottom:30px}
+  .hito::before{content:"";position:absolute;left:-27px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--fondo);border:2px solid var(--acento);box-shadow:0 0 0 4px rgba(217,171,91,.15)}
+  .hito__fecha{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--acento)}
+  .hito h3{font-family:var(--manuscrita);font-weight:400;font-size:32px;line-height:1.1;margin:2px 0 10px}
+  .hito img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;box-shadow:0 10px 26px rgba(0,0,0,.4);margin-bottom:10px;background:#3a1420}
+  .hito p{font-size:15px;line-height:1.65;color:rgba(251,243,228,.85)}
+
+  .polaroids{display:grid;grid-template-columns:1fr 1fr;gap:18px 14px;padding:6px 4px}
+  .polaroid{background:#fffdf8;padding:8px 8px 10px;border-radius:2px;box-shadow:0 10px 24px rgba(0,0,0,.45);transform:rotate(var(--rot,0deg));cursor:zoom-in;transition:transform .3s}
+  .polaroid:active{transform:rotate(0) scale(1.03)}
+  .polaroid img{width:100%;aspect-ratio:1;object-fit:cover;background:#ddd}
+  .polaroid figcaption{font-family:var(--manuscrita);font-size:22px;color:var(--tinta);text-align:center;margin-top:6px;line-height:1}
+
+  .final{text-align:center;padding:10px 6px 0}
+  .final p{font-size:17px;line-height:1.7;color:rgba(251,243,228,.9);margin-bottom:22px}
+  .boton{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:14px 26px;font:600 15px var(--texto);color:var(--fondo);background:linear-gradient(135deg,#f0cf8f,var(--acento));box-shadow:0 8px 24px rgba(217,171,91,.35);cursor:pointer}
+  .boton:active{transform:scale(.97)}
+  .firma-studio{text-align:center;font-size:12px;color:rgba(251,243,228,.45);padding:26px 0 30px}
+
+  .revelar{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+  .revelar.visible{opacity:1;transform:none}
+
+  .visor{position:fixed;inset:0;z-index:70;background:rgba(15,4,8,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .35s}
+  .visor.abierto{opacity:1;pointer-events:auto}
+  .visor img{max-height:72vh;border:10px solid #fffdf8;border-bottom-width:44px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+  .visor p{font-family:var(--manuscrita);font-size:30px;margin-top:-40px;color:var(--tinta);position:relative}
+
+  canvas#particulas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:65}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+    .revelar{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body class="bloqueado">
+<!-- =========================================================
+     Plantilla: Carta de aniversario · Clickea Studio
+     Para un pedido nuevo solo edita el bloque DATOS en el <script>.
+     ========================================================= -->
+
+<div class="intro" id="intro" role="button" tabindex="0" aria-label="Abrir la carta">
+  <div class="intro__titulo" id="introTitulo"></div>
+  <div class="sobre-envoltura">
+    <div class="sobre">
+      <div class="sobre__fondo"></div>
+      <div class="sobre__carta"><small id="cartaMini"></small><b id="cartaMiniNombre"></b></div>
+      <div class="sobre__frente"></div>
+      <div class="sobre__para" id="sobrePara"></div>
+      <div class="sobre__solapa"></div>
+      <div class="sello" id="sello"></div>
+    </div>
+  </div>
+  <div class="intro__sub"><i></i><span id="textoTocar"></span></div>
+</div>
+
+<button class="musica" id="btnMusica" aria-label="Silenciar o activar música">
+  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M2 2l20 20"/></svg>
+</button>
+
+<div class="app">
+  <main>
+    <section>
+      <article class="carta" id="carta">
+        <div class="carta__saludo" id="saludo"></div>
+        <div class="carta__cuerpo" id="cuerpo"></div>
+        <div class="carta__firma" id="firma"></div>
+        <div class="carta__pista" id="pista">Toca la carta para leerla completa</div>
+      </article>
+    </section>
+
+    <section class="revelar">
+      <span class="etiqueta">Desde el primer día</span>
+      <h2 id="tituloContador"></h2>
+      <div class="contador" id="contador"></div>
+      <p class="contador__nota" id="notaContador"></p>
+    </section>
+
+    <section>
+      <span class="etiqueta revelar">Nuestra historia</span>
+      <h2 class="revelar">Momentos que atesoro</h2>
+      <div class="linea" id="linea"></div>
+    </section>
+
+    <section>
+      <span class="etiqueta revelar">Galería</span>
+      <h2 class="revelar">Tú y yo</h2>
+      <div class="polaroids" id="polaroids"></div>
+    </section>
+
+    <section class="final revelar" id="final">
+      <svg class="adorno" viewBox="0 0 120 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 12h42M76 12h42"/><path d="M60 20s-10-6-10-11a5 5 0 0 1 10-1 5 5 0 0 1 10 1c0 5-10 11-10 11z" fill="currentColor" stroke="none"/></svg>
+      <h2 id="tituloFinal"></h2>
+      <p id="mensajeFinal"></p>
+      <button class="boton" id="btnCorazones">Llénalo de corazones 💞</button>
+    </section>
+
+    <footer class="firma-studio">Hecho con 💜 por Clickea Studio</footer>
+  </main>
+</div>
+
+<div class="visor" id="visor" aria-hidden="true"><img alt=""><p></p></div>
+<canvas id="particulas"></canvas>
+
+<script>
+/* =====================================================================
+   DATOS DEL PEDIDO  ✏️  (edita SOLO este bloque para cada cliente)
+   ===================================================================== */
+const DATOS = {
+  // --- Personas ---
+  para: "Valeria",              // quién recibe la carta
+  de: "Diego",                  // quién la regala
+  iniciales: "V&D",             // aparecen en el sello de cera del sobre
+
+  // --- Fecha en que empezó la relación (AAAA-MM-DDTHH:MM) ---
+  // El contador en vivo cuenta desde aquí.
+  fechaInicio: "2021-03-14T20:30",
+
+  // --- Pantalla inicial (sobre cerrado) ---
+  tituloIntro: "Tengo algo para ti",
+  textoTocar: "Toca para abrir",
+
+  // --- La carta (se escribe sola, letra por letra) ---
+  saludo: "Mi amor:",
+  // Separa los párrafos con una línea en blanco.
+  mensaje: `Hoy cumplimos un año más juntos y todavía me acuerdo de lo nervioso que estaba la primera vez que te invité a salir.
+
+Gracias por las risas, por los domingos sin planes, por aguantar mis chistes malos y por hacer que cualquier día normal se sienta especial.
+
+No sé qué nos toca vivir después, pero sí sé con quién lo quiero vivir. Contigo, siempre.`,
+  firma: "Tuyo, Diego",
+
+  // --- Contador ---
+  tituloContador: "Llevamos juntos",
+
+  // --- Línea del tiempo: agrega o quita recuerdos (fecha, título, texto, foto) ---
+  recuerdos: [
+    { fecha: "14 mar 2021", titulo: "El día que todo empezó", texto: "Un café que se convirtió en cuatro horas de conversación.", foto: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=800&q=75" },
+    { fecha: "Julio 2021",  titulo: "Nuestro primer viaje",  texto: "Bicicletas, atardeceres y ese lugar que ahora es nuestro.",   foto: "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?auto=format&fit=crop&w=800&q=75" },
+    { fecha: "Enero 2023",  titulo: "Aprendimos a ser equipo", texto: "Los días difíciles también fueron nuestros, y los superamos juntos.", foto: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=75" },
+    { fecha: "Hoy",         titulo: "Y lo que falta…",       texto: "Todavía tenemos muchísimas fotos por tomar.",               foto: "https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?auto=format&fit=crop&w=800&q=75" }
+  ],
+
+  // --- Galería tipo polaroid (foto + pie corto) ---
+  galeria: [
+    { foto: "https://images.unsplash.com/photo-1501901609772-df0848060b33?auto=format&fit=crop&w=800&q=75", pie: "Tu risa ♡" },
+    { foto: "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=800&q=75", pie: "Nuestras manos" },
+    { foto: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=75", pie: "Esa playa" },
+    { foto: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=800&q=75", pie: "Atardeceres" }
+  ],
+
+  // --- Cierre ---
+  tituloFinal: "Feliz aniversario",
+  mensajeFinal: "Gracias por elegirme cada día. Te amo más de lo que esta carta alcanza a decir.",
+
+  // --- Colores principales ---
+  colores: {
+    fondo: "#2a0e18",      // fondo oscuro (vino)
+    fondo2: "#4a1526",     // brillo del fondo
+    principal: "#9b1f3d",  // títulos y sello
+    acento: "#d9ab5b",     // dorado
+    papel: "#fbf3e4"       // color de la carta
+  },
+
+  // --- Música (melodía original generada en el navegador) ---
+  musica: { activa: true, volumen: 0.5 }  // volumen de 0 a 1
+};
+/* ===================== FIN DE DATOS — no hace falta tocar nada más ===================== */
+
+const $ = s => document.querySelector(s);
+const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const raiz = document.documentElement.style;
+raiz.setProperty('--fondo', DATOS.colores.fondo); raiz.setProperty('--fondo2', DATOS.colores.fondo2);
+raiz.setProperty('--principal', DATOS.colores.principal); raiz.setProperty('--acento', DATOS.colores.acento);
+raiz.setProperty('--papel', DATOS.colores.papel);
+document.title = `Una carta para ${DATOS.para} 💌`;
+
+/* ---------- Rellenar textos ---------- */
+$('#introTitulo').textContent = DATOS.tituloIntro;
+$('#textoTocar').textContent = DATOS.textoTocar;
+$('#sobrePara').textContent = `Para ${DATOS.para}`;
+$('#sello').textContent = DATOS.iniciales;
+$('#cartaMini').textContent = 'Una carta para';
+$('#cartaMiniNombre').textContent = DATOS.para;
+$('#saludo').textContent = DATOS.saludo;
+$('#firma').textContent = DATOS.firma;
+$('#tituloContador').textContent = DATOS.tituloContador;
+$('#tituloFinal').textContent = DATOS.tituloFinal;
+$('#mensajeFinal').textContent = DATOS.mensajeFinal;
+
+// Brillos flotantes en la intro
+for (let i = 0; i < 26; i++) {
+  const b = document.createElement('span');
+  b.className = 'brillo';
+  b.style.left = Math.random() * 100 + '%'; b.style.top = Math.random() * 100 + '%';
+  b.style.setProperty('--d', (3 + Math.random() * 4) + 's'); b.style.setProperty('--r', (Math.random() * 4) + 's');
+  $('#intro').appendChild(b);
+}
+
+// Línea del tiempo
+DATOS.recuerdos.forEach(r => {
+  const d = document.createElement('div');
+  d.className = 'hito revelar';
+  d.innerHTML = `<div class="hito__fecha"></div><h3></h3>${r.foto ? '<img loading="lazy" alt="">' : ''}<p></p>`;
+  d.querySelector('.hito__fecha').textContent = r.fecha;
+  d.querySelector('h3').textContent = r.titulo;
+  d.querySelector('p').textContent = r.texto;
+  if (r.foto) { d.querySelector('img').src = r.foto; d.querySelector('img').alt = r.titulo; }
+  $('#linea').appendChild(d);
+});
+
+// Polaroids
+const giros = [-4, 3, 2.5, -3, -2, 4];
+DATOS.galeria.forEach((g, i) => {
+  const f = document.createElement('figure');
+  f.className = 'polaroid revelar';
+  f.style.setProperty('--rot', giros[i % giros.length] + 'deg');
+  f.innerHTML = '<img loading="lazy" alt=""><figcaption></figcaption>';
+  f.querySelector('img').src = g.foto; f.querySelector('img').alt = g.pie;
+  f.querySelector('figcaption').textContent = g.pie;
+  f.addEventListener('click', () => abrirVisor(g));
+  $('#polaroids').appendChild(f);
+});
+function abrirVisor(g) {
+  const v = $('#visor'); v.querySelector('img').src = g.foto; v.querySelector('p').textContent = g.pie;
+  v.classList.add('abierto'); v.setAttribute('aria-hidden', 'false');
+}
+$('#visor').addEventListener('click', () => { $('#visor').classList.remove('abierto'); $('#visor').setAttribute('aria-hidden', 'true'); });
+
+/* ---------- Contador en vivo ---------- */
+const inicio = new Date(DATOS.fechaInicio);
+const unidades = ['Años', 'Meses', 'Días', 'Horas', 'Minutos', 'Segundos'];
+$('#contador').innerHTML = unidades.map(u => `<div class="celda"><b>0</b><span>${u}</span></div>`).join('');
+const celdas = [...document.querySelectorAll('.celda b')];
+function diferencia(desde, hasta) {
+  let a = hasta.getFullYear() - desde.getFullYear(), m = hasta.getMonth() - desde.getMonth(), d = hasta.getDate() - desde.getDate();
+  let h = hasta.getHours() - desde.getHours(), mi = hasta.getMinutes() - desde.getMinutes(), s = hasta.getSeconds() - desde.getSeconds();
+  if (s < 0) { s += 60; mi--; } if (mi < 0) { mi += 60; h--; } if (h < 0) { h += 24; d--; }
+  if (d < 0) { d += new Date(hasta.getFullYear(), hasta.getMonth(), 0).getDate(); m--; }
+  if (m < 0) { m += 12; a--; }
+  return [a, m, d, h, mi, s];
+}
+function tic() {
+  const ahora = new Date();
+  diferencia(inicio, ahora).forEach((v, i) => { celdas[i].textContent = v; });
+  const dias = Math.floor((ahora - inicio) / 86400000);
+  $('#notaContador').textContent = `Son ${dias.toLocaleString('es-PE')} días eligiéndonos (y contando).`;
+}
+tic(); setInterval(tic, 1000);
+
+/* ---------- Carta que se escribe sola ---------- */
+let escribiendo = false, terminarYa = false;
+function escribirCarta() {
+  const cuerpo = $('#cuerpo');
+  const parrafos = DATOS.mensaje.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+  const cursor = document.createElement('span'); cursor.className = 'cursor';
+  if (reducir) { parrafos.forEach(t => { const p = document.createElement('p'); p.textContent = t; cuerpo.appendChild(p); }); fin(); return; }
+  escribiendo = true;
+  let pi = 0, ci = 0, p = null;
+  function paso() {
+    if (terminarYa) {
+      if (p) p.textContent = parrafos[pi];
+      for (let k = pi + 1; k < parrafos.length; k++) { const q = document.createElement('p'); q.textContent = parrafos[k]; cuerpo.appendChild(q); }
+      cursor.remove(); fin(); return;
+    }
+    if (!p) { p = document.createElement('p'); cuerpo.appendChild(p); p.appendChild(document.createTextNode('')); p.appendChild(cursor); }
+    const texto = parrafos[pi];
+    p.firstChild.nodeValue = texto.slice(0, ++ci);
+    const c = texto[ci - 1];
+    let espera = 26 + Math.random() * 30;
+    if ('.!?…'.includes(c)) espera = 330; else if (',;:'.includes(c)) espera = 150;
+    if (ci >= texto.length) { pi++; ci = 0; p = null; espera = 520; if (pi >= parrafos.length) { cursor.remove(); fin(); return; } }
+    setTimeout(paso, espera);
+  }
+  paso();
+  function fin() { escribiendo = false; $('#firma').classList.add('ver'); $('#pista').style.opacity = 0; }
+}
+$('#carta').addEventListener('click', () => { if (escribiendo) terminarYa = true; });
+
+/* ---------- Aparecer al hacer scroll ---------- */
+const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll('.revelar').forEach(el => obs.observe(el));
+let lluviaFinal = false;
+new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting && !lluviaFinal) { lluviaFinal = true; lluviaCorazones(); }
+}), { threshold: .5 }).observe($('#final'));
+$('#btnCorazones').addEventListener('click', () => lluviaCorazones());
+
+/* ---------- Partículas: lluvia de corazones ---------- */
+const lienzo = $('#particulas'), cx = lienzo.getContext('2d');
+let piezas = [], animando = false;
+function ajustar() { const r = devicePixelRatio || 1; lienzo.width = innerWidth * r; lienzo.height = innerHeight * r; cx.setTransform(r, 0, 0, r, 0, 0); }
+ajustar(); addEventListener('resize', ajustar);
+function corazon(s) {
+  cx.beginPath(); cx.moveTo(0, s * .3);
+  cx.bezierCurveTo(0, 0, -s * .5, 0, -s * .5, s * .3); cx.bezierCurveTo(-s * .5, s * .6, 0, s * .75, 0, s);
+  cx.bezierCurveTo(0, s * .75, s * .5, s * .6, s * .5, s * .3); cx.bezierCurveTo(s * .5, 0, 0, 0, 0, s * .3); cx.fill();
+}
+function lluviaCorazones(cantidad = 70) {
+  if (reducir) cantidad = 12;
+  const tonos = [DATOS.colores.principal, '#d8435f', '#f08aa0', DATOS.colores.acento, '#ffd3dc'];
+  for (let i = 0; i < cantidad; i++) piezas.push({
+    x: Math.random() * innerWidth, y: -30 - Math.random() * innerHeight * .9, s: 12 + Math.random() * 20,
+    vy: 1.4 + Math.random() * 2.2, fase: Math.random() * 6, amp: .6 + Math.random() * 1.2, rot: (Math.random() - .5) * .6,
+    color: tonos[i % tonos.length], a: .75 + Math.random() * .25
+  });
+  if (!animando) { animando = true; requestAnimationFrame(cuadro); }
+}
+function cuadro() {
+  cx.clearRect(0, 0, innerWidth, innerHeight);
+  piezas.forEach(p => {
+    p.y += p.vy; p.fase += .03; p.x += Math.sin(p.fase) * p.amp;
+    cx.save(); cx.translate(p.x, p.y); cx.rotate(p.rot + Math.sin(p.fase) * .2); cx.globalAlpha = p.a; cx.fillStyle = p.color; corazon(p.s); cx.restore();
+  });
+  piezas = piezas.filter(p => p.y < innerHeight + 40);
+  if (piezas.length) requestAnimationFrame(cuadro); else { animando = false; cx.clearRect(0, 0, innerWidth, innerHeight); }
+}
+
+/* ---------- Música: caja musical original (Web Audio API) ---------- */
+// Vals suave en Fa mayor. Cada compás: acorde (arpegio) + notas de la melodía (8 corcheas; null = silencio).
+const COMPASES = [
+  { a: ['F3', 'C4', 'F4', 'A4'],  m: ['C5', null, 'A4', null, 'F5', null, 'E5', null] },
+  { a: ['E3', 'C4', 'E4', 'G4'],  m: ['D5', null, null, 'C5', 'E5', null, null, null] },
+  { a: ['D3', 'A3', 'D4', 'F4'],  m: ['F5', null, 'E5', null, 'D5', null, 'C5', null] },
+  { a: ['A#2', 'F3', 'A#3', 'D4'], m: ['D5', null, 'C5', null, 'A#4', null, null, null] },
+  { a: ['F3', 'C4', 'F4', 'A4'],  m: ['A4', null, 'C5', null, 'F5', null, 'G5', null] },
+  { a: ['A3', 'C4', 'E4', 'A4'],  m: ['A5', null, null, 'G5', 'E5', null, null, null] },
+  { a: ['A#2', 'F3', 'A#3', 'D4'], m: ['F5', null, 'D5', null, 'A#4', null, 'D5', null] },
+  { a: ['C3', 'G3', 'C4', 'E4'],  m: ['C5', null, null, null, null, null, null, null] }
+];
+function crearMusica(compases, tempo, volumen) {
+  const NOTAS = { C: 0, 'C#': 1, D: 2, 'D#': 3, E: 4, F: 5, 'F#': 6, G: 7, 'G#': 8, A: 9, 'A#': 10, B: 11 };
+  const frec = n => { const m = n.match(/^([A-G]#?)(\d)$/); return 440 * Math.pow(2, (NOTAS[m[1]] + (+m[2] + 1) * 12 - 69) / 12); };
+  const patron = [0, 1, 2, 3, 2, 1, 2, 3];
+  let ctx, salida, paso = 0, proximo = 0, reloj, silencio = false;
+  const dur = 60 / tempo / 2;
+  function nota(f, t, vel, largo) {
+    const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain(), g2 = ctx.createGain();
+    o.type = 'sine'; o.frequency.value = f; o2.type = 'triangle'; o2.frequency.value = f * 3; g2.gain.value = .08;
+    o.connect(g); o2.connect(g2).connect(g); g.connect(salida);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vel, t + .012); g.gain.exponentialRampToValueAtTime(.0001, t + largo);
+    o.start(t); o2.start(t); o.stop(t + largo + .05); o2.stop(t + largo + .05);
+  }
+  function programar() {
+    while (proximo < ctx.currentTime + .15) {
+      const c = compases[Math.floor(paso / 8) % compases.length], i = paso % 8;
+      nota(frec(c.a[patron[i]]), proximo, i === 0 ? .16 : .09, 1.4);
+      if (c.m[i]) nota(frec(c.m[i]), proximo + .005, .2, 2.2);
+      proximo += dur; paso++;
+    }
+  }
+  return {
+    iniciar() {
+      if (ctx) return;
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      salida = ctx.createGain(); salida.gain.value = volumen;
+      const eco = ctx.createDelay(2); eco.delayTime.value = dur * 3; const fb = ctx.createGain(); fb.gain.value = .28;
+      const filtro = ctx.createBiquadFilter(); filtro.type = 'lowpass'; filtro.frequency.value = 3200;
+      salida.connect(filtro); filtro.connect(ctx.destination); filtro.connect(eco); eco.connect(fb).connect(eco); eco.connect(ctx.destination);
+      proximo = ctx.currentTime + .1; reloj = setInterval(programar, 40); programar();
+    },
+    alternar() {
+      if (!ctx) return false;
+      silencio = !silencio;
+      if (silencio) { ctx.suspend(); } else { ctx.resume(); }
+      return silencio;
+    }
+  };
+}
+const musica = crearMusica(COMPASES, 84, DATOS.musica.volumen);
+$('#btnMusica').addEventListener('click', e => { e.stopPropagation(); $('#btnMusica').classList.toggle('silencio', musica.alternar()); });
+
+/* ---------- Abrir el sobre ---------- */
+let abierto = false;
+function abrir() {
+  if (abierto) return; abierto = true;
+  if (DATOS.musica.activa) { musica.iniciar(); $('#btnMusica').classList.add('visible'); }
+  const intro = $('#intro');
+  intro.classList.add('abierto');
+  const t = reducir ? 50 : 2300;
+  setTimeout(() => {
+    intro.classList.add('saliendo');
+    document.body.classList.remove('bloqueado'); document.body.classList.add('listo');
+    setTimeout(escribirCarta, reducir ? 0 : 900);
+    setTimeout(() => intro.remove(), 1000);
+  }, t);
+}
+$('#intro').addEventListener('click', abrir);
+$('#intro').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') abrir(); });
+</script>
+</body>
+</html>

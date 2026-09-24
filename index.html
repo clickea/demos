@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demos · Clickea Studio</title>
+<meta name="description" content="Muestras de páginas web, menús digitales y detalles digitales creados por Clickea Studio en Lima, Perú.">
+<meta name="theme-color" content="#16123a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root { --violet: #6d4aff; --dark: #16123a; --lime: #c8ff3d; --soft: rgba(255,255,255,.66); --card: rgba(255,255,255,.06); --line: rgba(255,255,255,.12); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Outfit', system-ui, sans-serif; color: #fff; min-height: 100vh;
+    background: radial-gradient(circle at 85% -10%, #8b6dff 0%, var(--violet) 22%, var(--dark) 60%) fixed, var(--dark); }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 16px 64px; }
+  header { display: flex; align-items: center; gap: 12px; font-size: 22px; }
+  header svg { width: 40px; height: 40px; }
+  header b { font-weight: 800; }
+  header span { font-weight: 300; color: var(--lime); }
+  .hero { margin: 56px 0 40px; }
+  .hero h1 { font-size: clamp(44px, 9vw, 88px); font-weight: 900; line-height: .95; letter-spacing: -.04em; }
+  .hero h1 em { font-style: normal; color: var(--lime); }
+  .hero p { margin-top: 18px; font-size: clamp(17px, 2.4vw, 21px); color: var(--soft); max-width: 620px; line-height: 1.45; }
+  h2 { font-size: 15px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--lime); margin: 44px 0 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+  .card { display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: 20px; background: var(--card); border: 1px solid var(--line);
+    transition: transform .2s, background .2s, border-color .2s; }
+  .card:hover, .card:focus-visible { transform: translateY(-3px); background: rgba(255,255,255,.1); border-color: rgba(200,255,61,.5); }
+  .card:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+  .emoji { flex: none; width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; font-size: 26px; background: rgba(255,255,255,.08); }
+  .card h3 { font-size: 19px; font-weight: 800; }
+  .card p { font-size: 14px; color: var(--soft); margin-top: 3px; }
+  .card .go { margin-left: auto; font-size: 20px; color: var(--lime); }
+  .cta { margin-top: 56px; padding: 28px; border-radius: 24px; background: var(--lime); color: var(--dark);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+  .cta h3 { font-size: clamp(24px, 4vw, 34px); font-weight: 900; letter-spacing: -.02em; }
+  .cta p { font-weight: 600; margin-top: 4px; }
+  .cta a { background: var(--dark); color: #fff; font-weight: 800; padding: 14px 22px; border-radius: 14px; }
+  footer { margin-top: 40px; font-size: 13px; color: var(--soft); text-align: center; }
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#6d4aff"/><g transform="translate(8 6) scale(.84)"><g stroke="#c8ff3d" stroke-width="6" stroke-linecap="round"><line x1="27" y1="33" x2="17" y2="33"/><line x1="30" y1="24" x2="23" y2="17"/><line x1="39" y1="21" x2="39" y2="11"/></g><path d="M40 32 L40 78 L52 66 L60 84 L69 80 L61 62 L77 62 Z" fill="#fff" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></g></svg>
+    <div><b>clickea</b><span>.studio</span></div>
+  </header>
+
+  <section class="hero">
+    <h1>Toca y <em>míralo</em><br>funcionando.</h1>
+    <p>Estas son muestras reales de lo que hacemos. Ábrelas desde tu celular: así las verían tus clientes.</p>
+  </section>
+
+  <h2>Páginas web para negocios</h2>
+  <div class="grid">
+    <a class="card" href="barberia/"><span class="emoji">✂️</span><div><h3>Barbería</h3><p>Filo Cobre · Surco</p></div><span class="go">→</span></a>
+    <a class="card" href="dental/"><span class="emoji">🦷</span><div><h3>Consultorio dental</h3><p>Brisa Dental · Miraflores</p></div><span class="go">→</span></a>
+    <a class="card" href="ropa/"><span class="emoji">👗</span><div><h3>Tienda de ropa</h3><p>Tela Brava · Jesús María</p></div><span class="go">→</span></a>
+  </div>
+
+  <h2>Menús digitales con pedido por WhatsApp</h2>
+  <div class="grid">
+    <a class="card" href="polleria/"><span class="emoji">🍗</span><div><h3>Pollería</h3><p>El Tizón Dorado</p></div><span class="go">→</span></a>
+    <a class="card" href="cevicheria/"><span class="emoji">🐟</span><div><h3>Cevichería</h3><p>Brisa Chalaca</p></div><span class="go">→</span></a>
+    <a class="card" href="chifa/"><span class="emoji">🥢</span><div><h3>Chifa</h3><p>Chifa Kam Ho</p></div><span class="go">→</span></a>
+  </div>
+
+  <h2>Detalles digitales</h2>
+  <div class="grid">
+    <a class="card" href="aniversario/"><span class="emoji">💌</span><div><h3>Aniversario</h3><p>Carta que se abre y se escribe sola</p></div><span class="go">→</span></a>
+    <a class="card" href="declaracion/"><span class="emoji">💘</span><div><h3>Declaración</h3><p>¿Quieres ser mi enamorada?</p></div><span class="go">→</span></a>
+    <a class="card" href="cumpleanos/"><span class="emoji">🎂</span><div><h3>Cumpleaños</h3><p>Sopla las velas</p></div><span class="go">→</span></a>
+    <a class="card" href="dia-de-la-madre/"><span class="emoji">🌸</span><div><h3>Día de la Madre</h3><p>Flores que florecen</p></div><span class="go">→</span></a>
+    <a class="card" href="baby-shower/"><span class="emoji">🎈</span><div><h3>Baby shower</h3><p>Invitación con confirmación</p></div><span class="go">→</span></a>
+  </div>
+
+  <div class="cta">
+    <div>
+      <h3>¿Quieres uno así?</h3>
+      <p>Escríbenos y cotiza gratis.</p>
+    </div>
+    <a href="https://instagram.com/clickea.studio" target="_blank" rel="noopener">@clickea.studio</a>
+  </div>
+
+  <footer>Los negocios de estas muestras son ficticios. Diseñado por Clickea Studio · Lima, Perú.</footer>
+</div>
+</body>
+</html>

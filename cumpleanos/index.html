@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fff0f6">
+<title>¡Feliz cumpleaños! 🎂</title>
+<meta name="description" content="Pide un deseo y sopla las velas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fucsia:#ff4f9a; --turquesa:#1fbfb0; --amarillo:#ffc53d; --morado:#7b5cff; --crema:#fff8ec; --tinta:#3a2150;
+    --fondo1:#ffe3ef; --fondo2:#fff3d3;
+    --display:'Pacifico', cursive; --texto:'Nunito', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:var(--texto);color:var(--tinta);background:var(--fondo1);min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+  .fondo{position:fixed;inset:0;z-index:0;background:radial-gradient(circle at 20% 15%,rgba(255,255,255,.9) 0 2px,transparent 3px) 0 0/46px 46px,radial-gradient(circle at 70% 60%,rgba(123,92,255,.12) 0 3px,transparent 4px) 0 0/60px 60px,linear-gradient(170deg,var(--fondo1),var(--fondo2))}
+  .globos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .globo{position:absolute;bottom:-160px;width:var(--t,60px);animation:subirGlobo var(--d,16s) linear var(--r,0s) infinite;opacity:.85}
+  .globo svg{display:block;width:100%;animation:vaiven 3.4s ease-in-out infinite alternate}
+  @keyframes subirGlobo{to{transform:translateY(calc(-100vh - 260px))}}
+  @keyframes vaiven{from{transform:translateX(-10px) rotate(-5deg)}to{transform:translateX(10px) rotate(5deg)}}
+  canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
+  .app{position:relative;z-index:1;max-width:440px;margin:0 auto}
+
+  /* ---------- Portada con pastel ---------- */
+  .portada{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 20px 40px;text-align:center}
+  .gorro{font-size:13px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--morado);background:#fff;border-radius:999px;padding:7px 14px;box-shadow:0 4px 0 rgba(123,92,255,.15)}
+  .titulo{font-family:var(--display);font-weight:400;font-size:clamp(34px,10vw,44px);line-height:1.2;color:var(--fucsia);margin:14px 0 4px;text-shadow:3px 3px 0 #fff}
+  .subtitulo{font-size:17px;font-weight:600;color:var(--tinta);opacity:.8}
+  .pastel{width:min(88vw,340px);margin:14px 0 6px;overflow:visible}
+  .vela{cursor:pointer;outline:none}
+  .vela:focus-visible .halo{opacity:1;r:26px}
+  .llama{transform-box:fill-box;transform-origin:50% 100%;animation:titilar .5s ease-in-out infinite alternate;transition:transform .35s ease,opacity .35s}
+  .halo{transform-box:fill-box;transform-origin:50% 50%;animation:halo 1.2s ease-in-out infinite alternate;transition:opacity .3s}
+  @keyframes titilar{from{transform:scale(1,1) rotate(-3deg)}to{transform:scale(.9,1.1) rotate(3deg)}}
+  @keyframes halo{from{opacity:.55}to{opacity:.9}}
+  .apagada .llama{transform:scale(0);opacity:0;animation:none}
+  .apagada .halo{opacity:0;animation:none}
+  .humo{opacity:0}
+  .apagada .humo{animation:humo 1.6s ease-out forwards}
+  .apagada .humo:nth-of-type(2){animation-delay:.15s}.apagada .humo:nth-of-type(3){animation-delay:.3s}
+  @keyframes humo{0%{opacity:.7;transform:translate(0,0) scale(.6)}100%{opacity:0;transform:translate(8px,-40px) scale(1.8)}}
+  .pastel-sombra{animation:saltito 2.6s ease-in-out infinite}
+  @keyframes saltito{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+  .pista{font-size:15px;font-weight:600;margin-top:4px;min-height:22px}
+  .acciones{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:13px 20px;font:800 15px var(--texto);cursor:pointer;touch-action:manipulation}
+  .btn-mic{background:#fff;color:var(--morado);box-shadow:0 5px 0 rgba(123,92,255,.25)}
+  .btn-mic.escuchando{background:var(--morado);color:#fff;animation:pulso 1s infinite}
+  @keyframes pulso{50%{box-shadow:0 0 0 10px rgba(123,92,255,.2)}}
+  .btn svg{width:18px;height:18px}
+
+  /* ---------- Después de soplar ---------- */
+  .feliz{display:none;margin-top:6px}
+  .soplado .feliz{display:block}
+  .soplado .antes{display:none}
+  .feliz h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,11vw,50px);line-height:1.15;color:var(--fucsia);text-shadow:3px 3px 0 #fff,6px 6px 0 rgba(255,197,61,.6)}
+  .feliz h1 span{display:inline-block;animation:rebote .7s cubic-bezier(.3,1.8,.5,1) both}
+  .feliz h1 .nombre{color:var(--morado)}
+  @keyframes rebote{from{opacity:0;transform:translateY(-40px) scale(.4)}to{opacity:1;transform:none}}
+  .edad{display:inline-block;margin-top:10px;font-weight:800;font-size:15px;background:var(--amarillo);color:var(--tinta);padding:8px 16px;border-radius:999px;transform:rotate(-3deg);box-shadow:0 4px 0 rgba(0,0,0,.08);animation:rebote .7s .9s cubic-bezier(.3,1.8,.5,1) both}
+  .flecha{display:block;margin:22px auto 0;width:30px;color:var(--fucsia);animation:bajar 1.4s ease-in-out infinite}
+  @keyframes bajar{50%{transform:translateY(8px)}}
+
+  .contenido{display:none;padding:10px 18px 10px}
+  .soplado .contenido{display:block}
+  section{margin-bottom:46px}
+  h2{font-family:var(--display);font-weight:400;font-size:32px;color:var(--morado);text-align:center;margin-bottom:16px}
+  .mensaje{background:#fff;border-radius:24px;padding:26px 22px;box-shadow:0 10px 0 rgba(255,79,154,.14),0 20px 40px rgba(58,33,80,.08);position:relative}
+  .mensaje::before{content:"";position:absolute;top:-12px;left:50%;width:90px;height:24px;margin-left:-45px;background:rgba(255,197,61,.75);transform:rotate(-2deg);border-radius:3px}
+  .mensaje p{font-size:17px;line-height:1.7;margin-bottom:12px}
+  .mensaje .firma{font-family:var(--display);font-size:22px;color:var(--fucsia);text-align:right;margin:0}
+  .carrusel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 18px 14px;margin:0 -18px;scrollbar-width:none}
+  .carrusel::-webkit-scrollbar{display:none}
+  .carrusel figure{flex:0 0 78%;scroll-snap-align:center;background:#fff;border-radius:22px;padding:10px;box-shadow:0 8px 0 rgba(31,191,176,.18)}
+  .carrusel img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;background:#f3e6ee}
+  .carrusel figcaption{font-weight:800;text-align:center;padding:10px 4px 4px}
+  .puntitos{display:flex;justify-content:center;gap:6px;margin-top:6px}
+  .puntitos i{width:8px;height:8px;border-radius:50%;background:rgba(123,92,255,.25);transition:.3s}
+  .puntitos i.on{background:var(--morado);width:22px;border-radius:5px}
+  .deseos{display:grid;gap:16px}
+  .deseo{border-radius:6px 22px 22px 22px;padding:18px 18px 16px;box-shadow:0 6px 0 rgba(0,0,0,.06);transform:rotate(var(--rot));background:var(--c)}
+  .deseo p{font-size:16px;line-height:1.6}
+  .deseo b{display:flex;align-items:center;gap:8px;margin-top:10px;font-weight:800}
+  .deseo b i{width:30px;height:30px;border-radius:50%;background:#fff;display:grid;place-items:center;font-style:normal;font-size:14px;color:var(--morado)}
+  .otra-vez{display:flex;justify-content:center}
+  .btn-fiesta{background:linear-gradient(135deg,var(--fucsia),var(--morado));color:#fff;box-shadow:0 6px 0 rgba(58,33,80,.2)}
+  footer{text-align:center;font-size:12px;color:rgba(58,33,80,.5);padding:20px 0 30px}
+
+  .revelar{opacity:0;transform:translateY(30px) scale(.97);transition:all .8s cubic-bezier(.3,1.3,.5,1)}
+  .revelar.visible{opacity:1;transform:rotate(var(--rot,0deg))}
+
+  .musica{position:fixed;top:14px;right:max(14px,calc(50vw - 206px));z-index:60;width:44px;height:44px;border-radius:50%;border:0;background:#fff;box-shadow:0 4px 0 rgba(123,92,255,.2);color:var(--morado);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s}
+  .musica.visible{opacity:1;pointer-events:auto}
+  .musica svg{width:20px;height:20px}.musica .off{display:none}.musica.silencio .on{display:none}.musica.silencio .off{display:block}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    .globos{display:none}
+    .revelar{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<!-- =========================================================
+     Plantilla: Carta de cumpleaños · Clickea Studio
+     Para un pedido nuevo solo edita el bloque DATOS en el <script>.
+     ========================================================= -->
+<div class="fondo"></div>
+<div class="globos" id="globos"></div>
+
+<button class="musica" id="btnMusica" aria-label="Silenciar o activar música">
+  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M2 2l20 20"/></svg>
+</button>
+
+<div class="app" id="app">
+  <header class="portada">
+    <div class="antes">
+      <span class="gorro" id="gorro"></span>
+      <p class="titulo" id="titulo"></p>
+      <p class="subtitulo" id="subtitulo"></p>
+    </div>
+
+    <svg class="pastel" id="pastel" viewBox="0 0 300 270" aria-label="Pastel de cumpleaños">
+      <defs>
+        <radialGradient id="gHalo"><stop offset="0" stop-color="#ffd76a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient>
+        <linearGradient id="gLlama" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff7a1a"/><stop offset=".5" stop-color="#ffc53d"/><stop offset="1" stop-color="#fff3b0"/></linearGradient>
+        <pattern id="rayas" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="8" height="8" fill="#fff"/><rect width="4" height="8" fill="#ff8fbf"/></pattern>
+      </defs>
+      <g class="pastel-sombra">
+        <ellipse cx="150" cy="252" rx="138" ry="14" fill="rgba(58,33,80,.12)"/>
+        <ellipse cx="150" cy="244" rx="132" ry="16" fill="#fff"/>
+        <ellipse cx="150" cy="240" rx="132" ry="14" fill="#f4eaf7"/>
+        <!-- Piso de abajo -->
+        <rect x="36" y="158" width="228" height="82" rx="14" fill="#ff8fbf"/>
+        <rect x="36" y="200" width="228" height="10" fill="#ff6fab"/>
+        <path d="M36 172c0-10 6-14 14-14h200c8 0 14 4 14 14v6c-8 0-10 14-19 14s-10-12-19-12-10 18-20 18-10-16-19-16-10 12-20 12-10-18-20-18-10 14-19 14-10-10-20-10-10 16-20 16-10-14-19-14-9 10-19 10z" fill="#fff8ec"/>
+        <!-- Piso de arriba -->
+        <rect x="66" y="96" width="168" height="66" rx="12" fill="#8fe3d8"/>
+        <path d="M66 108c0-8 5-12 12-12h144c7 0 12 4 12 12v4c-7 0-8 12-16 12s-8-10-16-10-8 16-17 16-8-14-16-14-8 10-17 10-8-16-17-16-8 12-16 12-8-8-17-8-8 12-16 12-8-10-14-10z" fill="#fff8ec"/>
+        <g id="chispas"></g>
+        <g id="velas"></g>
+      </g>
+    </svg>
+
+    <div class="antes">
+      <p class="pista" id="pista"></p>
+      <div class="acciones">
+        <button class="btn btn-mic" id="btnMic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+          <span id="textoMic">Soplar con el micrófono</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="feliz" aria-live="polite">
+      <h1 id="felizTitulo"></h1>
+      <span class="edad" id="edad"></span>
+      <svg class="flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+  </header>
+
+  <div class="contenido">
+    <section class="revelar">
+      <div class="mensaje">
+        <div id="mensaje"></div>
+        <p class="firma" id="firma"></p>
+      </div>
+    </section>
+
+    <section class="revelar">
+      <h2 id="tituloGaleria"></h2>
+      <div class="carrusel" id="carrusel"></div>
+      <div class="puntitos" id="puntitos"></div>
+    </section>
+
+    <section>
+      <h2 class="revelar" id="tituloDeseos"></h2>
+      <div class="deseos" id="deseos"></div>
+    </section>
+
+    <div class="otra-vez revelar"><button class="btn btn-fiesta" id="btnFiesta">¡Otra vez confeti! 🎉</button></div>
+    <footer>Hecho con 💜 por Clickea Studio</footer>
+  </div>
+</div>
+
+<canvas id="confeti"></canvas>
+
+<script>
+/* =====================================================================
+   DATOS DEL PEDIDO  ✏️  (edita SOLO este bloque para cada cliente)
+   ===================================================================== */
+const DATOS = {
+  // --- Cumpleañera(o) ---
+  nombre: "Andrea",
+  edad: 25,                 // se muestra "¡25 añazos!"; pon null para no mostrar la edad
+  velas: 5,                 // cuántas velas lleva el pastel (1 a 9)
+
+  // --- Pantalla del pastel ---
+  etiqueta: "Hoy es tu día",
+  titulo: "Pide un deseo…",
+  subtitulo: "y sopla las velas 🎂",
+  pistaTocar: "Toca cada vela para apagarla 👆",
+
+  // --- Mensaje principal (separa párrafos con una línea en blanco) ---
+  mensaje: `¡Feliz cumpleaños, Andre! Que este año te traiga todo lo que te mereces: viajes, risas hasta que duela la panza y mucha, mucha salud.
+
+Gracias por ser la amiga que siempre está, la que organiza todo y la que nunca falla con un buen consejo. Hoy te toca a ti ser consentida.`,
+  firma: "Con cariño, Majo",
+
+  // --- Galería (desliza de lado) ---
+  tituloGaleria: "Momentos contigo",
+  galeria: [
+    { foto: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=800&q=75", pie: "Esa noche épica ✨" },
+    { foto: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=75", pie: "Globos para ti 🎈" },
+    { foto: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=800&q=75", pie: "El pastel del año 🍰" },
+    { foto: "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=800&q=75", pie: "Siempre de fiesta 🎉" }
+  ],
+
+  // --- Deseos de amigos y familia ---
+  tituloDeseos: "Deseos de tu gente",
+  deseos: [
+    { nombre: "Majo",  texto: "¡Que se cumplan todos tus deseos! Te quiero montones 💛" },
+    { nombre: "Rodri", texto: "Feliz cumple, Andre. Este año sí vamos a Cusco, lo prometo 🏔️" },
+    { nombre: "Tía Carmen", texto: "Mi niña linda, que Dios te bendiga siempre. ¡Te esperamos con tu torta!" },
+    { nombre: "Luchito", texto: "¡Ya estás viejita! Jaja, feliz día, crack 🥳" }
+  ],
+
+  // --- Colores principales ---
+  colores: {
+    fucsia: "#ff4f9a",     // títulos
+    morado: "#7b5cff",     // detalles
+    turquesa: "#1fbfb0",
+    amarillo: "#ffc53d",
+    fondo1: "#ffe3ef",     // fondo (arriba)
+    fondo2: "#fff3d3"      // fondo (abajo)
+  },
+
+  // --- Música (melodía original generada en el navegador) ---
+  musica: { activa: true, volumen: 0.5 }
+};
+/* ===================== FIN DE DATOS — no hace falta tocar nada más ===================== */
+
+const $ = s => document.querySelector(s);
+const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+Object.entries(DATOS.colores).forEach(([k, v]) => document.documentElement.style.setProperty('--' + k, v));
+document.title = `¡Feliz cumpleaños, ${DATOS.nombre}! 🎂`;
+const SVGNS = 'http://www.w3.org/2000/svg';
+
+$('#gorro').textContent = DATOS.etiqueta;
+$('#titulo').textContent = DATOS.titulo;
+$('#subtitulo').textContent = DATOS.subtitulo;
+$('#pista').textContent = DATOS.pistaTocar;
+$('#firma').textContent = DATOS.firma;
+$('#tituloGaleria').textContent = DATOS.tituloGaleria;
+$('#tituloDeseos').textContent = DATOS.tituloDeseos;
+$('#edad').textContent = DATOS.edad ? `¡${DATOS.edad} añazos! 🥳` : '';
+if (!DATOS.edad) $('#edad').style.display = 'none';
+DATOS.mensaje.split(/\n\s*\n/).forEach(t => { const p = document.createElement('p'); p.textContent = t.trim(); $('#mensaje').appendChild(p); });
+
+// Título con letras que rebotan
+(function () {
+  const h = $('#felizTitulo');
+  const partes = [['¡Feliz cumpleaños,', ''], [DATOS.nombre + '!', 'nombre']];
+  let k = 0;
+  partes.forEach(([txt, clase], pi) => {
+    if (pi) h.appendChild(document.createElement('br'));
+    txt.split(' ').forEach((pal, wi, arr) => {
+      const w = document.createElement('span'); w.style.whiteSpace = 'nowrap'; w.style.animation = 'none';
+      [...pal].forEach(c => { const s = document.createElement('span'); s.textContent = c; if (clase) s.className = clase; s.style.animationDelay = (k++ * 0.045) + 's'; w.appendChild(s); });
+      h.appendChild(w); if (wi < arr.length - 1) h.appendChild(document.createTextNode(' '));
+    });
+  });
+})();
+
+// Galería
+DATOS.galeria.forEach(g => {
+  const f = document.createElement('figure');
+  f.innerHTML = '<img loading="lazy" alt=""><figcaption></figcaption>';
+  f.querySelector('img').src = g.foto; f.querySelector('img').alt = g.pie; f.querySelector('figcaption').textContent = g.pie;
+  $('#carrusel').appendChild(f);
+});
+$('#puntitos').innerHTML = DATOS.galeria.map((_, i) => `<i class="${i ? '' : 'on'}"></i>`).join('');
+$('#carrusel').addEventListener('scroll', () => {
+  const c = $('#carrusel'), i = Math.round(c.scrollLeft / (c.firstElementChild.offsetWidth + 14));
+  document.querySelectorAll('#puntitos i').forEach((p, k) => p.classList.toggle('on', k === i));
+}, { passive: true });
+
+// Deseos
+const tonos = ['#fff1a8', '#c9f3ec', '#ffd6e7', '#e3dbff'];
+DATOS.deseos.forEach((d, i) => {
+  const el = document.createElement('div');
+  el.className = 'deseo revelar';
+  el.style.setProperty('--c', tonos[i % tonos.length]); el.style.setProperty('--rot', (i % 2 ? 1.2 : -1.2) + 'deg');
+  el.innerHTML = '<p></p><b><i></i><span></span></b>';
+  el.querySelector('p').textContent = d.texto; el.querySelector('i').textContent = d.nombre[0].toUpperCase(); el.querySelector('span').textContent = d.nombre;
+  $('#deseos').appendChild(el);
+});
+
+// Globos flotando al fondo
+if (!reducir) {
+  const colGlobos = [DATOS.colores.fucsia, DATOS.colores.morado, DATOS.colores.turquesa, DATOS.colores.amarillo, '#ff8a5c', '#8fd3ff'];
+  for (let i = 0; i < 7; i++) {
+    const g = document.createElement('div'), c = colGlobos[i % colGlobos.length];
+    g.className = 'globo';
+    g.style.left = (i * 14 + Math.random() * 6) + '%';
+    g.style.setProperty('--t', (44 + Math.random() * 30) + 'px'); g.style.setProperty('--d', (13 + Math.random() * 9) + 's'); g.style.setProperty('--r', -(Math.random() * 20) + 's');
+    g.innerHTML = `<svg viewBox="0 0 60 110"><path d="M30 2C14 2 4 15 4 30c0 18 14 32 26 36 12-4 26-18 26-36C56 15 46 2 30 2z" fill="${c}"/><ellipse cx="20" cy="20" rx="6" ry="10" fill="#fff" opacity=".35" transform="rotate(-25 20 20)"/><path d="M26 66h8l-4 6z" fill="${c}"/><path d="M30 72c-6 10 6 18 0 36" stroke="${c}" stroke-opacity=".6" fill="none" stroke-width="1.2"/></svg>`;
+    $('#globos').appendChild(g);
+  }
+}
+
+// Chispitas (sprinkles) sobre el pastel
+(function () {
+  const cols = ['#ffc53d', '#7b5cff', '#1fbfb0', '#ff4f9a', '#ffffff'];
+  const zonas = [[48, 252, 196, 236], [78, 222, 130, 158]];
+  let semilla = 7; const rnd = () => (semilla = (semilla * 9301 + 49297) % 233280) / 233280;
+  zonas.forEach(([x1, x2, y1, y2]) => {
+    for (let i = 0; i < 20; i++) {
+      const r = document.createElementNS(SVGNS, 'rect');
+      r.setAttribute('x', x1 + rnd() * (x2 - x1)); r.setAttribute('y', y1 + rnd() * (y2 - y1));
+      r.setAttribute('width', 7); r.setAttribute('height', 2.6); r.setAttribute('rx', 1.3);
+      r.setAttribute('fill', cols[i % cols.length]); r.setAttribute('transform', `rotate(${rnd() * 180} ${r.getAttribute('x')} ${r.getAttribute('y')})`);
+      $('#chispas').appendChild(r);
+    }
+  });
+})();
+
+/* ---------- Velas ---------- */
+const nVelas = Math.max(1, Math.min(9, DATOS.velas | 0));
+const coloresVela = ['url(#rayas)', '#ffc53d', '#8fe3d8', '#b9a4ff'];
+for (let i = 0; i < nVelas; i++) {
+  const x = nVelas === 1 ? 150 : 90 + i * (120 / (nVelas - 1));
+  const y = 102 + (i % 2) * 4;
+  const g = document.createElementNS(SVGNS, 'g');
+  g.setAttribute('class', 'vela'); g.setAttribute('role', 'button'); g.setAttribute('aria-label', `Vela ${i + 1}`); g.setAttribute('tabindex', '0');
+  g.innerHTML = `
+    <rect x="${x - 16}" y="${y - 74}" width="32" height="80" fill="transparent"/>
+    <circle class="halo" cx="${x}" cy="${y - 52}" r="22" fill="url(#gHalo)"/>
+    <rect x="${x - 5}" y="${y - 40}" width="10" height="42" rx="3" fill="${coloresVela[i % coloresVela.length]}"/>
+    <path d="M${x} ${y - 41}v-5" stroke="#3a2150" stroke-width="1.5" stroke-linecap="round"/>
+    <path class="llama" d="M${x} ${y - 66}c6 8 8 12 8 15a8 8 0 0 1-16 0c0-3 2-7 8-15z" fill="url(#gLlama)"/>
+    <circle class="humo" cx="${x}" cy="${y - 50}" r="4" fill="#c9c2d6"/>
+    <circle class="humo" cx="${x - 3}" cy="${y - 54}" r="3" fill="#c9c2d6"/>
+    <circle class="humo" cx="${x + 2}" cy="${y - 58}" r="3.5" fill="#c9c2d6"/>`;
+  g.addEventListener('click', () => { arrancarMusica(); apagar(g); });
+  g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); arrancarMusica(); apagar(g); } });
+  $('#velas').appendChild(g);
+}
+const velas = [...document.querySelectorAll('.vela')];
+function apagar(v) {
+  if (v.classList.contains('apagada') || document.body.classList.contains('soplado')) return;
+  v.classList.add('apagada');
+  musica.tin();
+  const quedan = velas.filter(x => !x.classList.contains('apagada')).length;
+  $('#pista').textContent = quedan ? `¡Bien! ${quedan === 1 ? 'Queda 1 vela' : `Quedan ${quedan} velas`} 🔥` : '¡Lo lograste! 🎉';
+  if (!quedan) setTimeout(celebrar, 700);
+}
+
+/* ---------- Micrófono (opcional) ---------- */
+let flujoMic = null;
+$('#btnMic').addEventListener('click', async () => {
+  arrancarMusica();
+  if (flujoMic) return;
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { $('#pista').textContent = 'Tu navegador no deja usar el micro. ¡Toca las velas! 👆'; return; }
+  try {
+    flujoMic = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: false } });
+  } catch (e) {
+    $('#pista').textContent = 'Sin micrófono no hay problema: toca las velas 👆'; return;
+  }
+  $('#btnMic').classList.add('escuchando'); $('#textoMic').textContent = '¡Sopla fuerte! 🌬️';
+  const actx = new (window.AudioContext || window.webkitAudioContext)();
+  const fuente = actx.createMediaStreamSource(flujoMic), analizador = actx.createAnalyser();
+  analizador.fftSize = 1024; fuente.connect(analizador);
+  const datos = new Uint8Array(analizador.frequencyBinCount);
+  let seguidos = 0, ultimo = 0;
+  (function escuchar(t) {
+    if (document.body.classList.contains('soplado')) { flujoMic.getTracks().forEach(tr => tr.stop()); actx.close(); return; }
+    analizador.getByteFrequencyData(datos);
+    // Soplar genera mucho ruido en graves/medios: medimos la energía de las bandas bajas
+    let suma = 0; for (let i = 1; i < 60; i++) suma += datos[i];
+    const nivel = suma / 59 / 255;
+    seguidos = nivel > .42 ? seguidos + 1 : 0;
+    if (seguidos > 4 && t - ultimo > 160) {
+      const encendidas = velas.filter(x => !x.classList.contains('apagada'));
+      if (encendidas.length) apagar(encendidas[Math.floor(Math.random() * encendidas.length)]);
+      ultimo = t;
+    }
+    requestAnimationFrame(escuchar);
+  })(0);
+});
+
+/* ---------- Celebración ---------- */
+function celebrar() {
+  document.body.classList.add('soplado');
+  musica.fanfarria();
+  confeti(260);
+  setTimeout(() => confeti(120), 900);
+  observar();
+}
+$('#btnFiesta').addEventListener('click', () => { musica.fanfarria(); confeti(200); });
+
+function observar() {
+  const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll('.revelar').forEach(el => obs.observe(el));
+}
+
+/* ---------- Confeti (canvas) ---------- */
+const lienzo = $('#confeti'), cx = lienzo.getContext('2d');
+let piezas = [], corriendo = false;
+function tam() { const d = devicePixelRatio || 1; lienzo.width = innerWidth * d; lienzo.height = innerHeight * d; cx.setTransform(d, 0, 0, d, 0, 0); }
+tam(); addEventListener('resize', tam);
+function confeti(n) {
+  if (reducir) n = Math.min(n, 30);
+  const cols = [DATOS.colores.fucsia, DATOS.colores.morado, DATOS.colores.turquesa, DATOS.colores.amarillo, '#ff8a5c', '#8fd3ff'];
+  for (let i = 0; i < n; i++) {
+    const cañon = i % 3; // izquierda, centro (arriba), derecha
+    const x = cañon === 0 ? 0 : cañon === 2 ? innerWidth : innerWidth / 2;
+    const y = cañon === 1 ? -20 : innerHeight * .55;
+    const ang = cañon === 0 ? -Math.PI / 3 + (Math.random() - .5) * .8 : cañon === 2 ? -Math.PI * 2 / 3 + (Math.random() - .5) * .8 : Math.PI / 2 + (Math.random() - .5) * 2.4;
+    const v = cañon === 1 ? 2 + Math.random() * 4 : 12 + Math.random() * 9;
+    piezas.push({ x, y, vx: Math.cos(ang) * v, vy: Math.sin(ang) * v, rot: Math.random() * 6, vr: (Math.random() - .5) * .4, w: 6 + Math.random() * 6, h: 3 + Math.random() * 5, forma: Math.random() < .25 ? 'c' : 'r', color: cols[i % cols.length], giro: Math.random() * 6 });
+  }
+  if (!corriendo) { corriendo = true; requestAnimationFrame(mover); }
+}
+function mover() {
+  cx.clearRect(0, 0, innerWidth, innerHeight);
+  piezas.forEach(p => {
+    p.vx *= .985; p.vy = p.vy * .985 + .2; p.x += p.vx + Math.sin(p.giro) * .6; p.y += p.vy; p.rot += p.vr; p.giro += .08;
+    cx.save(); cx.translate(p.x, p.y); cx.rotate(p.rot); cx.fillStyle = p.color;
+    if (p.forma === 'c') { cx.beginPath(); cx.arc(0, 0, p.h * .7, 0, 7); cx.fill(); }
+    else cx.fillRect(-p.w / 2, -p.h / 2 * Math.abs(Math.cos(p.giro)), p.w, p.h * Math.abs(Math.cos(p.giro)) + .5);
+    cx.restore();
+  });
+  piezas = piezas.filter(p => p.y < innerHeight + 30);
+  if (piezas.length) requestAnimationFrame(mover); else { corriendo = false; cx.clearRect(0, 0, innerWidth, innerHeight); }
+}
+
+/* ---------- Música: melodía original y alegre (Web Audio API) ---------- */
+// Do mayor, ritmo saltarín. Cada compás: acorde + melodía (8 corcheas; null = silencio).
+const COMPASES = [
+  { a: ['C3', 'G3', 'C4', 'E4'],  m: ['E5', null, 'G5', 'E5', 'C5', null, 'D5', null] },
+  { a: ['A2', 'E3', 'A3', 'C4'],  m: ['E5', null, 'A5', null, 'G5', null, null, null] },
+  { a: ['F2', 'C3', 'F3', 'A3'],  m: ['F5', null, 'A5', 'F5', 'C5', null, 'D5', 'E5'] },
+  { a: ['G2', 'D3', 'G3', 'B3'],  m: ['D5', null, 'B4', null, 'G4', null, null, null] },
+  { a: ['C3', 'G3', 'C4', 'E4'],  m: ['G5', null, 'E5', 'G5', 'C6', null, 'B5', null] },
+  { a: ['F2', 'C3', 'F3', 'A3'],  m: ['A5', null, 'F5', null, 'C5', null, 'F5', null] },
+  { a: ['G2', 'D3', 'G3', 'B3'],  m: ['G5', 'F5', 'E5', null, 'D5', null, 'B4', null] },
+  { a: ['C3', 'G3', 'C4', 'E4'],  m: ['C5', null, 'E5', null, 'C5', null, null, null] }
+];
+function crearMusica(compases, tempo, volumen) {
+  const N = { C: 0, 'C#': 1, D: 2, 'D#': 3, E: 4, F: 5, 'F#': 6, G: 7, 'G#': 8, A: 9, 'A#': 10, B: 11 };
+  const frec = n => { const m = n.match(/^([A-G]#?)(\d)$/); return 440 * Math.pow(2, (N[m[1]] + (+m[2] + 1) * 12 - 69) / 12); };
+  const patron = [0, 2, 1, 3, 0, 2, 1, 3];
+  let ctx, salida, paso = 0, proximo = 0, silencio = false;
+  const dur = 60 / tempo / 2;
+  function nota(f, t, vel, largo, tipo = 'triangle') {
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = tipo; o.frequency.value = f; o.connect(g); g.connect(salida);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vel, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + largo);
+    o.start(t); o.stop(t + largo + .05);
+  }
+  function programar() {
+    while (proximo < ctx.currentTime + .15) {
+      const c = compases[Math.floor(paso / 8) % compases.length], i = paso % 8;
+      nota(frec(c.a[patron[i]]), proximo, i % 4 === 0 ? .14 : .07, .45);
+      if (c.m[i]) nota(frec(c.m[i]), proximo + .003, .13, .9, 'sine');
+      proximo += dur; paso++;
+    }
+  }
+  return {
+    iniciar() {
+      if (ctx) return;
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      salida = ctx.createGain(); salida.gain.value = volumen;
+      const eco = ctx.createDelay(2); eco.delayTime.value = dur * 2; const fb = ctx.createGain(); fb.gain.value = .2;
+      salida.connect(ctx.destination); salida.connect(eco); eco.connect(fb).connect(eco); eco.connect(ctx.destination);
+      proximo = ctx.currentTime + .1; setInterval(programar, 40); programar();
+    },
+    tin() { if (ctx && !silencio) nota(frec('G6'), ctx.currentTime, .12, .5, 'sine'); },
+    fanfarria() { if (!ctx || silencio) return; ['C5', 'E5', 'G5', 'C6', 'E6', 'G6', 'C7'].forEach((n, i) => nota(frec(n), ctx.currentTime + i * .06, .15, 1.2, 'sine')); },
+    alternar() { if (!ctx) return false; silencio = !silencio; silencio ? ctx.suspend() : ctx.resume(); return silencio; }
+  };
+}
+const musica = crearMusica(COMPASES, 112, DATOS.musica.volumen);
+function arrancarMusica() { if (DATOS.musica.activa) { musica.iniciar(); $('#btnMusica').classList.add('visible'); } }
+$('#btnMusica').addEventListener('click', e => { e.stopPropagation(); $('#btnMusica').classList.toggle('silencio', musica.alternar()); });
+</script>
+</body>
+</html>

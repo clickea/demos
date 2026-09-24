@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tela Brava · Moda hecha en Lima | Envíos a todo el Perú</title>
+<meta name="description" content="Tela Brava: ropa confeccionada en Gamarra con diseño propio. Casacas, polos, pantalones y vestidos desde S/ 45. Envíos a todo Lima y provincias, cambios fáciles y pagos con Yape o Plin. Pide por WhatsApp.">
+<meta name="theme-color" content="#f3ede3">
+<link rel="canonical" href="https://clickea.github.io/demos/ropa/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_PE">
+<meta property="og:title" content="Tela Brava · Moda hecha en Lima">
+<meta property="og:description" content="Diseño propio, confección peruana y envíos a todo el Perú. Pide por WhatsApp.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80">
+<meta property="og:url" content="https://clickea.github.io/demos/ropa/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ClothingStore",
+  "name": "Tela Brava",
+  "description": "Marca de moda con diseño propio y confección en Gamarra. Showroom en Jesús María y envíos a todo el Perú.",
+  "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=80",
+  "telephone": "+51900000000",
+  "priceRange": "S/ 45 - S/ 189",
+  "currenciesAccepted": "PEN",
+  "paymentAccepted": "Yape, Plin, Transferencia, Tarjeta, Contraentrega",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Jr. Huiracocha 1245, Int. 2",
+    "addressLocality": "Jesús María",
+    "addressRegion": "Lima",
+    "postalCode": "15072",
+    "addressCountry": "PE"
+  },
+  "geo": {"@type": "GeoCoordinates", "latitude": -12.0735, "longitude": -77.0490},
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "10:00", "closes": "20:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "17:00"}
+  ],
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "1240"}
+}
+</script>
+<style>
+:root{
+  --cream:#f3ede3; --paper:#faf7f1; --ink:#161311; --ink2:#3b3531; --mut:#6b625b; --line:#ddd3c4;
+  --aji:#c9361f; --aji-d:#a42a16; --olive:#5d6b3a; --sand:#e7dccb;
+  --wrap:1240px;
+  --ff-d:"Bodoni Moda",Didot,"Times New Roman",serif;
+  --ff:"Manrope",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink2);font:16px/1.6 var(--ff);overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--aji);outline-offset:3px}
+.wrap{width:min(100% - 32px, var(--wrap));margin-inline:auto}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;z-index:100}
+.skip:focus{left:8px}
+h1,h2,h3{font-family:var(--ff-d);color:var(--ink);font-weight:500;margin:0;line-height:1;letter-spacing:-.02em}
+h2{font-size:clamp(2.4rem,8vw,4.6rem)}
+h2 i,h1 i{font-style:italic;color:var(--aji)}
+.lbl{font:800 .72rem/1 var(--ff);letter-spacing:.24em;text-transform:uppercase;color:var(--ink);display:inline-flex;align-items:center;gap:10px;margin-bottom:18px}
+.lbl::before{content:"";width:8px;height:8px;background:var(--aji);border-radius:50%;flex:none}
+@media(max-width:480px){.lbl{letter-spacing:.16em}}
+.lead{color:var(--mut);max-width:52ch;margin:16px 0 0}
+section{padding:88px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 26px;font:800 .82rem var(--ff);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--ink);min-height:54px;cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-k{background:var(--ink);color:var(--cream)}
+.btn-k:hover{background:var(--aji);border-color:var(--aji)}
+.btn-l{background:transparent;color:var(--ink)}
+.btn-l:hover{background:var(--ink);color:var(--cream)}
+/* topbar + header */
+.topbar{background:var(--ink);color:var(--cream);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-align:center;padding:9px 12px}
+.topbar b{color:#ffb4a4}
+.hd{position:sticky;top:0;z-index:50;background:rgba(243,237,227,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;gap:14px}
+.logo{font:700 1.65rem/1 var(--ff-d);color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.logo i{color:var(--aji)}
+.nav{display:none;gap:30px}
+.nav a{text-decoration:none;font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+.nav a:hover{color:var(--aji)}
+.hd-r{display:flex;gap:8px;align-items:center}
+.icon-btn{width:44px;height:44px;display:grid;place-items:center;border:1px solid var(--line);background:transparent;cursor:pointer;text-decoration:none;border-radius:50%}
+.icon-btn svg{width:20px;height:20px}
+.hd .btn{min-height:44px;padding:10px 18px;display:none}
+.drawer{display:none;border-top:1px solid var(--line);background:var(--cream);padding:6px 16px 20px}
+.drawer.open{display:block}
+.drawer a:not(.btn){display:block;padding:15px 0;border-bottom:1px solid var(--line);text-decoration:none;font:500 1.6rem var(--ff-d);color:var(--ink)}
+.drawer .btn{width:100%;margin-top:16px}
+@media(min-width:960px){.nav{display:flex}.hd .btn{display:inline-flex}#burger,.drawer{display:none!important}}
+/* hero */
+.hero{padding:28px 0 60px;position:relative}
+.hero-grid{display:grid;gap:22px}
+.hero h1{font-size:clamp(3.3rem,15vw,8.6rem);line-height:.88;letter-spacing:-.04em}
+.hero h1 .l2{display:block;padding-left:.9em}
+.hero-copy p{font-size:1.08rem;color:var(--ink2);max-width:40ch;margin:18px 0 26px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:10px}
+.hero-ctas .btn{flex:1 1 200px}
+.hero-imgs{position:relative;display:grid;grid-template-columns:1.25fr 1fr;gap:10px;align-items:end}
+.hero-imgs figure{margin:0;position:relative}
+.hero-imgs .a img{aspect-ratio:3/4}
+.hero-imgs .b{margin-bottom:40px}.hero-imgs .b img{aspect-ratio:3/4.4}
+.hero-imgs img{width:100%;height:auto;object-fit:cover}
+.sticker{position:absolute;right:8px;top:-22px;width:104px;height:104px;border-radius:50%;background:var(--aji);color:#fff;display:grid;place-items:center;text-align:center;font:800 .7rem/1.2 var(--ff);letter-spacing:.1em;text-transform:uppercase;transform:rotate(12deg);z-index:2;box-shadow:0 10px 24px -10px rgba(0,0,0,.4)}
+.sticker b{display:block;font:500 1.9rem/1 var(--ff-d);letter-spacing:-.02em;text-transform:none}
+.cap{font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-top:8px}
+@media(min-width:960px){
+  .hero{padding:50px 0 90px}
+  .hero-grid{grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .hero-ctas .btn{flex:0 0 auto}
+  .sticker{width:124px;height:124px;right:-20px;top:-30px}
+}
+/* marquee */
+.mq{background:var(--aji);color:#fff;overflow:hidden;padding:16px 0;border-block:1.5px solid var(--ink)}
+.mq-in{display:flex;width:max-content;animation:mq 30s linear infinite;font:italic 500 1.6rem/1 var(--ff-d);white-space:nowrap}
+.mq-in span{padding-right:44px;display:inline-flex;gap:44px;align-items:center}
+.mq-in span::after{content:"✺";font-style:normal;font-size:1.1rem}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* catalog */
+.cat-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:22px;margin-bottom:28px}
+.filters{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;margin:0 -2px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.filters::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1.5px solid var(--ink);background:transparent;padding:10px 18px;border-radius:999px;font-weight:800;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;min-height:44px;transition:background .2s,color .2s}
+.chip:hover{background:var(--sand)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+.chip sup{font-size:.65rem;margin-left:4px;opacity:.7}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 12px}
+.p{display:flex;flex-direction:column;animation:fadeIn .45s ease}
+.p[hidden]{display:none}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.p-img{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--sand)}
+.p-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.p:hover .p-img img{transform:scale(1.05)}
+.badge{position:absolute;left:8px;top:8px;background:var(--cream);color:var(--ink);font-weight:800;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 8px}
+.badge.sale{background:var(--aji);color:#fff}
+.p-bd{padding-top:12px;display:flex;flex-direction:column;gap:8px;flex:1}
+.p h3{font:500 1.2rem/1.15 var(--ff-d)}
+.p .cat{font-size:.68rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.price{font-weight:800;color:var(--ink);font-size:1.02rem}
+.price s{color:var(--mut);font-weight:500;font-size:.85rem;margin-left:6px}
+.sizes{display:flex;flex-wrap:wrap;gap:6px}
+.sz{min-width:36px;height:36px;padding:0 8px;border:1px solid #bcb0a0;background:transparent;font-weight:700;font-size:.78rem;cursor:pointer;transition:all .15s}
+.sz:hover{border-color:var(--ink)}
+.sz[aria-pressed="true"]{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.want{margin-top:auto;width:100%;min-height:48px;padding:12px 10px;font-size:.74rem;letter-spacing:.12em}
+.want svg{width:17px;height:17px}
+.hint{font-size:.72rem;color:var(--aji-d);min-height:1em;font-weight:700}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:40px 22px}}
+@media(min-width:1100px){.grid{grid-template-columns:repeat(4,1fr)}}
+/* lookbook */
+.look{background:var(--ink);color:#cfc6ba}
+.look h2{color:var(--cream)}
+.look .lbl{color:var(--cream)}
+.look .lead{color:#b5aca0}
+.lb{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:40px}
+.lb figure{margin:0;overflow:hidden;position:relative;aspect-ratio:3/4}
+.lb img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.lb figure:hover img{transform:scale(1.05)}
+.lb figcaption{position:absolute;left:12px;bottom:10px;font:italic 500 1.15rem var(--ff-d);color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+@media(min-width:900px){.lb{grid-template-columns:repeat(12,1fr);grid-auto-rows:170px;gap:14px}.lb figure{aspect-ratio:auto}
+  .lb figure:nth-child(1){grid-column:1/6;grid-row:span 3}.lb figure:nth-child(2){grid-column:6/9;grid-row:span 2}.lb figure:nth-child(3){grid-column:9/13;grid-row:span 2}
+  .lb figure:nth-child(4){grid-column:6/10;grid-row:span 2}.lb figure:nth-child(5){grid-column:10/13;grid-row:span 2}.lb figure:nth-child(6){grid-column:1/6;grid-row:span 1}}
+/* info */
+.info{display:grid;gap:14px;margin-top:40px}
+.card{background:var(--paper);border:1px solid var(--line);padding:28px}
+.card .ic{width:52px;height:52px;border-radius:50%;background:var(--ink);color:var(--cream);display:grid;place-items:center;margin-bottom:18px}
+.card .ic svg{width:24px;height:24px}
+.card h3{font-size:1.6rem;margin-bottom:10px}
+.card p{margin:0;color:var(--mut);font-size:.95rem}
+.card ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:.93rem}
+.card li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:8px}
+.card li b{color:var(--ink);white-space:nowrap}
+.pays{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pay{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:.85rem;border:1px solid var(--line);background:#fff;padding:8px 12px}
+.pay i{width:12px;height:12px;border-radius:3px;display:inline-block}
+@media(min-width:900px){.info{grid-template-columns:repeat(3,1fr)}}
+/* steps */
+.how{display:grid;gap:0;margin-top:40px;border-top:1.5px solid var(--ink)}
+.how div{padding:24px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:start}
+.how b{font:italic 500 2.6rem/1 var(--ff-d);color:var(--aji)}
+.how h3{font-size:1.45rem}.how p{margin:6px 0 0;color:var(--mut)}
+@media(min-width:900px){.how{grid-template-columns:repeat(3,1fr);gap:30px}.how div{grid-template-columns:1fr;border-bottom:0}}
+/* testimonials */
+.tst{background:var(--sand)}
+.qs{display:grid;gap:16px;margin-top:40px}
+.q{margin:0;background:var(--paper);padding:28px;display:flex;flex-direction:column;gap:18px}
+.q blockquote{margin:0;font:500 1.3rem/1.35 var(--ff-d);color:var(--ink)}
+.q .stars{color:var(--aji);letter-spacing:3px}
+.who{display:flex;align-items:center;gap:12px;margin-top:auto;font-size:.9rem}
+.who img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+.who b{display:block;color:var(--ink)}.who span{color:var(--mut)}
+@media(min-width:900px){.qs{grid-template-columns:repeat(3,1fr)}}
+/* visit */
+.visit{display:grid;gap:18px;margin-top:40px}
+.hours{list-style:none;margin:10px 0 0;padding:0}
+.hours li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line)}
+.hours li.today{color:var(--aji-d);font-weight:800}
+.addr{display:flex;gap:12px;margin-top:14px;color:var(--ink2)}
+.addr svg{width:22px;height:22px;color:var(--aji);flex:none;margin-top:2px}
+.map{border:1.5px solid var(--ink);min-height:340px;background:var(--sand) url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2748%27 height=%2748%27 fill=%27none%27 stroke=%27%23c9361f%27 stroke-width=%271.6%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z%27/%3E%3Ccircle cx=%2712%27 cy=%2710%27 r=%272.5%27/%3E%3C/svg%3E") center/48px no-repeat}
+.map iframe{width:100%;height:100%;min-height:340px;border:0;display:block;filter:grayscale(1) contrast(1.05) sepia(.15)}
+@media(min-width:900px){.visit{grid-template-columns:1fr 1fr 1.3fr}}
+/* faq */
+.faq{max-width:860px;margin:36px auto 0;border-top:1.5px solid var(--ink)}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:22px 44px 22px 0;font:500 1.3rem/1.25 var(--ff-d);color:var(--ink);position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font:400 1.8rem var(--ff);color:var(--aji);transition:transform .25s}
+details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+details p{margin:0 0 22px;color:var(--mut)}
+/* cta */
+.cta{background:var(--aji);color:#fff;text-align:center;padding:90px 0}
+.cta h2{color:#fff;font-size:clamp(2.6rem,10vw,6rem)}
+.cta h2 i{color:var(--ink)}
+.cta p{max-width:44ch;margin:16px auto 28px;color:#ffe6df}
+.cta .btn{border-color:var(--ink)}
+/* footer */
+footer{background:var(--ink);color:#b5aca0;padding:56px 0 110px;font-size:.93rem}
+.ft{display:grid;gap:28px}
+footer .logo{color:var(--cream);font-size:2.2rem}
+footer h4{color:var(--cream);font:800 .74rem var(--ff);letter-spacing:.2em;text-transform:uppercase;margin:0 0 12px}
+footer a{text-decoration:none}footer a:hover{color:#fff;text-decoration:underline}
+.soc{display:flex;gap:10px;margin-top:16px}
+.soc a{width:44px;height:44px;border:1px solid #3d3631;border-radius:50%;display:grid;place-items:center}
+.soc svg{width:19px;height:19px}
+.credit{margin-top:40px;padding-top:20px;border-top:1px solid #2e2925;text-align:center;font-size:.8rem;color:#958b80}
+@media(min-width:760px){.ft{grid-template-columns:1.5fr 1fr 1fr 1fr}}
+/* wa float */
+.wa-float{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;align-items:center;gap:10px;background:#25d366;color:#053d17;text-decoration:none;font-weight:800;border-radius:999px;padding:12px;box-shadow:0 12px 30px -8px rgba(0,0,0,.4);transition:transform .2s}
+.wa-float:hover{transform:scale(1.05)}
+.wa-float svg{width:30px;height:30px}
+.wa-float span{display:none;padding-right:6px}
+@media(min-width:760px){.wa-float{right:24px;bottom:24px;padding:12px 18px 12px 14px}.wa-float span{display:inline}}
+/* toast */
+.toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);background:var(--ink);color:var(--cream);padding:12px 18px;font-weight:700;font-size:.9rem;opacity:0;pointer-events:none;transition:all .3s;z-index:70;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+.no-js .rv{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}.mq-in,.p{animation:none}*{transition-duration:.01ms!important}}
+</style>
+</head>
+<body class="no-js">
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="topbar">Envío <b>GRATIS</b> en Lima por compras desde S/ 199 · Enviamos a todo el Perú</div>
+<header class="hd">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Tela Brava, inicio">Tela <i>Brava</i></a>
+    <nav class="nav" aria-label="Principal"><a href="#catalogo">Catálogo</a><a href="#lookbook">Lookbook</a><a href="#envios">Envíos</a><a href="#faq">Ayuda</a><a href="#showroom">Showroom</a></nav>
+    <div class="hd-r">
+      <a class="btn btn-k wa" href="https://wa.me/51900000000" data-msg="Hola Tela Brava 👋 Quiero hacer un pedido." target="_blank" rel="noopener">Pide por WhatsApp</a>
+      <button class="icon-btn" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+    </div>
+  </div>
+  <div class="drawer" id="drawer">
+    <a href="#catalogo">Catálogo</a><a href="#lookbook">Lookbook</a><a href="#envios">Envíos y cambios</a><a href="#faq">Preguntas frecuentes</a><a href="#showroom">Showroom</a>
+    <a class="btn btn-k wa" href="https://wa.me/51900000000" data-msg="Hola Tela Brava 👋 Quiero hacer un pedido." target="_blank" rel="noopener">Pide por WhatsApp</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="lbl">Colección Invierno 2026</p>
+      <h1>Ropa con <i>carácter</i><span class="l2">limeño.</span></h1>
+      <p>Diseñamos en Jesús María y confeccionamos en talleres de Gamarra, en tiradas cortas para que no te cruces con tu outfit en cada esquina. Algodón peruano, cortes que quedan bien y precios de verdad.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-k" href="#catalogo">Ver catálogo</a>
+        <a class="btn btn-l wa" href="https://wa.me/51900000000" data-msg="Hola Tela Brava 👋 ¿Me pueden enviar el catálogo completo con tallas disponibles?" target="_blank" rel="noopener">Pedir catálogo completo</a>
+      </div>
+    </div>
+    <div class="hero-imgs rv">
+      <div class="sticker" aria-hidden="true"><span><b>-20%</b>primera<br>compra</span></div>
+      <figure class="a"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80" alt="Modelo con conjunto amarillo de polerón y jogger posando al aire libre" width="900" height="1200" fetchpriority="high"><figcaption class="cap">Conjunto Mostaza · S/ 159</figcaption></figure>
+      <figure class="b"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=700&q=80" alt="Modelo con pantalón palazzo a rayas frente a una pared verde" width="700" height="1030"><figcaption class="cap">Palazzo Rayas · S/ 99</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<div class="mq" aria-hidden="true"><div class="mq-in">
+  <span>Hecho en Gamarra</span><span>Envíos a todo el Perú</span><span>Paga con Yape o Plin</span><span>Cambios fáciles</span><span>Tiradas cortas</span>
+  <span>Hecho en Gamarra</span><span>Envíos a todo el Perú</span><span>Paga con Yape o Plin</span><span>Cambios fáciles</span><span>Tiradas cortas</span>
+</div></div>
+
+<section id="catalogo">
+  <div class="wrap">
+    <div class="cat-head rv">
+      <div><p class="lbl">Catálogo</p><h2>Lo más <i>pedido</i></h2></div>
+      <p class="lead" style="margin:0">Elige tu talla y dale a <b>“Lo quiero”</b>: te llevamos a WhatsApp con el producto listo para separar.</p>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrar por categoría">
+      <button class="chip" data-f="todo" aria-pressed="true">Todo<sup>8</sup></button>
+      <button class="chip" data-f="casacas" aria-pressed="false">Casacas<sup>2</sup></button>
+      <button class="chip" data-f="polos" aria-pressed="false">Polos<sup>2</sup></button>
+      <button class="chip" data-f="pantalones" aria-pressed="false">Pantalones<sup>2</sup></button>
+      <button class="chip" data-f="vestidos" aria-pressed="false">Vestidos<sup>2</sup></button>
+    </div>
+    <div class="grid" id="grid" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="look" id="lookbook">
+  <div class="wrap">
+    <div class="rv"><p class="lbl">Lookbook</p><h2>La calle es <i>nuestra pasarela</i></h2>
+    <p class="lead">Ideas para combinar cada prenda, del día a la noche. Así se lleva Tela Brava.</p></div>
+    <div class="lb">
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=900&q=80" alt="Modelo con blusa rosada de vuelos en un campo al atardecer" width="900" height="1200" loading="lazy"><figcaption>Blusa Vuelos</figcaption></figure>
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&fit=crop&w=700&q=80" alt="Hombre sentado con blazer camel y polo blanco" width="700" height="900" loading="lazy"><figcaption>Blazer Camel</figcaption></figure>
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=700&q=80" alt="Mujer con saco a cuadros caminando por la calle" width="700" height="900" loading="lazy"><figcaption>Saco Cuadros</figcaption></figure>
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?auto=format&fit=crop&w=800&q=80" alt="Hombre con casaca de cuero marrón y lentes de sol" width="800" height="900" loading="lazy"><figcaption>Cuero Tostado</figcaption></figure>
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=80" alt="Modelo con polo rojo y casaca negra sobre fondo turquesa" width="700" height="900" loading="lazy"><figcaption>Rojo Ají</figcaption></figure>
+      <figure class="rv"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1000&q=80" alt="Perchero con prendas tejidas en tonos tierra" width="1000" height="600" loading="lazy" style="object-position:50% 40%"><figcaption>Tejidos de temporada</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="como-comprar">
+  <div class="wrap">
+    <div class="rv"><p class="lbl">Cómo comprar</p><h2>Comprar es <i>facilito</i></h2></div>
+    <div class="how">
+      <div class="rv"><b>01</b><span><h3>Elige y escribe</h3><p>Toca “Lo quiero” en la prenda y talla que te guste. Te abrimos WhatsApp con tu pedido listo.</p></span></div>
+      <div class="rv"><b>02</b><span><h3>Paga como quieras</h3><p>Yape, Plin, transferencia o tarjeta. En Lima también aceptamos contraentrega.</p></span></div>
+      <div class="rv"><b>03</b><span><h3>Recíbelo en casa</h3><p>En Lima en 24–48 horas. A provincias por agencia en 2–4 días hábiles.</p></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="envios" style="padding-top:0">
+  <div class="wrap">
+    <div class="rv"><p class="lbl">Envíos, cambios y pagos</p><h2>Compra <i>tranquila</i></h2></div>
+    <div class="info">
+      <article class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4h14v12H1zM15 9h4l4 4v3h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></div>
+        <h3>Envíos</h3><p>Despachamos de lunes a sábado. Te pasamos el código de seguimiento por WhatsApp.</p>
+        <ul><li>Lima Moderna<b>S/ 10</b></li><li>Resto de Lima y Callao<b>S/ 15</b></li><li>Provincias (Shalom / Olva)<b>desde S/ 18</b></li><li>Compras desde S/ 199 en Lima<b>Gratis</b></li></ul>
+      </article>
+      <article class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg></div>
+        <h3>Cambios y devoluciones</h3><p>¿No te quedó? Tienes <b>7 días</b> desde que recibes tu pedido para cambiarlo por otra talla o prenda. La prenda debe estar sin uso y con etiqueta.</p>
+        <ul><li>Cambio de talla<b>Gratis en showroom</b></li><li>Devolución de dinero<b>Por fallas de fábrica</b></li></ul>
+      </article>
+      <article class="card rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+        <h3>Pagos</h3><p>Paga al toque desde tu celular. Te enviamos el comprobante de pago y tu boleta electrónica.</p>
+        <div class="pays"><span class="pay"><i style="background:#742284"></i>Yape</span><span class="pay"><i style="background:#00b5c8"></i>Plin</span><span class="pay">Transferencia</span><span class="pay">Visa / Mastercard</span><span class="pay">Contraentrega (Lima)</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="tst" id="opiniones">
+  <div class="wrap">
+    <div class="rv"><p class="lbl">+1 200 clientas y clientes felices</p><h2>Lo dicen <i>ellos</i></h2></div>
+    <div class="qs">
+      <figure class="q rv"><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><blockquote>“La casaca llegó a Arequipa en tres días y la calidad es de tienda de centro comercial, pero a mejor precio. Ya voy por mi tercera compra.”</blockquote>
+        <figcaption class="who"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="" width="46" height="46" loading="lazy"><span><b>Valeria C.</b><span>Arequipa</span></span></figcaption></figure>
+      <figure class="q rv"><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><blockquote>“Pedí el vestido Barranco un jueves y el viernes ya lo tenía en Surco. Me cambiaron la talla sin ningún problema. Atención bacán.”</blockquote>
+        <figcaption class="who"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=120&q=80" alt="" width="46" height="46" loading="lazy"><span><b>Daniela M.</b><span>Santiago de Surco</span></span></figcaption></figure>
+      <figure class="q rv"><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><blockquote>“Los polos oversize son otra cosa: algodón grueso, no se deforman y el negro no se destiñe. Pagué con Yape y todo rapidazo.”</blockquote>
+        <figcaption class="who"><img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=120&q=80" alt="" width="46" height="46" loading="lazy"><span><b>Sebastián R.</b><span>Pueblo Libre</span></span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="showroom">
+  <div class="wrap">
+    <div class="rv"><p class="lbl">Showroom</p><h2>Ven a <i>probártelo</i></h2></div>
+    <div class="visit">
+      <div class="card rv">
+        <h3>Horario</h3>
+        <ul class="hours" id="hours">
+          <li data-d="1"><span>Lunes</span><span>10:00 – 20:00</span></li>
+          <li data-d="2"><span>Martes</span><span>10:00 – 20:00</span></li>
+          <li data-d="3"><span>Miércoles</span><span>10:00 – 20:00</span></li>
+          <li data-d="4"><span>Jueves</span><span>10:00 – 20:00</span></li>
+          <li data-d="5"><span>Viernes</span><span>10:00 – 20:00</span></li>
+          <li data-d="6"><span>Sábado</span><span>10:00 – 20:00</span></li>
+          <li data-d="0"><span>Domingo</span><span>11:00 – 17:00</span></li>
+        </ul>
+      </div>
+      <div class="card rv">
+        <h3>Dirección</h3>
+        <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Jr. Huiracocha 1245, Int. 2<br>Jesús María, Lima</span></div>
+        <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7H4v13h16zM16 7V4H8v3"/></svg><span>Taller de confección en Gamarra, La Victoria (solo pedidos al por mayor, con cita).</span></div>
+        <div class="addr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></svg><span>+51 900 000 000</span></div>
+        <a class="btn btn-l wa" style="width:100%;margin-top:22px" href="https://wa.me/51900000000" data-msg="Hola Tela Brava, quiero visitar el showroom. ¿Me pasan la ubicación? 📍" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+      <div class="map rv"><iframe src="https://www.google.com/maps?q=Jes%C3%BAs+Mar%C3%ADa,Lima&output=embed" title="Mapa de Jesús María, Lima" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="rv" style="text-align:center"><p class="lbl">Ayuda</p><h2>Preguntas <i>frecuentes</i></h2></div>
+    <div class="faq">
+      <details class="rv"><summary>¿Cómo sé qué talla pedir?</summary><p>Escríbenos tu altura y cómo te queda la ropa normalmente, y te recomendamos la talla. También te enviamos la tabla de medidas de cada prenda por WhatsApp.</p></details>
+      <details class="rv"><summary>¿Hacen envíos a provincias?</summary><p>Sí, a todo el Perú por Shalom u Olva Courier. Pagas el envío al hacer tu pedido y recoges en la agencia de tu ciudad en 2 a 4 días hábiles.</p></details>
+      <details class="rv"><summary>¿Puedo pagar contraentrega?</summary><p>En Lima Metropolitana sí, pagando con Yape, Plin o efectivo al recibir. Para provincias el pago es adelantado.</p></details>
+      <details class="rv"><summary>¿Venden al por mayor?</summary><p>Sí, desde 12 prendas surtidas tienes precio especial. Pregunta por nuestro catálogo mayorista por WhatsApp.</p></details>
+      <details class="rv"><summary>¿Las prendas son de algodón peruano?</summary><p>Nuestros polos y poleras son de algodón peruano (jersey y french terry). Cada ficha indica la composición y cuidados.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap rv">
+    <h2>Tu próximo <i>favorito</i> está aquí</h2>
+    <p>Escríbenos, te mandamos fotos reales, medidas y stock al momento. Sin compromiso.</p>
+    <a class="btn btn-k wa" href="https://wa.me/51900000000" data-msg="Hola Tela Brava 👋 Quiero ver las novedades de la semana." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>Escríbenos al WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div><a href="#top" class="logo">Tela <i style="color:#ff8b73">Brava</i></a><p style="max-width:34ch;margin:14px 0 0">Moda con diseño propio, confeccionada en Gamarra por manos peruanas.</p>
+        <div class="soc">
+          <a href="#" aria-label="Instagram de Tela Brava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="TikTok de Tela Brava"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.2 1.6 3.6 3.8 3.8v3a7 7 0 0 1-3.8-1.2v6.2A5.8 5.8 0 1 1 10.7 9v3.1a2.8 2.8 0 1 0 2 2.7V3h3.8Z"/></svg></a>
+          <a href="#" aria-label="Facebook de Tela Brava"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5Z"/></svg></a>
+        </div></div>
+      <div><h4>Tienda</h4><a href="#catalogo">Catálogo</a><br><a href="#lookbook">Lookbook</a><br><a href="#como-comprar">Cómo comprar</a></div>
+      <div><h4>Ayuda</h4><a href="#envios">Envíos</a><br><a href="#envios">Cambios y devoluciones</a><br><a href="#faq">Preguntas frecuentes</a></div>
+      <div><h4>Showroom</h4>Jr. Huiracocha 1245, Int. 2<br>Jesús María, Lima<br><a class="wa" href="https://wa.me/51900000000" data-msg="Hola Tela Brava 👋" target="_blank" rel="noopener">+51 900 000 000</a></div>
+    </div>
+    <p class="credit">© <span id="yr">2026</span> Tela Brava · Sitio de muestra · Diseñado por Clickea Studio</p>
+  </div>
+</footer>
+
+<a class="wa-float wa" href="https://wa.me/51900000000" data-msg="Hola Tela Brava 👋 Quiero hacer un pedido." target="_blank" rel="noopener" aria-label="Pide por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+  <span>Pide por WhatsApp</span>
+</a>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  document.body.classList.remove('no-js');
+  var WA = 'https://wa.me/51900000000?text=';
+  document.querySelectorAll('a.wa[data-msg]').forEach(function(a){ a.href = WA + encodeURIComponent(a.dataset.msg); });
+  var IMG = function(id, w){ return 'https://images.unsplash.com/photo-' + id + '?auto=format&fit=crop&w=' + (w||700) + '&q=80'; };
+
+  var productos = [
+    {n:'Casaca Noche Limeña', c:'casacas', p:189, img:'1551028719-00167b16eac5', t:['S','M','L'], b:'Nuevo', alt:'Casaca negra de cuero ecológico colgada en gancho'},
+    {n:'Bomber Terracota', c:'casacas', p:149, o:179, img:'1591047139829-d91aecb6caea', t:['S','M','L','XL'], b:'-17%', sale:true, alt:'Casaca bomber color terracota con cierre'},
+    {n:'Polo Oversize Negro', c:'polos', p:45, img:'1618354691373-d851c5c3a990', t:['S','M','L','XL'], b:'Top ventas', alt:'Polo negro oversize en gancho de madera'},
+    {n:'Polo Pima Blanco', c:'polos', p:49, img:'1521572163474-6864f9cf17ab', t:['S','M','L','XL'], alt:'Hombre con polo blanco de algodón pima'},
+    {n:'Jogger Rosa Palo', c:'pantalones', p:79, img:'1594633312681-425c7b97ccd1', t:['S','M','L'], alt:'Pantalón jogger rosa palo con puños'},
+    {n:'Jean Recto Azul Noche', c:'pantalones', p:109, img:'1624378439575-d8705ad7ae80', t:['28','30','32','34'], alt:'Jean de corte recto azul oscuro'},
+    {n:'Vestido Barranco', c:'vestidos', p:139, img:'1595777457583-95e059d581b8', t:['S','M','L'], b:'Nuevo', alt:'Mujer con vestido largo rojo con vuelo en un jardín'},
+    {n:'Vestido Floral Malecón', c:'vestidos', p:119, img:'1496747611176-843222e1e57c', t:['XS','S','M','L'], alt:'Vestido cruzado blanco con estampado floral junto al mar'}
+  ];
+  var CAT = {casacas:'Casacas', polos:'Polos', pantalones:'Pantalones', vestidos:'Vestidos'};
+  var grid = document.getElementById('grid');
+  var waSvg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Z"/></svg>';
+  grid.innerHTML = productos.map(function(x, i){
+    return '<article class="p" data-c="' + x.c + '" data-i="' + i + '">' +
+      '<div class="p-img">' + (x.b ? '<span class="badge' + (x.sale ? ' sale' : '') + '">' + x.b + '</span>' : '') +
+      '<img src="' + IMG(x.img, 700) + '" alt="' + x.alt + '" width="700" height="875" loading="lazy"></div>' +
+      '<div class="p-bd"><span class="cat">' + CAT[x.c] + '</span><h3>' + x.n + '</h3>' +
+      '<div class="price">S/ ' + x.p + (x.o ? '<s>S/ ' + x.o + '</s>' : '') + '</div>' +
+      '<div class="sizes" role="group" aria-label="Talla de ' + x.n + '">' + x.t.map(function(s){ return '<button type="button" class="sz" aria-pressed="false" data-s="' + s + '">' + s + '</button>'; }).join('') + '</div>' +
+      '<span class="hint" aria-live="polite"></span>' +
+      '<a class="btn btn-k want" href="' + WA + encodeURIComponent('Hola Tela Brava 👋 Lo quiero: ' + x.n + ' (S/ ' + x.p + '). ¿Qué tallas tienen disponibles?') + '" target="_blank" rel="noopener">' + waSvg + 'Lo quiero</a>' +
+      '</div></article>';
+  }).join('');
+
+  // selección de talla -> actualiza mensaje
+  grid.addEventListener('click', function(e){
+    var sz = e.target.closest('.sz');
+    if (!sz) return;
+    var card = sz.closest('.p'), x = productos[card.dataset.i];
+    card.querySelectorAll('.sz').forEach(function(b){ b.setAttribute('aria-pressed', b === sz ? 'true' : 'false'); });
+    card.querySelector('.hint').textContent = '';
+    card.querySelector('.want').href = WA + encodeURIComponent('Hola Tela Brava 👋 Lo quiero: ' + x.n + ' — talla ' + sz.dataset.s + ' (S/ ' + x.p + '). ¿Tienen stock para separarlo?');
+  });
+
+  // filtros
+  var toast = document.getElementById('toast'), tt;
+  document.querySelectorAll('.chip').forEach(function(ch){
+    ch.addEventListener('click', function(){
+      var f = ch.dataset.f, n = 0;
+      document.querySelectorAll('.chip').forEach(function(c){ c.setAttribute('aria-pressed', c === ch ? 'true' : 'false'); });
+      grid.querySelectorAll('.p').forEach(function(p){ var show = f === 'todo' || p.dataset.c === f; p.hidden = !show; if (show) n++; });
+      toast.textContent = n + (n === 1 ? ' prenda' : ' prendas') + (f === 'todo' ? '' : ' en ' + ch.firstChild.textContent);
+      toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(function(){ toast.classList.remove('show'); }, 1600);
+    });
+  });
+
+  // menú móvil
+  var b = document.getElementById('burger'), d = document.getElementById('drawer');
+  b.addEventListener('click', function(){ var o = d.classList.toggle('open'); b.setAttribute('aria-expanded', o); b.setAttribute('aria-label', o ? 'Cerrar menú' : 'Abrir menú'); });
+  d.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ d.classList.remove('open'); b.setAttribute('aria-expanded', false); }); });
+
+  // aparición
+  var els = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io = new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {rootMargin:'0px 0px -8% 0px', threshold:.08});
+    els.forEach(function(el){ io.observe(el); });
+  } else { els.forEach(function(el){ el.classList.add('in'); }); }
+
+  var now = new Date(new Date().toLocaleString('en-US', {timeZone:'America/Lima'}));
+  var li = document.querySelector('#hours li[data-d="' + now.getDay() + '"]'); if (li) li.classList.add('today');
+  document.getElementById('yr').textContent = now.getFullYear();
+})();
+</script>
+</body>
+</html>
