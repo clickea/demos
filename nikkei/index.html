@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="es-PE" data-idioma="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kōji · Carta de la barra nikkei en Miraflores, Lima</title>
+<meta name="description" content="Carta de Kōji, barra nikkei en Miraflores: tiraditos, makis, robata, omakase del chef y cócteles de pisco. En español e inglés, con precios en soles.">
+<meta name="theme-color" content="#F1EBDD">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='1' y='1' width='30' height='30' rx='5' fill='%23B7372A'/%3E%3Crect x='4.5' y='4.5' width='23' height='23' rx='2.5' fill='none' stroke='%23F1EBDD' stroke-width='1.6'/%3E%3Cpath d='M12 9v14M12.6 16.4 20 9M14.6 14.4 20.6 23' fill='none' stroke='%23F1EBDD' stroke-width='2.6'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://clickea.github.io/demos/nikkei/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_PE">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:site_name" content="Kōji · Barra nikkei">
+<meta property="og:title" content="Kōji · Carta · Menu">
+<meta property="og:description" content="Barra nikkei en Miraflores, Lima. La carta de la mesa en español e inglés: del mar, makis, robata, omakase y cócteles de pisco.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1582450871972-ab5ca641643d?fm=jpg&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=75">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Maki acevichado con palta y salsa sobre fondo oscuro">
+<meta property="og:url" content="https://clickea.github.io/demos/nikkei/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;display=swap" rel="stylesheet">
+<!-- Base para buscadores sin JavaScript; al cargar, la carta completa (hasMenu) se regenera desde DATOS. -->
+<script type="application/ld+json" id="ld">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Kōji · Barra nikkei",
+  "description": "Barra nikkei de autor en Miraflores, Lima: cocina peruano-japonesa, robata, omakase del chef y cócteles de pisco.",
+  "url": "https://clickea.github.io/demos/nikkei/",
+  "image": "https://images.unsplash.com/photo-1582450871972-ab5ca641643d?fm=jpg&fit=crop&w=1200&h=630&q=75",
+  "telephone": "+51900000000",
+  "servesCuisine": ["Nikkei", "Peruana", "Japonesa"],
+  "priceRange": "S/ 60 – 220",
+  "currenciesAccepted": "PEN",
+  "paymentAccepted": "Efectivo, tarjeta, Yape, Plin",
+  "acceptsReservations": true,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Berlín 450",
+    "addressLocality": "Miraflores",
+    "addressRegion": "Lima",
+    "addressCountry": "PE"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "12:30", "closes": "16:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "19:00", "closes": "23:30" }
+  ],
+  "hasMenu": {
+    "@type": "Menu",
+    "name": "Carta de primavera 2026",
+    "inLanguage": ["es", "en"],
+    "hasMenuSection": [
+      { "@type": "MenuSection", "name": "Del mar", "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Tiradito acevichado", "offers": { "@type": "Offer", "price": "42", "priceCurrency": "PEN" } },
+        { "@type": "MenuItem", "name": "Cebiche nikkei", "offers": { "@type": "Offer", "price": "46", "priceCurrency": "PEN" } }
+      ] },
+      { "@type": "MenuSection", "name": "Makis", "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Maki acevichado", "offers": { "@type": "Offer", "price": "38", "priceCurrency": "PEN" } }
+      ] },
+      { "@type": "MenuSection", "name": "De la robata", "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Pulpo a la parrilla con miso", "offers": { "@type": "Offer", "price": "58", "priceCurrency": "PEN" } }
+      ] },
+      { "@type": "MenuSection", "name": "Omakase del chef", "hasMenuItem": [
+        { "@type": "MenuItem", "name": "Omakase de siete tiempos", "offers": { "@type": "Offer", "price": "220", "priceCurrency": "PEN" } }
+      ] }
+    ]
+  }
+}
+</script>
+<style>
+/* Colores que se animan entre comida (día) y bebidas (noche). Los valores reales vienen de DATOS.colores. */
+@property --papel { syntax: '<color>'; inherits: true; initial-value: #F1EBDD; }
+@property --tinta { syntax: '<color>'; inherits: true; initial-value: #1F2330; }
+@property --suave { syntax: '<color>'; inherits: true; initial-value: #56585E; }
+@property --sello { syntax: '<color>'; inherits: true; initial-value: #B7372A; }
+:root {
+  --papel-dia: #F1EBDD; --tinta-dia: #1F2330; --suave-dia: #56585E; --sello-dia: #B7372A;
+  --papel-noche: #1B1F29; --tinta-noche: #EDE6D6; --suave-noche: #B9B3A6; --sello-noche: #E2694F;
+  --papel: var(--papel-dia); --tinta: var(--tinta-dia); --suave: var(--suave-dia); --sello: var(--sello-dia);
+  --filete: color-mix(in srgb, var(--tinta) 30%, transparent);
+  --serif: 'Cormorant Garamond', Garamond, 'Times New Roman', serif;
+  --jp: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', YuMincho, serif;
+  color-scheme: light;
+  transition: --papel .9s ease, --tinta .9s ease, --suave .9s ease, --sello .9s ease;
+  -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
+}
+:root[data-tono="noche"] {
+  --papel: var(--papel-noche); --tinta: var(--tinta-noche); --suave: var(--suave-noche); --sello: var(--sello-noche);
+  color-scheme: dark;
+}
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+@media (prefers-reduced-motion: reduce) {
+  :root { transition: none; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
+/* Idioma: solo se ve el texto del idioma activo */
+html:not([data-idioma="en"]) [data-lang="en"], html[data-idioma="en"] [data-lang="es"] { display: none !important; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0; color: var(--tinta);
+  background-color: var(--papel);
+  /* grano de papel washi: ruido SVG muy tenue */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85 .35' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .36 0 0 0 0 .27 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  font: 500 1.1875rem/1.45 var(--serif);
+  font-kerning: normal; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .18em; }
+:focus-visible { outline: 2px solid var(--sello); outline-offset: 3px; border-radius: 2px; }
+::selection { background: var(--sello); color: var(--papel); }
+abbr[title] { text-decoration: none; cursor: help; }
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.saltar { position: absolute; left: 12px; top: -80px; z-index: 9; padding: 10px 14px; background: var(--tinta); color: var(--papel); }
+.saltar:focus { top: 12px; }
+.jp, .h-jp, .i-jp, .i-num, .vert, .sello-n { font-family: var(--jp); font-weight: 500; }
+
+/* ---------- Carta (celular primero) ---------- */
+.libro { max-width: 36rem; margin: 0 auto; padding: 16px 16px 0; }
+
+/* Portada: tarjeta con doble filete */
+.portada {
+  position: relative; margin: 5px; padding: 8px 18px 30px; text-align: center;
+  border: 1px solid var(--filete); box-shadow: 0 0 0 4px var(--papel), 0 0 0 5px var(--filete);
+}
+.p-top { display: flex; justify-content: space-between; align-items: center; margin-right: -8px; }
+.p-carta { margin: 0; font-style: italic; color: var(--suave); font-size: 1.0625rem; }
+.idioma { display: flex; align-items: center; color: var(--suave); }
+.idioma button {
+  font: 600 1.0625rem/1 var(--serif); letter-spacing: .08em; color: var(--suave);
+  background: none; border: 0; min-width: 44px; min-height: 44px; padding: 0 6px; cursor: pointer;
+}
+.idioma button[aria-pressed="true"] { color: var(--tinta); text-decoration: underline 1.5px var(--sello); text-underline-offset: .32em; }
+.marca { display: flex; justify-content: center; align-items: flex-start; gap: 10px; margin: 14px 0 12px; padding-left: 26px; }
+.hanko { width: 92px; height: 92px; transform: rotate(-3deg); }
+.h-fondo { fill: var(--sello); }
+.h-borde { fill: none; stroke: var(--papel); stroke-width: 2.2; }
+.h-kanji { fill: var(--papel); font-family: var(--jp); font-weight: 500; font-size: 54px; }
+.vert { writing-mode: vertical-rl; margin: 2px 0 0; font-size: 1rem; letter-spacing: .38em; color: var(--suave); }
+h1 { margin: 0; font-weight: 500; line-height: 1; }
+h1 .nombre { display: block; font-size: clamp(4.25rem, 21vw, 6.5rem); letter-spacing: -.015em; line-height: .95; }
+h1 .tipo { display: block; margin-top: 12px; font-style: italic; font-size: 1.3125rem; line-height: 1.25; }
+.manifiesto { max-width: 20em; margin: 16px auto 0; }
+.orn { display: flex; align-items: center; gap: 10px; max-width: 11rem; margin: 20px auto 14px; color: var(--sello); }
+.orn::before, .orn::after { content: ""; flex: 1; border-top: 1px solid var(--filete); }
+.orn svg { width: 13px; height: 13px; fill: currentColor; }
+.temporada, .chef { margin: 0; font-size: 1.0625rem; color: var(--suave); }
+.chef { font-style: italic; }
+
+/* Índice tipográfico con puntos guía */
+.indice { margin: 36px 0 4px; }
+.indice-t { margin: 0 0 2px; font-size: 1.0625rem; font-style: italic; font-weight: 500; color: var(--suave); }
+.indice ol { list-style: none; margin: 0; padding: 0; }
+.indice a {
+  display: flex; align-items: baseline; gap: 12px; min-height: 50px; padding: 12px 0 8px;
+  text-decoration: none; font-size: 1.375rem; font-weight: 600; line-height: 1.2;
+}
+.i-num { min-width: 1.3em; font-size: 1rem; color: var(--sello); }
+.i-guia { flex: 1; min-width: 14px; border-bottom: 2px dotted var(--filete); }
+.i-jp { font-size: 1rem; color: var(--suave); }
+.indice a:hover .i-nom, .indice a[aria-current] .i-nom { text-decoration: underline 1.5px var(--sello); text-underline-offset: .25em; }
+
+/* Secciones: título fijo mientras dura la sección */
+.sec { padding: 28px 0 36px; }
+.sec-cab { position: sticky; top: 0; z-index: 3; margin: 0 -16px; background: var(--papel); }
+.cab-in { position: relative; display: flex; align-items: center; gap: 14px; padding: 12px 16px 10px; border-bottom: 4px double var(--filete); }
+.cab-in::after {
+  content: ""; position: absolute; left: 0; right: 0; top: calc(100% + 4px); height: 16px;
+  background: linear-gradient(var(--papel), transparent); opacity: 0; pointer-events: none;
+}
+@supports (container-type: scroll-state) {
+  .sec-cab { container-type: scroll-state; container-name: cab; }
+  @container cab scroll-state(stuck: top) { .cab-in::after { opacity: 1; } }
+}
+.sello-n {
+  flex: none; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 3px;
+  background: var(--sello); color: var(--papel); font-size: 1.25rem; line-height: 1; transform: rotate(-2deg);
+}
+.sec h2 { flex: 1; min-width: 0; margin: 0; display: flex; flex-direction: column; font-weight: 600; line-height: 1.05; }
+.h-jp { font-size: 1rem; line-height: 1.35; letter-spacing: .25em; color: var(--suave); }
+.h-tt { font-size: 1.875rem; letter-spacing: -.005em; }
+.a-indice {
+  flex: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0 0 0 8px;
+  font-style: italic; font-size: 1.0625rem; color: var(--suave); text-decoration: none;
+}
+.sec-nota { margin: 16px 0 0; font-style: italic; color: var(--suave); font-size: 1.125rem; }
+.foto { margin: 18px -16px 4px; }
+.foto img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; background: color-mix(in srgb, var(--tinta) 8%, transparent); }
+
+/* Platos: una línea de texto por idea, precio siempre a la vista */
+.platos { list-style: none; margin: 0; padding: 0; }
+.plato { padding-top: 22px; scroll-margin-top: 96px; }
+.p-l1 { display: flex; align-items: baseline; gap: 16px; }
+.p-nom { flex: 1; margin: 0; font-size: 1.375rem; font-weight: 600; line-height: 1.2; }
+.p-precio { flex: none; margin: 0; font-size: 1.25rem; font-weight: 600; font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+.p-trad { margin: 1px 0 0; font-style: italic; font-size: 1.0625rem; line-height: 1.3; color: var(--suave); }
+.p-desc { margin: 6px 0 0; font-size: 1.125rem; line-height: 1.42; }
+.p-meta { margin: 5px 0 0; font-size: 1rem; color: var(--suave); }
+.p-meta abbr { font-weight: 600; letter-spacing: .06em; }
+.estrella { width: .62em; height: .62em; fill: var(--sello); margin-right: .32em; vertical-align: .06em; }
+.aji { color: var(--sello); letter-spacing: .04em; }
+.p-hist { margin: 8px 0 0; font-style: italic; font-size: 1.0625rem; }
+.p-vabien { margin: 4px 0 0; font-size: 1rem; color: var(--suave); }
+.p-vabien a { color: var(--tinta); }
+
+/* Omakase: inserto con doble filete */
+.omakase { margin-top: 24px; padding: 22px 20px 24px; border: 1px solid var(--filete); outline: 1px solid var(--filete); outline-offset: -6px; }
+.om-desc { margin: 0; }
+.om-tiempos { list-style: none; margin: 14px 0 18px; padding: 0; }
+.om-tiempos li { display: flex; gap: 12px; align-items: baseline; padding: 4px 0; font-size: 1.125rem; }
+.om-precio { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin: 0; padding-top: 14px; border-top: 1px solid var(--filete); }
+.om-precio b { font-size: 2rem; font-weight: 600; font-variant-numeric: lining-nums tabular-nums; }
+.om-precio span { font-style: italic; color: var(--suave); }
+.om-extra { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin: 8px 0 0; font-size: 1.0625rem; }
+.om-extra .n { font-weight: 600; white-space: nowrap; font-variant-numeric: lining-nums tabular-nums; }
+
+/* Bebidas en acordeón nativo */
+.grupos { margin-top: 20px; border-top: 1px solid var(--filete); }
+.grupo { border-bottom: 1px solid var(--filete); }
+.grupo > summary {
+  display: flex; align-items: center; gap: 12px; min-height: 58px; padding: 8px 0;
+  list-style: none; cursor: pointer; font-size: 1.375rem; font-weight: 600;
+}
+.grupo > summary::-webkit-details-marker { display: none; }
+.grupo > summary::after {
+  content: ""; flex: none; width: 9px; height: 9px; margin: 0 6px 5px 2px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg);
+}
+.grupo[open] > summary::after { transform: rotate(-135deg); margin-bottom: -4px; }
+.g-rango { margin-left: auto; font-size: 1.0625rem; font-weight: 500; color: var(--suave); font-variant-numeric: lining-nums tabular-nums; white-space: nowrap; }
+.grupo .platos { padding-bottom: 24px; }
+.grupo .plato:first-child { padding-top: 4px; }
+
+/* Pie de la carta */
+.pie { padding: 30px 0 calc(40px + env(safe-area-inset-bottom)); border-top: 4px double var(--filete); }
+.pie h2 { margin: 0 0 10px; font-size: 1.5rem; font-weight: 600; }
+.leyenda { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 2px; }
+.leyenda li { display: flex; gap: 10px; align-items: baseline; }
+.leyenda .k { min-width: 2.4em; font-weight: 600; letter-spacing: .06em; }
+.leyenda .estrella { margin: 0; }
+.alerg { margin: 0; }
+.consulta { margin: 8px 0 0; font-weight: 600; }
+.pie-datos { list-style: none; margin: 28px 0 0; padding: 18px 0 0; border-top: 1px solid var(--filete); display: grid; gap: 6px; }
+.pie-datos b { font-weight: 600; }
+.enl { display: inline-flex; align-items: center; min-height: 44px; }
+.cierre { margin: 30px 0 0; text-align: center; font-size: 1.25rem; font-style: italic; }
+.cierre .jp { display: block; margin-bottom: 2px; font-style: normal; font-size: 1.125rem; letter-spacing: .3em; color: var(--sello); }
+.credito { margin: 20px 0 0; text-align: center; font-size: 1rem; color: var(--suave); }
+.nojs { max-width: 36rem; margin: 0 auto; padding: 32px 16px; }
+.nojs h1 { font-size: 3rem; }
+
+/* ---------- Escritorio: la carta abierta en dos hojas ---------- */
+@media (min-width: 960px) {
+  body { font-size: 1.25rem; }
+  .libro {
+    display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    width: calc(100% - 56px); max-width: 1240px; margin: 28px auto; padding: 0;
+    border: 1px solid var(--filete); box-shadow: 0 0 0 5px var(--papel), 0 0 0 6px var(--filete);
+  }
+  .hoja.izq {
+    position: sticky; top: 0; align-self: start; height: 100vh; height: 100dvh; overflow-y: auto;
+    display: flex; flex-direction: column; justify-content: center; padding: 20px 44px;
+  }
+  .hoja.der { min-width: 0; padding: 0 64px 0 72px; border-left: 1px solid var(--filete); box-shadow: inset 5px 0 0 var(--papel), inset 6px 0 0 var(--filete); }
+  .portada { margin: 0; padding: 0; border: 0; box-shadow: none; }
+  .p-top { margin: 0 -8px 0 0; }
+  .hanko { width: 84px; height: 84px; }
+  h1 .nombre { font-size: clamp(5rem, 8vw, 7rem); }
+  .manifiesto { margin-top: 12px; }
+  .orn { margin: 14px auto 10px; }
+  .indice { margin: 22px 0 0; }
+  .indice a { min-height: 40px; padding: 7px 0 5px; font-size: 1.3125rem; }
+  .sec { padding: 40px 0 44px; }
+  .sec-cab { margin: 0; }
+  .cab-in { padding: 20px 0 12px; }
+  .a-indice { display: none; }
+  .h-tt { font-size: 2.125rem; }
+  .foto { margin: 22px 0 6px; }
+  .p-nom { font-size: 1.5rem; }
+  .p-precio { font-size: 1.375rem; }
+  .p-desc { font-size: 1.1875rem; }
+  .plato { scroll-margin-top: 110px; }
+  .pie { padding-bottom: 56px; }
+}
+@media (min-width: 960px) and (max-height: 760px) {
+  .marca { margin: 6px 0 4px; } .hanko { width: 64px; height: 64px; }
+  h1 .nombre { font-size: 4.5rem; } .manifiesto, .orn { display: none; }
+  .indice a { min-height: 34px; padding: 4px 0 3px; font-size: 1.1875rem; }
+}
+</style>
+</head>
+<body>
+<a class="saltar" href="#carta"><span data-lang="es">Ir a la carta</span><span data-lang="en">Skip to the menu</span></a>
+
+<div class="libro">
+  <div class="hoja izq">
+    <header class="portada" id="portada"></header>
+    <nav class="indice" id="indice" aria-labelledby="indice-t"></nav>
+  </div>
+  <div class="hoja der">
+    <main id="carta"></main>
+    <footer class="pie" id="pie"></footer>
+  </div>
+</div>
+
+<noscript>
+  <div class="nojs">
+    <h1>Kōji</h1>
+    <p><em>Barra nikkei en Miraflores · Nikkei bar in Miraflores</em></p>
+    <p>Esta carta necesita JavaScript para mostrarse. Pide la carta impresa a nuestro personal: con gusto te la traemos.</p>
+    <p lang="en">This menu needs JavaScript to display. Please ask our staff for the printed menu.</p>
+    <p>Calle Berlín 450, Miraflores, Lima · Precios en soles, incluyen IGV.<br>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Berl%C3%ADn+450+Miraflores+Lima">Cómo llegar</a> ·
+      <a href="https://wa.me/51900000000">Reservas por WhatsApp</a></p>
+  </div>
+</noscript>
+
+<script>
+/* =====================================================================
+   DATOS DE LA CARTA  ✏️  (edita SOLO este bloque para cada restaurante)
+   ---------------------------------------------------------------------
+   · Todo texto bilingüe se escribe así: { es: "…", en: "…" }.
+     Si un texto es igual en los dos idiomas, basta con una cadena: "200 g".
+   · Los precios van como número, sin "S/": 42  →  se muestra "S/ 42".
+   · Etiquetas de un plato: "V", "VG", "SG" (se definen en `etiquetas`).
+   · picante: 0 a 3 (cuántos ajíes se muestran).  chef: true → estrella.
+   · Los caracteres japoneses (jp, sello, cierre) se descargan solos:
+     la fuente japonesa se recorta a exactamente lo que escribas aquí.
+   ===================================================================== */
+const DATOS = {
+  // --- El restaurante (portada) ---
+  negocio: {
+    nombre: "Kōji",                                   // nombre grande de la portada
+    sello: "麹",                                      // carácter del sello rojo (hanko)
+    jp: "日系料理",                                   // texto vertical junto al sello ("cocina nikkei")
+    bajada: { es: "Barra nikkei en Miraflores", en: "Nikkei bar in Miraflores" },
+    manifiesto: {
+      es: "Pescado del Pacífico, técnica japonesa y el ají de siempre.",
+      en: "Pacific fish, Japanese technique and the ají we grew up with."
+    },
+    temporada: { es: "Carta de primavera 2026", en: "Spring menu 2026" },
+    chef: { es: "Cocina del chef Daniel Arakaki", en: "Cooking by chef Daniel Arakaki" },
+    moneda: "S/"                                      // símbolo antes de cada precio
+  },
+
+  // --- Idiomas ---
+  // El primero es el principal. La primera visita respeta el idioma del celular;
+  // con #en o #es al final del link se fuerza uno (útil para el QR de turistas).
+  idiomas: {
+    disponibles: ["es", "en"],
+    etiquetas: { es: "ES", en: "EN" },               // texto del selector
+    html: { es: "es-PE", en: "en" },                  // valor de <html lang>
+    siNoCoincide: "en"                                // celular en otro idioma (francés, etc.) → inglés
+  },
+
+  // --- Textos fijos de la interfaz ---
+  textos: {
+    carta: "Carta · Menu",
+    pestana: { es: "Kōji · Carta de la barra nikkei", en: "Kōji · Nikkei bar menu" },
+    idioma: { es: "Idioma", en: "Language" },
+    indice: { es: "Índice", en: "Contents" },
+    recomendado: { es: "Recomendado del chef", en: "Chef’s pick" },
+    picante: { es: "Picante", en: "Spicy" },
+    de3: { es: "de 3", en: "of 3" },
+    picanteLeyenda: { es: "Picante, de 1 a 3", en: "Spicy, from 1 to 3" },
+    simboloPicante: "🌶︎",
+    vaBien: { es: "Va bien con", en: "Pairs well with" },
+    leyenda: { es: "Cómo leer la carta", en: "Reading this menu" },
+    comoLlegar: { es: "Cómo llegar", en: "Directions" },
+    wifi: { es: "WiFi", en: "Wi-Fi" },
+    clave: { es: "clave", en: "password" }
+  },
+
+  // --- Etiquetas de los platos (texto corto + nombre completo) ---
+  etiquetas: {
+    V:  { corto: { es: "V",  en: "V"  }, nombre: { es: "Vegetariano", en: "Vegetarian" }, dieta: "VegetarianDiet" },
+    VG: { corto: { es: "VG", en: "VG" }, nombre: { es: "Vegano", en: "Vegan" }, dieta: "VeganDiet" },
+    SG: { corto: { es: "SG", en: "GF" }, nombre: { es: "Sin gluten", en: "Gluten-free" }, dieta: "GlutenFreeDiet" }
+  },
+
+  // --- Secciones de la carta, en orden ---
+  // Cada sección: nombre {es,en}, jp (palabra japonesa pequeña sobre el título), nota opcional,
+  // foto opcional (máx. una: { src, alt:{es,en} }; si es de Unsplash, basta la URL sin parámetros),
+  // tono: "dia" (papel) o "noche" (tinta; el fondo cambia suave al llegar ahí).
+  // Plato: { nombre:{es,en}, desc:{es,en}, porcion, precio, etiquetas:[], picante:0-3, chef:true }
+  secciones: [
+    {
+      nombre: { es: "Para empezar", en: "To begin" }, jp: "先付",
+      nota: { es: "Para abrir la mesa y compartir.", en: "To open the table, meant for sharing." },
+      platos: [
+        { nombre: { es: "Edamame con sal de maras", en: "Edamame with Maras salt" },
+          desc: { es: "Vainas de soya al vapor, sal rosada de Maras y limón.", en: "Steamed soybean pods, pink Maras salt and Peruvian lime." },
+          porcion: "200 g", precio: 16, etiquetas: ["V", "VG", "SG"] },
+        { nombre: { es: "Gyozas de cerdo y ají panca", en: "Pork and ají panca gyozas" },
+          desc: { es: "Masa hecha en casa, cerdo de chacra, ají panca y ponzu de tumbo.", en: "Housemade wrappers, farm pork, ají panca and banana passion fruit ponzu." },
+          porcion: { es: "6 unidades", en: "6 pieces" }, precio: 29, picante: 1 },
+        { nombre: { es: "Causa nikkei de pulpo", en: "Octopus causa, nikkei style" },
+          desc: { es: "Papa amarilla prensada, pulpo, mayonesa de aceituna y furikake.", en: "Pressed yellow potato, octopus, olive mayonnaise and furikake." },
+          porcion: { es: "4 bocados", en: "4 bites" }, precio: 32, chef: true },
+        { nombre: { es: "Tempura de la chacra", en: "Garden tempura" },
+          desc: { es: "Verduras de temporada en tempura ligera, sal de matcha y salsa tentsuyu.", en: "Seasonal vegetables in light tempura, matcha salt and tentsuyu dipping sauce." },
+          porcion: "220 g", precio: 26, etiquetas: ["V"] }
+      ]
+    },
+    {
+      nombre: { es: "Del mar", en: "From the sea" }, jp: "海の幸",
+      nota: { es: "Pesca del día del Pacífico peruano, cortada al momento.", en: "Catch of the day from the Peruvian Pacific, sliced to order." },
+      foto: { src: "https://images.unsplash.com/photo-1534482421-64566f976cfa",
+              alt: { es: "Bowl de sashimi con atún, salmón y pepino sobre fondo oscuro", en: "Sashimi bowl with tuna, salmon and cucumber on a dark background" } },
+      platos: [
+        { nombre: { es: "Tiradito acevichado", en: "Tiradito, acevichado style" },
+          desc: { es: "Láminas de pesca del día, leche de tigre acevichada, aceite de ajonjolí y cebollín.", en: "Sliced catch of the day, acevichado tiger’s milk, sesame oil and chives." },
+          porcion: "180 g", precio: 42, picante: 1, chef: true },
+        { nombre: { es: "Cebiche nikkei", en: "Nikkei ceviche" },
+          desc: { es: "Atún y pesca blanca en leche de tigre de shoyu y maracuyá, nori crocante y camote glaseado.", en: "Tuna and white fish in soy and passion fruit tiger’s milk, crisp nori and glazed sweet potato." },
+          porcion: "220 g", precio: 46, picante: 2 },
+        { nombre: { es: "Tartar de atún con palta", en: "Tuna tartare with avocado" },
+          desc: { es: "Atún aleta amarilla, palta, yema curada en shoyu y chips de wantán.", en: "Yellowfin tuna, avocado, soy-cured egg yolk and wonton crisps." },
+          porcion: "130 g", precio: 48 },
+        { nombre: { es: "Sashimi de la barra", en: "Sashimi from the bar" },
+          desc: { es: "Quince cortes según la pesca del día, wasabi fresco y tamari.", en: "Fifteen cuts from the day’s catch, fresh wasabi and tamari." },
+          porcion: { es: "15 cortes", en: "15 cuts" }, precio: 58, etiquetas: ["SG"] }
+      ]
+    },
+    {
+      nombre: { es: "Makis", en: "Rolls" }, jp: "巻物",
+      foto: { src: "https://images.unsplash.com/photo-1582450871972-ab5ca641643d",
+              alt: { es: "Maki cubierto de palta, salsa y ajonjolí", en: "Roll topped with avocado, sauce and sesame" } },
+      platos: [
+        { nombre: { es: "Maki acevichado", en: "Acevichado roll" },
+          desc: { es: "Langostino empanizado y palta, cubierto de pesca blanca y salsa acevichada gratinada.", en: "Crispy prawn and avocado, topped with white fish and torched acevichado sauce." },
+          porcion: { es: "10 piezas", en: "10 pieces" }, precio: 38, picante: 1, chef: true },
+        { nombre: { es: "Maki furai", en: "Furai roll" },
+          desc: { es: "Salmón, queso crema y palta, apanado en panko y frito; salsa de anguila.", en: "Salmon, cream cheese and avocado, panko-fried; eel sauce." },
+          porcion: { es: "10 piezas", en: "10 pieces" }, precio: 36 },
+        { nombre: { es: "Maki parrillero", en: "Grill roll" },
+          desc: { es: "Lomo fino flambeado, chimichurri de huacatay y pepino.", en: "Flame-seared beef tenderloin, huacatay chimichurri and cucumber." },
+          porcion: { es: "10 piezas", en: "10 pieces" }, precio: 39 },
+        { nombre: { es: "Maki de la huerta", en: "Garden roll" },
+          desc: { es: "Espárrago, palta, mango y pepino, con salsa de maracuyá.", en: "Asparagus, avocado, mango and cucumber, with passion fruit sauce." },
+          porcion: { es: "10 piezas", en: "10 pieces" }, precio: 30, etiquetas: ["V", "VG"] }
+      ]
+    },
+    {
+      nombre: { es: "De la robata", en: "From the robata" }, jp: "炉端",
+      nota: { es: "A la brasa de carbón binchotan, frente a la barra.", en: "Grilled over binchotan charcoal, right in front of the bar." },
+      platos: [
+        { nombre: { es: "Pulpo a la parrilla con miso", en: "Grilled octopus with miso" },
+          desc: { es: "Pulpo glaseado en miso y ají amarillo, papas nativas y aceituna de botija.", en: "Octopus glazed in miso and ají amarillo, native potatoes and botija olives." },
+          porcion: "250 g", precio: 58, chef: true },
+        { nombre: { es: "Anticucho de corazón con teriyaki", en: "Beef heart anticucho with teriyaki" },
+          desc: { es: "Corazón de res en ají panca y teriyaki, choclo y crema de rocoto.", en: "Beef heart in ají panca and teriyaki, Andean corn and rocoto cream." },
+          porcion: { es: "2 palitos", en: "2 skewers" }, precio: 34, picante: 2 },
+        { nombre: { es: "Yakitori de pollo", en: "Chicken yakitori" },
+          desc: { es: "Muslo de pollo, tare de ají amarillo y cebolla china.", en: "Chicken thigh, ají amarillo tare and spring onion." },
+          porcion: { es: "3 palitos", en: "3 skewers" }, precio: 32, picante: 1 },
+        { nombre: { es: "Pesca del día a la robata", en: "Catch of the day from the robata" },
+          desc: { es: "Filete a la brasa, mantequilla de yuzu y verduras de temporada.", en: "Charcoal-grilled fillet, yuzu butter and seasonal vegetables." },
+          porcion: "200 g", precio: 62, etiquetas: ["SG"] },
+        { nombre: { es: "Choclo y shiitake a la brasa", en: "Grilled Andean corn and shiitake" },
+          desc: { es: "Choclo tierno y hongos shiitake con mantequilla de miso.", en: "Tender Andean corn and shiitake mushrooms with miso butter." },
+          porcion: "240 g", precio: 26, etiquetas: ["V"] }
+      ]
+    },
+    {
+      nombre: { es: "Fondos", en: "Mains" }, jp: "食事",
+      nota: { es: "Arroz o fideos para cerrar, como se come en casa.", en: "Rice or noodles to finish, the way we eat at home." },
+      platos: [
+        { nombre: { es: "Chaufa nikkei", en: "Nikkei fried rice" },
+          desc: { es: "Arroz al wok con langostinos, chancho asado, tortilla, cebolla china y aceite de ajonjolí.", en: "Wok-fried rice with prawns, roast pork, omelette, spring onion and sesame oil." },
+          porcion: "400 g", precio: 49 },
+        { nombre: { es: "Bowl de salmón", en: "Salmon bowl" },
+          desc: { es: "Arroz de sushi, salmón curado, palta, edamame, pepino y ponzu.", en: "Sushi rice, cured salmon, avocado, edamame, cucumber and ponzu." },
+          porcion: "380 g", precio: 52 },
+        { nombre: { es: "Lomo saltado al wok", en: "Wok-tossed lomo saltado" },
+          desc: { es: "Lomo fino, cebolla, tomate y ají amarillo saltados con shoyu y sake; papas fritas y arroz.", en: "Beef tenderloin, onion, tomato and ají amarillo tossed with soy and sake; fries and rice." },
+          porcion: "420 g", precio: 64 },
+        { nombre: { es: "Udon de mariscos", en: "Seafood udon" },
+          desc: { es: "Fideos udon en caldo dashi con ají amarillo, langostinos, calamar y conchas.", en: "Udon noodles in ají amarillo dashi with prawns, squid and scallops." },
+          porcion: "450 g", precio: 54, picante: 1 }
+      ]
+    },
+    {
+      // Omakase: en vez de platos lleva `tiempos` (en orden), precio por persona y un extra opcional.
+      tipo: "omakase",
+      nombre: { es: "Omakase del chef", en: "Chef’s omakase" }, jp: "お任せ",
+      desc: {
+        es: "Siete tiempos que el chef Daniel Arakaki decide según la pesca y el mercado del día. Solo en la barra, con reserva.",
+        en: "Seven courses chef Daniel Arakaki chooses from the day’s catch and market. Bar seating only, by reservation."
+      },
+      tiempos: [
+        { es: "Sakizuke: bocado de bienvenida", en: "Sakizuke: a welcome bite" },
+        { es: "Sashimi de tres cortes", en: "Three-cut sashimi" },
+        { es: "Tiradito de temporada", en: "Seasonal tiradito" },
+        { es: "Cuatro nigiris de la barra", en: "Four nigiri from the bar" },
+        { es: "Un plato de la robata", en: "A dish from the robata" },
+        { es: "Chaufa o caldo del día", en: "Fried rice or the broth of the day" },
+        { es: "Dulce de la casa", en: "House dessert" }
+      ],
+      precio: 220, unidad: { es: "por persona", en: "per person" },
+      extra: { texto: { es: "Maridaje de sake y pisco", en: "Sake and pisco pairing" }, precio: 120 }
+    },
+    {
+      nombre: { es: "Dulces", en: "Desserts" }, jp: "甘味",
+      platos: [
+        { nombre: { es: "Mochi de lúcuma", en: "Lúcuma mochi" },
+          desc: { es: "Masa de arroz glutinoso rellena de helado de lúcuma, con kinako.", en: "Glutinous rice dough filled with lúcuma ice cream, dusted with kinako." },
+          porcion: { es: "3 unidades", en: "3 pieces" }, precio: 22, etiquetas: ["V", "SG"], chef: true },
+        { nombre: { es: "Cheesecake de matcha", en: "Matcha cheesecake" },
+          desc: { es: "Matcha de Uji, base de galleta de kion y coulis de aguaymanto.", en: "Uji matcha, ginger cookie base and goldenberry coulis." },
+          porcion: { es: "1 tajada", en: "1 slice" }, precio: 24, etiquetas: ["V"] },
+        { nombre: { es: "Suspiro de yuzu", en: "Yuzu suspiro limeño" },
+          desc: { es: "Manjar blanco de la casa con merengue de yuzu y canela.", en: "Housemade milk caramel custard with yuzu meringue and cinnamon." },
+          porcion: { es: "1 copa", en: "1 glass" }, precio: 21, etiquetas: ["V", "SG"] },
+        { nombre: { es: "Helados de la casa", en: "House ice creams" },
+          desc: { es: "Tres bolas: té verde, maracuyá y ajonjolí negro.", en: "Three scoops: green tea, passion fruit and black sesame." },
+          porcion: { es: "3 bolas", en: "3 scoops" }, precio: 18, etiquetas: ["V", "SG"] }
+      ]
+    },
+    {
+      // Bebidas: `grupos` se muestran como acordeón. abierto:true → empieza desplegado.
+      // En cócteles: historia {es,en} y vaBien = nombre en español de un plato de la carta (se vuelve enlace).
+      nombre: { es: "Para tomar", en: "To drink" }, jp: "飲み物", tono: "noche",
+      nota: { es: "La barra atiende hasta las 23:30.", en: "The bar serves until 11:30 p.m." },
+      foto: { src: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b",
+              alt: { es: "Cóctel con hielo y hierbas sobre la barra, con luz tenue", en: "Cocktail with ice and herbs on the bar in low light" } },
+      grupos: [
+        { nombre: { es: "Cócteles de autor", en: "Signature cocktails" }, abierto: true, items: [
+          { nombre: { es: "Pisco sour de maracuyá y shiso", en: "Passion fruit and shiso pisco sour" },
+            desc: { es: "Pisco quebranta, maracuyá, shiso, limón y clara de huevo.", en: "Quebranta pisco, passion fruit, shiso, lime and egg white." },
+            historia: { es: "Nuestro sour de la casa: el shiso viene del huerto de la familia Arakaki, en Huaral.", en: "Our house sour: the shiso comes from the Arakaki family garden in Huaral." },
+            vaBien: "Tiradito acevichado", porcion: "180 ml", precio: 34, chef: true },
+          { nombre: { es: "Chilcano de yuzu", en: "Yuzu chilcano" },
+            desc: { es: "Pisco acholado, ginger ale, yuzu y amargo de la casa.", en: "Acholado pisco, ginger ale, yuzu and house bitters." },
+            historia: { es: "El chilcano de toda la vida, con yuzu en vez de limón y hielo tallado en la barra.", en: "The classic chilcano, with yuzu instead of lime and ice hand-cut at the bar." },
+            vaBien: "Maki furai", porcion: "300 ml", precio: 30 },
+          { nombre: { es: "Negroni de hojicha", en: "Hojicha negroni" },
+            desc: { es: "Pisco italia infusionado con té hojicha, vermut rojo y bitter.", en: "Italia pisco infused with hojicha tea, sweet vermouth and bitter." },
+            historia: { es: "Lo creamos para la robata: el té tostado acompaña al humo del carbón.", en: "Made for the robata: roasted tea to follow the charcoal smoke." },
+            vaBien: "Pulpo a la parrilla con miso", porcion: "90 ml", precio: 36 }
+        ] },
+        { nombre: { es: "Piscos", en: "Piscos" }, items: [
+          { nombre: { es: "Quebranta · Ica", en: "Quebranta · Ica" }, desc: { es: "Puro. Seco, con notas de pasas y cacao.", en: "Single grape. Dry, with notes of raisin and cocoa." }, porcion: "2 oz", precio: 22 },
+          { nombre: { es: "Italia · Moquegua", en: "Italia · Moquegua" }, desc: { es: "Aromático. Flores blancas y uva moscatel.", en: "Aromatic. White flowers and muscat grape." }, porcion: "2 oz", precio: 26 },
+          { nombre: { es: "Acholado · Lima", en: "Acholado · Lima" }, desc: { es: "Mezcla de uvas. Redondo y frutal.", en: "Grape blend. Round and fruity." }, porcion: "2 oz", precio: 24 },
+          { nombre: { es: "Mosto verde de torontel", en: "Torontel mosto verde" }, desc: { es: "Fermentación interrumpida. Sedoso y floral.", en: "Partially fermented must. Silky and floral." }, porcion: "2 oz", precio: 34 }
+        ] },
+        { nombre: { es: "Sakes", en: "Sake" }, items: [
+          { nombre: { es: "Junmai", en: "Junmai" }, desc: { es: "Seco y limpio; ideal con la robata.", en: "Dry and clean; great with the robata." }, porcion: { es: "Copa de 120 ml", en: "120 ml glass" }, precio: 32 },
+          { nombre: { es: "Junmai ginjo", en: "Junmai ginjo" }, desc: { es: "Frutal, con notas de pera y melón.", en: "Fruity, with notes of pear and melon." }, porcion: { es: "Copa de 120 ml", en: "120 ml glass" }, precio: 42 },
+          { nombre: { es: "Nigori", en: "Nigori" }, desc: { es: "Sin filtrar, cremoso y dulce.", en: "Unfiltered, creamy and sweet." }, porcion: { es: "Copa de 120 ml", en: "120 ml glass" }, precio: 36 },
+          { nombre: { es: "Junmai daiginjo", en: "Junmai daiginjo" }, desc: { es: "Para compartir en la barra.", en: "To share at the bar." }, porcion: { es: "Botella de 720 ml", en: "720 ml bottle" }, precio: 290 }
+        ] },
+        { nombre: { es: "Cervezas", en: "Beers" }, items: [
+          { nombre: { es: "Lager artesanal limeña", en: "Lima craft lager" }, desc: { es: "Ligera y seca.", en: "Light and dry." }, porcion: "330 ml", precio: 18 },
+          { nombre: { es: "IPA artesanal", en: "Craft IPA" }, desc: { es: "Amarga, con lúpulo cítrico.", en: "Bitter, with citrusy hops." }, porcion: "330 ml", precio: 22 },
+          { nombre: { es: "Cerveza japonesa de arroz", en: "Japanese rice lager" }, desc: { es: "Muy seca y refrescante.", en: "Very dry and refreshing." }, porcion: "330 ml", precio: 24 }
+        ] },
+        { nombre: { es: "Sin alcohol", en: "Alcohol-free" }, items: [
+          { nombre: { es: "Chicha morada de la casa", en: "House chicha morada" }, desc: { es: "Maíz morado, piña, canela y clavo; poco dulce.", en: "Purple corn, pineapple, cinnamon and clove; lightly sweet." }, porcion: "350 ml", precio: 12, etiquetas: ["VG"] },
+          { nombre: { es: "Té verde", en: "Green tea" }, desc: { es: "Sencha japonés, caliente o frío.", en: "Japanese sencha, hot or iced." }, porcion: { es: "Tetera", en: "Teapot" }, precio: 10, etiquetas: ["VG"] },
+          { nombre: { es: "Limonada de hierba luisa y kion", en: "Lemongrass and ginger lemonade" }, desc: { es: "Limón, hierba luisa y kion frescos.", en: "Fresh lime, lemongrass and ginger." }, porcion: "400 ml", precio: 14, etiquetas: ["VG"] },
+          { nombre: { es: "Agua mineral", en: "Mineral water" }, desc: { es: "Con o sin gas.", en: "Still or sparkling." }, porcion: "500 ml", precio: 8 }
+        ] }
+      ]
+    }
+  ],
+
+  // --- Pie de la carta ---
+  pie: {
+    tono: "noche",                                    // sigue en tinta después de las bebidas
+    alergenos: {
+      es: "En nuestra cocina usamos pescado, mariscos, soya, ajonjolí, trigo, huevo, lácteos y maní.",
+      en: "Our kitchen handles fish, shellfish, soy, sesame, wheat, egg, dairy and peanuts."
+    },
+    consulta: { es: "Consulta a nuestro personal por alergias.", en: "Please ask our staff about allergies." },
+    direccion: "Calle Berlín 450, Miraflores, Lima",
+    mapa: "https://www.google.com/maps/search/?api=1&query=Calle+Berl%C3%ADn+450+Miraflores+Lima",
+    horario: { es: "Martes a domingo · 12:30–16:00 y 19:00–23:30", en: "Tuesday to Sunday · 12:30–4 p.m. and 7–11:30 p.m." },
+    precios: { es: "Precios en soles. Incluyen IGV.", en: "Prices in Peruvian soles. Sales tax (IGV) included." },
+    wifi: { red: "Koji-Invitados", clave: "barranikkei" },
+    instagram: "koji.barranikkei",                    // sin @
+    whatsapp: {
+      numero: "51900000000",                          // código de país + número, solo dígitos
+      texto: { es: "Reservas por WhatsApp", en: "Book on WhatsApp" },
+      mensaje: {
+        es: "Hola Kōji, quiero reservar en la barra para __ personas el __ a las __.",
+        en: "Hi Kōji, I’d like to book the bar for __ people on __ at __."
+      }
+    },
+    cierre: { jp: "いただきます", texto: { es: "Buen provecho.", en: "Enjoy your meal." } },
+    credito: { es: "Carta de muestra · Diseñada por Clickea Studio", en: "Sample menu · Designed by Clickea Studio" }
+  },
+
+  // --- Colores: papel, tinta, tinta suave y sello (bermellón) ---
+  // "dia" para la comida y "noche" para las bebidas. Cuida el contraste del texto.
+  colores: {
+    dia:   { papel: "#F1EBDD", tinta: "#1F2330", suave: "#56585E", sello: "#B7372A" },
+    noche: { papel: "#1B1F29", tinta: "#EDE6D6", suave: "#B9B3A6", sello: "#E2694F" }
+  }
+};
+/* ===================== FIN DE DATOS — no hace falta tocar nada más ===================== */
+
+(function () {
+  'use strict';
+  var D = DATOS, L = D.idiomas.disponibles, raiz = document.documentElement;
+  var $ = function (s) { return document.querySelector(s); };
+  var reducir = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var NUM = '一二三四五六七八九十';
+  var ESTRELLA = '<svg class="estrella" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 0c.7 4.3 3.7 7.3 8 8-4.3.7-7.3 3.7-8 8-.7-4.3-3.7-7.3-8-8 4.3-.7 7.3-3.7 8-8z"/></svg>';
+  var actual = null;
+
+  /* ---------- Utilidades ---------- */
+  // Vocales con macrón (Kōji) → vocal + macrón combinable: así no se descarga otra fuente latina.
+  function mac(s) { return s.replace(/[āēīōū]/g, function (c) { return 'aeiou'.charAt('āēīōū'.indexOf(c)) + '̄'; }); }
+  function esc(s) { return mac(String(s)).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function txt(v, l) { if (v == null) return ''; if (typeof v !== 'object') return String(v); return v[l] != null ? v[l] : v[L[0]]; }
+  function slug(s) { return String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  function num(i) { return i < NUM.length ? NUM.charAt(i) : String(i + 1); }
+  function soles(n) { return esc(D.negocio.moneda) + ' ' + esc(n); }
+  function idSec(s) { return slug(txt(s.nombre, L[0])); }
+  function idPlato(p) { return 'p-' + slug(txt(p.nombre, L[0])); }
+  // Texto en todos los idiomas; CSS muestra solo el activo.
+  function bi(v) {
+    if (v == null || v === '') return '';
+    if (typeof v !== 'object') return esc(v);
+    return L.map(function (l) { return '<span data-lang="' + l + '" lang="' + l + '">' + esc(txt(v, l)) + '</span>'; }).join('');
+  }
+  // La traducción pequeña: en español muestra el inglés y viceversa.
+  function trad(v) {
+    if (!v || typeof v !== 'object' || txt(v, L[0]) === txt(v, L[1])) return '';
+    return '<p class="p-trad">' + L.map(function (l, i) {
+      var o = L[(i + 1) % L.length];
+      return '<span data-lang="' + l + '" lang="' + o + '">' + esc(txt(v, o)) + '</span>';
+    }).join('') + '</p>';
+  }
+
+  /* ---------- Colores desde DATOS ---------- */
+  ['dia', 'noche'].forEach(function (t) {
+    var c = D.colores[t] || {};
+    Object.keys(c).forEach(function (k) { raiz.style.setProperty('--' + k + '-' + t, c[k]); });
+  });
+
+  /* ---------- Portada ---------- */
+  var selector = '<div class="idioma" role="group" aria-label="' + esc(txt(D.textos.idioma, L[0])) + '">' +
+    L.map(function (l, i) {
+      return (i ? '<span aria-hidden="true">·</span>' : '') +
+        '<button type="button" data-set="' + l + '" lang="' + l + '" aria-pressed="false">' + esc(D.idiomas.etiquetas[l] || l.toUpperCase()) + '</button>';
+    }).join('') + '</div>';
+  var hanko = '<svg class="hanko" viewBox="0 0 100 100" aria-hidden="true" focusable="false">' +
+    '<defs><filter id="gastado" x="0" y="0" width="100%" height="100%">' +
+    '<feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="7"/>' +
+    '<feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -4.2 3.25"/>' +
+    '<feComposite in="SourceGraphic" operator="in"/></filter></defs>' +
+    '<g filter="url(#gastado)"><rect class="h-fondo" x="3" y="3" width="94" height="94" rx="8"/>' +
+    '<rect class="h-borde" x="10" y="10" width="80" height="80" rx="4"/>' +
+    '<text class="h-kanji" x="50" y="69" text-anchor="middle">' + esc(D.negocio.sello) + '</text></g></svg>';
+  $('#portada').innerHTML =
+    '<div class="p-top"><p class="p-carta">' + esc(D.textos.carta) + '</p>' + selector + '</div>' +
+    '<div class="marca">' + hanko + (D.negocio.jp ? '<p class="vert" lang="ja" aria-hidden="true">' + esc(D.negocio.jp) + '</p>' : '') + '</div>' +
+    '<h1><span class="nombre">' + esc(D.negocio.nombre) + '</span><span class="tipo">' + bi(D.negocio.bajada) + '</span></h1>' +
+    (D.negocio.manifiesto ? '<p class="manifiesto">' + bi(D.negocio.manifiesto) + '</p>' : '') +
+    '<div class="orn" aria-hidden="true">' + ESTRELLA + '</div>' +
+    '<p class="temporada">' + bi(D.negocio.temporada) + '</p><p class="chef">' + bi(D.negocio.chef) + '</p>';
+
+  /* ---------- Índice ---------- */
+  $('#indice').innerHTML = '<h2 class="indice-t" id="indice-t">' + bi(D.textos.indice) + '</h2><ol>' +
+    D.secciones.map(function (s, i) {
+      return '<li><a href="#' + idSec(s) + '"><span class="i-num" aria-hidden="true">' + num(i) + '</span>' +
+        '<span class="i-nom">' + bi(s.nombre) + '</span><span class="i-guia" aria-hidden="true"></span>' +
+        (s.jp ? '<span class="i-jp" lang="ja" aria-hidden="true">' + esc(s.jp) + '</span>' : '') + '</a></li>';
+    }).join('') + '</ol>';
+
+  /* ---------- Secciones ---------- */
+  var porNombre = {};
+  D.secciones.forEach(function (s) { (s.platos || []).forEach(function (p) { porNombre[slug(txt(p.nombre, L[0]))] = p; }); });
+
+  function etiqueta(k) {
+    var e = D.etiquetas[k]; if (!e) return '';
+    return L.map(function (l) {
+      return '<abbr data-lang="' + l + '" lang="' + l + '" title="' + esc(txt(e.nombre, l)) + '">' + esc(txt(e.corto, l)) + '</abbr>';
+    }).join('');
+  }
+  function aji(n) {
+    return L.map(function (l) {
+      return '<span class="aji" data-lang="' + l + '" role="img" aria-label="' + esc(txt(D.textos.picante, l) + ' ' + n + ' ' + txt(D.textos.de3, l)) + '">' +
+        new Array(n + 1).join(D.textos.simboloPicante) + '</span>';
+    }).join('');
+  }
+  function vaBien(nombre) {
+    var p = porNombre[slug(nombre)]; if (!p) return '';
+    return '<p class="p-vabien">' + bi(D.textos.vaBien) + ' <a href="#' + idPlato(p) + '">' + bi(p.nombre) + '</a></p>';
+  }
+  function plato(p) {
+    var meta = [];
+    if (p.porcion) meta.push(bi(p.porcion));
+    (p.etiquetas || []).forEach(function (k) { var h = etiqueta(k); if (h) meta.push(h); });
+    if (p.picante) meta.push(aji(p.picante));
+    return '<li class="plato" id="' + idPlato(p) + '">' +
+      '<div class="p-l1"><h3 class="p-nom">' + (p.chef ? ESTRELLA + '<span class="vh">' + bi(D.textos.recomendado) + ': </span>' : '') + bi(p.nombre) + '</h3>' +
+      '<p class="p-precio">' + soles(p.precio) + '</p></div>' + trad(p.nombre) +
+      (p.desc ? '<p class="p-desc">' + bi(p.desc) + '</p>' : '') +
+      (meta.length ? '<p class="p-meta">' + meta.join('<span aria-hidden="true"> · </span>') + '</p>' : '') +
+      (p.historia ? '<p class="p-hist">' + bi(p.historia) + '</p>' : '') +
+      (p.vaBien ? vaBien(p.vaBien) : '') + '</li>';
+  }
+  function foto(f) {
+    var src = f.src, extra = '';
+    if (/images\.unsplash\.com/.test(src) && src.indexOf('?') < 0) {
+      var u = function (w) { return src + '?auto=format&fit=crop&w=' + w + '&h=' + Math.round(w * 2 / 3) + '&q=55'; };
+      extra = ' srcset="' + esc(u(480)) + ' 480w, ' + esc(u(800)) + ' 800w" sizes="(min-width: 960px) 560px, 100vw"';
+      src = u(800);
+    }
+    var alts = L.map(function (l) { return ' data-alt-' + l + '="' + esc(txt(f.alt, l)) + '"'; }).join('');
+    return '<figure class="foto"><img src="' + esc(src) + '"' + extra + ' width="800" height="533" loading="lazy" decoding="async" alt="' + esc(txt(f.alt, L[0])) + '"' + alts + '></figure>';
+  }
+  function omakase(s) {
+    return '<div class="omakase">' + (s.desc ? '<p class="om-desc">' + bi(s.desc) + '</p>' : '') +
+      '<ol class="om-tiempos">' + s.tiempos.map(function (t, i) {
+        return '<li><span class="i-num" aria-hidden="true">' + num(i) + '</span><span>' + bi(t) + '</span></li>';
+      }).join('') + '</ol>' +
+      '<p class="om-precio"><b>' + soles(s.precio) + '</b><span>' + bi(s.unidad) + '</span></p>' +
+      (s.extra ? '<p class="om-extra"><span>' + bi(s.extra.texto) + '</span><span class="n">' + soles(s.extra.precio) + '</span></p>' : '') +
+      '</div>';
+  }
+  function grupo(g) {
+    var ps = g.items.map(function (p) { return p.precio; });
+    var min = Math.min.apply(null, ps), max = Math.max.apply(null, ps);
+    return '<details class="grupo"' + (g.abierto ? ' open' : '') + '><summary><span>' + bi(g.nombre) + '</span>' +
+      '<span class="g-rango">' + soles(min) + (max > min ? '–' + esc(max) : '') + '</span></summary>' +
+      '<ul class="platos">' + g.items.map(plato).join('') + '</ul></details>';
+  }
+  $('#carta').innerHTML = D.secciones.map(function (s, i) {
+    var id = idSec(s);
+    var h = '<section class="sec" id="' + id + '" data-tono="' + (s.tono || 'dia') + '" aria-labelledby="h-' + id + '">' +
+      '<div class="sec-cab"><div class="cab-in"><span class="sello-n" aria-hidden="true">' + num(i) + '</span>' +
+      '<h2 id="h-' + id + '">' + (s.jp ? '<span class="h-jp" lang="ja" aria-hidden="true">' + esc(s.jp) + '</span>' : '') +
+      '<span class="h-tt">' + bi(s.nombre) + '</span></h2>' +
+      '<a class="a-indice" href="#indice">' + bi(D.textos.indice) + '</a></div></div>' +
+      (s.nota ? '<p class="sec-nota">' + bi(s.nota) + '</p>' : '') + (s.foto ? foto(s.foto) : '');
+    if (s.tipo === 'omakase') h += omakase(s);
+    else if (s.grupos) h += '<div class="grupos">' + s.grupos.map(grupo).join('') + '</div>';
+    else h += '<ul class="platos">' + (s.platos || []).map(plato).join('') + '</ul>';
+    return h + '</section>';
+  }).join('');
+
+  /* ---------- Pie ---------- */
+  var P = D.pie, W = P.whatsapp;
+  var pie = $('#pie');
+  pie.setAttribute('data-tono', P.tono || 'dia');
+  pie.innerHTML =
+    '<h2>' + bi(D.textos.leyenda) + '</h2><ul class="leyenda">' +
+    '<li><span class="k">' + ESTRELLA + '</span>' + bi(D.textos.recomendado) + '</li>' +
+    Object.keys(D.etiquetas).map(function (k) { var e = D.etiquetas[k]; return '<li><span class="k">' + bi(e.corto) + '</span>' + bi(e.nombre) + '</li>'; }).join('') +
+    '<li><span class="k aji" aria-hidden="true">' + D.textos.simboloPicante + '</span>' + bi(D.textos.picanteLeyenda) + '</li></ul>' +
+    '<p class="alerg">' + bi(P.alergenos) + '</p><p class="consulta">' + bi(P.consulta) + '</p>' +
+    '<ul class="pie-datos">' +
+    '<li>' + esc(P.direccion) + ' · <a class="enl" href="' + esc(P.mapa) + '" target="_blank" rel="noopener">' + bi(D.textos.comoLlegar) + '</a></li>' +
+    '<li>' + bi(P.horario) + '</li><li>' + bi(P.precios) + '</li>' +
+    '<li>' + bi(D.textos.wifi) + ' <b>' + esc(P.wifi.red) + '</b> · ' + bi(D.textos.clave) + ' <b>' + esc(P.wifi.clave) + '</b></li>' +
+    '<li>Instagram <a class="enl" href="https://www.instagram.com/' + encodeURIComponent(P.instagram) + '/" target="_blank" rel="noopener">@' + esc(P.instagram) + '</a></li>' +
+    '<li><a class="enl wa" href="https://wa.me/' + esc(W.numero) + '" data-msg="' + esc(txt(W.mensaje, L[0])) + '" target="_blank" rel="noopener">' + bi(W.texto) + '</a></li></ul>' +
+    '<p class="cierre"><span class="jp" lang="ja">' + esc(P.cierre.jp) + '</span>' + bi(P.cierre.texto) + '</p>' +
+    '<p class="credito">© ' + new Date().getFullYear() + ' ' + esc(D.negocio.nombre) + ' · ' + bi(P.credito) + '</p>';
+
+  /* ---------- WhatsApp: mensaje ya escrito ---------- */
+  function enlacesWa() {
+    document.querySelectorAll('a.wa[data-msg]').forEach(function (a) {
+      a.href = 'https://wa.me/' + W.numero + '?text=' + encodeURIComponent(a.dataset.msg);
+    });
+  }
+
+  /* ---------- Fuente japonesa recortada a lo que usa DATOS ---------- */
+  var usados = {}, maxT = 0;
+  D.secciones.forEach(function (s) { if (s.tiempos) maxT = Math.max(maxT, s.tiempos.length); });
+  [D.negocio.sello, D.negocio.jp, P.cierre.jp, NUM.slice(0, Math.max(D.secciones.length, maxT))]
+    .concat(D.secciones.map(function (s) { return s.jp || ''; })).join('').split('')
+    .forEach(function (c) { if (c.charCodeAt(0) > 0x2E7F) usados[c] = 1; });
+  if (Object.keys(usados).length) {
+    var fl = document.createElement('link');
+    fl.rel = 'stylesheet';
+    fl.href = 'https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap&text=' + encodeURIComponent(Object.keys(usados).join(''));
+    document.head.appendChild(fl);
+  }
+
+  /* ---------- Idioma: ES · EN ---------- */
+  var CLAVE = 'carta-idioma-' + slug(D.negocio.nombre);
+  function inicial() {
+    var h = location.hash.slice(1).toLowerCase();
+    if (L.indexOf(h) > -1) return h;
+    try { var g = localStorage.getItem(CLAVE); if (L.indexOf(g) > -1) return g; } catch (e) {}
+    var n = ((navigator.languages && navigator.languages[0]) || navigator.language || '').slice(0, 2).toLowerCase();
+    return L.indexOf(n) > -1 ? n : (D.idiomas.siNoCoincide || L[0]);
+  }
+  function aplicar(l) {
+    actual = l;
+    raiz.setAttribute('data-idioma', l);
+    raiz.lang = (D.idiomas.html && D.idiomas.html[l]) || l;
+    document.title = mac(txt(D.textos.pestana, l)).normalize('NFC');
+    document.querySelectorAll('.idioma button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.set === l)); });
+    document.querySelectorAll('.idioma').forEach(function (g) { g.setAttribute('aria-label', txt(D.textos.idioma, l)); });
+    document.querySelectorAll('img[data-alt-' + l + ']').forEach(function (im) { im.alt = im.getAttribute('data-alt-' + l); });
+    document.querySelectorAll('a.wa').forEach(function (a) { a.dataset.msg = txt(W.mensaje, l); });
+    enlacesWa();
+  }
+  function cambiar(l) {
+    if (l === actual || L.indexOf(l) < 0) return;
+    if (document.startViewTransition && !reducir.matches) document.startViewTransition(function () { aplicar(l); });
+    else aplicar(l);
+    try { localStorage.setItem(CLAVE, l); } catch (e) {}
+    try { history.replaceState(null, '', '#' + l); } catch (e) {}
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.idioma button');
+    if (b) cambiar(b.dataset.set);
+  });
+  window.addEventListener('hashchange', function () {
+    var h = location.hash.slice(1).toLowerCase();
+    if (L.indexOf(h) > -1) cambiar(h);
+  });
+  aplicar(inicial());
+
+  /* ---------- Tono (papel ↔ tinta) e índice activo, según la sección a media pantalla ---------- */
+  var zonas = [].slice.call(document.querySelectorAll('[data-tono]'));
+  var enlaces = [].slice.call(document.querySelectorAll('.indice a'));
+  var meta = document.querySelector('meta[name="theme-color"]');
+  var dentro = new Set(), activa = null;
+  function marcar() {
+    var act = null;
+    zonas.forEach(function (z) { if (dentro.has(z)) act = z; });
+    if (!act && zonas[0] && zonas[0].getBoundingClientRect().top > innerHeight * 0.4) activa = null;
+    else if (act) activa = act;
+    var tono = activa ? activa.getAttribute('data-tono') : 'dia';
+    if (raiz.getAttribute('data-tono') !== tono) {
+      raiz.setAttribute('data-tono', tono);
+      if (meta) meta.content = (D.colores[tono] || D.colores.dia).papel;
+    }
+    enlaces.forEach(function (a) {
+      if (activa && a.getAttribute('href') === '#' + activa.id) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) dentro.add(e.target); else dentro.delete(e.target); });
+      marcar();
+    }, { rootMargin: '-40% 0px -59% 0px' });
+    zonas.forEach(function (z) { io.observe(z); });
+  }
+
+  /* ---------- Datos estructurados: la carta completa desde DATOS ---------- */
+  try {
+    var ld = document.getElementById('ld'), j = JSON.parse(ld.textContent);
+    var item = function (nombre, desc, precio, etiquetas) {
+      var o = { '@type': 'MenuItem', name: txt(nombre, L[0]), offers: { '@type': 'Offer', price: String(precio), priceCurrency: 'PEN' } };
+      if (desc) o.description = txt(desc, L[0]);
+      var dietas = (etiquetas || []).map(function (k) { return D.etiquetas[k] && D.etiquetas[k].dieta ? 'https://schema.org/' + D.etiquetas[k].dieta : null; }).filter(Boolean);
+      if (dietas.length) o.suitableForDiet = dietas;
+      return o;
+    };
+    j.hasMenu = { '@type': 'Menu', name: txt(D.negocio.temporada, L[0]), inLanguage: L,
+      hasMenuSection: D.secciones.map(function (s) {
+        var items = s.tipo === 'omakase' ? [item(s.nombre, s.desc, s.precio)]
+          : (s.platos || [].concat.apply([], (s.grupos || []).map(function (g) { return g.items; })))
+            .map(function (p) { return item(p.nombre, p.desc, p.precio, p.etiquetas); });
+        return { '@type': 'MenuSection', name: txt(s.nombre, L[0]), hasMenuItem: items };
+      }) };
+    ld.textContent = JSON.stringify(j);
+  } catch (e) {}
+
+  /* Si el link trae una sección (#del-mar), ir ahí ahora que la carta existe */
+  var dest = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (dest) dest.scrollIntoView();
+})();
+</script>
+</body>
+</html>
