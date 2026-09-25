@@ -7,9 +7,14 @@
 <title>Brisa Chalaca · Cevichería — Carta</title>
 <meta name="description" content="Carta digital de Brisa Chalaca, cevichería en Magdalena del Mar. Ceviches, tiraditos, leche de tigre, arroces y jaleas. Pide por WhatsApp.">
 <meta name="theme-color" content="#0B2540">
+<link rel="canonical" href="https://clickea.github.io/demos/cevicheria/">
+<meta property="og:url" content="https://clickea.github.io/demos/cevicheria/">
 <meta property="og:title" content="Brisa Chalaca · Cevichería — Carta">
 <meta property="og:description" content="Carta digital de Brisa Chalaca, cevichería en Magdalena del Mar. Ceviches, tiraditos, leche de tigre, arroces y jaleas. Pide por WhatsApp.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="es_PE">
+<meta property="og:image" content="https://images.unsplash.com/photo-1761314037195-1508e44c6bd2?auto=format&fit=crop&w=1200&q=80">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20role%3D%22img%22%20aria-label%3D%22Emblema%20de%20Brisa%20Chalaca%22%3E%0A%3Cdefs%3E%3CclipPath%20id%3D%22bcClip%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2249%22%20fill%3D%22%23F4F9FB%22%2F%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2245%22%20fill%3D%22%230B2540%22%2F%3E%0A%3Cg%20clip-path%3D%22url(%23bcClip)%22%3E%0A%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%2312507F%22%2F%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2252%22%20r%3D%2217%22%20fill%3D%22%23D8F06A%22%2F%3E%0A%3Cpath%20d%3D%22M0%2055c8-6%2017-6%2025%200s17%206%2025%200%2017-6%2025%200%2017%206%2025%200v45H0z%22%20fill%3D%22%230B2540%22%2F%3E%0A%3Cpath%20d%3D%22M4%2056c7-5%2014-5%2021%200s14%205%2021%200%2014-5%2021%200%2014%205%2021%200%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%223.2%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M-4%2068c7-5%2014-5%2021%200s14%205%2021%200%2014-5%2021%200%2014%205%2021%200%2014-5%2021%200%22%20fill%3D%22none%22%20stroke%3D%22%237FC4E8%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M4%2080c7-5%2014-5%2021%200s14%205%2021%200%2014-5%2021%200%2014%205%2021%200%22%20fill%3D%22none%22%20stroke%3D%22%23FF7A59%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3C%2Fg%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2240%22%20fill%3D%22none%22%20stroke%3D%22%23D8F06A%22%20stroke-width%3D%221.6%22%2F%3E%0A%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -281,16 +286,20 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
 (function () {
   'use strict';
   var C = window.MENU;
-  var WA_NUMBER = '51900000000';
+  // Datos del negocio configurables por menú; sin configurar quedan los de la demo.
+  var WA_NUMBER = String(C.wa || '51900000000').replace(/\D/g, ''); // código de país + número, solo dígitos
+  var CURRENCY = C.currency || 'S/';
+  var PAYMENTS = C.payments || ['Yape', 'Plin', 'Efectivo'];
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var fmt = function (n) { return 'S/ ' + n.toFixed(2); };
+  var fmt = function (n) { return CURRENCY + ' ' + n.toFixed(2); };
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var nb = function (s) { return esc(s).replace(/(\d) (L|ml|u\.)/g, '$1&nbsp;$2').replace(/ ([ap])\. m\./g, '&nbsp;$1.&nbsp;m.').replace(/ – /g, '&nbsp;– '); };
   var norm = function (s) { return String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); };
   var mqReduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   var behavior = function () { return mqReduce.matches ? 'auto' : 'smooth'; };
-  var IMG = function (id) { return 'https://images.unsplash.com/photo-' + id + '?auto=format&fit=crop&w=800&q=75'; };
+  // Acepta un ID de Unsplash (demos) o una ruta/URL propia (fotos reales del cliente, p. ej. "img/lomo.webp").
+  var IMG = function (id) { return /[\/.]/.test(id) ? id : 'https://images.unsplash.com/photo-' + id + '?auto=format&fit=crop&w=800&q=75'; };
 
   /* ---------- Almacenamiento seguro ---------- */
   var store = {
@@ -429,7 +438,7 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
     var featured = C.featured.map(function (id) { return ITEMS[id]; });
     var html = '';
     html += '<header class="hero">' +
-      '<div class="hero__img"><img src="' + IMG(C.hero.img) + '" alt="" fetchpriority="high" data-fallback="hero"></div>' +
+      '<div class="hero__img"><img src="' + IMG(C.hero.img) + '" alt="" width="800" height="600" fetchpriority="high" data-fallback="hero"></div>' +
       (C.heroDeco || '') +
       '<div class="hero__in">' +
         '<div class="brand">' + C.emblem + '<div class="brand__txt"><p class="brand__kicker">' + esc(C.kicker) + '</p><h1 class="brand__name">' + C.nameHTML + '</h1></div></div>' +
@@ -459,12 +468,12 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
       '<p class="foot__addr">' + ICON.pin + '<span>' + esc(C.address) + '</span></p>' +
       '<p class="foot__hours">' + ICON.clock + '<span>' + C.hoursLabel.split(' · ').map(nb).join('<br>') + '</span></p>' +
       '<p class="foot__hours">' + ICON.moto + '<span>Delivery ' + esc(C.delivery) + '</span></p>' +
-      '<p class="foot__wa"><a href="https://wa.me/' + WA_NUMBER + '" target="_blank" rel="noopener">' + ICON.wa + '<span>+51 900 000 000</span></a></p>' +
-      '<p class="foot__small">Precios en soles, incluyen IGV. Fotos referenciales.</p>' +
-      '<p class="credit">Menú de muestra · Diseñado por Clickea Studio</p></footer>';
+      '<p class="foot__wa"><a href="https://wa.me/' + WA_NUMBER + '" target="_blank" rel="noopener">' + ICON.wa + '<span>' + esc(C.waLabel || '+51 900 000 000') + '</span></a></p>' +
+      '<p class="foot__small">' + esc(C.priceNote || 'Precios en soles, incluyen IGV. Fotos referenciales.') + '</p>' +
+      (C.credit === '' ? '' : '<p class="credit">' + esc(C.credit || 'Menú de muestra · Diseñado por Clickea Studio') + '</p>') + '</footer>';
 
     html += '<div class="cartbar" id="cartbar" hidden><button type="button" id="openCart" aria-haspopup="dialog">' +
-      '<span class="cartbar__count" id="barCount">0</span><span class="cartbar__label">Ver mi pedido</span><span class="cartbar__total" id="barTotal">S/ 0.00</span></button></div>';
+      '<span class="cartbar__count" id="barCount">0</span><span class="cartbar__label">Ver mi pedido</span><span class="cartbar__total" id="barTotal">' + fmt(0) + '</span></button></div>';
     html += '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
 
     html += '<dialog class="sheet" id="sheet" aria-labelledby="sheetT"><div class="sheet__in">' +
@@ -472,7 +481,7 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
       '<header class="sheet__head"><h2 id="sheetT">Tu pedido</h2><button type="button" class="icon-btn" data-close aria-label="Cerrar pedido">' + ICON.close + '</button></header>' +
       '<p class="sheet__closed" id="closedNote" hidden></p>' +
       '<ul class="lines" id="lines"></ul>' +
-      '<div class="sum"><span>Total de productos</span><strong id="sumTotal">S/ 0.00</strong></div>' +
+      '<div class="sum"><span>Total de productos</span><strong id="sumTotal">' + fmt(0) + '</strong></div>' +
       '<p class="sum__note" id="sumNote"></p>' +
       '<form class="form" id="orderForm" novalidate>' +
         '<h3 class="form__t">Tus datos</h3>' +
@@ -481,16 +490,14 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
           '<label><input type="radio" name="modo" value="delivery" checked><span>' + ICON.moto + 'Delivery</span></label>' +
           '<label><input type="radio" name="modo" value="recojo"><span>' + ICON.bag + 'Recojo</span></label></div></fieldset>' +
         '<label class="field" id="addrField"><span>Dirección y referencia</span><textarea id="fAddr" name="direccion" rows="2" autocomplete="street-address" placeholder="Ej.: Jr. Los Pinos 245, dpto. 302 — frente al parque"></textarea><em class="err" id="eAddr">Necesitamos tu dirección para el delivery.</em></label>' +
-        '<fieldset class="seg"><legend>Método de pago</legend><div class="seg__opts seg__opts--3">' +
-          '<label><input type="radio" name="pago" value="Yape" checked><span>Yape</span></label>' +
-          '<label><input type="radio" name="pago" value="Plin"><span>Plin</span></label>' +
-          '<label><input type="radio" name="pago" value="Efectivo"><span>Efectivo</span></label></div></fieldset>' +
+        '<fieldset class="seg"><legend>Método de pago</legend><div class="seg__opts' + (PAYMENTS.length === 3 ? ' seg__opts--3' : '') + '">' +
+          PAYMENTS.map(function (p, i) { return '<label><input type="radio" name="pago" value="' + esc(p) + '"' + (i ? '' : ' checked') + '><span>' + esc(p) + '</span></label>'; }).join('') + '</div></fieldset>' +
         '<label class="field" id="cashField" hidden><span>¿Con cuánto pagas? <small>(opcional)</small></span><input id="fCash" inputmode="decimal" placeholder="Ej.: 100"></label>' +
         '<label class="field"><span>Nota para la cocina <small>(opcional)</small></span><input id="fNote" placeholder="' + esc(C.notePh) + '"></label>' +
       '</form>' +
       '<p class="fine">Se abrirá WhatsApp con tu pedido listo para enviar. Confirmamos el total y el tiempo de entrega por ahí.</p>' +
       '<button type="button" class="link-btn" id="clearCart">Vaciar pedido</button>' +
-      '<div class="sheet__cta"><a class="wa-btn" id="waBtn" href="https://wa.me/' + WA_NUMBER + '" target="_blank" rel="noopener">' + ICON.wa + '<span>Pedir por WhatsApp</span><b id="waTotal">S/ 0.00</b></a></div>' +
+      '<div class="sheet__cta"><a class="wa-btn" id="waBtn" href="https://wa.me/' + WA_NUMBER + '" target="_blank" rel="noopener">' + ICON.wa + '<span>Pedir por WhatsApp</span><b id="waTotal">' + fmt(0) + '</b></a></div>' +
       '</div></dialog>';
     root.innerHTML = html;
   }
@@ -541,7 +548,7 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
   /* ---------- Formulario y WhatsApp ---------- */
   function formData() {
     var modo = ($('input[name="modo"]:checked') || {}).value || 'delivery';
-    var pago = ($('input[name="pago"]:checked') || {}).value || 'Yape';
+    var pago = ($('input[name="pago"]:checked') || {}).value || PAYMENTS[0];
     return {
       nombre: $('#fName').value.trim(), modo: modo, direccion: $('#fAddr').value.trim(),
       pago: pago, efectivo: $('#fCash').value.trim(), nota: $('#fNote').value.trim()
@@ -559,7 +566,7 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
     L.push('👤 Nombre: ' + (f.nombre || '—'));
     L.push((f.modo === 'delivery' ? '🛵 Entrega: Delivery' : '🛍️ Entrega: Recojo en local'));
     if (f.modo === 'delivery') L.push('📍 Dirección: ' + (f.direccion || '—'));
-    L.push('💳 Pago: ' + f.pago + (f.pago === 'Efectivo' && f.efectivo ? ' (pago con S/ ' + f.efectivo.replace(/^s\/\s*/i, '') + ')' : ''));
+    L.push('💳 Pago: ' + f.pago + (f.pago === 'Efectivo' && f.efectivo ? ' (pago con ' + CURRENCY + ' ' + f.efectivo.replace(/^\D+/, '') + ')' : ''));
     if (f.nota) L.push('📝 Nota: ' + f.nota);
     return L.join('\n');
   }

@@ -7,9 +7,14 @@
 <title>Chifa Kam Ho · Cocina cantonesa-peruana — Carta</title>
 <meta name="description" content="Carta digital de Chifa Kam Ho en Jesús María. Chaufas, tallarines saltados, chi jau kay, pollo tipakay y combinados. Pide por WhatsApp.">
 <meta name="theme-color" content="#140E0C">
+<link rel="canonical" href="https://clickea.github.io/demos/chifa/">
+<meta property="og:url" content="https://clickea.github.io/demos/chifa/">
 <meta property="og:title" content="Chifa Kam Ho · Cocina cantonesa-peruana — Carta">
 <meta property="og:description" content="Carta digital de Chifa Kam Ho en Jesús María. Chaufas, tallarines saltados, chi jau kay, pollo tipakay y combinados. Pide por WhatsApp.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="es_PE">
+<meta property="og:image" content="https://images.unsplash.com/photo-1578160112054-954a67602b88?auto=format&fit=crop&w=1200&q=80">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20role%3D%22img%22%20aria-label%3D%22Sello%20de%20Chifa%20Kam%20Ho%22%3E%0A%3Crect%20x%3D%224%22%20y%3D%224%22%20width%3D%2292%22%20height%3D%2292%22%20rx%3D%2210%22%20fill%3D%22%23A3161A%22%2F%3E%0A%3Crect%20x%3D%2210%22%20y%3D%2210%22%20width%3D%2280%22%20height%3D%2280%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%23E6C372%22%20stroke-width%3D%222%22%2F%3E%0A%3Crect%20x%3D%2214%22%20y%3D%2214%22%20width%3D%2272%22%20height%3D%2272%22%20rx%3D%223%22%20fill%3D%22none%22%20stroke%3D%22%23E6C372%22%20stroke-width%3D%22.8%22%2F%3E%0A%3Ctext%20x%3D%2250%22%20y%3D%2247%22%20text-anchor%3D%22middle%22%20font-family%3D%22'Noto%20Serif%20SC'%2C'Songti%20SC'%2C'SimSun'%2C'Noto%20Serif%20CJK%20SC'%2Cserif%22%20font-size%3D%2230%22%20font-weight%3D%22700%22%20fill%3D%22%23F3D48A%22%3E%E9%87%91%3C%2Ftext%3E%0A%3Ctext%20x%3D%2250%22%20y%3D%2279%22%20text-anchor%3D%22middle%22%20font-family%3D%22'Noto%20Serif%20SC'%2C'Songti%20SC'%2C'SimSun'%2C'Noto%20Serif%20CJK%20SC'%2Cserif%22%20font-size%3D%2230%22%20font-weight%3D%22700%22%20fill%3D%22%23F3D48A%22%3E%E6%B2%B3%3C%2Ftext%3E%0A%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -304,16 +309,20 @@ body{background:#0A0605}
 (function () {
   'use strict';
   var C = window.MENU;
-  var WA_NUMBER = '51900000000';
+  // Datos del negocio configurables por menú; sin configurar quedan los de la demo.
+  var WA_NUMBER = String(C.wa || '51900000000').replace(/\D/g, ''); // código de país + número, solo dígitos
+  var CURRENCY = C.currency || 'S/';
+  var PAYMENTS = C.payments || ['Yape', 'Plin', 'Efectivo'];
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var fmt = function (n) { return 'S/ ' + n.toFixed(2); };
+  var fmt = function (n) { return CURRENCY + ' ' + n.toFixed(2); };
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   var nb = function (s) { return esc(s).replace(/(\d) (L|ml|u\.)/g, '$1&nbsp;$2').replace(/ ([ap])\. m\./g, '&nbsp;$1.&nbsp;m.').replace(/ – /g, '&nbsp;– '); };
   var norm = function (s) { return String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); };
   var mqReduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   var behavior = function () { return mqReduce.matches ? 'auto' : 'smooth'; };
-  var IMG = function (id) { return 'https://images.unsplash.com/photo-' + id + '?auto=format&fit=crop&w=800&q=75'; };
+  // Acepta un ID de Unsplash (demos) o una ruta/URL propia (fotos reales del cliente, p. ej. "img/lomo.webp").
+  var IMG = function (id) { return /[\/.]/.test(id) ? id : 'https://images.unsplash.com/photo-' + id + '?auto=format&fit=crop&w=800&q=75'; };
 
   /* ---------- Almacenamiento seguro ---------- */
   var store = {
@@ -452,7 +461,7 @@ body{background:#0A0605}
     var featured = C.featured.map(function (id) { return ITEMS[id]; });
     var html = '';
     html += '<header class="hero">' +
-      '<div class="hero__img"><img src="' + IMG(C.hero.img) + '" alt="" fetchpriority="high" data-fallback="hero"></div>' +
+      '<div class="hero__img"><img src="' + IMG(C.hero.img) + '" alt="" width="800" height="600" fetchpriority="high" data-fallback="hero"></div>' +
       (C.heroDeco || '') +
       '<div class="hero__in">' +
         '<div class="brand">' + C.emblem + '<div class="brand__txt"><p class="brand__kicker">' + esc(C.kicker) + '</p><h1 class="brand__name">' + C.nameHTML + '</h1></div></div>' +
@@ -482,12 +491,12 @@ body{background:#0A0605}
       '<p class="foot__addr">' + ICON.pin + '<span>' + esc(C.address) + '</span></p>' +
       '<p class="foot__hours">' + ICON.clock + '<span>' + C.hoursLabel.split(' · ').map(nb).join('<br>') + '</span></p>' +
       '<p class="foot__hours">' + ICON.moto + '<span>Delivery ' + esc(C.delivery) + '</span></p>' +
-      '<p class="foot__wa"><a href="https://wa.me/' + WA_NUMBER + '" target="_blank" rel="noopener">' + ICON.wa + '<span>+51 900 000 000</span></a></p>' +
-      '<p class="foot__small">Precios en soles, incluyen IGV. Fotos referenciales.</p>' +
-      '<p class="credit">Menú de muestra · Diseñado por Clickea Studio</p></footer>';
+      '<p class="foot__wa"><a href="https://wa.me/' + WA_NUMBER + '" target="_blank" rel="noopener">' + ICON.wa + '<span>' + esc(C.waLabel || '+51 900 000 000') + '</span></a></p>' +
+      '<p class="foot__small">' + esc(C.priceNote || 'Precios en soles, incluyen IGV. Fotos referenciales.') + '</p>' +
+      (C.credit === '' ? '' : '<p class="credit">' + esc(C.credit || 'Menú de muestra · Diseñado por Clickea Studio') + '</p>') + '</footer>';
 
     html += '<div class="cartbar" id="cartbar" hidden><button type="button" id="openCart" aria-haspopup="dialog">' +
-      '<span class="cartbar__count" id="barCount">0</span><span class="cartbar__label">Ver mi pedido</span><span class="cartbar__total" id="barTotal">S/ 0.00</span></button></div>';
+      '<span class="cartbar__count" id="barCount">0</span><span class="cartbar__label">Ver mi pedido</span><span class="cartbar__total" id="barTotal">' + fmt(0) + '</span></button></div>';
     html += '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
 
     html += '<dialog class="sheet" id="sheet" aria-labelledby="sheetT"><div class="sheet__in">' +
@@ -495,7 +504,7 @@ body{background:#0A0605}
       '<header class="sheet__head"><h2 id="sheetT">Tu pedido</h2><button type="button" class="icon-btn" data-close aria-label="Cerrar pedido">' + ICON.close + '</button></header>' +
       '<p class="sheet__closed" id="closedNote" hidden></p>' +
       '<ul class="lines" id="lines"></ul>' +
-      '<div class="sum"><span>Total de productos</span><strong id="sumTotal">S/ 0.00</strong></div>' +
+      '<div class="sum"><span>Total de productos</span><strong id="sumTotal">' + fmt(0) + '</strong></div>' +
       '<p class="sum__note" id="sumNote"></p>' +
       '<form class="form" id="orderForm" novalidate>' +
         '<h3 class="form__t">Tus datos</h3>' +
@@ -504,16 +513,14 @@ body{background:#0A0605}
           '<label><input type="radio" name="modo" value="delivery" checked><span>' + ICON.moto + 'Delivery</span></label>' +
           '<label><input type="radio" name="modo" value="recojo"><span>' + ICON.bag + 'Recojo</span></label></div></fieldset>' +
         '<label class="field" id="addrField"><span>Dirección y referencia</span><textarea id="fAddr" name="direccion" rows="2" autocomplete="street-address" placeholder="Ej.: Jr. Los Pinos 245, dpto. 302 — frente al parque"></textarea><em class="err" id="eAddr">Necesitamos tu dirección para el delivery.</em></label>' +
-        '<fieldset class="seg"><legend>Método de pago</legend><div class="seg__opts seg__opts--3">' +
-          '<label><input type="radio" name="pago" value="Yape" checked><span>Yape</span></label>' +
-          '<label><input type="radio" name="pago" value="Plin"><span>Plin</span></label>' +
-          '<label><input type="radio" name="pago" value="Efectivo"><span>Efectivo</span></label></div></fieldset>' +
+        '<fieldset class="seg"><legend>Método de pago</legend><div class="seg__opts' + (PAYMENTS.length === 3 ? ' seg__opts--3' : '') + '">' +
+          PAYMENTS.map(function (p, i) { return '<label><input type="radio" name="pago" value="' + esc(p) + '"' + (i ? '' : ' checked') + '><span>' + esc(p) + '</span></label>'; }).join('') + '</div></fieldset>' +
         '<label class="field" id="cashField" hidden><span>¿Con cuánto pagas? <small>(opcional)</small></span><input id="fCash" inputmode="decimal" placeholder="Ej.: 100"></label>' +
         '<label class="field"><span>Nota para la cocina <small>(opcional)</small></span><input id="fNote" placeholder="' + esc(C.notePh) + '"></label>' +
       '</form>' +
       '<p class="fine">Se abrirá WhatsApp con tu pedido listo para enviar. Confirmamos el total y el tiempo de entrega por ahí.</p>' +
       '<button type="button" class="link-btn" id="clearCart">Vaciar pedido</button>' +
-      '<div class="sheet__cta"><a class="wa-btn" id="waBtn" href="https://wa.me/' + WA_NUMBER + '" target="_blank" rel="noopener">' + ICON.wa + '<span>Pedir por WhatsApp</span><b id="waTotal">S/ 0.00</b></a></div>' +
+      '<div class="sheet__cta"><a class="wa-btn" id="waBtn" href="https://wa.me/' + WA_NUMBER + '" target="_blank" rel="noopener">' + ICON.wa + '<span>Pedir por WhatsApp</span><b id="waTotal">' + fmt(0) + '</b></a></div>' +
       '</div></dialog>';
     root.innerHTML = html;
   }
@@ -564,7 +571,7 @@ body{background:#0A0605}
   /* ---------- Formulario y WhatsApp ---------- */
   function formData() {
     var modo = ($('input[name="modo"]:checked') || {}).value || 'delivery';
-    var pago = ($('input[name="pago"]:checked') || {}).value || 'Yape';
+    var pago = ($('input[name="pago"]:checked') || {}).value || PAYMENTS[0];
     return {
       nombre: $('#fName').value.trim(), modo: modo, direccion: $('#fAddr').value.trim(),
       pago: pago, efectivo: $('#fCash').value.trim(), nota: $('#fNote').value.trim()
@@ -582,7 +589,7 @@ body{background:#0A0605}
     L.push('👤 Nombre: ' + (f.nombre || '—'));
     L.push((f.modo === 'delivery' ? '🛵 Entrega: Delivery' : '🛍️ Entrega: Recojo en local'));
     if (f.modo === 'delivery') L.push('📍 Dirección: ' + (f.direccion || '—'));
-    L.push('💳 Pago: ' + f.pago + (f.pago === 'Efectivo' && f.efectivo ? ' (pago con S/ ' + f.efectivo.replace(/^s\/\s*/i, '') + ')' : ''));
+    L.push('💳 Pago: ' + f.pago + (f.pago === 'Efectivo' && f.efectivo ? ' (pago con ' + CURRENCY + ' ' + f.efectivo.replace(/^\D+/, '') + ')' : ''));
     if (f.nota) L.push('📝 Nota: ' + f.nota);
     return L.join('\n');
   }
