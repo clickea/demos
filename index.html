@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Demos · Clickea Studio</title>
-<meta name="description" content="Muestras de páginas web, menús digitales y detalles digitales creados por Clickea Studio en Lima, Perú.">
+<meta name="description" content="Muestras de páginas web, cartas y menús para restaurantes y detalles digitales creados por Clickea Studio. Ábrelas desde tu celular.">
 <meta name="theme-color" content="#16123a">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -14,7 +14,7 @@
 <meta property="og:locale" content="es_PE">
 <meta property="og:site_name" content="Clickea Studio">
 <meta property="og:title" content="Mira cómo quedaría la web de tu negocio · Clickea Studio">
-<meta property="og:description" content="Demos reales: páginas web, menús con pedido por WhatsApp y detalles digitales.">
+<meta property="og:description" content="Demos reales: páginas web, cartas y menús para restaurantes y detalles digitales.">
 <meta property="og:image" content="https://clickea.github.io/demos/og-clickea.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,90 +24,193 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 <style>
-  :root { --violet: #6d4aff; --dark: #16123a; --lime: #c8ff3d; --soft: rgba(255,255,255,.66); --card: rgba(255,255,255,.06); --line: rgba(255,255,255,.12); }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Outfit', system-ui, sans-serif; color: #fff; min-height: 100vh;
-    background: radial-gradient(circle at 85% -10%, #8b6dff 0%, var(--violet) 22%, var(--dark) 60%) fixed, var(--dark); }
-  a { color: inherit; text-decoration: none; }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 16px 64px; }
-  header { display: flex; align-items: center; gap: 12px; font-size: 22px; }
-  header svg { width: 40px; height: 40px; }
-  header b { font-weight: 800; }
-  header span { font-weight: 300; color: var(--lime); }
-  .hero { margin: 56px 0 40px; }
-  .hero h1 { font-size: clamp(44px, 9vw, 88px); font-weight: 900; line-height: .95; letter-spacing: -.04em; }
-  .hero h1 em { font-style: normal; color: var(--lime); }
-  .hero p { margin-top: 18px; font-size: clamp(17px, 2.4vw, 21px); color: var(--soft); max-width: 620px; line-height: 1.45; }
-  h2 { font-size: 15px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--lime); margin: 44px 0 16px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
-  .card { display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: 20px; background: var(--card); border: 1px solid var(--line);
-    transition: transform .2s, background .2s, border-color .2s; }
-  .card:hover, .card:focus-visible { transform: translateY(-3px); background: rgba(255,255,255,.1); border-color: rgba(200,255,61,.5); }
-  .card:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
-  .emoji { flex: none; width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; font-size: 26px; background: rgba(255,255,255,.08); }
-  .card h3 { font-size: 19px; font-weight: 800; }
-  .card p { font-size: 14px; color: var(--soft); margin-top: 3px; }
-  .card .go { margin-left: auto; font-size: 20px; color: var(--lime); }
-  .cta { margin-top: 56px; padding: 28px; border-radius: 24px; background: var(--lime); color: var(--dark);
-    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
-  .cta h3 { font-size: clamp(24px, 4vw, 34px); font-weight: 900; letter-spacing: -.02em; }
-  .cta p { font-weight: 600; margin-top: 4px; }
-  .cta a { background: var(--dark); color: #fff; font-weight: 800; padding: 14px 22px; border-radius: 14px; }
-  footer { margin-top: 40px; font-size: 13px; color: var(--soft); text-align: center; }
-  @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
+  :root { --violet:#6d4aff; --violet2:#8b6dff; --dark:#16123a; --deep:#0d0a26; --lime:#c8ff3d; --soft:rgba(255,255,255,.7); --line:rgba(255,255,255,.12); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Outfit',system-ui,sans-serif; color:#fff; background:var(--dark); overflow-x:clip; }
+  a { color:inherit; text-decoration:none; }
+  img { display:block; max-width:100%; }
+
+  /* Fondo vivo: manchas de color que se mueven lento + grano */
+  .fondo { position:fixed; inset:0; z-index:-1; overflow:hidden; background:var(--dark); }
+  .fondo i { position:absolute; border-radius:50%; filter:blur(70px); opacity:.55; animation:flotar 22s ease-in-out infinite alternate; }
+  .fondo i:nth-child(1) { width:60vmax; height:60vmax; background:var(--violet); top:-25vmax; right:-20vmax; }
+  .fondo i:nth-child(2) { width:40vmax; height:40vmax; background:#3b1f9e; bottom:-15vmax; left:-15vmax; animation-duration:28s; }
+  .fondo i:nth-child(3) { width:22vmax; height:22vmax; background:var(--lime); opacity:.12; top:40%; left:55%; animation-duration:18s; }
+  .fondo::after { content:''; position:absolute; inset:0; opacity:.08;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); }
+  @keyframes flotar { to { transform:translate(-8vmax, 6vmax) scale(1.15); } }
+
+  .wrap { max-width:1160px; margin:0 auto; padding:0 16px; }
+  header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:20px 0; }
+  .logo { display:flex; align-items:center; gap:10px; font-size:21px; }
+  .logo svg { width:38px; height:38px; }
+  .logo b { font-weight:800; } .logo span { font-weight:300; color:var(--lime); }
+  .pill { font-weight:800; font-size:15px; padding:11px 18px; border-radius:999px; background:var(--lime); color:var(--dark); min-height:44px; display:inline-flex; align-items:center; }
+
+  /* Portada */
+  .hero { display:grid; gap:28px; padding:28px 0 12px; align-items:center; }
+  .hero h1 { font-size:clamp(46px, 11vw, 104px); font-weight:900; line-height:.92; letter-spacing:-.045em; }
+  .hero h1 em { font-style:normal; color:var(--lime); position:relative; white-space:nowrap; }
+  .hero h1 em svg { position:absolute; left:-2%; bottom:-.14em; width:104%; height:.3em; overflow:visible; }
+  .hero h1 em path { stroke:var(--lime); stroke-width:7; fill:none; stroke-linecap:round; stroke-dasharray:420; stroke-dashoffset:420; animation:trazo 1s .5s ease-out forwards; }
+  @keyframes trazo { to { stroke-dashoffset:0; } }
+  .hero p { margin-top:20px; font-size:clamp(17px, 2.3vw, 21px); color:var(--soft); max-width:560px; line-height:1.45; }
+  .datos { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+  .datos span { font-size:14px; font-weight:600; padding:8px 13px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.06); }
+  .datos b { color:var(--lime); }
+
+  /* Tres celulares en abanico */
+  .abanico { position:relative; height:clamp(380px, 100vw, 540px); max-width:520px; width:100%; margin:0 auto; container-type:inline-size; }
+  .tel { position:absolute; top:50%; left:50%; width:min(38cqi, 200px); border-radius:26px; padding:6px; background:#0b0920;
+    box-shadow:0 30px 60px rgba(0,0,0,.5), inset 0 0 0 1.5px rgba(255,255,255,.14); transition:transform .35s cubic-bezier(.2,.8,.2,1); }
+  .tel img { border-radius:20px; aspect-ratio:390/760; object-fit:cover; object-position:top; width:100%; height:auto; }
+  .tel::before { content:''; position:absolute; top:12px; left:50%; width:30%; height:5px; margin-left:-15%; border-radius:9px; background:#0b0920; z-index:1; }
+  .tel.t1 { --r:-11deg; --x:-118%; z-index:1; animation:ola 6s ease-in-out infinite; }
+  .tel.t2 { --r:0deg; --x:-50%; z-index:2; width:min(44cqi, 232px); animation:ola 6s -2s ease-in-out infinite; }
+  .tel.t3 { --r:11deg; --x:18%; z-index:1; animation:ola 6s -4s ease-in-out infinite; }
+  .tel { transform:translate(var(--x), -50%) rotate(var(--r)); }
+  @keyframes ola { 50% { transform:translate(var(--x), -54%) rotate(var(--r)); } }
+  .tel:hover, .tel:focus-visible { animation:none; transform:translate(var(--x), -56%) rotate(0deg) scale(1.04); z-index:3; }
+  .tel .tag { position:absolute; left:50%; bottom:-14px; transform:translateX(-50%); white-space:nowrap; font-size:12px; font-weight:800;
+    padding:6px 11px; border-radius:999px; background:var(--lime); color:var(--dark); box-shadow:0 6px 16px rgba(0,0,0,.35); }
+
+  .tel.t1 .tag { left:24%; } .tel.t3 .tag { left:76%; }
+  /* El cursor de Clickea que hace clic */
+  .cursor { position:absolute; z-index:4; left:58%; top:58%; width:64px; pointer-events:none; animation:clic 4s ease-in-out infinite; }
+  .cursor .rayos { transform-origin:39px 30px; animation:rayos 4s ease-in-out infinite; }
+  .onda { position:absolute; z-index:3; left:calc(58% + 8px); top:calc(58% + 6px); width:60px; height:60px; margin:-30px 0 0 -30px; border-radius:50%;
+    border:3px solid var(--lime); opacity:0; pointer-events:none; animation:onda 4s ease-out infinite; }
+  @keyframes clic { 0% { transform:translate(70px, 60px); opacity:0; } 20% { opacity:1; } 45% { transform:translate(0,0); } 52% { transform:translate(0,0) scale(.82); } 60%, 85% { transform:translate(0,0) scale(1); opacity:1; } 100% { transform:translate(0,0); opacity:0; } }
+  @keyframes rayos { 0%, 50% { opacity:0; transform:scale(.6); } 58% { opacity:1; transform:scale(1.15); } 75%, 100% { opacity:0; transform:scale(1); } }
+  @keyframes onda { 0%, 51% { opacity:0; transform:scale(.3); } 55% { opacity:.9; } 80%, 100% { opacity:0; transform:scale(2.4); } }
+
+  /* Cinta de rubros */
+  .cinta { margin:44px 0 8px; transform:rotate(-2deg); background:var(--lime); color:var(--dark); overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,.3); }
+  .cinta div { display:flex; width:max-content; animation:marquee 32s linear infinite; }
+  .cinta p { font-weight:900; font-size:clamp(18px, 3vw, 26px); letter-spacing:-.01em; padding:12px 0; white-space:nowrap; }
+  .cinta p span { margin:0 18px; color:var(--violet); }
+  @keyframes marquee { to { transform:translateX(-50%); } }
+
+  /* Secciones y tarjetas */
+  section { padding-top:64px; }
+  .tit { display:flex; align-items:baseline; gap:14px; margin-bottom:22px; }
+  .tit small { font-weight:800; color:var(--lime); font-size:15px; letter-spacing:.1em; }
+  .tit h2 { font-size:clamp(30px, 5.5vw, 52px); font-weight:900; letter-spacing:-.035em; line-height:1; }
+  .tit p { color:var(--soft); margin-top:8px; font-size:16px; }
+  .grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:22px 14px; }
+  @media (min-width:700px) { .grid { grid-template-columns:repeat(3, 1fr); gap:30px 22px; } }
+  @media (min-width:1000px) { .grid { grid-template-columns:repeat(5, 1fr); } .grid.g4 { grid-template-columns:repeat(4, 1fr); } }
+  .card { display:block; perspective:900px; border-radius:22px; }
+  .card:focus-visible { outline:3px solid var(--lime); outline-offset:6px; }
+  .marco { position:relative; border-radius:24px; padding:5px; background:#0b0920; box-shadow:0 18px 40px rgba(0,0,0,.4), inset 0 0 0 1.5px rgba(255,255,255,.12);
+    transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s; transform-style:preserve-3d; }
+  .marco img { border-radius:19px; aspect-ratio:390/640; object-fit:cover; object-position:top; width:100%; height:auto; background:#221c55; }
+  .card:hover .marco, .card:focus-visible .marco { transform:translateY(-8px) rotateX(6deg) rotateY(-6deg); box-shadow:0 30px 60px rgba(109,74,255,.45), inset 0 0 0 2px var(--lime); }
+  .nuevo { position:absolute; top:-8px; right:-6px; z-index:1; font-size:12px; font-weight:900; padding:5px 10px; border-radius:999px; background:var(--lime); color:var(--dark); transform:rotate(6deg); }
+  .card h3 { font-size:18px; font-weight:800; margin-top:14px; display:flex; justify-content:space-between; gap:8px; }
+  .card h3::after { content:'→'; color:var(--lime); transition:transform .3s; }
+  .card:hover h3::after { transform:translateX(4px); }
+  .card p { font-size:14px; color:var(--soft); margin-top:2px; line-height:1.35; }
+
+  /* Aparición al hacer scroll (solo si el navegador la soporta; si no, todo se ve normal) */
+  @supports (animation-timeline: view()) {
+    .card, .tit { animation:subir linear both; animation-timeline:view(); animation-range:entry 0% entry 70%; }
+    @keyframes subir { from { opacity:0; transform:translateY(50px) scale(.96); } }
+  }
+
+  .cta { position:relative; overflow:hidden; margin-top:80px; padding:clamp(28px, 5vw, 56px); border-radius:32px; background:var(--lime); color:var(--dark);
+    display:grid; gap:20px; align-items:center; }
+  .cta h2 { font-size:clamp(34px, 7vw, 72px); font-weight:900; letter-spacing:-.045em; line-height:.95; }
+  .cta p { font-weight:600; font-size:18px; margin-top:10px; max-width:460px; }
+  .cta a { justify-self:start; display:inline-flex; align-items:center; gap:10px; background:var(--dark); color:#fff; font-weight:800; font-size:18px; padding:16px 26px; border-radius:18px; min-height:52px; transition:transform .2s; }
+  .cta a:hover { transform:translateY(-3px); }
+  .cta::after { content:''; position:absolute; right:-80px; top:-80px; width:260px; height:260px; border-radius:50%; border:40px solid rgba(109,74,255,.18); animation:girar 14s linear infinite; }
+  @keyframes girar { to { transform:rotate(360deg) translate(10px); } }
+  @media (min-width:800px) { .hero { grid-template-columns:1.1fr 1fr; padding-top:48px; } .cta { grid-template-columns:1fr auto; } .cta a { justify-self:end; } }
+  footer { padding:40px 0 56px; font-size:13px; color:var(--soft); text-align:center; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation:none !important; transition:none !important; }
+    .hero h1 em path { stroke-dashoffset:0; }
+    .cursor { transform:none; } .onda, .cursor .rayos { opacity:0; }
+  }
 </style>
 </head>
 <body>
+<div class="fondo" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="wrap">
   <header>
-    <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#6d4aff"/><g transform="translate(8 6) scale(.84)"><g stroke="#c8ff3d" stroke-width="6" stroke-linecap="round"><line x1="27" y1="33" x2="17" y2="33"/><line x1="30" y1="24" x2="23" y2="17"/><line x1="39" y1="21" x2="39" y2="11"/></g><path d="M40 32 L40 78 L52 66 L60 84 L69 80 L61 62 L77 62 Z" fill="#fff" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></g></svg>
-    <div><b>clickea</b><span>.studio</span></div>
+    <a class="logo" href="./" aria-label="Clickea Studio">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#6d4aff"/><g transform="translate(8 6) scale(.84)"><g stroke="#c8ff3d" stroke-width="6" stroke-linecap="round"><line x1="27" y1="33" x2="17" y2="33"/><line x1="30" y1="24" x2="23" y2="17"/><line x1="39" y1="21" x2="39" y2="11"/></g><path d="M40 32 L40 78 L52 66 L60 84 L69 80 L61 62 L77 62 Z" fill="#fff" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></g></svg>
+      <div><b>clickea</b><span>.studio</span></div>
+    </a>
+    <a class="pill" href="https://instagram.com/clickea.studio" target="_blank" rel="noopener">Quiero una</a>
   </header>
 
-  <section class="hero">
-    <h1>Toca y <em>míralo</em><br>funcionando.</h1>
-    <p>Estas son muestras reales de lo que hacemos. Ábrelas desde tu celular: así las verían tus clientes.</p>
+  <section class="hero" style="padding-top:28px">
+    <div>
+      <h1>Toca y <em>míralo<svg viewBox="0 0 400 30" preserveAspectRatio="none" aria-hidden="true"><path d="M4 20 C 90 6, 250 4, 396 16"/></svg></em><br>funcionando.</h1>
+      <p>Estas son muestras reales de lo que hacemos. Ábrelas desde tu celular: así las verían tus clientes, con reservas y pedidos directo a WhatsApp.</p>
+      <div class="datos"><span><b>14</b> demos para tocar</span><span>Hechas para celular</span><span>Cargan al toque</span></div>
+    </div>
+    <div class="abanico">
+      <a class="tel t1" href="nikkei/" aria-label="Ver demo: carta QR nikkei"><img src="capturas/nikkei.jpg" alt="Carta de mesa con QR del bar nikkei Kōji" width="390" height="844" fetchpriority="high"><span class="tag">Carta QR</span></a>
+      <a class="tel t2" href="criollo/" aria-label="Ver demo: restaurante criollo"><img src="capturas/criollo.jpg" alt="Web del restaurante criollo Mesa Larga" width="390" height="844" fetchpriority="high"><span class="tag">Web con reservas</span></a>
+      <a class="tel t3" href="huarique/" aria-label="Ver demo: menú del día"><img src="capturas/huarique.jpg" alt="Pizarra del menú del día del Huarique de la Tía Carmen" width="390" height="844" fetchpriority="high"><span class="tag">Menú del día</span></a>
+      <span class="onda" aria-hidden="true"></span>
+      <svg class="cursor" viewBox="0 0 100 100" aria-hidden="true"><g class="rayos" stroke="#c8ff3d" stroke-width="7" stroke-linecap="round"><line x1="27" y1="33" x2="15" y2="33"/><line x1="30" y1="24" x2="21" y2="15"/><line x1="39" y1="21" x2="39" y2="9"/></g><path d="M40 32 L40 78 L52 66 L60 84 L69 80 L61 62 L77 62 Z" fill="#fff" stroke="#16123a" stroke-width="3" stroke-linejoin="round"/></svg>
+    </div>
+  </section>
+</div>
+
+<div class="cinta" aria-hidden="true"><div>
+  <p>Restaurantes<span>✦</span>Barberías<span>✦</span>Consultorios<span>✦</span>Tiendas de ropa<span>✦</span>Cartas con QR<span>✦</span>Menú del día<span>✦</span>Pedidos por WhatsApp<span>✦</span>Detalles para regalar<span>✦</span></p>
+  <p>Restaurantes<span>✦</span>Barberías<span>✦</span>Consultorios<span>✦</span>Tiendas de ropa<span>✦</span>Cartas con QR<span>✦</span>Menú del día<span>✦</span>Pedidos por WhatsApp<span>✦</span>Detalles para regalar<span>✦</span></p>
+</div></div>
+
+<main class="wrap">
+  <section>
+    <div class="tit"><small>01</small><div><h2>Webs para negocios</h2><p>Tu negocio abierto las 24 horas, con reservas por WhatsApp.</p></div></div>
+    <div class="grid g4">
+      <a class="card" href="criollo/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/criollo.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Restaurante criollo</h3><p>Mesa Larga · Barranco</p></a>
+      <a class="card" href="barberia/"><div class="marco"><img src="capturas/barberia.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Barbería</h3><p>Filo Cobre · Surco</p></a>
+      <a class="card" href="dental/"><div class="marco"><img src="capturas/dental.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Consultorio dental</h3><p>Brisa Dental · Miraflores</p></a>
+      <a class="card" href="ropa/"><div class="marco"><img src="capturas/ropa.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Tienda de ropa</h3><p>Tela Brava · Jesús María</p></a>
+    </div>
   </section>
 
-  <h2>Páginas web para negocios</h2>
-  <div class="grid">
-    <a class="card" href="barberia/"><span class="emoji">✂️</span><div><h3>Barbería</h3><p>Filo Cobre · Surco</p></div><span class="go">→</span></a>
-    <a class="card" href="dental/"><span class="emoji">🦷</span><div><h3>Consultorio dental</h3><p>Brisa Dental · Miraflores</p></div><span class="go">→</span></a>
-    <a class="card" href="ropa/"><span class="emoji">👗</span><div><h3>Tienda de ropa</h3><p>Tela Brava · Jesús María</p></div><span class="go">→</span></a>
-    <a class="card" href="criollo/"><span class="emoji">🍽️</span><div><h3>Restaurante criollo</h3><p>Mesa Larga · Barranco · reservas</p></div><span class="go">→</span></a>
-  </div>
+  <section>
+    <div class="tit"><small>02</small><div><h2>Cartas y menús para restaurantes</h2><p>Para la mesa, para el menú de hoy o para pedir delivery.</p></div></div>
+    <div class="grid">
+      <a class="card" href="nikkei/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/nikkei.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Carta de mesa QR</h3><p>Kōji · español e inglés</p></a>
+      <a class="card" href="huarique/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/huarique.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Menú del día</h3><p>Huarique de la Tía Carmen</p></a>
+      <a class="card" href="polleria/"><div class="marco"><img src="capturas/polleria.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Pollería</h3><p>El Tizón Dorado · delivery</p></a>
+      <a class="card" href="cevicheria/"><div class="marco"><img src="capturas/cevicheria.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Cevichería</h3><p>Brisa Chalaca · delivery</p></a>
+      <a class="card" href="chifa/"><div class="marco"><img src="capturas/chifa.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Chifa</h3><p>Chifa Kam Ho · delivery</p></a>
+    </div>
+  </section>
 
-  <h2>Cartas para restaurantes</h2>
-  <div class="grid">
-    <a class="card" href="nikkei/"><span class="emoji">🍣</span><div><h3>Carta de mesa con QR</h3><p>Kōji · en español e inglés</p></div><span class="go">→</span></a>
-    <a class="card" href="huarique/"><span class="emoji">🍲</span><div><h3>Menú del día</h3><p>El Huarique de la Tía Carmen</p></div><span class="go">→</span></a>
-  </div>
-
-  <h2>Menús digitales con pedido por WhatsApp</h2>
-  <div class="grid">
-    <a class="card" href="polleria/"><span class="emoji">🍗</span><div><h3>Pollería</h3><p>El Tizón Dorado</p></div><span class="go">→</span></a>
-    <a class="card" href="cevicheria/"><span class="emoji">🐟</span><div><h3>Cevichería</h3><p>Brisa Chalaca</p></div><span class="go">→</span></a>
-    <a class="card" href="chifa/"><span class="emoji">🥢</span><div><h3>Chifa</h3><p>Chifa Kam Ho</p></div><span class="go">→</span></a>
-  </div>
-
-  <h2>Detalles digitales</h2>
-  <div class="grid">
-    <a class="card" href="aniversario/"><span class="emoji">💌</span><div><h3>Aniversario</h3><p>Carta que se abre y se escribe sola</p></div><span class="go">→</span></a>
-    <a class="card" href="declaracion/"><span class="emoji">💘</span><div><h3>Declaración</h3><p>¿Quieres ser mi enamorada?</p></div><span class="go">→</span></a>
-    <a class="card" href="cumpleanos/"><span class="emoji">🎂</span><div><h3>Cumpleaños</h3><p>Sopla las velas</p></div><span class="go">→</span></a>
-    <a class="card" href="dia-de-la-madre/"><span class="emoji">🌸</span><div><h3>Día de la Madre</h3><p>Flores que florecen</p></div><span class="go">→</span></a>
-    <a class="card" href="baby-shower/"><span class="emoji">🎈</span><div><h3>Baby shower</h3><p>Invitación con confirmación</p></div><span class="go">→</span></a>
-  </div>
+  <section>
+    <div class="tit"><small>03</small><div><h2>Detalles digitales</h2><p>Un link y un QR para regalar algo que emociona.</p></div></div>
+    <div class="grid">
+      <a class="card" href="aniversario/"><div class="marco"><img src="capturas/aniversario.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Aniversario</h3><p>Carta que se abre sola</p></a>
+      <a class="card" href="declaracion/"><div class="marco"><img src="capturas/declaracion.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Declaración</h3><p>¿Quieres ser mi enamorada?</p></a>
+      <a class="card" href="cumpleanos/"><div class="marco"><img src="capturas/cumpleanos.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Cumpleaños</h3><p>Sopla las velas</p></a>
+      <a class="card" href="dia-de-la-madre/"><div class="marco"><img src="capturas/dia-de-la-madre.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Día de la Madre</h3><p>Flores que florecen</p></a>
+      <a class="card" href="baby-shower/"><div class="marco"><img src="capturas/baby-shower.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Baby shower</h3><p>Invitación con confirmación</p></a>
+    </div>
+  </section>
 
   <div class="cta">
     <div>
-      <h3>¿Quieres uno así?</h3>
-      <p>Escríbenos y cotiza gratis.</p>
+      <h2>¿Tu negocio con una así?</h2>
+      <p>Escríbenos, cuéntanos de tu negocio y te mostramos cómo quedaría.</p>
     </div>
-    <a href="https://instagram.com/clickea.studio" target="_blank" rel="noopener">@clickea.studio</a>
+    <a href="https://instagram.com/clickea.studio" target="_blank" rel="noopener">Escríbenos a @clickea.studio</a>
   </div>
 
   <footer>Los negocios de estas muestras son ficticios. Diseñado por Clickea Studio · Lima, Perú.</footer>
-</div>
+</main>
 </body>
 </html>

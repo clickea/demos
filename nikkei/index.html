@@ -165,7 +165,7 @@ h1 .tipo { display: block; margin-top: 12px; font-style: italic; font-size: 1.31
 .indice a:hover .i-nom, .indice a[aria-current] .i-nom { text-decoration: underline 1.5px var(--sello); text-underline-offset: .25em; }
 
 /* Secciones: título fijo mientras dura la sección */
-.sec { padding: 28px 0 36px; }
+.sec { position: relative; isolation: isolate; padding: 28px 0 36px; }
 .sec-cab { position: sticky; top: 0; z-index: 3; margin: 0 -16px; background: var(--papel); }
 .cab-in { position: relative; display: flex; align-items: center; gap: 14px; padding: 12px 16px 10px; border-bottom: 4px double var(--filete); }
 .cab-in::after {
@@ -290,6 +290,140 @@ h1 .tipo { display: block; margin-top: 12px; font-style: italic; font-size: 1.31
   .marca { margin: 6px 0 4px; } .hanko { width: 64px; height: 64px; }
   h1 .nombre { font-size: 4.5rem; } .manifiesto, .orn { display: none; }
   .indice a { min-height: 34px; padding: 4px 0 3px; font-size: 1.1875rem; }
+}
+</style>
+<style id="vistoso">
+/* Clickea Studio — capa de efectos añadida sobre la carta ya terminada.
+   No cambia textos, datos ni estructura original: solo capas visuales. */
+
+/* --- 1) Portada: sello que se estampa, kanji vertical y "Kōji" que sube --- */
+.hanko-caja { position: relative; display: inline-block; }
+.hanko-caja::before, .hanko-caja::after {
+  content: ""; position: absolute; left: 50%; top: 50%; border-radius: 50%;
+  background: radial-gradient(circle, var(--sello) 0%, transparent 72%);
+  opacity: 0; pointer-events: none;
+}
+.hanko-caja::before { width: 150%; height: 150%; margin: -75% 0 0 -75%; }
+.hanko-caja::after { width: 210%; height: 210%; margin: -105% 0 0 -105%; }
+.vert span { display: inline-block; }
+.nombre-mascara { display: block; overflow: hidden; }
+@media (prefers-reduced-motion: no-preference) {
+  .hanko { animation: sello-cae .55s cubic-bezier(.3, 1.4, .4, 1) both; transform-origin: 50% 60%; }
+  .hanko-caja::before { animation: salpicon .6s ease-out .05s both; }
+  .hanko-caja::after { animation: salpicon .75s ease-out .1s both; }
+  .vert span {
+    opacity: 0; transform: translateY(6px);
+    animation: kanji-llega .45s ease-out both;
+    animation-delay: calc(.55s + var(--i, 0) * .1s);
+  }
+  .nombre-mascara .nombre { animation: nombre-sube .7s cubic-bezier(.22, .8, .25, 1) .95s both; }
+  .orn::before { transform-origin: right center; }
+  .orn::after { transform-origin: left center; }
+  .orn::before, .orn::after { animation: linea-crece .5s ease-out 1.5s both; }
+  .orn svg { animation: estrella-aparece .4s ease-out 1.85s both; }
+}
+@keyframes sello-cae {
+  0%   { opacity: 0; transform: scale(1.8) rotate(9deg); filter: blur(6px); }
+  70%  { opacity: 1; transform: scale(.94) rotate(-5deg); filter: blur(0); }
+  100% { opacity: 1; transform: scale(1) rotate(-3deg); filter: blur(0); }
+}
+@keyframes salpicon { from { opacity: .55; transform: scale(.2); } to { opacity: 0; transform: scale(1); } }
+@keyframes kanji-llega { to { opacity: 1; transform: translateY(0); } }
+@keyframes nombre-sube { from { transform: translateY(115%); } to { transform: translateY(0); } }
+@keyframes linea-crece { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes estrella-aparece { from { opacity: 0; transform: scale(.4) rotate(-40deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+
+/* --- 2) Kanji gigante de fondo por sección, con parallax lento si hay soporte --- */
+.sec[data-kanji]::before {
+  content: attr(data-kanji);
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: var(--jp); font-weight: 500; line-height: 1; white-space: nowrap;
+  font-size: clamp(13rem, 62vw, 22rem);
+  color: var(--tinta); opacity: .055;
+  z-index: -1; pointer-events: none;
+}
+@media (min-width: 960px) {
+  .sec[data-kanji]::before { font-size: clamp(15rem, 28vw, 24rem); }
+}
+@supports ((animation-timeline: view()) and (animation-range: entry)) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sec[data-kanji]::before {
+      animation: kanji-flota linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+  }
+}
+@keyframes kanji-flota {
+  from { transform: translate(-50%, -50%) translateY(-4%); }
+  to   { transform: translate(-50%, -50%) translateY(4%); }
+}
+
+/* --- 3) Pincelada bajo cada título: se dibuja al entrar --- */
+.pincelada { display: block; width: 92px; max-width: 40%; height: 11px; margin: 6px 0 0 16px; overflow: visible; }
+.pincelada path { fill: none; stroke: var(--sello); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+@media (min-width: 960px) { .pincelada { margin-left: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  .anim .pincelada path { stroke-dashoffset: 1; }
+  .anim .pincelada.ver path { stroke-dashoffset: 0; transition: stroke-dashoffset .85s cubic-bezier(.3, .7, .2, 1); }
+}
+
+/* --- 4) Platos: entrada escalonada al hacer scroll + brillo del recomendado --- */
+@media (prefers-reduced-motion: no-preference) {
+  .anim .sec > .platos > .plato { opacity: 0; transform: translateY(16px); }
+  .anim .sec > .platos > .plato.ver {
+    opacity: 1; transform: translateY(0);
+    transition: opacity .55s ease, transform .55s cubic-bezier(.22, .7, .3, 1);
+  }
+  .anim .sec > .platos > .plato.ver:nth-child(1) { transition-delay: 0s; }
+  .anim .sec > .platos > .plato.ver:nth-child(2) { transition-delay: .06s; }
+  .anim .sec > .platos > .plato.ver:nth-child(3) { transition-delay: .12s; }
+  .anim .sec > .platos > .plato.ver:nth-child(4) { transition-delay: .18s; }
+  .p-nom > .estrella { animation: respira 2.6s ease-in-out infinite; }
+}
+@keyframes respira {
+  0%, 100% { filter: drop-shadow(0 0 0 transparent); opacity: .85; }
+  50% { filter: drop-shadow(0 0 5px var(--sello)); opacity: 1; }
+}
+
+/* --- 5) Noche de izakaya: luna y farolitos de papel tras "Para tomar" --- */
+.noche-deco { position: absolute; inset: 0; overflow: hidden; z-index: -1; pointer-events: none; }
+.luna {
+  position: absolute; top: 5%; right: 10%; width: 15vw; max-width: 120px; min-width: 64px; aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #FBF3D8 0%, #EFE0AE 42%, rgba(239, 224, 174, 0) 74%);
+  box-shadow: 0 0 46px 8px rgba(239, 224, 174, .28);
+  opacity: .8;
+}
+.farol { position: absolute; top: 3%; width: 30px; opacity: .55; transform-origin: 50% 0%; color: var(--sello); }
+.farol .f-hilo { stroke: currentColor; stroke-width: 1; opacity: .6; fill: none; }
+.farol .f-cuerpo { fill: currentColor; opacity: .55; }
+.farol .f-linea { stroke: var(--papel); stroke-width: .8; opacity: .5; }
+.farol.f1 { left: 8%; width: 26px; }
+.farol.f2 { left: 58%; top: 9%; width: 36px; }
+.farol.f3 { left: 84%; width: 22px; }
+@media (min-width: 960px) { .farol.f1 { left: 5%; } .farol.f2 { left: 44%; } .farol.f3 { left: 90%; } }
+@media (prefers-reduced-motion: no-preference) {
+  .farol.f1 { animation: balanceo 7.5s ease-in-out infinite; }
+  .farol.f2 { animation: balanceo 9s ease-in-out infinite .7s; }
+  .farol.f3 { animation: balanceo 6.5s ease-in-out infinite 1.4s; }
+}
+@keyframes balanceo { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+
+/* --- 6) Idioma: fundido cruzado corto entre ES y EN --- */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .22s; animation-timing-function: ease; }
+}
+
+/* --- 7) Índice: el número kanji hace un pequeño "estampado" al tocar --- */
+@media (prefers-reduced-motion: no-preference) {
+  .i-num.sello-tap { animation: num-stamp .5s cubic-bezier(.34, 1.56, .64, 1); }
+}
+@keyframes num-stamp {
+  0%   { transform: scale(1) rotate(0); }
+  35%  { transform: scale(1.32) rotate(-6deg); }
+  60%  { transform: scale(.94) rotate(2deg); }
+  100% { transform: scale(1) rotate(0); }
 }
 </style>
 </head>
@@ -875,6 +1009,102 @@ const DATOS = {
   /* Si el link trae una sección (#del-mar), ir ahí ahora que la carta existe */
   var dest = location.hash.length > 1 && document.getElementById(decodeURIComponent(location.hash.slice(1)));
   if (dest) dest.scrollIntoView();
+})();
+</script>
+<script id="vistoso-js">
+/* Clickea Studio — efectos añadidos sobre la carta ya construida por el script de arriba.
+   Solo agrega clases/nodos decorativos; no toca DATOS ni la lógica original. */
+(function () {
+  'use strict';
+  var raiz = document.documentElement;
+  var reducir = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var animOn = 'IntersectionObserver' in window && !reducir.matches;
+  if (animOn) raiz.classList.add('anim');
+
+  /* Primer kanji "de verdad" de un texto japonés (salta hiragana/katakana) */
+  function granKanji(jp) {
+    for (var i = 0; i < jp.length; i++) {
+      var c = jp.charCodeAt(i);
+      if (c < 0x3040 || c > 0x30FF) return jp.charAt(i);
+    }
+    return jp.charAt(0);
+  }
+
+  /* 1) Portada: envolver el sello y "Kōji", separar el kanji vertical en trazos */
+  var hanko = document.querySelector('.hanko');
+  if (hanko && !hanko.closest('.hanko-caja')) {
+    var caja = document.createElement('span');
+    caja.className = 'hanko-caja';
+    hanko.parentNode.insertBefore(caja, hanko);
+    caja.appendChild(hanko);
+  }
+  var vert = document.querySelector('.vert');
+  if (vert && vert.textContent) {
+    var letras = vert.textContent.split('');
+    vert.innerHTML = letras.map(function (c, i) {
+      return '<span style="--i:' + i + '">' + c + '</span>';
+    }).join('');
+  }
+  var nombre = document.querySelector('h1 .nombre');
+  if (nombre && !nombre.closest('.nombre-mascara')) {
+    var mascara = document.createElement('span');
+    mascara.className = 'nombre-mascara';
+    nombre.parentNode.insertBefore(mascara, nombre);
+    mascara.appendChild(nombre);
+  }
+
+  /* 2) Kanji gigante de fondo, tomado del kanji pequeño que ya tiene cada sección */
+  document.querySelectorAll('.sec').forEach(function (sec) {
+    var hjp = sec.querySelector('.h-jp');
+    if (hjp && hjp.textContent.trim()) sec.setAttribute('data-kanji', granKanji(hjp.textContent.trim()));
+  });
+
+  /* 3) Pincelada bajo cada título, fuera del encabezado fijo (no ocupa espacio pegajoso) */
+  document.querySelectorAll('.sec-cab').forEach(function (cab) {
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'pincelada');
+    svg.setAttribute('viewBox', '0 0 150 16');
+    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    svg.innerHTML = '<path pathLength="1" d="M3,9 C24,2 46,14 70,7 C95,-1 112,13 132,6 C140,3 145,7 147,8"/>';
+    cab.parentNode.insertBefore(svg, cab.nextSibling);
+  });
+  /* 5) Noche de izakaya: luna y farolitos de papel detrás de "Para tomar" */
+  function farolito(cls) {
+    return '<svg class="farol ' + cls + '" viewBox="0 0 30 46" aria-hidden="true" focusable="false">' +
+      '<line class="f-hilo" x1="15" y1="0" x2="15" y2="7"/>' +
+      '<path class="f-cuerpo" d="M6 9 Q15 3 24 9 Q29 24 24 39 Q15 45 6 39 Q1 24 6 9 Z"/>' +
+      '<line class="f-linea" x1="8" y1="15" x2="22" y2="15"/>' +
+      '<line class="f-linea" x1="6.5" y1="24" x2="23.5" y2="24"/>' +
+      '<line class="f-linea" x1="8" y1="33" x2="22" y2="33"/></svg>';
+  }
+  document.querySelectorAll('.sec[data-tono="noche"]').forEach(function (sec) {
+    var deco = document.createElement('div');
+    deco.className = 'noche-deco';
+    deco.setAttribute('aria-hidden', 'true');
+    deco.innerHTML = '<div class="luna"></div>' + farolito('f1') + farolito('f2') + farolito('f3');
+    sec.insertBefore(deco, sec.firstChild);
+  });
+
+  /* 4) + 3) Entrada escalonada de platos y dibujo de la pincelada al hacer scroll */
+  if (animOn) {
+    var ioEntra = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('ver'); ioEntra.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .12 });
+    document.querySelectorAll('.pincelada, .sec > .platos > .plato').forEach(function (el) { ioEntra.observe(el); });
+  }
+
+  /* 7) Índice: el número kanji hace un pequeño "estampado" al tocar */
+  document.addEventListener('click', function (e) {
+    var enlace = e.target.closest('.indice a');
+    if (!enlace) return;
+    var n = enlace.querySelector('.i-num');
+    if (!n) return;
+    n.classList.remove('sello-tap');
+    void n.offsetWidth;
+    n.classList.add('sello-tap');
+  });
 })();
 </script>
 </body>

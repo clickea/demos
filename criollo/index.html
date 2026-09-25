@@ -313,6 +313,104 @@ input:user-invalid,select:user-invalid,.intento :invalid{border-color:var(--erro
 .rv.in,.no-js .rv{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn{transition:none}}
 </style>
+<style id="vistoso">
+/* === Portada: la foto respira dentro de las letras === */
+@media (prefers-reduced-motion:no-preference){
+  @keyframes deriva-foto{
+    from{background-position:50% 12%;background-size:112% 112%}
+    to{background-position:50% 88%;background-size:132% 132%}
+  }
+  .gigante{animation:deriva-foto 21s ease-in-out infinite alternate}
+}
+@supports (clip-path: inset(0 0 0 0)){
+  @media (prefers-reduced-motion:no-preference){
+    @keyframes subir-linea{from{clip-path:inset(100% 0 0 0);opacity:.001}to{clip-path:inset(0 0 0 0);opacity:1}}
+    .gigante>span{animation:subir-linea .9s cubic-bezier(.22,1,.36,1) both}
+    .gigante>span:nth-child(1){animation-delay:.05s}
+    .gigante>span:nth-child(2){animation-delay:.32s}
+  }
+}
+/* Sello: solo gira el anillo de texto */
+@media (prefers-reduced-motion:no-preference){
+  .sello-anillo{transform-origin:60px 60px;animation:girar-anillo 30s linear infinite}
+  @keyframes girar-anillo{to{transform:rotate(360deg)}}
+}
+
+/* === Cinta festiva === */
+.cintas{overflow:clip;margin:1.6rem 0 -.5rem}
+.cinta{overflow:hidden;padding:.55rem 0;white-space:nowrap}
+.cinta-a{background:var(--aji);color:var(--tinta);transform:rotate(-2.4deg);margin-bottom:-.55rem;position:relative;z-index:1;box-shadow:0 2px 0 rgba(21,41,31,.18)}
+.cinta-b{background:var(--tinta);color:var(--papel);transform:rotate(2.2deg)}
+.cinta-tira{display:flex;width:max-content}
+.cinta-tira span{display:inline-block;padding-right:2.25rem;font:italic 700 1.02rem/1 var(--ff-s);letter-spacing:.01em}
+@media (prefers-reduced-motion:no-preference){
+  .cinta-a .cinta-tira{animation:marquee-izq 24s linear infinite}
+  .cinta-b .cinta-tira{animation:marquee-der 28s linear infinite}
+}
+@keyframes marquee-izq{to{transform:translateX(-50%)}}
+@keyframes marquee-der{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+/* === Color que cambia por sección === */
+body{--tono-bg:var(--papel);--tono-fg:var(--tinta);background:var(--tono-bg);color:var(--tono-fg);transition:background-color .7s ease,color .7s ease}
+body[data-tono="oscuro"]{--tono-bg:#3B1420;--tono-fg:var(--papel)}
+body[data-tono="verde"]{--tono-bg:var(--tinta-3);--tono-fg:var(--papel)}
+body[data-tono="oscuro"] .platos .lead,
+body[data-tono="oscuro"] .platos .historia,
+body[data-tono="oscuro"] .platos .ingr{color:var(--claro)}
+body[data-tono="oscuro"] .platos .precio{border-color:var(--papel)}
+body[data-tono="verde"] .lugar .lead{color:var(--claro)}
+@media (prefers-reduced-motion:reduce){body{transition:none}}
+
+/* === Manifiesto: el texto se enciende al leer === */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .manif blockquote p{
+      background-image:linear-gradient(#8A8071,#8A8071 50%,var(--tinta) 50%,var(--tinta));
+      background-size:100% 200%;background-position:0 0%;
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      animation:encender-texto linear both;animation-timeline:view();animation-range:entry;
+    }
+    @keyframes encender-texto{to{background-position:0 100%}}
+  }
+}
+
+/* === Platos insignia: foto que se revela + sello de precio === */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .plato-foto{overflow:hidden}
+    .plato-foto img{animation:revelar-plato linear both;animation-timeline:view();animation-range:entry}
+    @keyframes revelar-plato{from{clip-path:inset(100% 0 0 0);transform:scale(1.15)}to{clip-path:inset(0 0 0 0);transform:scale(1)}}
+  }
+}
+.precio{display:grid;place-items:center;width:84px;height:84px;margin-top:1.1rem;padding:0;border:2px solid var(--tinta);border-radius:50%;background:var(--papel-3);font:700 1.25rem/1 var(--ff);transform:rotate(-7deg);box-shadow:2px 2px 0 var(--aji-2)}
+body[data-tono="oscuro"] .platos .precio{background:var(--tinta-3)}
+@keyframes sello-pop{0%{transform:rotate(-7deg) scale(.35);opacity:0}62%{transform:rotate(-11deg) scale(1.14);opacity:1}100%{transform:rotate(-7deg) scale(1)}}
+.plato.in .precio{animation:sello-pop .55s cubic-bezier(.34,1.56,.64,1) both}
+@media (prefers-reduced-motion:reduce){.plato.in .precio{animation:none}}
+
+/* === El lugar: parallax sutil en las fotos en arco === */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .arco{overflow:hidden}
+    .arco img{transform:scale(1.12);animation:parallax-arco linear both;animation-timeline:view();animation-range:cover}
+    @keyframes parallax-arco{0%{transform:scale(1.12) translateY(-30px)}100%{transform:scale(1.12) translateY(30px)}}
+  }
+}
+
+/* === Microdetalles: subrayado a mano y brillo del botón === */
+.subraya path{stroke-dasharray:240;stroke-dashoffset:0}
+body:not(.no-js) .subraya path{stroke-dashoffset:240}
+body:not(.no-js) .subraya.dibujado path{animation:dibujar-raya .8s ease-out both}
+@keyframes dibujar-raya{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){
+  body:not(.no-js) .subraya path{stroke-dashoffset:0}
+  body:not(.no-js) .subraya.dibujado path{animation:none}
+}
+.btn-brillo{position:relative;overflow:hidden}
+.btn-brillo::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(115deg,transparent 0%,rgba(255,255,255,.6) 50%,transparent 100%);transform:skewX(-18deg)}
+@media (prefers-reduced-motion:no-preference){.btn-brillo::after{animation:brillo-cruza 6s ease-in-out infinite}}
+@keyframes brillo-cruza{0%,18%{left:-60%}55%{left:130%}100%{left:130%}}
+</style>
 </head>
 <body class="no-js">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -345,7 +443,7 @@ input:user-invalid,select:user-invalid,.intento :invalid{border-color:var(--erro
       </h1>
       <p class="bajada">Almuerzos para compartir en la casona que abrió la señora Rosa Huamán en 1994. Tenemos mesa para dos y para cuarenta.</p>
       <div class="acciones">
-        <a class="btn btn-aji wa" href="https://wa.me/51900000000" data-msg="Hola Mesa Larga, quiero reservar mesa para __ personas el __ a las __. Mi nombre es __." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Reservar por WhatsApp</a>
+        <a class="btn btn-aji wa btn-brillo" href="https://wa.me/51900000000" data-msg="Hola Mesa Larga, quiero reservar mesa para __ personas el __ a las __. Mi nombre es __." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Reservar por WhatsApp</a>
         <a class="enlace" href="#carta">Ver la carta</a>
       </div>
     </div>
@@ -361,13 +459,29 @@ input:user-invalid,select:user-invalid,.intento :invalid{border-color:var(--erro
         <defs><path id="circulo" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0"/></defs>
         <circle cx="60" cy="60" r="58" fill="#F0B429" stroke="#1F3A2E" stroke-width="2"/>
         <circle cx="60" cy="60" r="33" fill="none" stroke="#1F3A2E" stroke-width="1.2"/>
-        <text fill="#1F3A2E" font-family="DM Sans, sans-serif" font-weight="700" font-size="10.5" letter-spacing="1.5"><textPath href="#circulo" textLength="276" lengthAdjust="spacing">MESA LARGA • BARRANCO • LIMA •</textPath></text>
+        <text class="sello-anillo" fill="#1F3A2E" font-family="DM Sans, sans-serif" font-weight="700" font-size="10.5" letter-spacing="1.5"><textPath href="#circulo" textLength="276" lengthAdjust="spacing">MESA LARGA • BARRANCO • LIMA •</textPath></text>
         <text x="60" y="58" text-anchor="middle" fill="#1F3A2E" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="12">desde</text>
         <text x="60" y="78" text-anchor="middle" fill="#1F3A2E" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="22">1994</text>
       </svg>
     </figure>
   </div>
 </section>
+
+<!-- cinta · sabores de la casa -->
+<div class="cintas" aria-label="Algunos platos de la casa">
+  <div class="cinta cinta-a">
+    <div class="cinta-tira">
+      <span>Ají de gallina ✦ Lomo saltado ✦ Anticuchos ✦ Causa limeña ✦ Rocoto relleno ✦ Picarones ✦ Chicha morada ✦ </span>
+      <span aria-hidden="true">Ají de gallina ✦ Lomo saltado ✦ Anticuchos ✦ Causa limeña ✦ Rocoto relleno ✦ Picarones ✦ Chicha morada ✦ </span>
+    </div>
+  </div>
+  <div class="cinta cinta-b">
+    <div class="cinta-tira">
+      <span>Ají de gallina ✦ Lomo saltado ✦ Anticuchos ✦ Causa limeña ✦ Rocoto relleno ✦ Picarones ✦ Chicha morada ✦ </span>
+      <span aria-hidden="true">Ají de gallina ✦ Lomo saltado ✦ Anticuchos ✦ Causa limeña ✦ Rocoto relleno ✦ Picarones ✦ Chicha morada ✦ </span>
+    </div>
+  </div>
+</div>
 
 <!-- 2 · prueba social -->
 <section class="pruebas" aria-label="Lo que dicen de nosotros">
@@ -394,7 +508,7 @@ input:user-invalid,select:user-invalid,.intento :invalid{border-color:var(--erro
 <section class="platos" id="platos" aria-labelledby="t-platos">
   <div class="wrap">
     <div class="sec-cab">
-      <h2 id="t-platos">Los platos <em>de siempre</em></h2>
+      <h2 id="t-platos">Los platos <em class="subraya">de siempre<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8.5C48 3.5 118 2 197 6.5"/></svg></em></h2>
       <p class="lead">Los que la gente pide sin abrir la carta. Recetas de la casa, porciones para quedar contento.</p>
     </div>
 
@@ -450,7 +564,7 @@ input:user-invalid,select:user-invalid,.intento :invalid{border-color:var(--erro
   <div class="wrap">
     <div class="carta-marco">
       <div class="carta-cab">
-        <h2 id="t-carta">La <em>carta</em></h2>
+        <h2 id="t-carta">La <em class="subraya">carta<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8.5C48 3.5 118 2 197 6.5"/></svg></em></h2>
         <p class="lead">Porciones criollas: un fondo alcanza para uno con hambre o para dos con entrada.</p>
       </div>
       <div class="carta-cols">
@@ -533,7 +647,7 @@ input:user-invalid,select:user-invalid,.intento :invalid{border-color:var(--erro
 <section class="lugar" id="lugar" aria-labelledby="t-lugar">
   <div class="wrap">
     <div class="sec-cab">
-      <h2 id="t-lugar">Una casona con <em>mesa para todos</em></h2>
+      <h2 id="t-lugar">Una casona con <em class="subraya">mesa para todos<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8.5C48 3.5 118 2 197 6.5"/></svg></em></h2>
       <p class="lead">Tres salones con piso de losetas, un patio con buganvilla y, al fondo, la mesa larga: entran hasta cuarenta cuando viene la familia completa.</p>
     </div>
     <div class="lugar-grid">
@@ -547,7 +661,7 @@ input:user-invalid,select:user-invalid,.intento :invalid{border-color:var(--erro
 <!-- 7 · horario y cómo llegar -->
 <section class="visita" id="horario" aria-labelledby="t-horario">
   <div class="wrap">
-    <h2 id="t-horario">Horario y <em>cómo llegar</em></h2>
+    <h2 id="t-horario">Horario y <em class="subraya">cómo llegar<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8.5C48 3.5 118 2 197 6.5"/></svg></em></h2>
     <div class="visita-grid">
       <div>
         <p class="estado" id="estado">Martes a domingo, almuerzo; martes a sábado, también cena</p>
@@ -579,7 +693,7 @@ input:user-invalid,select:user-invalid,.intento :invalid{border-color:var(--erro
 <section class="reservas" id="reservar" aria-labelledby="t-reservar">
   <div class="wrap res-grid">
     <div>
-      <h2 id="t-reservar">Reserva tu <em>mesa</em></h2>
+      <h2 id="t-reservar">Reserva tu <em class="subraya">mesa<svg viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 8.5C48 3.5 118 2 197 6.5"/></svg></em></h2>
       <p class="lead">Llena estos datos y te llevamos a WhatsApp con el mensaje listo. Te confirmamos en minutos, en horario de atención.</p>
       <form class="form" id="formRes" novalidate>
         <div class="campo">
@@ -768,6 +882,39 @@ input:user-invalid,select:user-invalid,.intento :invalid{border-color:var(--erro
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     els.forEach(function (el) { io.observe(el); });
   } else { els.forEach(function (el) { el.classList.add('in'); }); }
+})();
+</script>
+<script id="vistoso-js">
+(function () {
+  var d = document;
+  // Color que cambia por sección
+  if ('IntersectionObserver' in window) {
+    var TONOS = [['top', 'crema'], ['platos', 'oscuro'], ['carta', 'crema'], ['lugar', 'verde'], ['horario', 'crema']];
+    var ioTono = new IntersectionObserver(function (en) {
+      en.forEach(function (x) {
+        if (x.isIntersecting) d.body.setAttribute('data-tono', x.target.dataset.tonoMarca);
+      });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+    TONOS.forEach(function (t) {
+      var el = d.getElementById(t[0]);
+      if (el) { el.dataset.tonoMarca = t[1]; ioTono.observe(el); }
+    });
+  }
+
+  // Subrayado a mano de los títulos
+  var rayas = d.querySelectorAll('.subraya');
+  if (rayas.length) {
+    if ('IntersectionObserver' in window) {
+      var ioRaya = new IntersectionObserver(function (en) {
+        en.forEach(function (x) {
+          if (x.isIntersecting) { x.target.classList.add('dibujado'); ioRaya.unobserve(x.target); }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.4 });
+      rayas.forEach(function (el) { ioRaya.observe(el); });
+    } else {
+      rayas.forEach(function (el) { el.classList.add('dibujado'); });
+    }
+  }
 })();
 </script>
 </body>

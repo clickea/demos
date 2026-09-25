@@ -273,6 +273,149 @@ legend+*{clear:both}
   .hoja[open]{animation:none}
 }
 </style>
+<style id="vistoso-1">
+/* ===== Espectáculo de tiza — 1) escrito en tiza + polvo, 2) vapor, 7) borrón lento ===== */
+.dia{position:relative}
+.dia,.precio>span[aria-hidden="true"]{clip-path:inset(0 0 0 0)}
+@keyframes tz-dia{
+  0%{clip-path:inset(0 100% 0 0)}
+  24%{clip-path:inset(0 76% 0 0)}
+  40%{clip-path:inset(0 58% 0 0)}
+  58%{clip-path:inset(0 36% 0 0)}
+  74%{clip-path:inset(0 18% 0 0)}
+  90%{clip-path:inset(0 5% 0 0)}
+  100%{clip-path:inset(0 0 0 0)}
+}
+@keyframes tz-precio{
+  0%{clip-path:inset(0 100% 0 0)}
+  20%{clip-path:inset(0 82% 0 0)}
+  36%{clip-path:inset(0 64% 0 0)}
+  55%{clip-path:inset(0 42% 0 0)}
+  72%{clip-path:inset(0 22% 0 0)}
+  88%{clip-path:inset(0 7% 0 0)}
+  100%{clip-path:inset(0 0 0 0)}
+}
+.js .dia{animation:tz-dia .7s cubic-bezier(.32,.88,.4,1) both}
+.js .precio>span[aria-hidden="true"]{animation:tz-precio .8s .18s cubic-bezier(.32,.88,.4,1) both}
+.js .subr path{animation:trazo .55s 1.05s cubic-bezier(.3,.7,.3,1) forwards}
+.dia::after,.precio::after{
+  content:"";position:absolute;left:8%;top:92%;width:3px;height:3px;border-radius:50%;
+  background:var(--tiza);opacity:0;pointer-events:none;
+  box-shadow:16px -5px 0 -.5px var(--tiza),29px 3px 0 -1px var(--tiza),44px -6px 0 -.5px var(--tiza),58px 3px 0 -1px var(--tiza);
+}
+.js .dia::after{animation:tz-polvo .8s .05s ease-out both}
+.js .precio::after{animation:tz-polvo .85s .3s ease-out both}
+@keyframes tz-polvo{
+  0%{opacity:0;transform:translateY(-4px)}
+  18%{opacity:.55}
+  100%{opacity:0;transform:translateY(9px)}
+}
+.js .olla .vapor{opacity:0;transform-origin:center bottom;animation:vapor-sube 3.2s ease-in-out infinite}
+.js .olla .v1{animation-delay:0s}
+.js .olla .v2{animation-delay:1.05s}
+.js .olla .v3{animation-delay:2.1s}
+@keyframes vapor-sube{
+  0%{opacity:0;transform:translateY(3px) scaleY(.85)}
+  25%{opacity:.75}
+  70%{opacity:.35}
+  100%{opacity:0;transform:translateY(-7px) scaleY(1.1)}
+}
+.pizarra{
+  background-image:var(--polvo),var(--borron),radial-gradient(120% 55% at 50% 0,rgb(255 255 255/.05),transparent 60%),linear-gradient(to top,rgb(242 240 230/.07),transparent 44px);
+  background-position:0 0,0 0,50% 0,center;
+  background-size:auto,125% 125%,auto,auto;
+  background-repeat:repeat,no-repeat,no-repeat,no-repeat;
+  background-color:var(--pizarra);
+  overflow:hidden;
+}
+.js .pizarra{animation:borron-deriva 40s ease-in-out infinite}
+@keyframes borron-deriva{
+  0%,100%{background-position:0 0,0 0,50% 0,center}
+  50%{background-position:0 0,-12% 9%,50% 0,center}
+}
+</style>
+<style id="vistoso-2">
+/* ===== 3) sello que se estampa + tachado a mano — 4) círculo de tiza al elegir ===== */
+.js .sello{opacity:0;animation:sello-estampa .5s 1.2s cubic-bezier(.22,1.6,.4,1) both}
+@keyframes sello-estampa{
+  0%{opacity:0;transform:rotate(-8deg) scale(2.6)}
+  50%{opacity:1;transform:rotate(-11deg) scale(.88)}
+  72%{transform:rotate(-5deg) scale(1.08)}
+  100%{opacity:1;transform:rotate(-8deg) scale(1)}
+}
+.js .pizarra:has(.sello){animation:tz-temblor .32s 1.2s ease-out}
+@keyframes tz-temblor{
+  0%,100%{transform:translate(0,0) rotate(0)}
+  22%{transform:translate(-2px,1px) rotate(-.25deg)}
+  46%{transform:translate(2px,-1px) rotate(.25deg)}
+  68%{transform:translate(-1px,1px)}
+  86%{transform:translate(1px,-.5px)}
+}
+.agotado .nom{position:relative;text-decoration-line:none}
+.nom .tachado{position:absolute;left:-2%;top:0;width:104%;height:100%;overflow:visible;pointer-events:none}
+.nom .tachado path{fill:none;stroke:var(--tizaSuave);stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.js .nom .tachado path{animation:tz-tacha .45s .5s ease-out forwards}
+@keyframes tz-tacha{to{stroke-dashoffset:0}}
+
+.opc-in:checked~.marca{opacity:0}
+.circulo{
+  position:absolute;left:-6%;top:-32%;width:112%;height:164%;overflow:visible;opacity:0;pointer-events:none;
+  transform:translateY(-3px) scale(.97);transition:opacity .28s ease,transform .28s ease;
+}
+.circulo path{fill:none;stroke:var(--amarillo);stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.c-el{stroke-width:2.4}
+.c-ok{stroke-width:3}
+.opc-in:checked~.circulo{opacity:1;transform:translateY(0) scale(1)}
+.opc-in:checked~.circulo .c-el{animation:tz-circulo .48s ease-out forwards}
+.opc-in:checked~.circulo .c-ok{animation:tz-circulo .28s .42s ease-out forwards}
+@keyframes tz-circulo{to{stroke-dashoffset:0}}
+</style>
+<style id="vistoso-3">
+/* ===== 6) dibujitos de tiza en los bordes ===== */
+.doodles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.doodle{position:absolute;color:var(--tiza);opacity:.4}
+.doodle-aji{width:30px;height:30px;left:4px;bottom:6px}
+.doodle-pescado{width:36px;height:36px;right:6px;bottom:50px}
+.doodle-cuchara{width:22px;height:22px;left:8px;top:10px}
+.doodle-estrellas{width:26px;height:26px;right:6px;top:8px;color:var(--amarillo);opacity:.55}
+@media (max-width:759px){
+  .doodle-pescado,.doodle-cuchara{display:none}
+  .doodle-aji{width:16px;height:16px;left:3px;bottom:3px;opacity:.28}
+  .doodle-estrellas{width:16px;height:16px;right:3px;bottom:3px;top:auto;opacity:.3}
+}
+@media (min-width:760px){
+  .doodle-aji{left:10px;bottom:14px}
+  .doodle-pescado{right:14px;bottom:70px}
+  .doodle-cuchara{left:16px;top:18px}
+  .doodle-estrellas{right:16px;top:16px}
+}
+
+/* ===== 5) botón que salta + resumen en vivo ===== */
+.js #btnSeparar.salto{animation:tz-salto .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes tz-salto{
+  0%,100%{transform:translateY(0)}
+  30%{transform:translateY(-9px)}
+  55%{transform:translateY(1px)}
+  78%{transform:translateY(-3px)}
+}
+.vzResumen{max-width:920px;margin:8px auto 0;padding:0 10px;text-align:center;font-family:var(--ff-t);font-weight:700;font-size:1.2rem;color:var(--amarillo)}
+.vzResumen[hidden]{display:none}
+
+/* ===== Movimiento reducido: todo quieto y 100% visible ===== */
+@media (prefers-reduced-motion:reduce){
+  .js .dia,.js .precio>span[aria-hidden="true"]{animation:none;clip-path:inset(0 0 0 0)}
+  .js .dia::after,.js .precio::after{animation:none;opacity:0}
+  .js .olla .vapor{animation:none;opacity:.7}
+  .js .pizarra{animation:none}
+  .js .sello{animation:none;opacity:1;transform:rotate(-8deg)}
+  .js .pizarra:has(.sello){animation:none}
+  .js .nom .tachado path{animation:none;stroke-dashoffset:0}
+  .circulo{transition:none}
+  .opc-in:checked~.circulo{opacity:1;transform:none}
+  .opc-in:checked~.circulo .c-el,.opc-in:checked~.circulo .c-ok{animation:none;stroke-dashoffset:0}
+  .js #btnSeparar.salto{animation:none}
+}
+</style>
 </head>
 <body>
 <main>
@@ -283,7 +426,7 @@ legend+*{clear:both}
           <h1 id="t1">El Huarique de la Tía Carmen</h1>
           <p class="sub">Menú casero en Lince</p>
         </div>
-        <svg class="olla" viewBox="0 0 48 44" aria-hidden="true"><path d="M8 22.5h32M12 22.5c1-5.5 5.5-8.5 12-8.5s11 3 12 8.5M22 13.4c.4-1.2 3.6-1.3 4 0M10 25v8.5c0 4 3 7 7 7h14c4 0 7-3 7-7V25M10 28H6.2M38 28h3.8M15 31c1.5.8 3 .9 4.5.6"/><path class="vapor" d="M17 9.5c-1.8-2 1.8-3 0-5.8M24 8c-1.8-2 1.8-3 0-5.8M31 9.5c-1.8-2 1.8-3 0-5.8"/></svg>
+        <svg class="olla" viewBox="0 0 48 44" aria-hidden="true"><path d="M8 22.5h32M12 22.5c1-5.5 5.5-8.5 12-8.5s11 3 12 8.5M22 13.4c.4-1.2 3.6-1.3 4 0M10 25v8.5c0 4 3 7 7 7h14c4 0 7-3 7-7V25M10 28H6.2M38 28h3.8M15 31c1.5.8 3 .9 4.5.6"/><path class="vapor v1" d="M17 9.5c-1.8-2 1.8-3 0-5.8"/><path class="vapor v2" d="M24 8c-1.8-2 1.8-3 0-5.8"/><path class="vapor v3" d="M31 9.5c-1.8-2 1.8-3 0-5.8"/></svg>
       </header>
 
       <div class="hoy">
@@ -309,6 +452,12 @@ legend+*{clear:both}
         <div><dt>Refresco</dt><dd id="refresco">Chicha morada</dd></div>
         <div id="filaPostre"><dt>Postre</dt><dd><span id="postre">Mazamorra morada o arroz con leche</span> <span class="mas" id="postrePrecio">+S/ 3</span></dd></div>
       </dl>
+      <div class="doodles" aria-hidden="true">
+        <svg class="doodle doodle-aji" viewBox="0 0 40 40"><path d="M8 14c2-4 8-6 14-4 7 2 12 8 11 15-1 6-7 9-13 7-7-2-12-9-12-14 0-2 1-3 2-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M20 10c1-3 4-5 7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg class="doodle doodle-pescado" viewBox="0 0 40 40"><path d="M6 20c6-7 16-9 24-4-3 6-9 9-16 9-3 0-6-1-8-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 16c2 1 4 3 4 4s-2 3-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="14" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>
+        <svg class="doodle doodle-cuchara" viewBox="0 0 40 40"><path d="M18 6c5 0 8 4 8 8s-3 7-8 7-8-3-8-7 3-8 8-8ZM18 21v13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg class="doodle doodle-estrellas" viewBox="0 0 40 40"><path d="M10 8l2 4 4 1-4 2-1 4-2-4-4-1 4-2 1-4ZM28 18l1.6 3 3.4.7-3 1.6-.7 3.3-1.6-3-3.4-.7 3-1.6.7-3.3Z" fill="currentColor" stroke="none"/></svg>
+      </div>
     </section>
     <p class="repisa" id="estado">Lunes a sábado de 12 a 4 · hasta agotar stock</p>
   </div>
@@ -327,6 +476,7 @@ legend+*{clear:both}
       <span>Cómo llegar</span>
     </a>
   </div>
+  <p class="vzResumen" id="vzResumen" hidden aria-hidden="true"></p>
   <p class="sr" id="aviso" aria-live="polite"></p>
 
   <figure class="nota" id="notaFig">
@@ -579,6 +729,8 @@ const DIA = {
   // ---------- Pizarra: entradas y fondos ----------
   var ENT = (D.entradas || []).map(plato), FON = (D.fondos || []).map(plato);
   var MARCA = '<svg class="marca" viewBox="0 0 26 26" aria-hidden="true"><path class="c" d="M13.4 3.4c5.3-.1 9.4 4 9.3 9.4-.1 5.2-4.3 9.3-9.6 9.2-5.2-.1-9.3-4.3-9.2-9.5.1-5 3.8-8.8 8.7-9.3"/><path class="v" pathLength="1" d="M7.6 13.2l3.7 4.1L22 4.8"/></svg>';
+  var TACHADO = '<svg class="tachado" viewBox="0 0 100 16" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M2 9c22-6 62-8 96-2"/></svg>';
+  var CIRCULO = '<svg class="circulo" viewBox="0 0 120 46" preserveAspectRatio="none" aria-hidden="true"><path class="c-el" pathLength="1" d="M8 24C6 11 27 4 60 5c31 1 54 8 55 18 1 11-23 19-56 18C27 40 10 34 8 24Z"/><path class="c-ok" pathLength="1" d="M100 15l6 7 13-16"/></svg>';
   function opcion(cont, name, value, texto, o) {
     o = o || {};
     var l = doc.createElement('label'), inp = doc.createElement('input'), n = doc.createElement('span');
@@ -589,6 +741,7 @@ const DIA = {
     l.appendChild(inp);
     l.insertAdjacentHTML('beforeend', MARCA);
     n.className = 'nom'; n.textContent = texto; l.appendChild(n);
+    if (o.agotado) n.insertAdjacentHTML('beforeend', TACHADO);
     if (num(o.extra)) {
       var e = doc.createElement('span'), s = doc.createElement('span');
       e.className = 'extra'; e.textContent = '+S/ ' + num(o.extra); e.setAttribute('aria-hidden', 'true');
@@ -596,6 +749,7 @@ const DIA = {
       l.appendChild(e); l.appendChild(s);
     }
     if (o.agotado) { var se = doc.createElement('span'); se.className = 'sello grano'; se.textContent = '¡Se acabó!'; l.appendChild(se); }
+    if (name === 'entrada' || name === 'fondo') l.insertAdjacentHTML('beforeend', CIRCULO);
     cont.appendChild(l);
   }
   ENT.forEach(function (p, i) { opcion($('entradas'), 'entrada', i, p.nombre, p); });
@@ -742,6 +896,43 @@ const DIA = {
     var datos = { title: 'Menú de hoy · El Huarique de la Tía Carmen', text: 'Menú de hoy: ' + (D.incluye || '') + ' a S/ ' + num(D.precio) + '.', url: URL_PAG };
     if (navigator.share) navigator.share(datos).catch(function (e) { if (!e || e.name !== 'AbortError') copiar(); });
     else copiar();
+  });
+})();
+</script>
+<script id="vistoso-js">
+(function () {
+  'use strict';
+  var doc = document, fMenu = doc.getElementById('fMenu'), btn = doc.getElementById('btnSeparar');
+  var resumen = doc.getElementById('vzResumen'), precioEl = doc.getElementById('precio');
+  if (!fMenu || !btn) return;
+  function num(n) { return Number(n) || 0; }
+  function soles(n) { return 'S/ ' + n.toFixed(2).replace(/\.00$/, ''); }
+  function extraDe(input) {
+    if (!input) return 0;
+    var lbl = input.closest('.plato'), e = lbl && lbl.querySelector('.extra');
+    if (!e) return 0;
+    var m = e.textContent.match(/[\d.]+/);
+    return m ? Number(m[0]) : 0;
+  }
+  function estado() {
+    var e = fMenu.querySelector('input[name="entrada"]:checked'), f = fMenu.querySelector('input[name="fondo"]:checked');
+    if (!e || !f) { if (resumen) { resumen.hidden = true; resumen.textContent = ''; } return false; }
+    if (resumen) {
+      var total = num(precioEl && precioEl.textContent) + extraDe(e) + extraDe(f);
+      resumen.hidden = false;
+      resumen.textContent = '1 menú · ' + soles(total);
+    }
+    return true;
+  }
+  var listoAntes = estado();
+  fMenu.addEventListener('change', function () {
+    var listo = estado();
+    if (listo && !listoAntes) {
+      btn.classList.remove('salto');
+      void btn.offsetWidth;
+      btn.classList.add('salto');
+    }
+    listoAntes = listo;
   });
 })();
 </script>
