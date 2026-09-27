@@ -121,6 +121,42 @@
     .revelar{opacity:1;transform:none}
   }
 </style>
+<style id="vistoso">
+/* ---- Sello de lacre: se parte en dos mitades que caen al abrir ---- */
+.sello-mitad{position:absolute;left:50%;top:50%;z-index:6;width:54px;height:54px;margin:-30px 0 0 -27px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c8324f,#7e1128 70%);box-shadow:inset 0 0 0 4px rgba(255,255,255,.06);pointer-events:none;opacity:0}
+.sello-mitad--izq{clip-path:inset(0 50% 0 0)}
+.sello-mitad--der{clip-path:inset(0 0 0 50%)}
+.abierto .sello-mitad{opacity:1;transition:transform .85s cubic-bezier(.45,0,.8,1) .05s,opacity .15s .05s}
+.abierto .sello-mitad--izq{transform:translate(-30px,70px) rotate(-95deg)}
+.abierto .sello-mitad--der{transform:translate(28px,78px) rotate(110deg)}
+/* ---- La carta sale con un poco más de vida ---- */
+.abierto .sobre__carta{transform:translateY(-62%) rotate(-1.2deg)}
+/* ---- Polaroids: caen girando sobre la mesa ---- */
+.polaroids{position:relative;padding-top:10px;padding-bottom:16px}
+.polaroids::before{content:"";position:absolute;left:6%;right:6%;bottom:4px;height:14px;background:radial-gradient(ellipse at center,rgba(0,0,0,.4),transparent 72%);filter:blur(1px)}
+.polaroid.revelar{transition:transform .8s cubic-bezier(.2,.9,.25,1.2),opacity .6s ease}
+.polaroid.revelar:not(.visible){opacity:0;transform:translateY(-150px) rotate(calc(var(--rot,0deg) * 4 + 200deg)) scale(.8)}
+.polaroid.revelar.visible{transform:rotate(var(--rot,0deg))}
+.visor img{transform:scale(.82);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.visor.abierto img{transform:scale(1)}
+/* ---- Contador: dígitos que se voltean como reloj de tarjetas ---- */
+.contador{perspective:480px}
+.celda b{transform-origin:50% 50%;backface-visibility:hidden}
+.celda b.voltea{animation:volteoDigito .5s ease}
+@keyframes volteoDigito{0%{transform:rotateX(0)}48%{transform:rotateX(-96deg)}52%{transform:rotateX(-96deg)}100%{transform:rotateX(0)}}
+/* ---- Pétalos que caen + corazoncitos al tocar (canvas propio) ---- */
+#petalos{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:62}
+/* ---- Final: la palabra se llena de color como tinta que sube ---- */
+.tinta{position:relative;text-align:center;font-family:var(--manuscrita);font-weight:400;font-size:clamp(42px,15vw,76px);line-height:1.05;margin:2px 0 22px;color:transparent;-webkit-text-stroke:1.3px var(--acento);overflow-wrap:anywhere;padding:0 4px}
+.tinta__relleno{position:absolute;inset:0;color:var(--principal);-webkit-text-stroke:0;clip-path:inset(100% 0 0 0);transition:clip-path 1.7s cubic-bezier(.5,0,.12,1)}
+.final.visible .tinta__relleno{clip-path:inset(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){
+  .sello-mitad{display:none}
+  .polaroid.revelar:not(.visible){opacity:1;transform:none}
+  .tinta__relleno{clip-path:inset(0 0 0 0)!important;transition:none}
+  .celda b.voltea{animation:none}
+}
+</style>
 </head>
 <body class="bloqueado">
 <!-- =========================================================
@@ -138,6 +174,8 @@
       <div class="sobre__para" id="sobrePara"></div>
       <div class="sobre__solapa"></div>
       <div class="sello" id="sello"></div>
+      <div class="sello-mitad sello-mitad--izq" aria-hidden="true"></div>
+      <div class="sello-mitad sello-mitad--der" aria-hidden="true"></div>
     </div>
   </div>
   <div class="intro__sub"><i></i><span id="textoTocar"></span></div>
@@ -181,6 +219,7 @@
     <section class="final revelar" id="final">
       <svg class="adorno" viewBox="0 0 120 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 12h42M76 12h42"/><path d="M60 20s-10-6-10-11a5 5 0 0 1 10-1 5 5 0 0 1 10 1c0 5-10 11-10 11z" fill="currentColor" stroke="none"/></svg>
       <h2 id="tituloFinal"></h2>
+      <div class="tinta" aria-hidden="true"><span id="tintaTexto"></span><span class="tinta__relleno" id="tintaRelleno"></span></div>
       <p id="mensajeFinal"></p>
       <button class="boton" id="btnCorazones">Llénalo de corazones 💞</button>
     </section>
@@ -190,6 +229,7 @@
 </div>
 
 <div class="visor" id="visor" aria-hidden="true"><img alt=""><p></p></div>
+<canvas id="petalos" aria-hidden="true"></canvas>
 <canvas id="particulas"></canvas>
 
 <script>
@@ -241,6 +281,7 @@ No sé qué nos toca vivir después, pero sí sé con quién lo quiero vivir. Co
 
   // --- Cierre ---
   tituloFinal: "Feliz aniversario",
+  palabraFinal: "Te amo",       // palabra o frase corta (1-3 palabras) que se llena de color como tinta al final
   mensajeFinal: "Gracias por elegirme cada día. Te amo más de lo que esta carta alcanza a decir.",
 
   // --- Colores principales ---
@@ -477,6 +518,63 @@ function abrir() {
 }
 $('#intro').addEventListener('click', abrir);
 $('#intro').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') abrir(); });
+</script>
+
+<script id="vistoso-js">
+/* =====================================================================
+   Vistoso: sello partido (CSS), polaroids (CSS), palabra final con tinta,
+   volteo del contador y pétalos + corazoncitos al tocar. No toca DATOS
+   ni las funciones de arriba: solo usa lo que ya existe ($, DATOS, reducir).
+   ===================================================================== */
+
+/* ---- Palabra final con relleno de tinta ---- */
+$('#tintaTexto').textContent = DATOS.palabraFinal;
+$('#tintaRelleno').textContent = DATOS.palabraFinal;
+
+/* ---- Contador: volteo de tarjeta cada vez que cambia un número ---- */
+if (!reducir) {
+  document.querySelectorAll('.celda b').forEach(el => {
+    let anterior = el.textContent;
+    new MutationObserver(() => {
+      if (el.textContent === anterior) return; // el tic() reescribe el número cada segundo aunque no cambie
+      anterior = el.textContent;
+      el.classList.remove('voltea');
+      void el.offsetWidth;
+      el.classList.add('voltea');
+    }).observe(el, { childList: true, characterData: true, subtree: true });
+  });
+}
+
+/* ---- Pétalos cayendo + corazoncitos donde se toca la pantalla ---- */
+if (!reducir) {
+  const lp = $('#petalos'), cp = lp.getContext('2d');
+  function ajustarLp() { const r = devicePixelRatio || 1; lp.width = innerWidth * r; lp.height = innerHeight * r; cp.setTransform(r, 0, 0, r, 0, 0); }
+  ajustarLp(); addEventListener('resize', ajustarLp);
+  const MAX_PET = 9, petalos = [], colPet = [DATOS.colores.acento, '#f0b8c8', DATOS.colores.principal];
+  const petalo = y => ({ x: Math.random() * innerWidth, y: y ?? -20 - Math.random() * innerHeight, s: 8 + Math.random() * 6, vy: .5 + Math.random() * .5, fase: Math.random() * 6, amp: .4 + Math.random() * .7, rot: Math.random() * 6.28, vr: (Math.random() - .5) * .015, color: colPet[(Math.random() * colPet.length) | 0], a: .5 + Math.random() * .3 });
+  let toques = [];
+  function tocar(x, y) { for (let i = 0; i < 5; i++) toques.push({ x: x + (Math.random() - .5) * 14, y: y + (Math.random() - .5) * 14, s: 8 + Math.random() * 8, vy: -(1 + Math.random() * 1.3), vx: (Math.random() - .5) * .8, vida: 1, color: i % 2 ? DATOS.colores.principal : '#ff8fa3' }); }
+  function corazonito(ctx, s) { ctx.beginPath(); ctx.moveTo(0, s * .3); ctx.bezierCurveTo(0, 0, -s * .5, 0, -s * .5, s * .3); ctx.bezierCurveTo(-s * .5, s * .6, 0, s * .75, 0, s); ctx.bezierCurveTo(0, s * .75, s * .5, s * .6, s * .5, s * .3); ctx.bezierCurveTo(s * .5, 0, 0, 0, 0, s * .3); ctx.fill(); }
+  function cuadroLp() {
+    cp.clearRect(0, 0, innerWidth, innerHeight);
+    petalos.forEach(p => {
+      p.y += p.vy; p.fase += .02; p.x += Math.sin(p.fase) * p.amp; p.rot += p.vr;
+      if (p.y > innerHeight + 20) Object.assign(p, petalo(-20));
+      cp.save(); cp.translate(p.x, p.y); cp.rotate(p.rot); cp.globalAlpha = p.a; cp.fillStyle = p.color;
+      cp.beginPath(); cp.ellipse(0, 0, p.s * .55, p.s, 0, 0, Math.PI * 2); cp.fill(); cp.restore();
+    });
+    toques.forEach(c => { c.x += c.vx; c.y += c.vy; c.vida -= .022; cp.save(); cp.translate(c.x, c.y); cp.globalAlpha = Math.max(c.vida, 0); cp.fillStyle = c.color; corazonito(cp, c.s); cp.restore(); });
+    toques = toques.filter(c => c.vida > 0);
+    requestAnimationFrame(cuadroLp);
+  }
+  function iniciarPetalos() {
+    for (let i = 0; i < MAX_PET; i++) petalos.push(petalo());
+    document.addEventListener('pointerdown', e => { if (e.target.closest('#btnMusica,.visor,#intro')) return; tocar(e.clientX, e.clientY); });
+    requestAnimationFrame(cuadroLp);
+  }
+  if (document.body.classList.contains('listo')) iniciarPetalos();
+  else new MutationObserver((_, obsListo) => { if (document.body.classList.contains('listo')) { iniciarPetalos(); obsListo.disconnect(); } }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+}
 </script>
 </body>
 </html>

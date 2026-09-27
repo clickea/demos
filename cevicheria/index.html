@@ -63,47 +63,36 @@ a{color:inherit}
 .skip:focus{left:8px}
 .foot__hours{display:flex;justify-content:center;align-items:flex-start;gap:6px;font-size:12.5px;opacity:.8;max-width:34ch;margin-left:auto!important;margin-right:auto!important;text-align:left}
 .foot__hours svg{width:16px;height:16px;margin-top:1px}
-.dish--grid .ctl{display:flex}
-.search{padding:14px 16px 4px}
-.search__box{display:flex;align-items:center;gap:10px;height:48px;padding:0 14px;border-radius:var(--r-input);background:var(--input-bg);border:1.5px solid var(--input-line);color:var(--muted);transition:border-color .2s}
+.search{padding:20px 20px 14px}
+.search__box{display:flex;align-items:center;gap:8px;height:auto;padding:0 2px 9px;border-radius:0;background:transparent;border:0;border-bottom:1.5px solid var(--input-line);color:var(--muted);transition:border-color .2s}
+.search__box svg{width:16px;height:16px;opacity:.7}
 .search__box:focus-within{border-color:var(--brand)}
-.search__box input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;color:var(--ink);font-size:16px}
-.search__box input::placeholder{color:var(--muted);opacity:.85}
+.search__box input{flex:1;min-width:0;height:36px;border:0;outline:0;background:transparent;color:var(--ink);font-size:15.5px;font-style:italic}
+.search__box input::placeholder{color:var(--muted);opacity:.85;font-style:italic}
 .catnav{position:sticky;top:0;z-index:20;background:var(--nav-bg);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);transition:box-shadow .2s}
 .catnav.stuck{box-shadow:var(--nav-shadow)}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips{display:flex;gap:0;overflow-x:auto;padding:8px 18px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch;counter-reset:catnum;border-bottom:1px solid var(--line)}
 .chips::-webkit-scrollbar{display:none}
-.chip{flex:none;display:inline-flex;align-items:center;min-height:38px;padding:0 15px;border-radius:999px;border:1.5px solid var(--chip-line);background:var(--chip-bg);color:var(--chip-ink);font-size:14px;font-weight:650;white-space:nowrap;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
-.chip[aria-current="true"]{background:var(--chip-on-bg);color:var(--chip-on-ink);border-color:var(--chip-on-bg)}
+.chip{counter-increment:catnum;flex:none;display:inline-flex;align-items:baseline;gap:6px;min-height:40px;margin:0;padding:0 14px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--chip-ink);font-size:13.5px;font-weight:650;white-space:nowrap;text-decoration:none;opacity:.72;transition:color .2s,border-color .2s,opacity .2s}
+.chip:not(:first-child){border-left:1px solid var(--line)}
+.chip::before{content:counter(catnum,decimal-leading-zero);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.03em}
+.chip[aria-current="true"]{background:transparent;color:var(--brand);border-color:transparent;border-bottom-color:var(--brand);opacity:1}
+.chip[aria-current="true"]::before{color:var(--brand)}
 main{padding-bottom:8px}
 .cat{padding:26px 16px 4px;scroll-margin-top:calc(var(--navh,58px) + 2px)}
 .cat__head{margin:0 2px 14px}
 .cat__head h2{margin:0;font-family:var(--f-display);font-size:26px;line-height:1.1}
 .cat__head p{margin:4px 0 0;color:var(--muted);font-size:13.5px}
-.cat__list{display:grid;gap:12px}
-.dish{position:relative;display:grid;grid-template-columns:var(--ph-size,108px) 1fr;gap:13px;padding:12px;background:var(--card);border-radius:var(--r);box-shadow:var(--card-shadow)}
-.dish--rowr{grid-template-columns:1fr var(--ph-size,108px)}
-.dish--rowr .dish__ph{order:2}
-.dish__ph{width:100%;aspect-ratio:1;border-radius:var(--r-ph);overflow:hidden;background:var(--ph-bg)}
-.dish__ph img,.feat__ph img{width:100%;height:100%;object-fit:cover}
-.dish__body{display:flex;flex-direction:column;min-width:0}
-.dish__name{margin:0 0 3px;font-family:var(--f-name);font-size:16.5px;line-height:1.22;font-weight:var(--w-name,700)}
-.dish__desc{margin:0 0 10px;color:var(--muted);font-size:13.5px;line-height:1.42}
-.dish__foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
-.dish--big{display:block;padding:0;overflow:hidden}
-.dish--big .dish__ph{aspect-ratio:16/10;border-radius:0}
-.dish--big .dish__body{padding:14px 16px 16px}
-.dish--big .dish__name{font-size:19px}
-.cat__list--grid{grid-template-columns:1fr 1fr}
-.dish--grid{display:flex;flex-direction:column;padding:0;overflow:hidden;gap:0}
-.dish--grid .dish__ph{aspect-ratio:1;border-radius:0}
-.dish--grid .dish__body{flex:1;padding:10px 11px 11px}
-.dish--grid .dish__name{font-size:15px}
-.dish--grid .dish__desc{font-size:12.5px;margin-bottom:8px}
-.dish--grid .dish__foot{flex-direction:column;align-items:stretch;gap:8px}
-.dish--grid .add,.dish--grid .stepper{width:100%;justify-content:center}
-.dish--grid .stepper{justify-content:space-between}
-.dish--grid .tags{position:absolute;top:8px;left:8px;margin:0}
+.cat__list{display:block}
+.dish{position:relative;display:block;padding:15px 2px;background:transparent;border-radius:0;box-shadow:none;border-bottom:1px dashed var(--line)}
+.cat__list .dish:last-child{border-bottom:0}
+.dish__body{display:block;min-width:0}
+.dish__row{display:flex;align-items:baseline;gap:8px}
+.dish__leader{flex:1;min-width:14px;align-self:center;border-bottom:1.5px dotted var(--muted);opacity:.4}
+.dish__name{margin:0;font-family:var(--f-name);font-size:16.5px;line-height:1.28;font-weight:var(--w-name,700);flex:none;max-width:72%}
+.dish__desc{margin:5px 0 0;color:var(--muted);font-size:13.5px;line-height:1.45;max-width:48ch}
+.dish__foot{margin-top:8px;display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.dish__num{display:block;font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:2px;text-transform:uppercase}
 .price{font-weight:800;font-size:17px;color:var(--price);white-space:nowrap;font-variant-numeric:tabular-nums}
 .price small{font-size:11px;font-weight:600;color:var(--muted)}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 7px;padding:0;list-style:none}
@@ -112,9 +101,9 @@ main{padding-bottom:8px}
 .tag--spicy{background:var(--tag-spicy-bg);color:var(--tag-spicy-ink)}
 .tag--new{background:var(--tag-new-bg);color:var(--tag-new-ink)}
 .ctl{display:inline-flex}
-.add{display:inline-flex;align-items:center;gap:5px;height:40px;padding:0 15px 0 11px;border:0;border-radius:999px;background:var(--btn-bg);color:var(--btn-ink);font-weight:750;font-size:14px;transition:transform .12s,filter .2s}
-.add svg{width:18px;height:18px;stroke-width:2.4}
-.add:active{transform:scale(.96)}
+.add{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:0 6px;border:0;border-bottom:1.5px solid var(--brand);border-radius:0;background:transparent;color:var(--brand);font-weight:800;font-size:13.5px;letter-spacing:.02em;text-transform:uppercase;transition:transform .12s,opacity .2s}
+.add svg{display:none}
+.add:active{transform:scale(.96);opacity:.7}
 .stepper{display:inline-flex;align-items:center;height:40px;border-radius:999px;background:var(--step-bg);color:var(--step-ink)}
 .stepper button{display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:inherit}
 .stepper button svg{width:18px;height:18px;stroke-width:2.4}
@@ -123,27 +112,25 @@ main{padding-bottom:8px}
 .ill svg{width:54%;height:auto;stroke-width:2.4}
 .ill svg .liq{fill:var(--ill);stroke:none}
 .ill__word{position:absolute;left:6px;right:6px;bottom:9%;text-align:center;font-family:var(--f-display);font-size:12px;line-height:1.12;font-weight:700;color:var(--ill-word,var(--ill-ink))}
-.feat__ph.ill svg{width:40%}
-.feat__ph.ill .ill__word{font-size:16px}
-.dish--grid .ill__word{font-size:15px}
-.dish--big .ill__word{font-size:15px;bottom:14px}
-.featured{padding:22px 0 0}
-.featured__head{padding:0 18px 10px}
+.feat__ph.ill svg{width:32%}
+.feat__ph.ill .ill__word{font-size:17px}
+.featured{padding:24px 0 4px}
+.featured__head{padding:0 18px 12px}
 .featured__head h2{margin:0;font-family:var(--f-display);font-size:22px;line-height:1.1}
 .featured__head p{margin:3px 0 0;font-size:13px;color:var(--muted)}
-.rail{display:flex;gap:12px;overflow-x:auto;padding:4px 16px 14px;scroll-snap-type:x mandatory;scroll-padding:0 16px;scrollbar-width:none}
-.rail::-webkit-scrollbar{display:none}
-.feat{flex:0 0 min(64%,250px);scroll-snap-align:start;display:flex;flex-direction:column;border-radius:var(--r);overflow:hidden;background:var(--card);box-shadow:var(--card-shadow)}
-.feat__ph{aspect-ratio:4/3;overflow:hidden;background:var(--ph-bg)}
-.feat__body{display:flex;flex-direction:column;gap:8px;flex:1;padding:11px 12px 12px}
-.feat__name{margin:0;font-family:var(--f-name);font-size:15px;line-height:1.25;font-weight:var(--w-name,700)}
-.feat__foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:6px}
-.feat .price{font-size:15.5px}
-.feat .add{height:36px;padding:0 12px 0 9px;font-size:13px}
-.feat .add span{display:none}
-.feat .add{width:36px;padding:0;justify-content:center}
-.feat .stepper{height:36px}
-.feat .stepper button{width:34px;height:36px}
+.rail{display:flex;flex-direction:column;gap:22px;padding:2px 18px 22px;overflow:visible}
+.feat{flex:none;width:100%;display:block;border-radius:2px;overflow:hidden;background:transparent;box-shadow:none;border-bottom:1px solid var(--line);padding-bottom:20px}
+.rail .feat:last-child{border-bottom:0}
+.feat__ph{width:100%;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--ph-bg)}
+.feat__ph img{width:100%;height:100%;object-fit:cover}
+.feat__body{display:flex;flex-direction:column;gap:6px;padding:12px 2px 0}
+.feat__name{margin:0;font-family:var(--f-name);font-size:19px;line-height:1.25;font-weight:var(--w-name,700)}
+.feat__foot{margin-top:6px;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.feat .price{font-size:16.5px}
+.feat .add{min-height:44px}
+.feat .add span{display:inline}
+.feat .stepper{min-height:44px}
+.feat .stepper button{width:40px;height:40px}
 .empty{margin:30px 24px 10px;text-align:center;font-size:16px;font-weight:700}
 .empty span{display:block;margin-top:6px;font-weight:400;font-size:14px;color:var(--muted)}
 .foot{margin-top:26px;padding:30px 20px 36px;text-align:center;background:var(--foot-bg);color:var(--foot-ink)}
@@ -154,17 +141,23 @@ body.has-cart .foot{padding-bottom:112px}
 .foot__wa a{padding:8px 14px;border-radius:999px;border:1px solid currentColor;margin-top:4px}
 .foot__small{font-size:12px;opacity:.7;margin-top:10px!important}
 .credit{margin-top:18px!important;font-size:11.5px;letter-spacing:.04em;opacity:.55}
-.cartbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;padding:10px 12px calc(12px + env(safe-area-inset-bottom));pointer-events:none}
-.cartbar button{pointer-events:auto;width:min(100%,496px);display:flex;align-items:center;gap:12px;min-height:58px;padding:0 10px 0 10px;border:0;border-radius:var(--r-bar);background:var(--bar-bg);color:var(--bar-ink);box-shadow:0 14px 34px -10px rgba(0,0,0,.45);font-weight:750;font-size:15.5px;text-align:left}
-.cartbar__count{display:grid;place-items:center;min-width:36px;height:36px;padding:0 8px;border-radius:12px;background:var(--bar-count-bg);color:var(--bar-count-ink);font-weight:800}
-.cartbar__label{flex:1}
-.cartbar__total{padding:9px 13px;border-radius:12px;background:var(--bar-total-bg);color:var(--bar-total-ink);font-weight:800;font-variant-numeric:tabular-nums}
+.cartbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;padding:16px 12px calc(12px + env(safe-area-inset-bottom));pointer-events:none}
+.cartbar button{position:relative;pointer-events:auto;width:min(100%,496px);display:flex;align-items:center;gap:12px;min-height:58px;padding:0 10px 0 10px;border:0;border-radius:4px 4px var(--r-bar) var(--r-bar);background:var(--bar-bg);color:var(--bar-ink);box-shadow:0 14px 34px -10px rgba(0,0,0,.45);font-weight:750;font-size:15.5px;text-align:left}
+.cartbar button::before{content:"";position:absolute;left:10px;right:10px;top:-6px;height:7px;background-image:linear-gradient(45deg,var(--bar-bg) 50%,transparent 50%),linear-gradient(-45deg,var(--bar-bg) 50%,transparent 50%);background-size:12px 7px;background-position:0 0;background-repeat:repeat-x}
+.cartbar__count{display:grid;place-items:center;min-width:36px;height:36px;padding:0 8px;border-radius:6px;background:var(--bar-count-bg);color:var(--bar-count-ink);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.cartbar__label{flex:1;letter-spacing:.01em}
+.cartbar__total{padding:9px 13px;border-radius:6px;background:var(--bar-total-bg);color:var(--bar-total-ink);font-weight:800;font-variant-numeric:tabular-nums;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 .cartbar.pop button{animation:rise .35s cubic-bezier(.2,.9,.3,1.2)}
+.cartbar.bump button{animation:bump .3s ease}
 @keyframes rise{from{transform:translateY(120%)}to{transform:none}}
+@keyframes bump{0%{transform:scale(1)}35%{transform:scale(1.045) translateY(-2px)}100%{transform:scale(1)}}
+.fly1{position:fixed;z-index:50;transform:translate(-50%,-50%);font-weight:800;font-size:13px;pointer-events:none;animation:fly1 .65s ease forwards}
+@keyframes fly1{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--dx,0px)),calc(-50% + var(--dy,0px))) scale(.6)}}
 .toast{position:fixed;left:50%;bottom:92px;z-index:40;max-width:calc(100% - 40px);transform:translate(-50%,20px);padding:10px 16px;border-radius:999px;background:var(--toast-bg);color:var(--toast-ink);font-size:13.5px;font-weight:650;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 body:not(.has-cart) .toast{bottom:24px}
-.sheet{width:min(100%,520px);max-width:100%;max-height:92vh;max-height:92dvh;margin:auto auto 0;padding:0;border:0;border-radius:24px 24px 0 0;background:var(--sheet-bg);color:var(--ink);overflow:auto;overscroll-behavior:contain}
+.sheet{position:relative;width:min(100%,520px);max-width:100%;max-height:92vh;max-height:92dvh;margin:auto auto 0;padding:0;border:0;border-radius:6px 6px 0 0;background:var(--sheet-bg);color:var(--ink);overflow:auto;overscroll-behavior:contain}
+.sheet::before{content:"";position:absolute;left:0;right:0;top:0;height:9px;transform:translateY(-8px);background-image:linear-gradient(45deg,var(--sheet-bg) 50%,transparent 50%),linear-gradient(-45deg,var(--sheet-bg) 50%,transparent 50%);background-size:14px 9px;background-position:0 0;background-repeat:repeat-x}
 .sheet[open]{animation:sheetIn .32s cubic-bezier(.2,.8,.2,1)}
 @keyframes sheetIn{from{transform:translateY(40%);opacity:.4}to{transform:none;opacity:1}}
 .sheet::backdrop{background:rgba(10,6,4,.55);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
@@ -180,12 +173,12 @@ body:not(.has-cart) .toast{bottom:24px}
 .line__info strong{font-size:15px;line-height:1.25}
 .line__info span{font-size:12.5px;color:var(--muted)}
 .line .ctl{grid-area:ctl}
-.line__sub{grid-area:sub;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.line__sub{grid-area:sub;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 .line .stepper{height:36px}
 .line .stepper button{width:36px;height:36px}
 .line--empty{display:block;color:var(--muted);text-align:center;padding:24px 0}
 .sum{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:15px}
-.sum strong{font-size:21px;font-variant-numeric:tabular-nums;color:var(--price)}
+.sum strong{font-size:21px;font-variant-numeric:tabular-nums;color:var(--price);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 .sum__note{margin:2px 0 8px;font-size:12.5px;color:var(--muted)}
 .form{display:grid;gap:14px;margin:14px 0 18px;padding:16px;border-radius:18px;background:var(--surface-2)}
 .form__t{margin:0;font-size:15px;font-weight:800}
@@ -207,7 +200,7 @@ body:not(.has-cart) .toast{bottom:24px}
 .seg input:checked+span{border-color:var(--brand);background:var(--seg-on-bg);color:var(--seg-on-ink)}
 .seg input:focus-visible+span{outline:3px solid var(--focus);outline-offset:2px}
 .sheet__cta{position:sticky;bottom:calc(-22px - env(safe-area-inset-bottom));margin:6px -18px calc(-22px - env(safe-area-inset-bottom));padding:12px 18px calc(14px + env(safe-area-inset-bottom));background:var(--sheet-bg);box-shadow:0 -10px 20px -14px rgba(0,0,0,.35)}
-.wa-btn b{margin-left:auto;padding:6px 10px;border-radius:10px;background:rgba(0,0,0,.16);font-variant-numeric:tabular-nums}
+.wa-btn b{margin-left:auto;padding:6px 10px;border-radius:10px;background:rgba(0,0,0,.16);font-variant-numeric:tabular-nums;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 .wa-btn span{flex:none}
 .wa-btn{display:flex;align-items:center;justify-content:flex-start;padding:0 10px 0 18px;gap:10px;min-height:56px;border-radius:16px;background:#1faa55;color:#fff;font-weight:800;font-size:16.5px;text-decoration:none;box-shadow:0 10px 24px -10px rgba(31,170,85,.7)}
 .wa-btn svg{width:24px;height:24px}
@@ -218,15 +211,17 @@ body:not(.has-cart) .toast{bottom:24px}
 }
 @media (max-width:359px){
 .brand__name{font-size:29px}
-.dish{--ph-size:92px}
 .seg__opts--3 span{font-size:13px}
 }
 @media (prefers-reduced-motion:reduce){
 *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
-.dish--grid .price{align-self:flex-start}
-.dish--big .ill svg{width:26%}
-.dish--big .ill{padding-bottom:8%}
+.cat{transition:background-color .6s ease}
+.cat:nth-of-type(even){background:var(--page-alt,var(--surface-2))}
+.cat__head.reveal{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s ease}
+.cat__head.reveal.in{opacity:1;transform:none}
+.facts{background:transparent;box-shadow:none;border-radius:0;border-top:1.5px solid currentColor;border-bottom:1.5px solid currentColor;margin-top:14px;opacity:.95}
+.facts .fact + .fact{border-left:1px dashed color-mix(in srgb, currentColor 35%, transparent)}
 :root{
 --page:#D6E6EF;--bg:#F4F9FB;--card:#FFFFFF;--surface-2:#EAF3F8;--ink:#0B2540;--muted:#566F86;--line:#DDE9F0;
 --brand:#0E5E9C;--icon:#0E7CC2;--price:#0B2540;--focus:#FF7A59;
@@ -246,9 +241,10 @@ body:not(.has-cart) .toast{bottom:24px}
 --bar-bg:#0B2540;--bar-ink:#fff;--bar-count-bg:#D8F06A;--bar-count-ink:#0B2540;--bar-total-bg:#FF7A59;--bar-total-ink:#fff;
 --toast-bg:#0B2540;--toast-ink:#fff;--sheet-bg:#FFFFFF;--warn-bg:#FFF1EC;--warn-ink:#8A2F1C;--danger:#D4412A;--seg-on-bg:#EAF3FB;--seg-on-ink:#0B2540;
 }
-body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
+body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),linear-gradient(180deg,#CFE3EE,#E7F1F6);background-size:16px 16px,auto;background-repeat:repeat,no-repeat}
 .hero{--hero-h:350px}
 .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:34px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 34' preserveAspectRatio='none'%3E%3Cpath d='M0 20C50 4 100 4 150 16s100 16 150 4 70-14 100-6v20H0z' fill='%23F4F9FB'/%3E%3C/svg%3E") no-repeat bottom/100% 100%}
+.hero__deco{position:absolute;left:0;right:0;top:16px;width:100%;height:auto;opacity:.4;pointer-events:none}
 .hero__in{padding-bottom:46px}
 .brand__name{font-size:42px;font-weight:400;line-height:.95}
 .brand__name em{font-style:italic;color:#D8F06A}
@@ -256,19 +252,16 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
 .facts{margin-top:-8px;position:relative;z-index:1}
 .cat__head{display:grid;grid-template-columns:auto 1fr;align-items:end;column-gap:10px}
 .cat__head .wave{grid-row:1;width:36px;height:14px;color:#FF7A59;margin-bottom:8px;stroke-width:2.4}
+.cat__head.reveal .wave{stroke-dasharray:50;stroke-dashoffset:50;transition:stroke-dashoffset .7s ease}
+.cat__head.reveal.in .wave{stroke-dashoffset:0}
 .cat__head h2{grid-row:1;font-size:32px;font-weight:400;letter-spacing:-.005em}
 .cat__head p{grid-column:1/-1}
 .featured__head h2{font-weight:400;font-size:26px}
 .price{font-family:var(--f-display);font-weight:400;font-size:21px;background:linear-gradient(transparent 62%,#E6F59A 62%,#E6F59A 92%,transparent 92%);padding:0 2px}
 .feat .price{font-size:19px}
-.dish--big .dish__name{font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.1}
-.dish--big .dish__ph{aspect-ratio:16/11}
-.dish--big .dish__body{padding:14px 16px 16px}
-.dish--big .tags{position:absolute;top:12px;left:12px;margin:0}
-.dish--big .tag{background:rgba(255,255,255,.94);box-shadow:0 2px 8px rgba(0,0,0,.12)}
-.dish--grid .tag{background:rgba(255,255,255,.94);box-shadow:0 2px 8px rgba(0,0,0,.12)}
-.add{box-shadow:inset 0 0 0 1.5px rgba(11,37,64,.08)}
-.sum strong{font-family:var(--f-display);font-weight:400;font-size:24px}
+.feat__name{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.08}
+.feat__ph{aspect-ratio:16/11}
+.sum strong{font-weight:600;font-size:24px}
 .sheet__head h2,.foot__name{font-weight:400}
 .foot{position:relative;padding-top:56px}
 .foot::before{content:"";position:absolute;left:0;right:0;top:-1px;height:30px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 30' preserveAspectRatio='none'%3E%3Cpath d='M0 0h400v10c-40-10-80 6-130 12S150 8 100 14 30 22 0 12z' fill='%23F4F9FB'/%3E%3C/svg%3E") no-repeat top/100% 100%}
@@ -281,7 +274,7 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
 <body>
 <a class="skip" href="#menu">Saltar al menú</a>
 <div id="app"><noscript><p style="padding:24px">Activa JavaScript para ver la carta y hacer tu pedido.</p></noscript></div>
-<script>window.MENU={"id":"cevicheria","name":"Brisa Chalaca","nameHTML":"Brisa \u003cem>Chalaca\u003c/em>","kicker":"Cevichería · Cocina marina","tagline":"Pesca del día, limón recién exprimido y ají limo. Ceviche como manda la costa.","address":"Calle Los Pescadores 318, Magdalena del Mar","hero":{"img":"1761314037195-1508e44c6bd2"},"hours":{"0":[["11:00","17:30"]],"2":[["11:00","17:00"]],"3":[["11:00","17:00"]],"4":[["11:00","17:00"]],"5":[["11:00","17:00"]],"6":[["11:00","17:30"]]},"hoursLabel":"Mar a vie 11:00 a. m. – 5:00 p. m. · Sáb y dom 11:00 a. m. – 5:30 p. m. · Lunes cerrado","delivery":"S/ 6 a S/ 10 según zona · llega en 30–45 min","deliveryFee":"S/ 6 a S/ 10","pickup":"Listo en 15 min","deliveryShort":"30–45 min · desde S/ 6","pickupShort":"Listo en 15 min","searchPh":"Busca “ceviche”, “jalea”, “causa”…","emptyHint":"Prueba con “ceviche”, “leche de tigre” o “arroz”.","notePh":"Ej.: sin cebolla, ají aparte, bien picante","featuredTitle":"Lo que pide la mesa","featuredSub":"Los clásicos de la casa, recién salidos del mar","layout":"row","featured":["v3","l1","h1","k1","e3"],"categories":[{"id":"ceviches","name":"Ceviches","note":"Pescado del día cortado al momento, limón norteño, ají limo, camote y choclo.","layout":"big","items":[{"id":"v1","name":"Ceviche clásico","desc":"Pesca del día en leche de tigre de la casa, cebolla roja, ají limo, camote glaseado y choclo desgranado.","price":36,"img":"1535399831218-d5bd36d1a6b3","alt":"Ceviche de pescado con cebolla roja y camote","tags":["top"]},{"id":"v2","name":"Ceviche mixto","desc":"Pescado, pulpo, langostinos y calamar en leche de tigre al ají amarillo, con cancha y choclo.","price":42,"img":"1654018334224-4887d9e85ffe","alt":"Ceviche mixto con mariscos y cebolla"},{"id":"v3","name":"Ceviche carretillero","desc":"Nuestro clásico coronado con chicharrón de calamar crocante. El engreído del malecón.","price":44,"img":"1761314036959-42fa6eac59db","alt":"Ceviche con chicharrón de calamar, camote y choclo","tags":["top","house"]},{"id":"v4","name":"Ceviche al rocoto","desc":"Pesca del día en leche de tigre de rocoto, con chicharrón de calamar, camote y choclo. Picantito, como pide el cuerpo.","price":40,"img":"1761314036615-f1a9e69514d3","alt":"Ceviche en leche de tigre de rocoto con calamar frito","tags":["spicy"]},{"id":"v5","name":"Ceviche de conchas negras","desc":"Conchas negras de Tumbes en su jugo, con limón, rocoto picado y cancha serrana.","price":48,"ill":"shell","color":"#FF7A59","illWord":"Conchas negras","tags":["spicy"]}]},{"id":"tiraditos","name":"Tiraditos","items":[{"id":"t1","name":"Tiradito al ají amarillo","desc":"Láminas finas de pescado bañadas en crema de ají amarillo y limón, con choclo y camote.","price":36,"ill":"fish","color":"#F2B632","illWord":"Tiradito","tags":["top"]},{"id":"t2","name":"Tiradito bicolor","desc":"Mitad ají amarillo, mitad rocoto. Para los que no saben elegir.","price":38,"ill":"fish","color":"#FF7A59","illWord":"Bicolor","tags":["spicy","new"]},{"id":"t3","name":"Tiradito nikkei","desc":"Pescado en láminas con salsa ponzu, ajonjolí tostado, cebollita china y un toque de sillao.","price":39,"ill":"fish","color":"#9BD37A","illWord":"Nikkei"}]},{"id":"leche","name":"Leche de tigre","items":[{"id":"l1","name":"Leche de tigre clásica","desc":"El jugo del ceviche en copa, con trocitos de pescado, choclo y cancha. Levanta a cualquiera.","price":22,"img":"1562707774-553917f561df","alt":"Leche de tigre con pescado y cebolla","tags":["top"]},{"id":"l2","name":"Leche de pantera","desc":"Con conchas negras y un toque de rocoto. Intensa y bien marina.","price":28,"ill":"glass","color":"#5B6B78","illWord":"Leche de pantera","tags":["spicy"]},{"id":"l3","name":"Vuelve a la vida","desc":"Copa de mariscos: pulpo, langostinos y conchas en leche de tigre bien helada.","price":30,"ill":"cocktail","color":"#FF7A59","illWord":"Vuelve a la vida"}]},{"id":"arroces","name":"Arroces","items":[{"id":"a1","name":"Arroz con mariscos","desc":"Arroz meloso al ají panca y ají amarillo con langostinos, pulpo, calamar y conchas.","price":42,"img":"1680674774705-90b4904b3a7f","alt":"Arroz con mariscos y langostinos","tags":["top"]},{"id":"a2","name":"Arroz norteño con mariscos","desc":"Arroz al culantro con conchas, calamares y ají amarillo. Sabor de Chiclayo.","price":44,"img":"1768204039740-9e418a65328b","alt":"Arroz amarillo con calamares y conchas","tags":["new"]},{"id":"a3","name":"Chaufa de mariscos","desc":"Salteado al wok con langostinos, pulpo, calamar, huevo y cebollita china.","price":40,"img":"1761314025611-957a20e3e8a3","alt":"Arroz chaufa con langostino y ajonjolí"}]},{"id":"chicharrones","name":"Chicharrones","items":[{"id":"h1","name":"Jalea mixta","desc":"Pescado, calamar, pulpo y langostinos crocantes, con yuca frita, salsa criolla y tártara. Para compartir.","price":58,"img":"1761314025807-34cfab3c18e6","alt":"Jalea de mariscos fritos con salsa criolla","tags":["top","share"]},{"id":"h2","name":"Chicharrón de pescado","desc":"Trozos de pescado apanados y crujientes, con yuca frita y salsa criolla.","price":36,"img":"1697748836791-9ddf7e616ece","alt":"Pescado frito crocante con papas y limón"},{"id":"h3","name":"Chicharrón de calamar","desc":"Anillos de calamar crocantes con tres cremas de la casa y limón.","price":38,"img":"1778600731531-7d836a32704c","alt":"Calamares fritos con tres salsas"},{"id":"h4","name":"Pescado frito entero","desc":"Pescado del día frito entero, con arroz, yuca y ensalada criolla.","price":46,"img":"1665401015549-712c0dc5ef85","alt":"Pescado frito entero con limón y tomate"}]},{"id":"causas","name":"Causas y entradas","items":[{"id":"k1","name":"Causa limeña de langostinos","desc":"Papa amarilla prensada al ají amarillo, rellena de langostinos, palta y huevo.","price":32,"img":"1766456127047-806cdecdc139","alt":"Causa limeña con salsa de ají amarillo","tags":["top"]},{"id":"k2","name":"Causa acevichada","desc":"Causa suave coronada con ceviche de pescado y crema de rocoto.","price":34,"ill":"plate","color":"#F2C94C","illWord":"Causa acevichada","tags":["house"]},{"id":"k3","name":"Conchitas a la parmesana (12 u.)","desc":"Conchas de abanico gratinadas con queso parmesano, mantequilla y limón.","price":38,"img":"1761314037083-329b3050b351","alt":"Conchitas a la parmesana gratinadas"}]},{"id":"bebidas","name":"Bebidas","layout":"grid","items":[{"id":"e1","name":"Chicha morada (jarra)","desc":"Maíz morado, piña y canela. De la casa.","price":16,"img":"1542518392-13317b1ee2a2","alt":"Chicha morada con hielo"},{"id":"e2","name":"Limonada (jarra)","desc":"Limón recién exprimido, con o sin hierbabuena.","price":16,"img":"1507281549113-040fcfef650e","alt":"Limonada con limones"},{"id":"e3","name":"Pisco sour","desc":"Pisco quebranta, limón y amargo de angostura. Solo +18.","price":24,"img":"1674752722934-e9bcc59cb058","alt":"Pisco sour espumoso","tags":["top"]},{"id":"e4","name":"Maracuyá sour","desc":"Pisco con maracuyá fresco. Frutal y espumoso. Solo +18.","price":24,"img":"1696594935685-1ad6ba69e83e","alt":"Cóctel de maracuyá"},{"id":"e5","name":"Cerveza 620 ml","desc":"Cusqueña o Pilsen, bien heladas. Solo +18.","price":14,"img":"1608270586620-248524c67de9","alt":"Jarra de cerveza"},{"id":"e6","name":"Inca Kola 500 ml","desc":"Para acompañar el ceviche como se debe.","price":6,"ill":"bottle","color":"#F2C200","illWord":"Inca Kola"}]},{"id":"postres","name":"Postres","layout":"grid","items":[{"id":"z1","name":"Suspiro a la limeña","desc":"Manjar blanco con merengue al oporto.","price":14,"ill":"dessert","color":"#F4D9A6","illWord":"Suspiro"},{"id":"z2","name":"Picarones","desc":"Con miel de chancaca y canela.","price":16,"ill":"rings","color":"#E39B4B","illWord":"Picarones","tags":["top"]},{"id":"z3","name":"Crema volteada","desc":"Flan casero con caramelo.","price":12,"img":"1780798465831-de1e4d58ee46","alt":"Flan con caramelo"},{"id":"z4","name":"Arroz con leche","desc":"Cremoso, con canela y pasas.","price":10,"img":"1777613112969-d7511ddfbe15","alt":"Arroz con leche cremoso"}]}],"emblem":"\u003csvg class=\"brand__emblem\" viewBox=\"0 0 100 100\" role=\"img\" aria-label=\"Emblema de Brisa Chalaca\">\n\u003cdefs>\u003cclipPath id=\"bcClip\">\u003ccircle cx=\"50\" cy=\"50\" r=\"40\"/>\u003c/clipPath>\u003c/defs>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"49\" fill=\"#F4F9FB\"/>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"45\" fill=\"#0B2540\"/>\n\u003cg clip-path=\"url(#bcClip)\">\n\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"#12507F\"/>\n\u003ccircle cx=\"50\" cy=\"52\" r=\"17\" fill=\"#D8F06A\"/>\n\u003cpath d=\"M0 55c8-6 17-6 25 0s17 6 25 0 17-6 25 0 17 6 25 0v45H0z\" fill=\"#0B2540\"/>\n\u003cpath d=\"M4 56c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0\" fill=\"none\" stroke=\"#fff\" stroke-width=\"3.2\" stroke-linecap=\"round\"/>\n\u003cpath d=\"M-4 68c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0 14-5 21 0\" fill=\"none\" stroke=\"#7FC4E8\" stroke-width=\"2.6\" stroke-linecap=\"round\"/>\n\u003cpath d=\"M4 80c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0\" fill=\"none\" stroke=\"#FF7A59\" stroke-width=\"2.4\" stroke-linecap=\"round\"/>\n\u003c/g>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"40\" fill=\"none\" stroke=\"#D8F06A\" stroke-width=\"1.6\"/>\n\u003c/svg>","heroDeco":"","catDeco":"\u003csvg class=\"wave\" viewBox=\"0 0 36 14\" aria-hidden=\"true\">\u003cpath d=\"M1 9c4-6 8-6 12 0s8 6 12 0 7-5 10-2\"/>\u003c/svg>","footDeco":""};</script>
+<script>window.MENU={"id":"cevicheria","name":"Brisa Chalaca","nameHTML":"Brisa \u003cem>Chalaca\u003c/em>","kicker":"Cevichería · Cocina marina","tagline":"Pesca del día, limón recién exprimido y ají limo. Ceviche como manda la costa.","address":"Calle Los Pescadores 318, Magdalena del Mar","hero":{"img":"1761314037195-1508e44c6bd2"},"hours":{"0":[["11:00","17:30"]],"2":[["11:00","17:00"]],"3":[["11:00","17:00"]],"4":[["11:00","17:00"]],"5":[["11:00","17:00"]],"6":[["11:00","17:30"]]},"hoursLabel":"Mar a vie 11:00 a. m. – 5:00 p. m. · Sáb y dom 11:00 a. m. – 5:30 p. m. · Lunes cerrado","delivery":"S/ 6 a S/ 10 según zona · llega en 30–45 min","deliveryFee":"S/ 6 a S/ 10","pickup":"Listo en 15 min","deliveryShort":"30–45 min · desde S/ 6","pickupShort":"Listo en 15 min","searchPh":"Busca “ceviche”, “jalea”, “causa”…","emptyHint":"Prueba con “ceviche”, “leche de tigre” o “arroz”.","notePh":"Ej.: sin cebolla, ají aparte, bien picante","featuredTitle":"Lo que pide la mesa","featuredSub":"Los clásicos de la casa, recién salidos del mar","layout":"row","featured":["v3","l1","h1","k1","e3"],"categories":[{"id":"ceviches","name":"Ceviches","note":"Pescado del día cortado al momento, limón norteño, ají limo, camote y choclo.","layout":"big","items":[{"id":"v1","name":"Ceviche clásico","desc":"Pesca del día en leche de tigre de la casa, cebolla roja, ají limo, camote glaseado y choclo desgranado.","price":36,"img":"1535399831218-d5bd36d1a6b3","alt":"Ceviche de pescado con cebolla roja y camote","tags":["top"]},{"id":"v2","name":"Ceviche mixto","desc":"Pescado, pulpo, langostinos y calamar en leche de tigre al ají amarillo, con cancha y choclo.","price":42,"img":"1654018334224-4887d9e85ffe","alt":"Ceviche mixto con mariscos y cebolla"},{"id":"v3","name":"Ceviche carretillero","desc":"Nuestro clásico coronado con chicharrón de calamar crocante. El engreído del malecón.","price":44,"img":"1761314036959-42fa6eac59db","alt":"Ceviche con chicharrón de calamar, camote y choclo","tags":["top","house"]},{"id":"v4","name":"Ceviche al rocoto","desc":"Pesca del día en leche de tigre de rocoto, con chicharrón de calamar, camote y choclo. Picantito, como pide el cuerpo.","price":40,"img":"1761314036615-f1a9e69514d3","alt":"Ceviche en leche de tigre de rocoto con calamar frito","tags":["spicy"]},{"id":"v5","name":"Ceviche de conchas negras","desc":"Conchas negras de Tumbes en su jugo, con limón, rocoto picado y cancha serrana.","price":48,"ill":"shell","color":"#FF7A59","illWord":"Conchas negras","tags":["spicy"]}]},{"id":"tiraditos","name":"Tiraditos","items":[{"id":"t1","name":"Tiradito al ají amarillo","desc":"Láminas finas de pescado bañadas en crema de ají amarillo y limón, con choclo y camote.","price":36,"ill":"fish","color":"#F2B632","illWord":"Tiradito","tags":["top"]},{"id":"t2","name":"Tiradito bicolor","desc":"Mitad ají amarillo, mitad rocoto. Para los que no saben elegir.","price":38,"ill":"fish","color":"#FF7A59","illWord":"Bicolor","tags":["spicy","new"]},{"id":"t3","name":"Tiradito nikkei","desc":"Pescado en láminas con salsa ponzu, ajonjolí tostado, cebollita china y un toque de sillao.","price":39,"ill":"fish","color":"#9BD37A","illWord":"Nikkei"}]},{"id":"leche","name":"Leche de tigre","items":[{"id":"l1","name":"Leche de tigre clásica","desc":"El jugo del ceviche en copa, con trocitos de pescado, choclo y cancha. Levanta a cualquiera.","price":22,"img":"1562707774-553917f561df","alt":"Leche de tigre con pescado y cebolla","tags":["top"]},{"id":"l2","name":"Leche de pantera","desc":"Con conchas negras y un toque de rocoto. Intensa y bien marina.","price":28,"ill":"glass","color":"#5B6B78","illWord":"Leche de pantera","tags":["spicy"]},{"id":"l3","name":"Vuelve a la vida","desc":"Copa de mariscos: pulpo, langostinos y conchas en leche de tigre bien helada.","price":30,"ill":"cocktail","color":"#FF7A59","illWord":"Vuelve a la vida"}]},{"id":"arroces","name":"Arroces","items":[{"id":"a1","name":"Arroz con mariscos","desc":"Arroz meloso al ají panca y ají amarillo con langostinos, pulpo, calamar y conchas.","price":42,"img":"1680674774705-90b4904b3a7f","alt":"Arroz con mariscos y langostinos","tags":["top"]},{"id":"a2","name":"Arroz norteño con mariscos","desc":"Arroz al culantro con conchas, calamares y ají amarillo. Sabor de Chiclayo.","price":44,"img":"1768204039740-9e418a65328b","alt":"Arroz amarillo con calamares y conchas","tags":["new"]},{"id":"a3","name":"Chaufa de mariscos","desc":"Salteado al wok con langostinos, pulpo, calamar, huevo y cebollita china.","price":40,"img":"1761314025611-957a20e3e8a3","alt":"Arroz chaufa con langostino y ajonjolí"}]},{"id":"chicharrones","name":"Chicharrones","items":[{"id":"h1","name":"Jalea mixta","desc":"Pescado, calamar, pulpo y langostinos crocantes, con yuca frita, salsa criolla y tártara. Para compartir.","price":58,"img":"1761314025807-34cfab3c18e6","alt":"Jalea de mariscos fritos con salsa criolla","tags":["top","share"]},{"id":"h2","name":"Chicharrón de pescado","desc":"Trozos de pescado apanados y crujientes, con yuca frita y salsa criolla.","price":36,"img":"1697748836791-9ddf7e616ece","alt":"Pescado frito crocante con papas y limón"},{"id":"h3","name":"Chicharrón de calamar","desc":"Anillos de calamar crocantes con tres cremas de la casa y limón.","price":38,"img":"1778600731531-7d836a32704c","alt":"Calamares fritos con tres salsas"},{"id":"h4","name":"Pescado frito entero","desc":"Pescado del día frito entero, con arroz, yuca y ensalada criolla.","price":46,"img":"1665401015549-712c0dc5ef85","alt":"Pescado frito entero con limón y tomate"}]},{"id":"causas","name":"Causas y entradas","items":[{"id":"k1","name":"Causa limeña de langostinos","desc":"Papa amarilla prensada al ají amarillo, rellena de langostinos, palta y huevo.","price":32,"img":"1766456127047-806cdecdc139","alt":"Causa limeña con salsa de ají amarillo","tags":["top"]},{"id":"k2","name":"Causa acevichada","desc":"Causa suave coronada con ceviche de pescado y crema de rocoto.","price":34,"ill":"plate","color":"#F2C94C","illWord":"Causa acevichada","tags":["house"]},{"id":"k3","name":"Conchitas a la parmesana (12 u.)","desc":"Conchas de abanico gratinadas con queso parmesano, mantequilla y limón.","price":38,"img":"1761314037083-329b3050b351","alt":"Conchitas a la parmesana gratinadas"}]},{"id":"bebidas","name":"Bebidas","layout":"grid","items":[{"id":"e1","name":"Chicha morada (jarra)","desc":"Maíz morado, piña y canela. De la casa.","price":16,"img":"1542518392-13317b1ee2a2","alt":"Chicha morada con hielo"},{"id":"e2","name":"Limonada (jarra)","desc":"Limón recién exprimido, con o sin hierbabuena.","price":16,"img":"1507281549113-040fcfef650e","alt":"Limonada con limones"},{"id":"e3","name":"Pisco sour","desc":"Pisco quebranta, limón y amargo de angostura. Solo +18.","price":24,"img":"1674752722934-e9bcc59cb058","alt":"Pisco sour espumoso","tags":["top"]},{"id":"e4","name":"Maracuyá sour","desc":"Pisco con maracuyá fresco. Frutal y espumoso. Solo +18.","price":24,"img":"1696594935685-1ad6ba69e83e","alt":"Cóctel de maracuyá"},{"id":"e5","name":"Cerveza 620 ml","desc":"Cusqueña o Pilsen, bien heladas. Solo +18.","price":14,"img":"1608270586620-248524c67de9","alt":"Jarra de cerveza"},{"id":"e6","name":"Inca Kola 500 ml","desc":"Para acompañar el ceviche como se debe.","price":6,"ill":"bottle","color":"#F2C200","illWord":"Inca Kola"}]},{"id":"postres","name":"Postres","layout":"grid","items":[{"id":"z1","name":"Suspiro a la limeña","desc":"Manjar blanco con merengue al oporto.","price":14,"ill":"dessert","color":"#F4D9A6","illWord":"Suspiro"},{"id":"z2","name":"Picarones","desc":"Con miel de chancaca y canela.","price":16,"ill":"rings","color":"#E39B4B","illWord":"Picarones","tags":["top"]},{"id":"z3","name":"Crema volteada","desc":"Flan casero con caramelo.","price":12,"img":"1780798465831-de1e4d58ee46","alt":"Flan con caramelo"},{"id":"z4","name":"Arroz con leche","desc":"Cremoso, con canela y pasas.","price":10,"img":"1777613112969-d7511ddfbe15","alt":"Arroz con leche cremoso"}]}],"emblem":"\u003csvg class=\"brand__emblem\" viewBox=\"0 0 100 100\" role=\"img\" aria-label=\"Emblema de Brisa Chalaca\">\n\u003cdefs>\u003cclipPath id=\"bcClip\">\u003ccircle cx=\"50\" cy=\"50\" r=\"40\"/>\u003c/clipPath>\u003c/defs>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"49\" fill=\"#F4F9FB\"/>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"45\" fill=\"#0B2540\"/>\n\u003cg clip-path=\"url(#bcClip)\">\n\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"#12507F\"/>\n\u003ccircle cx=\"50\" cy=\"52\" r=\"17\" fill=\"#D8F06A\"/>\n\u003cpath d=\"M0 55c8-6 17-6 25 0s17 6 25 0 17-6 25 0 17 6 25 0v45H0z\" fill=\"#0B2540\"/>\n\u003cpath d=\"M4 56c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0\" fill=\"none\" stroke=\"#fff\" stroke-width=\"3.2\" stroke-linecap=\"round\"/>\n\u003cpath d=\"M-4 68c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0 14-5 21 0\" fill=\"none\" stroke=\"#7FC4E8\" stroke-width=\"2.6\" stroke-linecap=\"round\"/>\n\u003cpath d=\"M4 80c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0\" fill=\"none\" stroke=\"#FF7A59\" stroke-width=\"2.4\" stroke-linecap=\"round\"/>\n\u003c/g>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"40\" fill=\"none\" stroke=\"#D8F06A\" stroke-width=\"1.6\"/>\n\u003c/svg>","heroDeco":"\u003csvg class=\"hero__deco\" viewBox=\"0 0 400 60\" preserveAspectRatio=\"none\" aria-hidden=\"true\">\u003cpath d=\"M0 30c40-18 80-18 120 0s80 18 120 0 80-18 120 0 40 9 40 9\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\"/>\u003cpath d=\"M0 46c40-14 80-14 120 0s80 14 120 0 80-14 120 0 40 7 40 7\" fill=\"none\" stroke=\"#9FD3F0\" stroke-width=\"1.6\" opacity=\".8\"/>\u003c/svg>","catDeco":"\u003csvg class=\"wave\" viewBox=\"0 0 36 14\" aria-hidden=\"true\">\u003cpath d=\"M1 9c4-6 8-6 12 0s8 6 12 0 7-5 10-2\"/>\u003c/svg>","footDeco":""};</script>
 <script>
 (function () {
   'use strict';
@@ -410,20 +403,20 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
   }
   function ctlHTML(id) {
     var q = cart[id] || 0, it = ITEMS[id];
-    if (!q) return '<button type="button" class="add" data-add="' + id + '" aria-label="Agregar ' + esc(it.name) + ' al pedido">' + ICON.plus + '<span>Agregar</span></button>';
+    if (!q) return '<button type="button" class="add" data-add="' + id + '" aria-label="Añadir ' + esc(it.name) + ' al pedido">' + ICON.plus + '<span>Añadir</span></button>';
     return '<div class="stepper" role="group" aria-label="Cantidad de ' + esc(it.name) + '">' +
       '<button type="button" data-dec="' + id + '" aria-label="Quitar uno">' + (q === 1 ? ICON.trash : ICON.minus) + '</button>' +
       '<output aria-live="polite">' + q + '</output>' +
-      '<button type="button" data-add="' + id + '" aria-label="Agregar uno más">' + ICON.plus + '</button></div>';
+      '<button type="button" data-add="' + id + '" aria-label="Añadir uno más">' + ICON.plus + '</button></div>';
   }
-  function dishHTML(it, layout) {
+  /* Línea de carta: nombre, puntos guía y precio; sin miniatura (las fotos quedan solo para los destacados) */
+  function dishHTML(it) {
     var numLabel = C.numbered ? '<span class="dish__num">N.º ' + (it.n < 10 ? '0' : '') + it.n + '</span>' : '';
-    return '<article class="dish dish--' + layout + '" data-dish="' + it.id + '" data-search="' + esc(norm(it.name + ' ' + it.desc + ' ' + (it.kw || ''))) + '">' +
-      media(it, 'dish__ph') +
+    return '<article class="dish" data-dish="' + it.id + '" data-search="' + esc(norm(it.name + ' ' + it.desc + ' ' + (it.kw || ''))) + '">' +
       '<div class="dish__body">' + tagsHTML(it) + numLabel +
-      '<h3 class="dish__name">' + nb(it.name) + '</h3>' +
+      '<div class="dish__row"><h3 class="dish__name">' + nb(it.name) + '</h3><span class="dish__leader" aria-hidden="true"></span><span class="price">' + (it.from ? '<small>desde</small> ' : '') + fmt(it.price) + '</span></div>' +
       '<p class="dish__desc">' + esc(it.desc) + '</p>' +
-      '<div class="dish__foot"><span class="price">' + (it.from ? '<small>desde</small> ' : '') + fmt(it.price) + '</span><span class="ctl" data-ctl="' + it.id + '">' + ctlHTML(it.id) + '</span></div>' +
+      '<div class="dish__foot"><span class="ctl" data-ctl="' + it.id + '">' + ctlHTML(it.id) + '</span></div>' +
       '</div></article>';
   }
   function featHTML(it) {
@@ -459,7 +452,7 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
     C.categories.forEach(function (c) {
       html += '<section class="cat" id="' + c.id + '" aria-labelledby="h-' + c.id + '">' +
         '<div class="cat__head">' + (C.catDeco || '') + '<h2 id="h-' + c.id + '">' + esc(c.name) + '</h2>' + (c.note ? '<p>' + esc(c.note) + '</p>' : '') + '</div>' +
-        '<div class="cat__list cat__list--' + (c.layout || C.layout) + '">' + c.items.map(function (it) { return dishHTML(it, c.layout || C.layout); }).join('') + '</div></section>';
+        '<div class="cat__list">' + c.items.map(function (it) { return dishHTML(it); }).join('') + '</div></section>';
     });
     html += '<p class="empty" id="empty" hidden></p>';
     html += '</main>';
@@ -473,7 +466,7 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
       (C.credit === '' ? '' : '<p class="credit">' + esc(C.credit || 'Menú de muestra · Diseñado por Clickea Studio') + '</p>') + '</footer>';
 
     html += '<div class="cartbar" id="cartbar" hidden><button type="button" id="openCart" aria-haspopup="dialog">' +
-      '<span class="cartbar__count" id="barCount">0</span><span class="cartbar__label">Ver mi pedido</span><span class="cartbar__total" id="barTotal">' + fmt(0) + '</span></button></div>';
+      '<span class="cartbar__count" id="barCount">0</span><span class="cartbar__label">Tu pedido</span><span class="cartbar__total" id="barTotal">' + fmt(0) + '</span></button></div>';
     html += '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
 
     html += '<dialog class="sheet" id="sheet" aria-labelledby="sheetT"><div class="sheet__in">' +
@@ -514,6 +507,25 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
   function toast(msg) {
     var t = $('#toast'); t.textContent = msg; t.classList.add('show');
     clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('show'); }, 1800);
+  }
+  // Ticket: da un saltito al agregar algo (si ya estaba visible)
+  function bumpBar() {
+    var bar = $('#cartbar'); if (!bar || bar.hidden) return;
+    bar.classList.remove('bump'); void bar.offsetWidth; bar.classList.add('bump');
+  }
+  // "+1" que vuela del botón Añadir hacia el ticket de pedido
+  function flyPlusOne(btn) {
+    var bar = $('#cartbar'); if (!bar || bar.hidden) return;
+    var br = btn.getBoundingClientRect(), tr = bar.getBoundingClientRect();
+    if (!br.width || !tr.width) return;
+    var el = document.createElement('span');
+    el.className = 'fly1'; el.textContent = '+1'; el.setAttribute('aria-hidden', 'true');
+    el.style.left = (br.left + br.width / 2) + 'px';
+    el.style.top = (br.top + br.height / 2) + 'px';
+    el.style.setProperty('--dx', Math.round(tr.left + tr.width / 2 - (br.left + br.width / 2)) + 'px');
+    el.style.setProperty('--dy', Math.round(tr.top + tr.height / 2 - (br.top + br.height / 2)) + 'px');
+    document.body.appendChild(el);
+    setTimeout(function () { el.remove(); }, 700);
   }
   function setQty(id, q) {
     if (q > 0) cart[id] = Math.min(q, 50); else delete cart[id];
@@ -669,6 +681,15 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
     setNavH();
     window.addEventListener('resize', setNavH);
 
+    // Título de cada sección: el adorno se dibuja al entrar en pantalla (con soporte y sin reduced-motion)
+    if (!mqReduce.matches && 'IntersectionObserver' in window) {
+      $$('.cat__head').forEach(function (h) { h.classList.add('reveal'); });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.15 });
+      $$('.cat__head.reveal').forEach(function (h) { io.observe(h); });
+    }
+
     // Fotos: si alguna falla, se reemplaza por una ilustración (nunca imagen rota)
     document.addEventListener('error', function (e) {
       var img = e.target;
@@ -686,8 +707,11 @@ body{background:linear-gradient(180deg,#CFE3EE,#E7F1F6)}
       if (t.hasAttribute('data-add')) {
         var id = t.getAttribute('data-add'), was = cart[id] || 0;
         var box = t.closest('.dish,.feat,.line');
+        var barShown = !$('#cartbar').hidden;
         setQty(id, was + 1);
         if (!was) toast('Agregado: ' + ITEMS[id].name);
+        flyPlusOne(t);
+        if (barShown) bumpBar();
         if (box && box.isConnected) { var again = $('[data-add]', box); if (again) again.focus({ preventScroll: true }); }
       } else if (t.hasAttribute('data-dec')) {
         var id2 = t.getAttribute('data-dec'), q2 = (cart[id2] || 0) - 1;

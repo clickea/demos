@@ -104,6 +104,51 @@
     .revelar{opacity:1;transform:none}
   }
 </style>
+<style id="vistoso">
+/* ---- Móvil de cuna: estrellas y luna que se balancean ---- */
+.movil{position:absolute!important;top:0;left:0;right:0;height:0;z-index:1!important;pointer-events:none}
+.hilo{position:absolute;top:0;width:2px;height:58px;background:linear-gradient(var(--suave),transparent 88%);transform-origin:top center;animation:colgar var(--dur,5s) ease-in-out infinite}
+.hilo.h1{left:14%}
+.hilo.h2{left:50%;height:40px}
+.hilo.h3{left:80%;height:74px}
+.colgante{position:absolute;top:100%;left:50%;width:24px;height:24px;transform:translate(-50%,-2px);filter:drop-shadow(0 4px 6px rgba(53,80,107,.2))}
+@keyframes colgar{0%,100%{transform:rotate(calc(var(--r,6deg)*-1))}50%{transform:rotate(var(--r,6deg))}}
+
+/* ---- Huellitas que caminan hacia la fecha y el lugar ---- */
+.huellas{display:flex;justify-content:center;align-items:center;gap:16px;padding:2px 0 20px;height:30px}
+.huella{width:15px;height:21px;color:var(--salvia);opacity:.35}
+.huella:nth-child(even){margin-top:-13px;transform:scaleX(-1)}
+.huellas.visible .huella{animation:pisar .5s ease forwards}
+.huellas.visible .huella:nth-child(even){animation-name:pisarE}
+.huellas.visible .huella:nth-child(1){animation-delay:.05s}
+.huellas.visible .huella:nth-child(2){animation-delay:.18s}
+.huellas.visible .huella:nth-child(3){animation-delay:.31s}
+.huellas.visible .huella:nth-child(4){animation-delay:.44s}
+.huellas.visible .huella:nth-child(5){animation-delay:.57s}
+@keyframes pisar{from{opacity:.35;transform:scale(.65)}to{opacity:.7;transform:scale(1)}}
+@keyframes pisarE{from{opacity:.35;transform:scaleX(-1) scale(.65)}to{opacity:.7;transform:scaleX(-1) scale(1)}}
+
+/* ---- Contador con tarjetas que se voltean ---- */
+.cuenta .flip-grupo,.cuenta .flip-grupo *{padding:0}
+.flip-grupo{display:flex;gap:3px;justify-content:center}
+.flip{position:relative;width:24px;height:34px;font-family:var(--display);font-weight:700;font-size:24px;font-variant-numeric:tabular-nums;perspective:130px}
+.flip-mitad,.flip-solapa{position:absolute;left:0;right:0;height:17px;overflow:hidden;background:#fff;border-radius:3px}
+.flip-mitad span,.flip-solapa span{position:absolute;left:0;right:0;display:block;line-height:34px;text-align:center;color:var(--tinta)}
+.flip-arriba{top:0;border-bottom:1px solid rgba(53,80,107,.12)}
+.flip-abajo{top:17px}
+.flip-abajo span{top:-17px}
+.flip-solapa{transform-style:preserve-3d;backface-visibility:hidden}
+.flip-solapa-arriba{top:0;border-bottom:1px solid rgba(53,80,107,.12);transform-origin:bottom;z-index:2;opacity:0}
+.flip-solapa-abajo{top:17px;transform-origin:top;z-index:2;opacity:0}
+.flip-solapa-abajo span{top:-17px}
+.flip.voltea .flip-solapa-arriba{opacity:1;animation:flipArriba .3s cubic-bezier(.4,0,.6,1) forwards}
+.flip.voltea .flip-solapa-abajo{opacity:1;animation:flipAbajo .3s .28s cubic-bezier(.4,0,.6,1) forwards}
+@keyframes flipArriba{from{transform:rotateX(0)}to{transform:rotateX(-90deg)}}
+@keyframes flipAbajo{from{transform:rotateX(90deg)}to{transform:rotateX(0)}}
+
+/* ---- Confeti al confirmar ---- */
+.confetti-canvas{position:fixed;inset:0;z-index:90;pointer-events:none}
+</style>
 </head>
 <body>
 <!-- =========================================================
@@ -121,6 +166,12 @@
     <svg class="nube" style="top:30%;width:80px;--v:36s;--r:-26s;opacity:.7" viewBox="0 0 120 50"><path d="M20 48a18 18 0 0 1 2-36 24 24 0 0 1 44-6 20 20 0 0 1 34 14 14 14 0 0 1 0 28z"/></svg>
     <svg class="nube" style="top:62%;width:150px;--v:54s;--r:-5s;opacity:.8" viewBox="0 0 120 50"><path d="M20 48a18 18 0 0 1 2-36 24 24 0 0 1 44-6 20 20 0 0 1 34 14 14 14 0 0 1 0 28z"/></svg>
     <svg class="nube" style="top:78%;width:90px;--v:40s;--r:-33s;opacity:.75" viewBox="0 0 120 50"><path d="M20 48a18 18 0 0 1 2-36 24 24 0 0 1 44-6 20 20 0 0 1 34 14 14 14 0 0 1 0 28z"/></svg>
+
+    <div class="movil" aria-hidden="true">
+      <div class="hilo h1" style="--dur:4.6s;--r:6deg"><svg class="colgante" viewBox="0 0 24 24"><path d="M12 2l2.6 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.4-.4z" fill="var(--mantequilla)"/></svg></div>
+      <div class="hilo h2" style="--dur:5.4s;--r:-5deg;animation-delay:-1.2s"><svg class="colgante" viewBox="0 0 24 24"><path d="M15 3a9 9 0 1 0 6 15.9A9 9 0 0 1 15 3z" fill="var(--cielo)"/></svg></div>
+      <div class="hilo h3" style="--dur:5s;--r:5deg;animation-delay:-2.4s"><svg class="colgante" viewBox="0 0 24 24"><path d="M12 2l2.6 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.4-.4z" fill="var(--rubor)"/></svg></div>
+    </div>
 
     <svg class="globo-aire chico" viewBox="0 0 100 150" aria-hidden="true"><path d="M50 4C25 4 8 22 8 46c0 22 18 38 30 52h24c12-14 30-30 30-52C92 22 75 4 50 4z" fill="#f3b8b0"/><path d="M50 4c-10 0-18 20-18 44 0 20 4 36 6 50h24c2-14 6-30 6-50 0-24-8-44-18-44z" fill="#fffaf2"/><rect x="38" y="110" width="24" height="18" rx="4" fill="#c9a47a"/><path d="M38 98l2 12M62 98l-2 12" stroke="#c9a47a" stroke-width="2"/></svg>
 
@@ -152,9 +203,17 @@
       <h2 id="tituloCuenta">Falta muy poquito</h2>
       <p class="nota" id="notaCuenta"></p>
       <div class="cuenta" id="cuenta">
-        <div><b>0</b><span>Días</span></div><div><b>0</b><span>Horas</span></div><div><b>0</b><span>Min</span></div><div><b>0</b><span>Seg</span></div>
+        <div><div class="flip-grupo" data-cifras="3"></div><span>Días</span></div><div><div class="flip-grupo" data-cifras="2"></div><span>Horas</span></div><div><div class="flip-grupo" data-cifras="2"></div><span>Min</span></div><div><div class="flip-grupo" data-cifras="2"></div><span>Seg</span></div>
       </div>
     </section>
+
+    <div class="huellas revelar" aria-hidden="true">
+      <svg class="huella" viewBox="0 0 17 24"><path d="M8.5 22.5c-2.2 0-3.7-1.8-3.7-4.4 0-2 .8-3.6.8-5.8 0-3 1.2-4.9 2.9-4.9s2.9 1.9 2.9 4.9c0 2.2.8 3.8.8 5.8 0 2.6-1.5 4.4-3.7 4.4z" fill="currentColor"/><circle cx="4.6" cy="5.6" r="1.6" fill="currentColor"/><circle cx="7.4" cy="2.8" r="1.3" fill="currentColor"/><circle cx="10.4" cy="2.4" r="1.2" fill="currentColor"/><circle cx="12.8" cy="4" r="1.1" fill="currentColor"/></svg>
+      <svg class="huella" viewBox="0 0 17 24"><path d="M8.5 22.5c-2.2 0-3.7-1.8-3.7-4.4 0-2 .8-3.6.8-5.8 0-3 1.2-4.9 2.9-4.9s2.9 1.9 2.9 4.9c0 2.2.8 3.8.8 5.8 0 2.6-1.5 4.4-3.7 4.4z" fill="currentColor"/><circle cx="4.6" cy="5.6" r="1.6" fill="currentColor"/><circle cx="7.4" cy="2.8" r="1.3" fill="currentColor"/><circle cx="10.4" cy="2.4" r="1.2" fill="currentColor"/><circle cx="12.8" cy="4" r="1.1" fill="currentColor"/></svg>
+      <svg class="huella" viewBox="0 0 17 24"><path d="M8.5 22.5c-2.2 0-3.7-1.8-3.7-4.4 0-2 .8-3.6.8-5.8 0-3 1.2-4.9 2.9-4.9s2.9 1.9 2.9 4.9c0 2.2.8 3.8.8 5.8 0 2.6-1.5 4.4-3.7 4.4z" fill="currentColor"/><circle cx="4.6" cy="5.6" r="1.6" fill="currentColor"/><circle cx="7.4" cy="2.8" r="1.3" fill="currentColor"/><circle cx="10.4" cy="2.4" r="1.2" fill="currentColor"/><circle cx="12.8" cy="4" r="1.1" fill="currentColor"/></svg>
+      <svg class="huella" viewBox="0 0 17 24"><path d="M8.5 22.5c-2.2 0-3.7-1.8-3.7-4.4 0-2 .8-3.6.8-5.8 0-3 1.2-4.9 2.9-4.9s2.9 1.9 2.9 4.9c0 2.2.8 3.8.8 5.8 0 2.6-1.5 4.4-3.7 4.4z" fill="currentColor"/><circle cx="4.6" cy="5.6" r="1.6" fill="currentColor"/><circle cx="7.4" cy="2.8" r="1.3" fill="currentColor"/><circle cx="10.4" cy="2.4" r="1.2" fill="currentColor"/><circle cx="12.8" cy="4" r="1.1" fill="currentColor"/></svg>
+      <svg class="huella" viewBox="0 0 17 24"><path d="M8.5 22.5c-2.2 0-3.7-1.8-3.7-4.4 0-2 .8-3.6.8-5.8 0-3 1.2-4.9 2.9-4.9s2.9 1.9 2.9 4.9c0 2.2.8 3.8.8 5.8 0 2.6-1.5 4.4-3.7 4.4z" fill="currentColor"/><circle cx="4.6" cy="5.6" r="1.6" fill="currentColor"/><circle cx="7.4" cy="2.8" r="1.3" fill="currentColor"/><circle cx="10.4" cy="2.4" r="1.2" fill="currentColor"/><circle cx="12.8" cy="4" r="1.1" fill="currentColor"/></svg>
+    </div>
 
     <section class="tarjeta revelar">
       <div class="icono" style="--c:#e3f1fa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
@@ -277,15 +336,10 @@ const DATOS = {
   rsvpNota: "Confírmanos antes del 7 de noviembre, así preparamos todo con cariño.",
   maxPersonas: 8,
 
-  // --- Colores principales ---
-  colores: {
-    cielo: "#cde9f6",      // portada
-    crema: "#fffaf2",      // fondo general
-    salvia: "#8fbf9a",     // detalles verdes
-    mantequilla: "#f5d68a",
-    rubor: "#f3b8b0",
-    tinta: "#35506b"       // textos y botón principal
-  },
+  // --- Paleta pastel: "niño", "niña" o "sorpresa" (por defecto, mezcla neutra) ---
+  genero: "sorpresa",      // cambia automáticamente toda la paleta de abajo
+  colores: {},             // deja vacío {} para usar la paleta de "genero";
+                           // o escribe aquí hex propios para personalizar (anula "genero"), ej: { tinta: "#35506b" }
 
   // --- Música (canción de cuna original generada en el navegador) ---
   musica: { activa: true, volumen: 0.45 }
@@ -294,7 +348,14 @@ const DATOS = {
 
 const $ = s => document.querySelector(s);
 const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
-Object.entries(DATOS.colores).forEach(([k, v]) => document.documentElement.style.setProperty('--' + k, v));
+// Paletas pastel por género (cielo=portada, crema=fondo, salvia/mantequilla/rubor=detalles, tinta=textos y botón)
+const PALETAS_GENERO = {
+  sorpresa: { cielo: '#cde9f6', crema: '#fffaf2', salvia: '#8fbf9a', mantequilla: '#f5d68a', rubor: '#f3b8b0', tinta: '#35506b' },
+  niño:     { cielo: '#cfe3f8', crema: '#fbfaf5', salvia: '#a9c9ec', mantequilla: '#f6d9a6', rubor: '#bcd6f0', tinta: '#2f4a6b' },
+  niña:     { cielo: '#f8dbe8', crema: '#fffaf8', salvia: '#f0b9cd', mantequilla: '#f6d68f', rubor: '#f5a9c4', tinta: '#6b3552' }
+};
+const colores = { ...(PALETAS_GENERO[DATOS.genero] || PALETAS_GENERO.sorpresa), ...DATOS.colores };
+Object.entries(colores).forEach(([k, v]) => document.documentElement.style.setProperty('--' + k, v));
 document.title = `Baby shower de ${DATOS.bebe} 🍼`;
 const ev = DATOS.evento;
 const inicio = new Date(`${ev.fecha}T${ev.hora}:00-05:00`);         // Lima es UTC-5 todo el año
@@ -319,21 +380,45 @@ $('#vestimenta').textContent = DATOS.vestimenta;
 $('#paleta').innerHTML = DATOS.coloresVestimenta.map(c => `<i style="background:${c}"></i>`).join('');
 $('#regalosIntro').textContent = DATOS.regalosIntro;
 $('#regalosNota').textContent = DATOS.regalosNota;
-const tonosRegalo = [DATOS.colores.cielo, DATOS.colores.mantequilla, DATOS.colores.salvia, DATOS.colores.rubor];
+const tonosRegalo = [colores.cielo, colores.mantequilla, colores.salvia, colores.rubor];
 DATOS.regalos.forEach((r, i) => { const li = document.createElement('li'); li.textContent = r; li.style.setProperty('--c', tonosRegalo[i % 4]); $('#regalos').appendChild(li); });
 DATOS.fotos.slice(0, 3).forEach(src => { const img = document.createElement('img'); img.src = src; img.alt = 'Foto de la dulce espera'; img.loading = 'lazy'; $('#fotos').appendChild(img); });
 $('#rsvpNota').textContent = DATOS.rsvpNota;
 
-/* ---------- Cuenta regresiva ---------- */
-const celdas = [...document.querySelectorAll('#cuenta b')];
+/* ---------- Cuenta regresiva (tarjetas que se voltean) ---------- */
+function crearFlip(cont) {
+  const n = +cont.dataset.cifras || 2, tarjetas = [];
+  for (let i = 0; i < n; i++) {
+    const t = document.createElement('div');
+    t.className = 'flip';
+    t.innerHTML = '<div class="flip-mitad flip-arriba"><span>0</span></div><div class="flip-mitad flip-abajo"><span>0</span></div><div class="flip-solapa flip-solapa-arriba"><span>0</span></div><div class="flip-solapa flip-solapa-abajo"><span>0</span></div>';
+    cont.appendChild(t); tarjetas.push(t);
+  }
+  return tarjetas;
+}
+function pintarFlip(tarjetas, valor) {
+  String(valor).padStart(tarjetas.length, '0').split('').forEach((c, i) => {
+    const t = tarjetas[i];
+    if (t.dataset.val === c) return;
+    const previo = t.dataset.val || c;
+    t.dataset.val = c;
+    const arriba = t.querySelector('.flip-arriba span'), abajo = t.querySelector('.flip-abajo span');
+    const solA = t.querySelector('.flip-solapa-arriba span'), solB = t.querySelector('.flip-solapa-abajo span');
+    if (reducir) { arriba.textContent = abajo.textContent = solA.textContent = solB.textContent = c; return; }
+    solA.textContent = previo; solB.textContent = c;
+    t.classList.remove('voltea'); void t.offsetWidth; t.classList.add('voltea');
+    setTimeout(() => { arriba.textContent = c; abajo.textContent = c; }, 300);
+  });
+}
+const gruposFlip = [...document.querySelectorAll('.flip-grupo')].map(crearFlip);
 function tic() {
   let ms = inicio - Date.now();
   if (ms <= 0) {
     $('#tituloCuenta').textContent = ms > -ev.duracionHoras * 3600000 ? '¡Hoy es el gran día! 🎉' : '¡Gracias por acompañarnos! 💙';
-    celdas.forEach(c => c.textContent = '0'); return;
+    gruposFlip.forEach(g => pintarFlip(g, 0)); return;
   }
   const s = Math.floor(ms / 1000);
-  [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60].forEach((v, i) => celdas[i].textContent = i ? String(v).padStart(2, '0') : v);
+  [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60].forEach((v, i) => pintarFlip(gruposFlip[i], v));
 }
 tic(); setInterval(tic, 1000);
 
@@ -373,6 +458,33 @@ $('#masPersonas').addEventListener('click', () => { personas = Math.min(DATOS.ma
 document.querySelectorAll('input[name=asiste]').forEach(r => r.addEventListener('change', () => {
   $('#campoPersonas').style.display = $('#asisteSi').checked ? '' : 'none';
 }));
+/* ---------- Confeti pastel al confirmar ---------- */
+function confettiPastel() {
+  if (reducir) return;
+  const canvas = document.createElement('canvas');
+  canvas.className = 'confetti-canvas';
+  canvas.width = innerWidth; canvas.height = innerHeight;
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  const tonos = [colores.cielo, colores.mantequilla, colores.salvia, colores.rubor, '#ffffff'];
+  const piezas = Array.from({ length: 90 }, () => ({
+    x: Math.random() * canvas.width, y: -20 - Math.random() * canvas.height * .5,
+    r: 5 + Math.random() * 5, c: tonos[Math.floor(Math.random() * tonos.length)],
+    vy: 2 + Math.random() * 2.6, vx: -1.4 + Math.random() * 2.8,
+    a: Math.random() * Math.PI, va: -.15 + Math.random() * .3
+  }));
+  const fin = Date.now() + 2200;
+  (function cuadro() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    piezas.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.a += p.va;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.a);
+      ctx.fillStyle = p.c; ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * .6);
+      ctx.restore();
+    });
+    if (Date.now() < fin) requestAnimationFrame(cuadro); else canvas.remove();
+  })();
+}
 $('#nombre').addEventListener('input', () => $('#campoNombre').classList.remove('error'));
 $('#formulario').addEventListener('submit', e => {
   e.preventDefault();
@@ -384,6 +496,7 @@ $('#formulario').addEventListener('submit', e => {
     : [`¡Hola! 👋 Lamentablemente no podré ir al baby shower de ${DATOS.bebe} 😢`, '', `👤 Nombre: ${nombre}`];
   if (msj) lineas.push(`💬 Mensaje: ${msj}`);
   lineas.push('', `📅 ${$('#fechaTexto').textContent}, ${horaCorta}`);
+  if (va) confettiPastel();
   window.open(`https://wa.me/${DATOS.whatsapp}?text=${encodeURIComponent(lineas.join('\n'))}`, '_blank');
   $('#ok').classList.add('ver');
 });
@@ -444,6 +557,25 @@ $('#btnMusica').addEventListener('click', () => $('#btnMusica').classList.toggle
 // La música empieza con la primera interacción (los navegadores bloquean el autoplay)
 ['click', 'touchend', 'keydown'].forEach(t => addEventListener(t, arrancarMusica, { once: true }));
 $('#btnVer').addEventListener('click', () => { arrancarMusica(); $('#cuentaRegresiva').scrollIntoView({ behavior: reducir ? 'auto' : 'smooth', block: 'start' }); });
+
+/* ---------- Globo que sube con nubes en paralaje (3 velocidades) ---------- */
+if (!reducir) {
+  const nubes = [...document.querySelectorAll('.nube')];
+  const profundidad = [.07, .16, .07, .22];
+  const globoGrande = document.querySelector('.globo-aire:not(.chico)');
+  const globoChico = document.querySelector('.globo-aire.chico');
+  let listo = true;
+  addEventListener('scroll', () => {
+    if (!listo) return; listo = false;
+    requestAnimationFrame(() => {
+      const y = scrollY;
+      nubes.forEach((n, i) => { n.style.translate = `0 ${-y * (profundidad[i] || .1)}px`; });
+      if (globoGrande) globoGrande.style.translate = `0 ${-y * .38}px`;
+      if (globoChico) globoChico.style.translate = `0 ${-y * .55}px`;
+      listo = true;
+    });
+  }, { passive: true });
+}
 </script>
 </body>
 </html>

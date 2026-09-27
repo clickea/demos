@@ -21,7 +21,7 @@
   body{font-family:var(--texto);color:var(--tinta);background:var(--fondo1);min-height:100vh;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
   .fondo{position:fixed;inset:0;z-index:0;background:radial-gradient(circle at 20% 15%,rgba(255,255,255,.9) 0 2px,transparent 3px) 0 0/46px 46px,radial-gradient(circle at 70% 60%,rgba(123,92,255,.12) 0 3px,transparent 4px) 0 0/60px 60px,linear-gradient(170deg,var(--fondo1),var(--fondo2))}
   .globos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-  .globo{position:absolute;bottom:-160px;width:var(--t,60px);animation:subirGlobo var(--d,16s) linear var(--r,0s) infinite;opacity:.85}
+  .globo{position:absolute;bottom:-160px;width:var(--t,60px);animation:subirGlobo var(--d,16s) linear var(--r,0s) infinite;opacity:.65}
   .globo svg{display:block;width:100%;animation:vaiven 3.4s ease-in-out infinite alternate}
   @keyframes subirGlobo{to{transform:translateY(calc(-100vh - 260px))}}
   @keyframes vaiven{from{transform:translateX(-10px) rotate(-5deg)}to{transform:translateX(10px) rotate(5deg)}}
@@ -106,6 +106,45 @@
     .revelar{opacity:1;transform:none}
   }
 </style>
+<style id="vistoso">
+  /* Globos: ahora se pueden tocar para reventarlos y descubrir una sorpresa */
+  .globos{z-index:12}
+  .globo{pointer-events:auto;cursor:pointer}
+  .globo.reventado svg{opacity:0;transform:scale(.35) rotate(12deg);transition:opacity .35s ease,transform .35s ease}
+
+  .particula{position:fixed;z-index:70;border-radius:50%;pointer-events:none;animation:particula .75s ease-out forwards}
+  @keyframes particula{to{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+
+  .sorpresa-fondo{position:fixed;inset:0;z-index:80;background:rgba(58,33,80,.45);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .sorpresa-fondo.visible{opacity:1;pointer-events:auto}
+  .sorpresa-tarjeta{background:#fff;border-radius:24px;padding:26px 22px;max-width:300px;text-align:center;box-shadow:0 16px 40px rgba(58,33,80,.3);transform:scale(.8);transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+  .sorpresa-fondo.visible .sorpresa-tarjeta{transform:scale(1)}
+  .sorpresa-tarjeta img{width:100%;max-width:210px;aspect-ratio:4/5;object-fit:cover;border-radius:16px;margin:0 auto 12px;display:block}
+  .sorpresa-tarjeta p{font-size:17px;font-weight:700;line-height:1.5;color:var(--tinta)}
+  .sorpresa-tarjeta span{display:block;margin-top:14px;font-size:12px;font-weight:800;color:var(--morado);opacity:.7}
+
+  .destello{position:fixed;top:50%;width:90px;height:90px;margin-top:-45px;border-radius:50%;z-index:39;pointer-events:none;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(255,197,61,0) 70%);opacity:0;animation:destello .5s ease-out forwards}
+  @keyframes destello{0%{opacity:.9;transform:scale(.2)}100%{opacity:0;transform:scale(2.2)}}
+
+  /* Caja de regalo final */
+  .caja-wrap{display:inline-flex;flex-direction:column;align-items:center;cursor:pointer}
+  .caja{width:min(62vw,200px);overflow:visible}
+  .caja-pista{font-weight:800;font-size:14px;color:var(--morado);margin-top:8px}
+  .tapa{transform-box:fill-box;transform-origin:50% 100%;transition:transform .6s cubic-bezier(.3,1.4,.4,1)}
+  .caja-wrap.abierta .tapa{transform:translateY(-42px) rotate(-22deg)}
+  .lazo-i{transform-box:fill-box;transform-origin:100% 60%;transition:transform .5s ease .1s,opacity .5s ease .1s}
+  .lazo-d{transform-box:fill-box;transform-origin:0% 60%;transition:transform .5s ease .1s,opacity .5s ease .1s}
+  .caja-wrap.abierta .lazo-i{transform:translate(-26px,-16px) rotate(-55deg);opacity:0}
+  .caja-wrap.abierta .lazo-d{transform:translate(26px,-16px) rotate(55deg);opacity:0}
+  .caja-mensaje{max-width:300px;margin:14px auto 0;opacity:0;max-height:0;overflow:hidden;font-size:16px;line-height:1.6;text-align:center;transition:opacity .5s ease .3s,max-height .6s ease .2s}
+  .caja-wrap.abierta~.caja-mensaje{opacity:1;max-height:220px}
+
+  @media (prefers-reduced-motion:reduce){
+    .globo.reventado svg{transition:none}
+    .particula{display:none}
+    .tapa,.lazo-i,.lazo-d,.caja-mensaje{transition:none}
+  }
+</style>
 </head>
 <body>
 <!-- =========================================================
@@ -186,12 +225,41 @@
       <div class="deseos" id="deseos"></div>
     </section>
 
+    <section class="revelar caja-seccion">
+      <h2>Un regalito más</h2>
+      <div class="caja-wrap" id="cajaRegalo" role="button" tabindex="0" aria-label="Toca para abrir el regalo">
+        <svg class="caja" viewBox="0 0 200 170" aria-hidden="true">
+          <ellipse cx="100" cy="154" rx="68" ry="10" fill="rgba(58,33,80,.12)"/>
+          <rect x="40" y="70" width="120" height="80" rx="10" fill="var(--turquesa)"/>
+          <rect x="90" y="70" width="20" height="80" fill="var(--fucsia)"/>
+          <rect x="40" y="102" width="120" height="16" fill="var(--fucsia)"/>
+          <g class="tapa">
+            <rect x="30" y="50" width="140" height="26" rx="8" fill="var(--morado)"/>
+            <rect x="90" y="50" width="20" height="26" fill="var(--fucsia)"/>
+            <path class="lazo-i" d="M100 50c-14-18-34-14-34 2c0 10 14 16 34 12z" fill="var(--amarillo)"/>
+            <path class="lazo-d" d="M100 50c14-18 34-14 34 2c0 10-14 16-34 12z" fill="var(--amarillo)"/>
+            <circle cx="100" cy="53" r="7" fill="var(--fucsia)"/>
+          </g>
+        </svg>
+        <p class="caja-pista" id="cajaPista">Toca para abrir tu regalo 🎁</p>
+      </div>
+      <p class="caja-mensaje" id="cajaMensaje"></p>
+    </section>
+
     <div class="otra-vez revelar"><button class="btn btn-fiesta" id="btnFiesta">¡Otra vez confeti! 🎉</button></div>
     <footer>Hecho con 💜 por Clickea Studio</footer>
   </div>
 </div>
 
 <canvas id="confeti"></canvas>
+
+<div class="sorpresa-fondo" id="sorpresaFondo" role="dialog" aria-live="polite">
+  <div class="sorpresa-tarjeta">
+    <img id="sorpresaFoto" alt="" style="display:none">
+    <p id="sorpresaTexto"></p>
+    <span>Toca para cerrar</span>
+  </div>
+</div>
 
 <script>
 /* =====================================================================
@@ -232,6 +300,21 @@ Gracias por ser la amiga que siempre está, la que organiza todo y la que nunca 
     { nombre: "Tía Carmen", texto: "Mi niña linda, que Dios te bendiga siempre. ¡Te esperamos con tu torta!" },
     { nombre: "Luchito", texto: "¡Ya estás viejita! Jaja, feliz día, crack 🥳" }
   ],
+
+  // --- Sorpresas dentro de los globos (toca uno para reventarlo). "foto" es opcional. ---
+  sorpresasGlobo: [
+    { texto: "¡Que tengas un año increíble! 🎉" },
+    { texto: "Sonríe, hoy es tu día ✨" },
+    { texto: "Te queremos un montón 💛" },
+    { texto: "¡A celebrar se ha dicho! 🥳" },
+    { texto: "Ojalá se cumplan todos tus deseos 🌟" }
+  ],
+
+  // --- Caja de regalo final (se abre al tocarla); pon activa:false para no mostrarla ---
+  cajaFinal: {
+    activa: true,
+    mensaje: "Gracias por dejarte querer hoy. ¡Que este nuevo año te traiga muchas razones para sonreír! 🎁"
+  },
 
   // --- Colores principales ---
   colores: {
@@ -307,11 +390,12 @@ DATOS.deseos.forEach((d, i) => {
 // Globos flotando al fondo
 if (!reducir) {
   const colGlobos = [DATOS.colores.fucsia, DATOS.colores.morado, DATOS.colores.turquesa, DATOS.colores.amarillo, '#ff8a5c', '#8fd3ff'];
+  const posGlobos = [2, 11, 21, 31, 69, 79, 90]; // dejan libre la franja central (título y pastel)
   for (let i = 0; i < 7; i++) {
     const g = document.createElement('div'), c = colGlobos[i % colGlobos.length];
     g.className = 'globo';
-    g.style.left = (i * 14 + Math.random() * 6) + '%';
-    g.style.setProperty('--t', (44 + Math.random() * 30) + 'px'); g.style.setProperty('--d', (13 + Math.random() * 9) + 's'); g.style.setProperty('--r', -(Math.random() * 20) + 's');
+    g.style.left = (posGlobos[i] + (Math.random() * 5 - 2.5)) + '%';
+    g.style.setProperty('--t', (32 + Math.random() * 20) + 'px'); g.style.setProperty('--d', (13 + Math.random() * 9) + 's'); g.style.setProperty('--r', -(Math.random() * 20) + 's');
     g.innerHTML = `<svg viewBox="0 0 60 110"><path d="M30 2C14 2 4 15 4 30c0 18 14 32 26 36 12-4 26-18 26-36C56 15 46 2 30 2z" fill="${c}"/><ellipse cx="20" cy="20" rx="6" ry="10" fill="#fff" opacity=".35" transform="rotate(-25 20 20)"/><path d="M26 66h8l-4 6z" fill="${c}"/><path d="M30 72c-6 10 6 18 0 36" stroke="${c}" stroke-opacity=".6" fill="none" stroke-width="1.2"/></svg>`;
     $('#globos').appendChild(g);
   }
@@ -492,6 +576,91 @@ function crearMusica(compases, tempo, volumen) {
 const musica = crearMusica(COMPASES, 112, DATOS.musica.volumen);
 function arrancarMusica() { if (DATOS.musica.activa) { musica.iniciar(); $('#btnMusica').classList.add('visible'); } }
 $('#btnMusica').addEventListener('click', e => { e.stopPropagation(); $('#btnMusica').classList.toggle('silencio', musica.alternar()); });
+</script>
+<script id="vistoso-js">
+/* ---------- Vistoso: globos con sorpresa, caja de regalo y chispas ---------- */
+function particulas(x, y, colores, cantidad, distancia) {
+  if (reducir) return;
+  cantidad = cantidad || 10; distancia = distancia || 55;
+  for (let i = 0; i < cantidad; i++) {
+    const p = document.createElement('span');
+    p.className = 'particula';
+    const ang = Math.random() * Math.PI * 2, d = distancia * (.5 + Math.random() * .6);
+    p.style.setProperty('--dx', Math.cos(ang) * d + 'px');
+    p.style.setProperty('--dy', Math.sin(ang) * d + 'px');
+    const s = 5 + Math.random() * 6;
+    p.style.width = s + 'px'; p.style.height = s + 'px';
+    p.style.left = (x - s / 2) + 'px'; p.style.top = (y - s / 2) + 'px';
+    p.style.background = colores[i % colores.length];
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 800);
+  }
+}
+
+/* Globos poppables: al tocarlos revientan y muestran una sorpresa de DATOS */
+function mostrarSorpresa(s) {
+  const foto = $('#sorpresaFoto');
+  if (s.foto) { foto.src = s.foto; foto.alt = s.texto || ''; foto.style.display = 'block'; } else { foto.style.display = 'none'; }
+  $('#sorpresaTexto').textContent = s.texto || '';
+  $('#sorpresaFondo').classList.add('visible');
+}
+$('#sorpresaFondo').addEventListener('click', () => $('#sorpresaFondo').classList.remove('visible'));
+if (DATOS.sorpresasGlobo && DATOS.sorpresasGlobo.length) {
+  document.querySelectorAll('.globo').forEach((g, i) => {
+    g.addEventListener('click', () => {
+      if (g.classList.contains('reventado')) return;
+      g.classList.add('reventado');
+      const r = g.getBoundingClientRect();
+      const path = g.querySelector('svg path');
+      const color = path ? path.getAttribute('fill') : DATOS.colores.fucsia;
+      particulas(r.left + r.width / 2, r.top + r.height * .3, [color, '#fff', DATOS.colores.amarillo], 10, 55);
+      mostrarSorpresa(DATOS.sorpresasGlobo[i % DATOS.sorpresasGlobo.length]);
+    });
+    g.addEventListener('animationiteration', e => { if (e.animationName === 'subirGlobo') g.classList.remove('reventado'); });
+  });
+}
+
+/* Chispas al apagar cada vela: mismo camino para micrófono y para el toque */
+const _apagarBase = apagar;
+apagar = function (v) {
+  const antes = v.classList.contains('apagada');
+  _apagarBase(v);
+  if (!antes && v.classList.contains('apagada')) {
+    const r = v.getBoundingClientRect();
+    particulas(r.left + r.width / 2, r.top, [DATOS.colores.amarillo, '#ff8a5c', '#fff3b0'], 7, 38);
+  }
+};
+
+/* Destello en los cañones al terminar de soplar todas las velas */
+function flashCanones() {
+  if (reducir) return;
+  [0, innerWidth].forEach(x => {
+    const d = document.createElement('div');
+    d.className = 'destello'; d.style.left = (x - 45) + 'px';
+    document.body.appendChild(d);
+    setTimeout(() => d.remove(), 550);
+  });
+}
+const _celebrarBase = celebrar;
+celebrar = function () { flashCanones(); _celebrarBase(); };
+
+/* Caja de regalo final */
+if (DATOS.cajaFinal && DATOS.cajaFinal.activa !== false) {
+  $('#cajaMensaje').textContent = DATOS.cajaFinal.mensaje;
+  const caja = $('#cajaRegalo');
+  const abrirCaja = () => {
+    if (caja.classList.contains('abierta')) return;
+    caja.classList.add('abierta');
+    $('#cajaPista').textContent = '¡Feliz cumpleaños! 🎁';
+    confeti(70);
+    const r = caja.getBoundingClientRect();
+    particulas(r.left + r.width / 2, r.top + 20, [DATOS.colores.amarillo, DATOS.colores.fucsia, DATOS.colores.turquesa], 14, 65);
+  };
+  caja.addEventListener('click', abrirCaja);
+  caja.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirCaja(); } });
+} else {
+  const sec = $('.caja-seccion'); if (sec) sec.style.display = 'none';
+}
 </script>
 </body>
 </html>

@@ -99,6 +99,59 @@
     .revelar{opacity:1;transform:none}
   }
 </style>
+<style id="vistoso">
+  /* ---- Header: contenedor para mariposas y medallón ---- */
+  header{position:relative}
+
+  /* ---- Pétalos que abren uno a uno dentro de cada flor ---- */
+  .petalo-v{opacity:0;transform:scale(0)}
+  .abierta .flor .petalo-v{animation:petaloAbre .5s cubic-bezier(.3,1.4,.5,1) forwards;animation-delay:calc(var(--d,0s) + 1.1s + var(--pd,0s))}
+  @keyframes petaloAbre{to{opacity:1;transform:scale(1)}}
+
+  /* ---- Mariposas revoloteando cerca del ramo ---- */
+  .mariposas{position:absolute;inset:0;pointer-events:none;z-index:6;opacity:0;transition:opacity 1.2s 2.6s}
+  .abierta .mariposas{opacity:1}
+  .mariposa{position:absolute;width:30px;height:auto;filter:drop-shadow(0 3px 4px rgba(74,59,54,.18))}
+  .mariposa .ala{transform-box:view-box;transform-origin:50% 50%;animation:aletear .3s ease-in-out infinite alternate}
+  .mariposa .ala-d{animation-delay:.03s}
+  .m1{top:4%;left:6%;animation:vuela1 9s ease-in-out infinite}
+  .m2{top:0;right:8%;width:24px;animation:vuela2 11s ease-in-out infinite 1.3s}
+  .m3{top:18%;left:46%;width:22px;animation:vuela3 10s ease-in-out infinite 2.5s}
+  @keyframes vuela1{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(32px,-14px) rotate(8deg)}50%{transform:translate(10px,12px) rotate(-6deg)}75%{transform:translate(-22px,-6px) rotate(4deg)}}
+  @keyframes vuela2{0%,100%{transform:translate(0,0) rotate(0)}30%{transform:translate(-26px,16px) rotate(-10deg)}60%{transform:translate(-6px,-16px) rotate(6deg)}}
+  @keyframes vuela3{0%,100%{transform:translate(0,0) rotate(0)}40%{transform:translate(20px,18px) rotate(10deg)}70%{transform:translate(-18px,2px) rotate(-8deg)}}
+  @keyframes aletear{to{transform:scaleX(.3)}}
+
+  /* ---- Medallón / relicario con la foto de mamá ---- */
+  .medallion{display:flex;flex-direction:column;align-items:center;margin-top:16px;opacity:0;transform:translateY(16px) scale(.92);transition:opacity 1.1s 2.7s ease,transform 1.1s 2.7s cubic-bezier(.3,1.3,.4,1)}
+  .abierta .medallion{opacity:1;transform:none}
+  .medallion__cadena{width:70px;color:var(--dorado);margin-bottom:-4px}
+  .medallion__marco{position:relative;width:132px;height:132px;border-radius:50%;padding:6px;background:linear-gradient(155deg,var(--dorado),#e3c48e 45%,var(--dorado));box-shadow:0 14px 30px rgba(74,59,54,.22);overflow:hidden}
+  .medallion__marco::before{content:"";position:absolute;inset:6px;border-radius:50%;border:1px solid rgba(255,255,255,.6);z-index:2;pointer-events:none}
+  .medallion__marco img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:3px solid var(--papel)}
+  .medallion__brillo{position:absolute;top:-10%;left:-70%;width:45%;height:220%;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.85) 50%,transparent 65%);transform:rotate(-18deg);animation:brillo 5.5s ease-in-out 3.2s infinite}
+  @keyframes brillo{0%,20%{left:-70%}38%,100%{left:150%}}
+  .medallion__pie{font-style:italic;font-size:15px;color:var(--salvia-osc);margin-top:8px}
+
+  /* ---- Posdata manuscrita que se escribe sola ---- */
+  .posdata{font-family:var(--manuscrita);font-size:26px;line-height:1.3;color:var(--rosa);margin-top:2px;white-space:nowrap;overflow:hidden;width:0}
+  .posdata.tiene{border-right:2px solid transparent}
+  .carta.visible .posdata.tiene{animation:escribir 1.7s 1.5s cubic-bezier(.4,0,.2,1) forwards,parpadear .8s 1.5s 3}
+  @keyframes escribir{to{width:var(--ancho,280px)}}
+  @keyframes parpadear{0%,100%{border-color:transparent}50%{border-color:var(--dorado)}}
+
+  /* ---- Florcita que brota donde toques la pantalla ---- */
+  .flor-toque{position:fixed;width:26px;height:26px;margin:-13px 0 0 -13px;pointer-events:none;z-index:50;animation:brotar .9s cubic-bezier(.2,1.4,.4,1) forwards}
+  .flor-toque svg{width:100%;height:100%;filter:drop-shadow(0 2px 4px rgba(74,59,54,.25))}
+  @keyframes brotar{0%{opacity:0;transform:scale(0) rotate(-25deg)}55%{opacity:1;transform:scale(1.15) rotate(8deg)}100%{opacity:0;transform:scale(.85) translateY(-24px) rotate(0)}}
+
+  @media (min-width:480px){ .medallion__marco{width:150px;height:150px} }
+
+  @media (prefers-reduced-motion:reduce){
+    .mariposas,.flor-toque{display:none}
+    .medallion__brillo{display:none}
+  }
+</style>
 </head>
 <body class="cerrada">
 <!-- =========================================================
@@ -129,10 +182,23 @@
 <div class="app">
   <header>
     <svg class="ramo" id="ramo" viewBox="0 0 300 280" aria-hidden="true"></svg>
+    <div class="mariposas" aria-hidden="true">
+      <svg class="mariposa m1" viewBox="-6 0 52 30"><g class="ala ala-i"><path d="M20 15C10 2 -4 3 0 15C-4 27 10 28 20 15Z" fill="var(--rubor)"/></g><g class="ala ala-d"><path d="M20 15C30 2 44 3 40 15C44 27 30 28 20 15Z" fill="var(--rosa)"/></g><line x1="20" y1="8" x2="20" y2="22" stroke="var(--tinta)" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <svg class="mariposa m2" viewBox="-6 0 52 30"><g class="ala ala-i"><path d="M20 15C10 2 -4 3 0 15C-4 27 10 28 20 15Z" fill="var(--dorado)"/></g><g class="ala ala-d"><path d="M20 15C30 2 44 3 40 15C44 27 30 28 20 15Z" fill="#e3c48e"/></g><line x1="20" y1="8" x2="20" y2="22" stroke="var(--tinta)" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <svg class="mariposa m3" viewBox="-6 0 52 30"><g class="ala ala-i"><path d="M20 15C10 2 -4 3 0 15C-4 27 10 28 20 15Z" fill="var(--salvia)"/></g><g class="ala ala-d"><path d="M20 15C30 2 44 3 40 15C44 27 30 28 20 15Z" fill="#a9bfa6"/></g><line x1="20" y1="8" x2="20" y2="22" stroke="var(--tinta)" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </div>
     <div class="titulo">
       <small id="tituloSub"></small>
       <h2 id="tituloNombre"></h2>
       <p id="tituloFrase"></p>
+    </div>
+    <div class="medallion" id="medallion">
+      <svg class="medallion__cadena" viewBox="0 0 70 26" fill="none" aria-hidden="true"><path d="M8 24C8 8 24 2 35 2s27 6 27 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <div class="medallion__marco">
+        <img id="medallionFoto" src="" alt="" fetchpriority="high">
+        <span class="medallion__brillo" aria-hidden="true"></span>
+      </div>
+      <p class="medallion__pie" id="medallionPie"></p>
     </div>
   </header>
 
@@ -142,6 +208,7 @@
     <section class="carta revelar">
       <div id="mensaje"></div>
       <p class="firma" id="firma"></p>
+      <p class="posdata" id="posdata"></p>
     </section>
 
     <svg class="separador" viewBox="0 0 150 20" fill="none" stroke="currentColor" stroke-width="1"><path d="M0 10h58M92 10h58"/><circle cx="75" cy="10" r="4"/><circle cx="64" cy="10" r="1.6" fill="currentColor"/><circle cx="86" cy="10" r="1.6" fill="currentColor"/></svg>
@@ -192,6 +259,13 @@ Hoy entendemos todo lo que hiciste (y sigues haciendo) por nosotros. Eres nuestr
     { foto: "https://images.unsplash.com/photo-1484665754804-74b091211472?auto=format&fit=crop&w=800&q=75", pie: "Tus abrazos" },
     { foto: "https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=800&q=75", pie: "Flores para ti" }
   ],
+
+  // --- Foto destacada de mamá (medallón arriba de la carta; deja "" para ocultarlo) ---
+  fotoMama: "https://images.unsplash.com/photo-1484665754804-74b091211472?auto=format&fit=crop&w=480&q=75",
+  fotoMamaPie: "Nuestra mamá",
+
+  // --- Posdata escrita a mano, se escribe sola al final de la carta (deja "" para ocultarla) ---
+  posdata: "Te quiero muchísimo, mamá.",
 
   // --- "Gracias por…" (aparecen al bajar) ---
   tituloGracias: "Gracias por…",
@@ -280,8 +354,8 @@ DATOS.gracias.forEach((g, i) => {
   // flores
   flores.forEach(([x, y, s, fuera, dentro, d]) => {
     let p = '';
-    for (let k = 0; k < 10; k++) p += `<ellipse cx="0" cy="-15" rx="9" ry="16" fill="${fuera}" transform="rotate(${k * 36})"/>`;
-    for (let k = 0; k < 7; k++) p += `<ellipse cx="0" cy="-9" rx="6.5" ry="10.5" fill="${dentro}" transform="rotate(${k * 51.4 + 20})"/>`;
+    for (let k = 0; k < 10; k++) p += `<g transform="rotate(${k * 36})"><g class="petalo-v" style="--pd:${(k * 0.045).toFixed(3)}s"><ellipse cx="0" cy="-15" rx="9" ry="16" fill="${fuera}"/></g></g>`;
+    for (let k = 0; k < 7; k++) p += `<g transform="rotate(${k * 51.4 + 20})"><g class="petalo-v" style="--pd:${(0.5 + k * 0.045).toFixed(3)}s"><ellipse cx="0" cy="-9" rx="6.5" ry="10.5" fill="${dentro}"/></g></g>`;
     p += `<circle r="6" fill="${DATOS.colores.dorado}"/><circle r="3.5" fill="#e3c48e"/>`;
     svg += `<g transform="translate(${x} ${y}) scale(${s})"><g class="flor" style="--d:${d}s">${p}</g></g>`;
   });
@@ -359,6 +433,41 @@ $('#btnAbrir').addEventListener('click', () => {
   document.body.classList.remove('cerrada');
   scrollTo(0, 0);
 });
+</script>
+<script id="vistoso-js">
+/* ---- Foto de mamá en el medallón ---- */
+if (DATOS.fotoMama) {
+  $('#medallionFoto').src = DATOS.fotoMama;
+  $('#medallionFoto').alt = DATOS.fotoMamaPie || DATOS.mama;
+  $('#medallionPie').textContent = DATOS.fotoMamaPie || '';
+} else {
+  $('#medallion').style.display = 'none';
+}
+
+/* ---- Posdata manuscrita que se escribe sola (se activa al llegar a la carta) ---- */
+const posdataEl = $('#posdata');
+if (DATOS.posdata) {
+  posdataEl.textContent = DATOS.posdata;
+  posdataEl.classList.add('tiene');
+  posdataEl.style.setProperty('--ancho', posdataEl.scrollWidth + 'px');
+} else {
+  posdataEl.remove();
+}
+
+/* ---- Una florcita brota donde toques la pantalla ---- */
+if (!reducir) {
+  document.addEventListener('pointerdown', e => {
+    if (!document.body.classList.contains('abierta')) return;
+    if (e.target.closest('button, a, .musica')) return;
+    const brote = document.createElement('div');
+    brote.className = 'flor-toque';
+    brote.innerHTML = florcita;
+    brote.style.left = e.clientX + 'px';
+    brote.style.top = e.clientY + 'px';
+    document.body.appendChild(brote);
+    brote.addEventListener('animationend', () => brote.remove());
+  });
+}
 </script>
 </body>
 </html>

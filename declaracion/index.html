@@ -164,6 +164,10 @@ const DATOS = {
   ],
   textoPista: "Toca la pantalla",
 
+  // --- Mini-juego opcional: mientras lee las frases puede ir tocando las estrellas
+  // marcadas (más grandes y brillantes) hasta unirlas y dibujar un corazón. true/false ---
+  constelacion: true,
+
   // --- La pregunta ---
   pregunta: "¿Quieres ser mi enamorada?",
   fotoPregunta: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=75", // se ve dentro del corazón
@@ -223,19 +227,38 @@ DATOS.fotos.slice(0, 3).forEach(f => {
 });
 $('#puntos').innerHTML = DATOS.frases.map(() => '<i></i>').join('') + '<i></i>';
 
-/* ---------- Cielo estrellado ---------- */
+/* ---------- Cielo estrellado: 3 capas + parallax (dedo y, si no pide permiso, giro) ---------- */
 const cielo = $('#cielo'), cc = cielo.getContext('2d');
-let estrellas = [], fugaz = null;
+let capas = [], fugaz = null;
+const parallax = { x: 0, y: 0, tx: 0, ty: 0 };
 function tamCanvas(c, ctx) { const d = devicePixelRatio || 1; c.width = innerWidth * d; c.height = innerHeight * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
 function crearEstrellas() {
   tamCanvas(cielo, cc);
-  estrellas = Array.from({ length: Math.round(innerWidth * innerHeight / 2600) }, () => ({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, r: Math.random() * 1.3 + .3, f: Math.random() * 6, v: .01 + Math.random() * .03 }));
+  const area = innerWidth * innerHeight;
+  capas = [
+    { prof: .3, r: [.3, .7], n: area / 5200 },
+    { prof: .6, r: [.5, 1.1], n: area / 6200 },
+    { prof: 1, r: [.8, 1.7], n: area / 7800 }
+  ].map(cfg => ({
+    prof: cfg.prof,
+    pts: Array.from({ length: Math.round(cfg.n) }, () => ({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, r: cfg.r[0] + Math.random() * (cfg.r[1] - cfg.r[0]), f: Math.random() * 6, v: .01 + Math.random() * .03 }))
+  }));
 }
 crearEstrellas(); addEventListener('resize', () => { crearEstrellas(); tamCanvas(fiesta, fc); });
+function actualizarParallax(nx, ny) { parallax.tx = nx * 16; parallax.ty = ny * 12; }
+addEventListener('pointermove', e => { if (e.pointerType !== 'touch') actualizarParallax(e.clientX / innerWidth - .5, e.clientY / innerHeight - .5); }, { passive: true });
+addEventListener('touchmove', e => { const t = e.touches[0]; if (t) actualizarParallax(t.clientX / innerWidth - .5, t.clientY / innerHeight - .5); }, { passive: true });
+if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission !== 'function') {
+  addEventListener('deviceorientation', e => { if (e.gamma == null) return; actualizarParallax(Math.max(-1, Math.min(1, e.gamma / 30)), Math.max(-1, Math.min(1, (e.beta - 45) / 30))); }, true);
+}
 function dibujarCielo() {
+  parallax.x += (parallax.tx - parallax.x) * .06; parallax.y += (parallax.ty - parallax.y) * .06;
   cc.clearRect(0, 0, innerWidth, innerHeight);
-  estrellas.forEach(e => { e.f += e.v; cc.globalAlpha = .35 + Math.abs(Math.sin(e.f)) * .65; cc.fillStyle = '#fff'; cc.beginPath(); cc.arc(e.x, e.y, e.r, 0, 7); cc.fill(); });
-  if (!fugaz && Math.random() < .004) fugaz = { x: Math.random() * innerWidth, y: Math.random() * innerHeight * .4, v: 7, vida: 1 };
+  capas.forEach(capa => {
+    const ox = parallax.x * capa.prof, oy = parallax.y * capa.prof;
+    capa.pts.forEach(e => { e.f += e.v; cc.globalAlpha = .35 + Math.abs(Math.sin(e.f)) * .65; cc.fillStyle = '#fff'; cc.beginPath(); cc.arc(e.x + ox, e.y + oy, e.r, 0, 7); cc.fill(); });
+  });
+  if (!fugaz && Math.random() < .005) fugaz = { x: Math.random() * innerWidth, y: Math.random() * innerHeight * .4, v: 7, vida: 1 };
   if (fugaz) {
     const g = cc.createLinearGradient(fugaz.x, fugaz.y, fugaz.x - 80, fugaz.y - 40);
     g.addColorStop(0, 'rgba(255,255,255,' + fugaz.vida + ')'); g.addColorStop(1, 'rgba(255,255,255,0)');
@@ -243,6 +266,7 @@ function dibujarCielo() {
     fugaz.x += fugaz.v; fugaz.y += fugaz.v / 2; fugaz.vida -= .018; if (fugaz.vida <= 0) fugaz = null;
   }
   cc.globalAlpha = 1;
+  if (typeof dibujarConstelacion === 'function') dibujarConstelacion(cc);
   if (!reducir) requestAnimationFrame(dibujarCielo);
 }
 dibujarCielo();
@@ -326,7 +350,7 @@ function avanzar() {
     else irAPregunta();
   }, reducir ? 10 : 420);
 }
-$('#escena').addEventListener('click', avanzar);
+$('#escena').addEventListener('click', e => { if (typeof tocarEstrella === 'function' && tocarEstrella(e)) return; avanzar(); });
 $('#escena').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') avanzar(); });
 
 function irAPregunta() {
@@ -367,7 +391,8 @@ function huir(e) {
   }
   if (!mejor) mejor = { x: m, y: innerHeight - h - 40 };
   no.style.left = mejor.x + 'px'; no.style.top = mejor.y + 'px';
-  no.style.transform = `rotate(${(Math.random() - .5) * 16}deg)`;
+  const escala = Math.max(.66, 1 - intentos * .04); // se va achicando en cada intento
+  no.style.transform = `rotate(${(Math.random() - .5) * 16}deg) scale(${escala})`;
 }
 no.addEventListener('touchstart', huir, { passive: false });
 no.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') huir(e); });
@@ -382,6 +407,7 @@ si.addEventListener('click', () => {
   document.body.classList.add('celebrando');
   scrollTo(0, 0);
   fiestaDeCorazones(true);
+  if (typeof lanzarFuegos === 'function') lanzarFuegos();
   setTimeout(() => $('#fotos').classList.add('abanico'), 500);
 });
 $('#btnOtra').addEventListener('click', () => { musica.floreo(); fiestaDeCorazones(false); });
@@ -413,15 +439,106 @@ function fiestaDeCorazones(grande) {
 }
 function animarFiesta() {
   fc.clearRect(0, 0, innerWidth, innerHeight);
+  const nuevas = [];
   piezas.forEach(p => {
+    if (p.tipo === 'cohete') { // sube y estalla en chispas
+      p.x += p.vx; p.y += p.vy; p.vy += .32;
+      fc.globalAlpha = .9; fc.strokeStyle = p.color; fc.lineWidth = 2; fc.beginPath(); fc.moveTo(p.x, p.y); fc.lineTo(p.x - p.vx * 2.4, p.y - p.vy * 2.4); fc.stroke();
+      if (p.y <= p.destino || p.vy >= -.5) {
+        p.vida = 0;
+        const n = 26;
+        for (let k = 0; k < n; k++) { const a = (k / n) * Math.PI * 2, v = 2.4 + Math.random() * 2.6; nuevas.push({ tipo: 'chispa', x: p.x, y: p.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, color: p.color, vida: 1 }); }
+      }
+      return;
+    }
+    if (p.tipo === 'chispa') { // brillo del estallido
+      p.vx *= .97; p.vy = p.vy * .97 + .09; p.x += p.vx; p.y += p.vy; p.vida -= .018;
+      fc.globalAlpha = Math.max(p.vida, 0); fc.fillStyle = p.color; fc.shadowColor = p.color; fc.shadowBlur = 6; fc.beginPath(); fc.arc(p.x, p.y, 2.4, 0, 7); fc.fill(); fc.shadowBlur = 0;
+      return;
+    }
     if (p.sube) { p.y += p.vy; p.x += Math.sin(p.y / 40) * .8; if (p.y < innerHeight * .3) p.vida -= .02; }
     else { p.vx *= .985; p.vy = p.vy * .985 + .22; p.x += p.vx; p.y += p.vy; p.rot += p.vr; }
     fc.save(); fc.translate(p.x, p.y); fc.rotate(p.rot); fc.globalAlpha = Math.max(p.vida, 0); fc.fillStyle = p.color;
     if (p.tipo === 'c') corazon(p.s); else fc.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2);
     fc.restore();
   });
+  if (nuevas.length) piezas.push(...nuevas);
   piezas = piezas.filter(p => p.vida > 0 && p.y < innerHeight + 260 && p.x > -60 && p.x < innerWidth + 60);
   if (piezas.length) requestAnimationFrame(animarFiesta); else { corriendo = false; fc.clearRect(0, 0, innerWidth, innerHeight); }
+}
+</script>
+
+<script id="vistoso-js">
+/* =====================================================================
+   Extras "vistosos": constelación (une estrellas → corazón) y fuegos
+   artificiales al decir que sí. Usa DATOS, musica, piezas, corriendo,
+   animarFiesta, reducir y $ ya declarados arriba.
+   ===================================================================== */
+
+/* ---------- Constelación: toca las estrellas marcadas y arma un corazón ---------- */
+let estrellasMeta = null, siguienteMeta = 0, constelacionLista = false, pistaEstrellas = null;
+function generarConstelacion() {
+  if (DATOS.constelacion === false) return;
+  const cx = innerWidth * .5, cy = Math.min(innerHeight * .4, 300);
+  const s = Math.min(innerWidth, 420) * .34 / 16;
+  const N = 10, pts = [];
+  for (let i = 0; i < N; i++) {
+    const t = (i / N) * Math.PI * 2;
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+    pts.push({ x: cx + x * s, y: cy + y * s, hecha: false });
+  }
+  estrellasMeta = pts; siguienteMeta = 0; constelacionLista = false;
+}
+generarConstelacion(); addEventListener('resize', generarConstelacion);
+
+if (DATOS.constelacion !== false && !pistaEstrellas) {
+  pistaEstrellas = document.createElement('div');
+  pistaEstrellas.textContent = '✨ toca las estrellas';
+  pistaEstrellas.style.cssText = 'position:absolute;top:52px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.05em;color:rgba(255,246,251,.6);opacity:0;transition:opacity 1s ease;pointer-events:none;z-index:2';
+  $('#escena').appendChild(pistaEstrellas);
+  setTimeout(() => { pistaEstrellas.style.opacity = 1; }, 1400);
+  setTimeout(() => { pistaEstrellas.style.opacity = 0; }, 9000);
+}
+
+function dibujarConstelacion(ctx) {
+  if (!estrellasMeta || DATOS.constelacion === false) return;
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255,158,192,.85)'; ctx.lineWidth = 1.6; ctx.lineCap = 'round';
+  ctx.shadowColor = 'rgba(255,79,139,.9)'; ctx.shadowBlur = 8;
+  ctx.beginPath();
+  for (let i = 1; i < siguienteMeta; i++) { const a = estrellasMeta[i - 1], b = estrellasMeta[i]; ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); }
+  if (constelacionLista) { const a = estrellasMeta[estrellasMeta.length - 1], b = estrellasMeta[0]; ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); }
+  ctx.stroke();
+  const t = performance.now() / 500;
+  estrellasMeta.forEach((p, i) => {
+    const r = p.hecha ? 3 : (i === siguienteMeta ? 2.6 + Math.sin(t + i) * .8 : 1.6);
+    ctx.globalAlpha = p.hecha ? .95 : (i === siguienteMeta ? .85 : .3);
+    ctx.fillStyle = p.hecha ? '#ff9ec0' : '#fff';
+    ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, 7); ctx.fill();
+  });
+  ctx.restore();
+}
+
+function tocarEstrella(e) {
+  if (!estrellasMeta || constelacionLista || DATOS.constelacion === false) return false;
+  const p = estrellasMeta[siguienteMeta];
+  if (!p || Math.hypot(e.clientX - p.x, e.clientY - p.y) > 30) return false;
+  p.hecha = true; siguienteMeta++;
+  if (navigator.vibrate) try { navigator.vibrate(12); } catch (_) {}
+  if (siguienteMeta >= estrellasMeta.length) { constelacionLista = true; musica.floreo(); if (pistaEstrellas) pistaEstrellas.style.opacity = 0; }
+  return true;
+}
+
+/* ---------- Fuegos artificiales al tocar "Sí" (se suman al canvas de confeti) ---------- */
+function cohete(x0, color) {
+  piezas.push({ tipo: 'cohete', x: x0, y: innerHeight, vx: (Math.random() - .5) * .6, vy: -(10 + Math.random() * 3), destino: innerHeight * (.16 + Math.random() * .26), color, vida: 1 });
+  if (!corriendo) { corriendo = true; requestAnimationFrame(animarFiesta); }
+}
+function lanzarFuegos() {
+  if (reducir) return; // quieto y visible: sin explosiones animadas
+  const colores = [DATOS.colores.rosa, DATOS.colores.rosa2, '#ffd166', '#b9a4ff', '#7ee0ff', '#ffffff'];
+  [0, 220, 460, 680, 900].forEach((espera, i) => setTimeout(() => cohete(innerWidth * (.2 + Math.random() * .6), colores[i % colores.length]), espera));
 }
 </script>
 </body>
