@@ -125,6 +125,7 @@ p{margin:0}
 .etq.izq{right:69%;text-align:right}
 .etq.izq::before{order:2}
 .etq.der{left:69%}
+@media (max-width:400px){.etq{white-space:normal;width:29%}.etq.izq{justify-content:flex-end}.etq b{font-size:12px;line-height:1.05}}
 .riel{display:none}
 
 /* Cinta */
@@ -292,7 +293,7 @@ dialog.hoja[open]{animation:sube .35s var(--curva)}
 .js .rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--curva),transform .7s var(--curva)}
 .js .rv.in{opacity:1;transform:none}
 
-@media (max-height:700px) and (max-width:899px){.fase .nota{display:none}.fase h1{font-size:clamp(38px,11vw,52px)}}
+@media (max-height:700px) and (max-width:899px){.fase .nota{display:none}.fase h1{font-size:clamp(36px,10.4vw,50px)}.fase-a .ctas .btn-o{display:none}.fase .ctas{margin-top:14px}}
 @media (min-width:560px){
   .logo small{display:block}
   .platos{grid-template-columns:1fr 1fr}
