@@ -100,7 +100,7 @@
   .tit p { color:var(--soft); margin-top:8px; font-size:16px; }
   .grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:22px 14px; }
   @media (min-width:700px) { .grid { grid-template-columns:repeat(3, 1fr); gap:30px 22px; } }
-  @media (min-width:1000px) { .grid { grid-template-columns:repeat(5, 1fr); } .grid.g4 { grid-template-columns:repeat(4, 1fr); } }
+  @media (min-width:1000px) { .grid { grid-template-columns:repeat(5, 1fr); } .grid.g4 { grid-template-columns:repeat(4, 1fr); } .grid.g3 { grid-template-columns:repeat(3, minmax(0, 250px)); justify-content:start; gap:30px 36px; } }
   .card { display:block; perspective:900px; border-radius:22px; }
   .card:focus-visible { outline:3px solid var(--lime); outline-offset:6px; }
   .marco { position:relative; border-radius:24px; padding:5px; background:#0b0920; box-shadow:0 18px 40px rgba(0,0,0,.4), inset 0 0 0 1.5px rgba(255,255,255,.12);
@@ -165,15 +165,14 @@
 </div>
 
 <div class="cinta" aria-hidden="true"><div>
-  <p>Restaurantes<span>✦</span>Hamburguesas en 3D<span>✦</span>Barberías<span>✦</span>Consultorios<span>✦</span>Tiendas de ropa<span>✦</span>Cartas con QR<span>✦</span>Menú del día<span>✦</span>Pedidos por WhatsApp<span>✦</span>Detalles para regalar<span>✦</span></p>
-  <p>Restaurantes<span>✦</span>Hamburguesas en 3D<span>✦</span>Barberías<span>✦</span>Consultorios<span>✦</span>Tiendas de ropa<span>✦</span>Cartas con QR<span>✦</span>Menú del día<span>✦</span>Pedidos por WhatsApp<span>✦</span>Detalles para regalar<span>✦</span></p>
+  <p>Restaurantes<span>✦</span>Webs animadas<span>✦</span>Barberías<span>✦</span>Consultorios<span>✦</span>Tiendas de ropa<span>✦</span>Cartas con QR<span>✦</span>Menú del día<span>✦</span>Pedidos por WhatsApp<span>✦</span>Detalles para regalar<span>✦</span></p>
+  <p>Restaurantes<span>✦</span>Webs animadas<span>✦</span>Barberías<span>✦</span>Consultorios<span>✦</span>Tiendas de ropa<span>✦</span>Cartas con QR<span>✦</span>Menú del día<span>✦</span>Pedidos por WhatsApp<span>✦</span>Detalles para regalar<span>✦</span></p>
 </div></div>
 
 <main class="wrap">
   <section>
     <div class="tit"><small>01</small><div><h2>Webs para negocios</h2><p>Tu negocio abierto las 24 horas, con reservas por WhatsApp.</p></div></div>
-    <div class="grid">
-      <a class="card" href="hamburgueseria/"><div class="marco"><span class="nuevo">Nuevo · 3D</span><img src="capturas/hamburgueseria.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Hamburguesería</h3><p>PRENSA · se arma en 3D</p></a>
+    <div class="grid g4">
       <a class="card" href="criollo/"><div class="marco"><img src="capturas/criollo.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Restaurante criollo</h3><p>Mesa Larga · Barranco</p></a>
       <a class="card" href="barberia/"><div class="marco"><img src="capturas/barberia.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Barbería</h3><p>Filo Cobre · Surco</p></a>
       <a class="card" href="dental/"><div class="marco"><img src="capturas/dental.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Consultorio dental</h3><p>Brisa Dental · Miraflores</p></a>
@@ -182,7 +181,16 @@
   </section>
 
   <section>
-    <div class="tit"><small>02</small><div><h2>Cartas y menús para restaurantes</h2><p>Para la mesa, para el menú de hoy o para pedir delivery.</p></div></div>
+    <div class="tit"><small>02</small><div><h2>Webs que se mueven</h2><p>Animaciones al bajar: un 3D que se desarma, secciones que se quedan fijas y textos que se arman solos.</p></div></div>
+    <div class="grid g3">
+      <a class="card" href="hamburgueseria/"><div class="marco"><span class="nuevo">3D</span><img src="capturas/hamburgueseria.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Hamburguesería</h3><p>PRENSA · se arma en 3D</p></a>
+      <a class="card" href="cafeteria/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/cafeteria.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Cafetería</h3><p>Altura · Surquillo</p></a>
+      <a class="card" href="zapatos/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/zapatos.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Zapatos de cuero</h3><p>HORMA · Trujillo</p></a>
+    </div>
+  </section>
+
+  <section>
+    <div class="tit"><small>03</small><div><h2>Cartas y menús para restaurantes</h2><p>Para la mesa, para el menú de hoy o para pedir delivery.</p></div></div>
     <div class="grid">
       <a class="card" href="nikkei/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/nikkei.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Carta de mesa QR</h3><p>Kōji · español e inglés</p></a>
       <a class="card" href="huarique/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/huarique.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Menú del día</h3><p>Huarique de la Tía Carmen</p></a>
@@ -193,7 +201,7 @@
   </section>
 
   <section>
-    <div class="tit"><small>03</small><div><h2>Detalles digitales</h2><p>Un link y un QR para regalar algo que emociona.</p></div></div>
+    <div class="tit"><small>04</small><div><h2>Detalles digitales</h2><p>Un link y un QR para regalar algo que emociona.</p></div></div>
     <div class="grid">
       <a class="card" href="aniversario/"><div class="marco"><img src="capturas/aniversario.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Aniversario</h3><p>Carta que se abre sola</p></a>
       <a class="card" href="declaracion/"><div class="marco"><img src="capturas/declaracion.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Declaración</h3><p>¿Quieres ser mi enamorada?</p></a>

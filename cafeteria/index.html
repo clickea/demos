@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Altura · Café de especialidad en Surquillo</title>
+<meta name="description" content="Café de especialidad tostado en Surquillo cada martes, de fincas de Villa Rica y Quillabamba. Brunch todo el día. Pide para llevar por WhatsApp. Yape y Plin.">
+<meta name="theme-color" content="#1B120D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231B120D'/%3E%3Cpath d='M12 46 26 24l8 12 6-8 12 18Z' fill='none' stroke='%23F2EADD' stroke-width='3.5' stroke-linejoin='round'/%3E%3Ccircle cx='46' cy='17' r='4' fill='%23B83A2B'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://clickea.github.io/demos/cafeteria/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_PE">
+<meta property="og:title" content="Altura · Café de especialidad en Surquillo">
+<meta property="og:description" content="Café de altura tostado aquí cada martes y brunch todo el día. Pídelo para llevar por WhatsApp.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1670404161009-29548c027d06?fm=jpg&fit=crop&crop=focalpoint&fp-y=.45&w=1200&h=630&q=78">
+<meta property="og:url" content="https://clickea.github.io/demos/cafeteria/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1670404161009-29548c027d06?auto=format&fit=crop&w=760&h=900&q=62" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+// Las animaciones se preparan antes de pintar; si GSAP no llega en 3 s, la página se muestra igual, sin animar.
+(function (r) { r.classList.add('js'); if (matchMedia('(prefers-reduced-motion: no-preference)').matches) { r.classList.add('gs'); setTimeout(function () { if (!window.ScrollTrigger) r.classList.remove('gs'); }, 3000); } })(document.documentElement);
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Altura Café",
+  "description": "Café de especialidad en Surquillo: granos de Villa Rica y Quillabamba tostados en el local cada martes, métodos filtrados y brunch todo el día.",
+  "url": "https://clickea.github.io/demos/cafeteria/",
+  "image": "https://images.unsplash.com/photo-1670404161009-29548c027d06?fm=jpg&fit=crop&w=1200&h=630&q=78",
+  "telephone": "+51900000000",
+  "servesCuisine": ["Café", "Brunch"],
+  "priceRange": "S/ 7 - S/ 42",
+  "currenciesAccepted": "PEN",
+  "paymentAccepted": "Efectivo, Yape, Plin, Tarjeta",
+  "acceptsReservations": true,
+  "hasMenu": "https://clickea.github.io/demos/cafeteria/#carta",
+  "address": { "@type": "PostalAddress", "streetAddress": "Calle Dante 840", "addressLocality": "Surquillo", "addressRegion": "Lima", "postalCode": "15047", "addressCountry": "PE" },
+  "geo": { "@type": "GeoCoordinates", "latitude": -12.1135, "longitude": -77.0263 },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "07:30", "closes": "20:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday"], "opens": "08:30", "closes": "20:30" }
+  ]
+}
+</script>
+<style>
+:root{
+  --espresso:#1B120D;--espresso-2:#2A1D16;--crema:#F2EADD;--papel:#FAF6EF;--cereza:#B83A2B;--cereza-c:#D24A38;
+  --tostado:#8A5A3B;--hoja:#4F6B45;--gris:#7A6A5E;--gris-c:#B9AA9A;--linea:rgba(27,18,13,.14);--linea-c:rgba(242,234,221,.16);
+  --ff-t:'Gloock',Georgia,'Times New Roman',serif;--ff:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --pad:20px;--wrap:1180px;--hd:62px;--barra:62px;--curva:cubic-bezier(.2,.7,.2,1)
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--hd) + 12px)}
+body{margin:0;background:var(--papel);color:var(--espresso);font:400 17px/1.6 var(--ff);overflow-x:clip;padding-bottom:calc(var(--barra) + env(safe-area-inset-bottom))}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{font-family:var(--ff-t);font-weight:400;line-height:1.02;letter-spacing:-.015em;margin:0;text-wrap:balance}
+h2{font-size:clamp(40px,10vw,76px)}
+h2 em,h1 em{font-style:italic;color:var(--cereza)}
+.wrap{width:min(100% - 2 * var(--pad),var(--wrap));margin-inline:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--cereza);outline-offset:3px;border-radius:4px}
+.eti{display:inline-flex;align-items:center;gap:8px;font:700 12px/1 var(--ff);letter-spacing:.16em;text-transform:uppercase;color:var(--tostado)}
+.eti::before{content:'';width:22px;height:1.5px;background:currentColor}
+.msnm{font-variant-numeric:tabular-nums;letter-spacing:.06em}
+
+/* botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border:0;border-radius:99px;font:700 16px/1 var(--ff);text-decoration:none;cursor:pointer;transition:transform .2s var(--curva),background .2s,color .2s}
+.btn:active{transform:scale(.97)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-c{background:var(--cereza);color:#fff}
+.btn-c:hover{background:var(--cereza-c)}
+.btn-l{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.btn-l:hover{background:rgba(242,234,221,.1)}
+.btn .fl{transition:transform .25s var(--curva)}
+.btn:hover .fl{transform:translateX(4px)}
+
+/* cabecera */
+.cab{position:sticky;top:0;z-index:50;height:var(--hd);background:rgba(27,18,13,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--crema);border-bottom:1px solid var(--linea-c)}
+.cab .wrap{height:100%;display:flex;align-items:center;gap:16px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;font:400 26px/1 var(--ff-t);letter-spacing:-.01em}
+.marca svg{width:30px;height:30px}
+.nav{display:none;gap:22px;margin-left:auto}
+.nav a{text-decoration:none;font-weight:500;font-size:15px;opacity:.85}
+.nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:.3em}
+.cab .btn{margin-left:auto;min-height:42px;padding:0 18px;font-size:14.5px}
+
+/* curvas de nivel (sello de la marca) */
+.curvas{position:absolute;pointer-events:none;color:var(--tostado)}
+.curvas use{fill:none;stroke:currentColor;stroke-width:1.2;vector-effect:non-scaling-stroke}
+
+/* 1 · portada */
+.portada{position:relative;overflow:hidden;background:var(--espresso);color:var(--crema);padding:34px 0 56px}
+.portada .curvas{width:min(150vw,1100px);right:-38%;top:-12%;opacity:.42}
+.portada-g{position:relative;display:grid;gap:30px}
+.portada .eti{color:var(--gris-c)}
+.portada h1{font-size:clamp(46px,12.5vw,104px);margin-top:16px}
+.portada .bajada{margin-top:18px;max-width:40ch;color:var(--gris-c);font-size:17.5px}
+.ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.nota{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:18px;font-size:14px;color:var(--gris-c)}
+.nota span{display:inline-flex;align-items:center;gap:8px}
+.nota span::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--cereza-c)}
+.foto-p{position:relative;margin:0;border-radius:200px 200px 18px 18px;overflow:hidden;aspect-ratio:4/5;background:var(--espresso-2)}
+.foto-p img{width:100%;height:100%;object-fit:cover}
+.foto-p figcaption{position:absolute;left:14px;bottom:14px;padding:8px 12px;border-radius:99px;background:rgba(27,18,13,.78);font-size:13px;font-weight:600}
+
+/* 2 · origen */
+.origen{position:relative;overflow:hidden;padding:76px 0}
+.origen .curvas{width:900px;left:-420px;bottom:-360px;opacity:.28}
+.manifiesto{position:relative;margin-top:22px;font:400 clamp(27px,6.6vw,48px)/1.2 var(--ff-t);letter-spacing:-.01em;max-width:24ch}
+.manifiesto em{font-style:italic;color:var(--cereza)}
+.fincas{position:relative;display:grid;gap:14px;margin-top:40px}
+.finca{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;align-items:end;padding:20px;border-radius:18px;background:var(--crema)}
+.finca .alto{grid-row:span 2;min-width:2.45em;font:400 clamp(44px,12vw,64px)/.85 var(--ff-t);letter-spacing:-.02em;color:var(--espresso)}
+.finca .alto small{display:block;margin-top:6px;font:700 11px/1 var(--ff);letter-spacing:.16em;text-transform:uppercase;color:var(--tostado)}
+.finca>b{font-size:18px;line-height:1.3}
+.finca>span{font-size:14.5px;color:var(--gris)}
+
+/* 3 · lo que más sale (carril) */
+.barra-sec{background:var(--espresso);color:var(--crema);padding:64px 0}
+.barra-sec .eti{color:var(--gris-c)}
+.barra-cab{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 30px}
+.barra-cab p{color:var(--gris-c);max-width:36ch}
+.carril{list-style:none;margin:32px 0 0;padding:0 var(--pad);display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,420px);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);scrollbar-width:none}
+.carril::-webkit-scrollbar{display:none}
+.item{scroll-snap-align:start;display:grid;gap:12px;align-content:start}
+.item figure{margin:0;border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:var(--espresso-2)}
+.item img{width:100%;height:100%;object-fit:cover}
+.item .num{font:700 12px/1 var(--ff);letter-spacing:.16em;color:var(--gris-c)}
+.item h3{font-size:30px}
+.item p{color:var(--gris-c);font-size:15.5px}
+.item .pr{display:inline-flex;align-self:start;justify-self:start;padding:6px 12px;border-radius:99px;background:var(--crema);color:var(--espresso);font-weight:700;font-size:15px}
+.avance{display:none}
+
+/* 4 · carta */
+.carta{padding:76px 0}
+.carta-g{display:grid;gap:34px;margin-top:34px}
+.grupo h3{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1.5px solid var(--espresso);font-size:30px}
+.grupo h3 small{font:600 12px/1 var(--ff);letter-spacing:.12em;text-transform:uppercase;color:var(--tostado)}
+.grupo ul{list-style:none;margin:0;padding:0}
+.grupo li{display:flex;align-items:baseline;gap:10px;padding:11px 0;border-bottom:1px solid var(--linea)}
+.grupo li span{flex:1;min-width:0}
+.grupo li span small{display:block;color:var(--gris);font-size:13.5px}
+.grupo li b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.carta-pie{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;margin-top:34px;padding:20px;border-radius:18px;background:var(--crema)}
+.carta-pie p{flex:1 1 260px;font-size:15.5px}
+
+/* 5 · el lugar */
+.lugar{background:var(--espresso);color:var(--crema)}
+.expande{position:relative;height:auto;padding:64px 0 0}
+.expande .foto{position:relative;width:min(100% - 2 * var(--pad),var(--wrap));margin-inline:auto;aspect-ratio:3/2;border-radius:18px;overflow:hidden}
+.expande img{width:100%;height:100%;object-fit:cover}
+.expande .texto{position:relative;width:min(100% - 2 * var(--pad),var(--wrap));margin:22px auto 0}
+.expande h2{font-size:clamp(36px,9vw,72px)}
+.expande .texto p{margin-top:10px;color:var(--gris-c);max-width:44ch}
+.rincones{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:40px 0 70px}
+.rincones figure{margin:0}
+.rincones .ph{border-radius:140px 140px 14px 14px;overflow:hidden;aspect-ratio:3/4}
+.rincones img{width:100%;height:100%;object-fit:cover}
+.rincones figcaption{margin-top:10px;font-size:14px;color:var(--gris-c)}
+
+/* 6 · visítanos */
+.visita{padding:76px 0}
+.visita-g{display:grid;gap:22px;margin-top:30px}
+.horario{padding:22px 20px;border-radius:18px;background:var(--crema)}
+.estado{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--hoja)}
+.estado::before{content:'';width:9px;height:9px;border-radius:50%;background:currentColor;box-shadow:0 0 0 4px rgba(79,107,69,.18)}
+.estado.cerrado{color:var(--cereza)}
+.estado.cerrado::before{box-shadow:0 0 0 4px rgba(184,58,43,.16)}
+#hours{list-style:none;margin:14px 0 0;padding:0}
+#hours li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--linea);font-variant-numeric:tabular-nums}
+#hours li:last-child{border-bottom:0}
+#hours li.hoy{font-weight:700;color:var(--cereza)}
+.dir{margin-top:16px}
+.dir b{display:block;font-size:18px}
+.visita .ctas .btn-l{color:var(--espresso)}
+.visita .ctas .btn-l:hover{background:var(--crema)}
+.mapa{position:relative;min-height:300px;border-radius:18px;overflow:hidden;background:var(--espresso)}
+.mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.mapa-btn{position:absolute;inset:0;width:100%;display:grid;place-content:center;justify-items:center;gap:12px;padding:20px;border:0;background:var(--espresso);color:var(--crema);font:inherit;cursor:pointer;overflow:hidden}
+.mapa-btn .curvas{width:640px;left:50%;top:50%;transform:translate(-50%,-50%);opacity:.5}
+.mapa-btn .pin{position:relative;width:56px;height:56px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--cereza);display:grid;place-items:center;transition:transform .3s var(--curva)}
+.mapa-btn .pin svg{width:22px;height:22px;transform:rotate(45deg);color:#fff}
+.mapa-btn:hover .pin{transform:rotate(-45deg) translate(4px,-4px)}
+.mapa-btn b,.mapa-btn span{position:relative}
+.mapa-btn span{font-size:14px;color:var(--gris-c)}
+
+/* 7 · preguntas y cierre */
+.faq{padding:0 0 76px}
+.faq-l{margin-top:24px;border-top:1.5px solid var(--espresso)}
+.faq details{border-bottom:1px solid var(--linea)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:58px;padding:12px 0;font-weight:700;font-size:17px;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font:500 28px/1 var(--ff);color:var(--cereza);transition:transform .25s var(--curva)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 16px;color:var(--gris);max-width:62ch}
+.cierre{position:relative;overflow:hidden;padding:84px 0;background:var(--espresso);color:var(--crema);text-align:center}
+.cierre .curvas{width:1000px;left:50%;top:50%;transform:translate(-50%,-50%);opacity:.3}
+.cierre h2{position:relative;font-size:clamp(46px,12vw,110px)}
+.cierre p{position:relative;margin:14px auto 0;max-width:38ch;color:var(--gris-c)}
+.cierre .ctas{position:relative;justify-content:center}
+.pie{padding:24px 0 28px;background:var(--espresso);color:var(--gris-c);font-size:14px;border-top:1px solid var(--linea-c)}
+.pie .wrap{display:grid;gap:6px}
+.pie a{color:var(--crema)}
+
+/* barra inferior en celular */
+.barra{position:fixed;z-index:45;left:0;right:0;bottom:0;display:grid;grid-template-columns:1.3fr 1fr 1fr;height:calc(var(--barra) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:var(--espresso);color:var(--crema);border-top:1px solid var(--linea-c)}
+.barra a{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:14.5px;text-decoration:none}
+.barra a:first-child{background:var(--cereza);color:#fff}
+.barra a+a{border-left:1px solid var(--linea-c)}
+.barra svg{width:19px;height:19px}
+
+/* ---------- con animación (GSAP cargado y movimiento permitido) ---------- */
+.gs .portada h1,.gs .portada .bajada{visibility:hidden}
+.gs .linea-m{overflow:clip;padding-bottom:.06em;margin-bottom:-.06em}
+.gs .barra-sec{height:calc(100vh - var(--hd));height:calc(100svh - var(--hd));padding:22px 0 calc(var(--barra) + 14px);display:flex;flex-direction:column;overflow:hidden}
+.gs .barra-sec>.barra-cab{margin-top:auto}
+.gs .barra-sec>.avance{margin-bottom:auto}
+.gs .carril{display:flex;overflow:visible;width:max-content;scroll-snap-type:none;margin-top:24px;will-change:transform}
+.gs .item{flex:none;width:min(78vw,420px)}
+.gs .carril{padding-right:calc(100vw - min(78vw,420px) - var(--pad))}
+.gs .avance{display:block;width:min(100% - 2 * var(--pad),var(--wrap));height:3px;margin:22px auto 0;background:var(--linea-c);border-radius:3px;overflow:hidden}
+.gs .avance i{display:block;height:100%;background:var(--cereza-c);transform-origin:left;transform:scaleX(0)}
+.gs .expande{height:calc(100vh - var(--hd));height:calc(100svh - var(--hd));padding:0;overflow:hidden}
+.gs .expande .foto{position:absolute;inset:0;width:auto;margin:0;aspect-ratio:auto;border-radius:0}
+.gs .expande .foto::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 32%,rgba(27,18,13,.86) 74%,var(--espresso))}
+.expande h2 em{color:var(--cereza-c)}
+.gs .expande .texto{position:absolute;left:0;right:0;bottom:calc(var(--barra) + 26px);margin:0 auto;opacity:0}
+@media (max-height:820px){.gs .barra-cab>p,.gs .item p{display:none}}
+@media (max-height:600px){.gs .barra-sec .avance{display:none}.gs .barra-sec h2{font-size:36px}}
+@media (max-height:760px){.gs .item figure{aspect-ratio:auto;height:clamp(100px,24svh,240px)}.gs .barra-sec{padding-top:12px}.gs .carril{margin-top:16px}}
+
+@media (min-width:600px){
+  .fincas{grid-template-columns:1fr 1fr}
+  .carta-g{grid-template-columns:1fr 1fr;gap:34px 44px}
+}
+@media (min-width:960px){
+  :root{--pad:36px;--hd:72px;--barra:0px}
+  body{padding-bottom:0}
+  .barra{display:none}
+  .nav{display:flex}
+  .cab .btn{margin-left:0}
+  .portada{padding:56px 0 76px}
+  .portada h1{font-size:clamp(56px,5.6vw,84px)}
+  .portada-g{grid-template-columns:1.15fr .85fr;align-items:center;gap:56px}
+  .portada .curvas{right:-12%;top:-30%}
+  .carril{grid-auto-columns:420px}
+  .gs .item{width:min(36vw,460px)}
+  .gs .carril{gap:30px;padding-right:calc(100vw - min(36vw,460px) - var(--pad))}
+  .gs .barra-sec{padding-bottom:28px}
+  .gs .expande .texto{bottom:48px}
+  .rincones{gap:24px;padding:56px 0 90px}
+  .visita-g{grid-template-columns:5fr 7fr;align-items:stretch}
+  .mapa{min-height:420px}
+  .faq .wrap{display:grid;grid-template-columns:4fr 8fr;gap:40px}
+  .faq-l{margin-top:0}
+  .pie .wrap{grid-template-columns:1fr auto}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <path id="nivel" d="M300 70c130 0 245 85 240 215-5 135-110 245-245 240C160 520 60 420 65 290 70 160 170 70 300 70Z"/>
+    <g id="curvas-g">
+      <use href="#nivel"/>
+      <use href="#nivel" transform="translate(318 292) scale(.86) rotate(9) translate(-300 -300)"/>
+      <use href="#nivel" transform="translate(334 286) scale(.72) rotate(18) translate(-300 -300)"/>
+      <use href="#nivel" transform="translate(348 280) scale(.58) rotate(27) translate(-300 -300)"/>
+      <use href="#nivel" transform="translate(360 276) scale(.44) rotate(36) translate(-300 -300)"/>
+      <use href="#nivel" transform="translate(370 272) scale(.3) rotate(45) translate(-300 -300)"/>
+      <use href="#nivel" transform="translate(377 270) scale(.16) rotate(54) translate(-300 -300)"/>
+    </g>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.6-1.5-3.4-1.5-5.2C2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.9 1.9 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zM20.5 3.5C18.2 1.2 15.2 0 12 0 5.4 0 .1 5.3.1 11.9c0 2.1.6 4.2 1.6 6L0 24l6.3-1.6c1.8 1 3.8 1.5 5.7 1.5 6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+<header class="cab">
+  <div class="wrap">
+    <a class="marca" href="#top" aria-label="Altura Café, inicio"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 50 25 22l10 15 7-10 14 23Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><circle cx="47" cy="13" r="4.5" fill="#D24A38"/></svg>Altura</a>
+    <nav class="nav" aria-label="Secciones"><a href="#origen">El café</a><a href="#carta">La carta</a><a href="#lugar">El lugar</a><a href="#visita">Visítanos</a></nav>
+    <a class="btn btn-c wa" href="https://wa.me/51900000000" data-msg="Hola Altura ☕ Quiero pedir para llevar: " target="_blank" rel="noopener">Pídelo para llevar</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="portada" aria-labelledby="t-portada">
+    <svg class="curvas" id="curvas-portada" viewBox="0 0 600 600" aria-hidden="true"><use href="#curvas-g"/></svg>
+    <div class="wrap portada-g">
+      <div>
+        <p class="eti">Café de especialidad · Surquillo</p>
+        <h1 id="t-portada">Café de altura, tostado aquí <em>cada martes.</em></h1>
+        <p class="bajada">Granos de fincas peruanas a más de 1&nbsp;600 metros, molidos al momento y servidos sin apuro. Quédate un rato o llévatelo.</p>
+        <div class="ctas">
+          <a class="btn btn-c wa" href="https://wa.me/51900000000" data-msg="Hola Altura ☕ Quiero pedir para llevar: " target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pídelo para llevar</a>
+          <a class="btn btn-l" href="#carta">Mira la carta <span class="fl" aria-hidden="true">→</span></a>
+        </div>
+        <p class="nota"><span>Listo en 10 minutos</span><span>Yape, Plin o tarjeta</span></p>
+      </div>
+      <figure class="foto-p" id="foto-p">
+        <img src="https://images.unsplash.com/photo-1670404161009-29548c027d06?auto=format&fit=crop&w=760&h=900&q=62" srcset="https://images.unsplash.com/photo-1670404161009-29548c027d06?auto=format&fit=crop&w=520&h=650&q=62 520w, https://images.unsplash.com/photo-1670404161009-29548c027d06?auto=format&fit=crop&w=760&h=900&q=62 760w" sizes="(min-width: 960px) 460px, calc(100vw - 40px)" width="760" height="900" alt="Mano sosteniendo una taza de café con arte latte en la barra" fetchpriority="high">
+        <figcaption>Flat white de Villa Rica</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="origen" id="origen" aria-labelledby="t-origen">
+    <svg class="curvas" id="curvas-origen" viewBox="0 0 600 600" aria-hidden="true"><use href="#curvas-g"/></svg>
+    <div class="wrap">
+      <p class="eti">De dónde viene</p>
+      <h2 class="sr" id="t-origen">El origen de nuestro café</h2>
+      <p class="manifiesto" id="manifiesto">Compramos el café directo a dos familias, en Villa Rica y en Quillabamba. Les pagamos más que el precio de bolsa, lo tostamos en tandas chicas cada martes y lo servimos cuando todavía huele a recién molido. <em>Buen grano, poco viaje y nada de apuro.</em></p>
+      <div class="fincas">
+        <article class="finca"><p class="alto"><span class="msnm" data-cuenta="1650">1&nbsp;650</span><small>m s. n. m.</small></p><b>Finca Los Huamán · Villa Rica, Pasco</b><span>Chocolate, panela y cáscara de naranja. Para espresso y leche.</span></article>
+        <article class="finca"><p class="alto"><span class="msnm" data-cuenta="1900">1&nbsp;900</span><small>m s. n. m.</small></p><b>Finca Quispe · Quillabamba, Cusco</b><span>Frutos rojos, caramelo y un final floral. Para filtrados.</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="barra-sec" id="barra" aria-labelledby="t-barra">
+    <div class="wrap barra-cab">
+      <div><p class="eti">Lo que más sale</p><h2 id="t-barra">Directo de <em>la barra</em></h2></div>
+      <p>Lo que la gente pide sin mirar la carta. Si es tu primera vez, empieza por aquí.</p>
+    </div>
+    <ol class="carril" id="carril">
+      <li class="item"><figure><img src="https://images.unsplash.com/photo-1550948309-0d8983dbdcc3?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Flat white en taza blanca sobre posavasos de madera"></figure><span class="num">01</span><h3>Flat white de altura</h3><p>Doble ristretto de Villa Rica con leche texturizada. Sedoso, sin azúcar que tape el sabor.</p><span class="pr">S/ 12</span></li>
+      <li class="item"><figure><img src="https://images.unsplash.com/photo-1587955245893-389f2215c6eb?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Café filtrándose en un cono de papel visto desde arriba"></figure><span class="num">02</span><h3>V60 de Quillabamba</h3><p>Filtrado a mano en tres minutos y medio. Sale frutal, casi como un té de frutos rojos.</p><span class="pr">S/ 15</span></li>
+      <li class="item"><figure><img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Tostada de pan de masa madre con palta y huevo frito"></figure><span class="num">03</span><h3>Tostada de palta y huevo</h3><p>Pan de masa madre, palta machacada con limón y huevo de corral con la yema suave.</p><span class="pr">S/ 24</span></li>
+      <li class="item"><figure><img src="https://images.unsplash.com/photo-1560055932-595dab110124?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Huevos benedictinos sobre pan con palta y salsa holandesa"></figure><span class="num">04</span><h3>Huevos benedictinos</h3><p>Huevos pochados, palta y holandesa de la casa sobre masa madre tostada.</p><span class="pr">S/ 28</span></li>
+      <li class="item"><figure><img src="https://images.unsplash.com/photo-1599940778173-e276d4acb2bb?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Croissant de mantequilla dorado en plato blanco"></figure><span class="num">05</span><h3>Croissant de mantequilla</h3><p>Hojaldrado aquí cada mañana. Casi siempre se acaba antes de las once.</p><span class="pr">S/ 9</span></li>
+    </ol>
+    <p class="avance" aria-hidden="true"><i id="avance"></i></p>
+  </section>
+
+  <section class="carta" id="carta" aria-labelledby="t-carta">
+    <div class="wrap">
+      <p class="eti">La carta</p>
+      <h2 id="t-carta">Para tomar <em>y para quedarse</em></h2>
+      <div class="carta-g">
+        <div class="grupo"><h3>Barra de espresso <small>Villa Rica</small></h3><ul>
+          <li><span>Espresso</span><b>S/ 7</b></li>
+          <li><span>Americano</span><b>S/ 8</b></li>
+          <li><span>Cortado</span><b>S/ 9</b></li>
+          <li><span>Capuchino</span><b>S/ 11</b></li>
+          <li><span>Flat white</span><b>S/ 12</b></li>
+          <li><span>Moca de cacao de Piura<small>Cacao al 70 %, sin jarabes</small></span><b>S/ 13</b></li>
+        </ul></div>
+        <div class="grupo"><h3>Métodos <small>Quillabamba</small></h3><ul>
+          <li><span>V60<small>Una taza, 3 minutos y medio</small></span><b>S/ 15</b></li>
+          <li><span>Chemex para dos</span><b>S/ 24</b></li>
+          <li><span>Prensa francesa</span><b>S/ 14</b></li>
+          <li><span>Cold brew<small>Reposado 18 horas</small></span><b>S/ 13</b></li>
+        </ul></div>
+        <div class="grupo"><h3>Brunch <small>Todo el día</small></h3><ul>
+          <li><span>Tostada de palta y huevo</span><b>S/ 24</b></li>
+          <li><span>Huevos benedictinos</span><b>S/ 28</b></li>
+          <li><span>Pan con chicharrón<small>Con camote frito y salsa criolla</small></span><b>S/ 22</b></li>
+          <li><span>Bowl de yogur, granola y aguaymanto</span><b>S/ 19</b></li>
+        </ul></div>
+        <div class="grupo"><h3>Dulces <small>Del día</small></h3><ul>
+          <li><span>Croissant de mantequilla</span><b>S/ 9</b></li>
+          <li><span>Pain au chocolat</span><b>S/ 10</b></li>
+          <li><span>Cheesecake de lúcuma</span><b>S/ 16</b></li>
+          <li><span>Alfajor de maicena</span><b>S/ 5</b></li>
+        </ul></div>
+      </div>
+      <div class="carta-pie">
+        <p><b>¿Te gustó el café?</b> Llévatelo en grano, 250 g a S/ 38 (Villa Rica) o S/ 42 (Quillabamba). Te lo molemos para tu método.</p>
+        <a class="btn btn-c wa" href="https://wa.me/51900000000" data-msg="Hola Altura ☕ Quiero café en grano de 250 g. ¿Me lo muelen para mi método?" target="_blank" rel="noopener">Quiero mi bolsa <span class="fl" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="lugar" id="lugar" aria-labelledby="t-lugar">
+    <div class="expande" id="expande">
+      <div class="foto" id="expande-foto"><img src="https://images.unsplash.com/photo-1642315160505-b3dff3a3c8b9?auto=format&fit=crop&w=1200&h=800&q=62" srcset="https://images.unsplash.com/photo-1642315160505-b3dff3a3c8b9?auto=format&fit=crop&w=800&h=1100&q=60 800w, https://images.unsplash.com/photo-1642315160505-b3dff3a3c8b9?auto=format&fit=crop&w=1200&h=800&q=62 1200w, https://images.unsplash.com/photo-1642315160505-b3dff3a3c8b9?auto=format&fit=crop&w=1900&h=1100&q=58 1900w" sizes="100vw" width="1200" height="800" loading="lazy" alt="Salón del café con gente conversando en mesas de madera y luz cálida"></div>
+      <div class="texto" id="expande-texto">
+        <p class="eti" style="color:var(--gris-c)">El lugar</p>
+        <h2 id="t-lugar">Mesas largas y <em>wifi que sí funciona</em></h2>
+        <p>Enchufes en cada mesa, música bajita y un patio para cuando sale el sol.</p>
+      </div>
+    </div>
+    <div class="wrap rincones">
+      <figure><div class="ph"><img src="https://images.unsplash.com/photo-1564849744694-348ecd00c279?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Sillas vacías junto a una ventana grande con luz de mañana"></div><figcaption>La ventana del fondo: la mesa más pedida</figcaption></figure>
+      <figure><div class="ph"><img src="https://images.unsplash.com/photo-1651783976258-3072215aac82?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Rincón del café con mesas de madera, sillas y plantas colgantes"></div><figcaption>El rincón de las plantas, para leer tranquilo</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="visita" id="visita" aria-labelledby="t-visita">
+    <div class="wrap">
+      <p class="eti">Visítanos</p>
+      <h2 id="t-visita">A media cuadra <em>del mercado</em></h2>
+      <div class="visita-g">
+        <div class="horario">
+          <p class="estado" id="openNow">Abierto ahora</p>
+          <ul id="hours">
+            <li data-d="1"><span>Lunes</span><span>7:30 – 20:30</span></li>
+            <li data-d="2"><span>Martes <small>(día de tueste)</small></span><span>7:30 – 20:30</span></li>
+            <li data-d="3"><span>Miércoles</span><span>7:30 – 20:30</span></li>
+            <li data-d="4"><span>Jueves</span><span>7:30 – 20:30</span></li>
+            <li data-d="5"><span>Viernes</span><span>7:30 – 20:30</span></li>
+            <li data-d="6"><span>Sábado</span><span>8:30 – 20:30</span></li>
+            <li data-d="0"><span>Domingo</span><span>8:30 – 20:30</span></li>
+          </ul>
+          <p class="dir"><b>Calle Dante 840, Surquillo</b>A media cuadra del Mercado N.° 1, Lima.</p>
+          <div class="ctas">
+            <a class="btn btn-c" href="https://www.google.com/maps/dir/?api=1&destination=Calle+Dante+840,+Surquillo,+Lima" target="_blank" rel="noopener">Llévame <span class="fl" aria-hidden="true">→</span></a>
+            <a class="btn btn-l" href="tel:+51900000000">Llamar</a>
+          </div>
+        </div>
+        <div class="mapa">
+          <button class="mapa-btn" id="mapa-btn" type="button" aria-label="Ver el mapa de Google de Calle Dante 840, Surquillo">
+            <svg class="curvas" viewBox="0 0 600 600" aria-hidden="true"><use href="#curvas-g"/></svg>
+            <span class="pin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5a7 7 0 1 1 14 0C19 14.9 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9.5" r="2.5" fill="currentColor"/></svg></span>
+            <b>Ver el mapa</b><span>Se carga solo si lo abres</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" aria-labelledby="t-faq">
+    <div class="wrap">
+      <div><p class="eti">Antes de venir</p><h2 id="t-faq">Lo que <em>nos preguntan</em></h2></div>
+      <div class="faq-l">
+        <details><summary>¿Tienen leche vegetal?</summary><p>Sí: avena y almendras, por S/ 2 más. Pídela en cualquier café con leche.</p></details>
+        <details><summary>¿Puedo trabajar con laptop?</summary><p>Claro. Hay enchufes en cada mesa y el wifi es rápido. Entre 12:30 y 14:30 te pedimos compartir mesa si se llena.</p></details>
+        <details><summary>¿Hacen delivery?</summary><p>Sí, en Surquillo, Miraflores y San Isidro. Escríbenos por WhatsApp y te pasamos el costo según tu dirección.</p></details>
+        <details><summary>¿Puedo reservar para un grupo?</summary><p>Para grupos de 6 a 12 personas, sí. Avísanos con un día de anticipación y te guardamos la mesa larga.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cierre" aria-labelledby="t-cierre">
+    <svg class="curvas" viewBox="0 0 600 600" aria-hidden="true"><use href="#curvas-g"/></svg>
+    <div class="wrap">
+      <h2 id="t-cierre">¿Te guardamos <em>un flat white?</em></h2>
+      <p>Escríbenos lo que quieres y te lo tenemos listo cuando llegues.</p>
+      <div class="ctas">
+        <a class="btn btn-c wa" href="https://wa.me/51900000000" data-msg="Hola Altura ☕ Guárdenme un flat white, llego en 10 minutos. Mi nombre es " target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Guárdamelo</a>
+        <a class="btn btn-l" href="#carta">Mira la carta</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <p>Altura Café · Calle Dante 840, Surquillo, Lima · ©&nbsp;<span id="yr">2026</span></p>
+    <p>Demo diseñada por <a href="https://clickea.github.io/demos/">Clickea Studio</a></p>
+  </div>
+</footer>
+
+<nav class="barra" aria-label="Accesos rápidos">
+  <a class="wa" href="https://wa.me/51900000000" data-msg="Hola Altura ☕ Quiero pedir para llevar: " target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pedir</a>
+  <a href="#carta">Carta</a>
+  <a href="#visita">Llegar</a>
+</nav>
+
+<script>
+(function () {
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var WA = 'https://wa.me/51900000000?text=';
+  $$('a.wa[data-msg]').forEach(function (a) { a.href = WA + encodeURIComponent(a.dataset.msg); });
+
+  // Horario en hora de Lima
+  var HOR = { 0: [8.5, 20.5], 6: [8.5, 20.5] }, BASE = [7.5, 20.5];
+  function hh(n) { var h = Math.floor(n), m = Math.round((n % 1) * 60); return h + ':' + (m < 10 ? '0' : '') + m; }
+  var ahora = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Lima' }));
+  var dia = ahora.getDay(), hora = ahora.getHours() + ahora.getMinutes() / 60, hoy = HOR[dia] || BASE;
+  var abierto = hora >= hoy[0] && hora < hoy[1], on = $('#openNow');
+  if (abierto) on.textContent = 'Abierto ahora · hasta las ' + hh(hoy[1]);
+  else { var antes = hora < hoy[0], sig = antes ? hoy : (HOR[(dia + 1) % 7] || BASE); on.textContent = 'Cerrado ahora · abrimos ' + (antes ? 'hoy' : 'mañana') + ' a las ' + hh(sig[0]); }
+  on.classList.toggle('cerrado', !abierto);
+  var li = $('#hours li[data-d="' + dia + '"]'); if (li) li.classList.add('hoy');
+  $('#yr').textContent = ahora.getFullYear();
+
+  // Mapa: Google Maps carga solo cuando lo piden
+  $('#mapa-btn').addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.src = 'https://www.google.com/maps?q=Calle+Dante+840,+Surquillo,+Lima&output=embed';
+    f.title = 'Mapa de Altura Café en Surquillo, Lima'; f.referrerPolicy = 'no-referrer-when-downgrade';
+    this.replaceWith(f);
+  });
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js" integrity="sha384-SWJ0lLVRoipvHh59xj0pL7uC7Ih51F+5smaFtrG+2nr+TlDZU5SYJHmxfolbeNTr" crossorigin="anonymous" defer></script>
+<script>
+// Animaciones con GSAP: portada que se arma, manifiesto que se enciende, altura que sube,
+// carril de la barra fijado (se acomoda en cada producto) y foto del salón que se expande.
+addEventListener('DOMContentLoaded', function () {
+  var raiz = document.documentElement;
+  if (!window.gsap || !window.ScrollTrigger || !window.SplitText || !raiz.classList.contains('gs')) { raiz.classList.remove('gs'); return; }
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+  var cab = document.querySelector('.cab');
+  var bajoCab = function () { return 'top top+=' + cab.offsetHeight; };
+
+  document.fonts.ready.then(function () {
+    gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', function () {
+      // 1 · portada: el título sube por líneas, la foto se abre como un arco
+      var h1 = SplitText.create('.portada h1', { type: 'lines', mask: 'lines', linesClass: 'linea-m' });
+      gsap.set(['.portada h1', '.portada .bajada'], { visibility: 'visible' });
+      gsap.timeline({ defaults: { ease: 'power3.out' } })
+        .from(h1.lines, { yPercent: 105, duration: 1, stagger: 0.09 })
+        .from('.portada .bajada', { y: 18, opacity: 0, duration: 0.7 }, 0.35)
+        .from('.portada .ctas > *, .portada .nota', { y: 14, opacity: 0, duration: 0.6, stagger: 0.07 }, 0.5)
+        .fromTo('#foto-p', { clipPath: 'inset(100% 0% 0% 0% round 200px 200px 18px 18px)' }, { clipPath: 'inset(0% 0% 0% 0% round 200px 200px 18px 18px)', duration: 1.2, ease: 'power3.inOut', clearProps: 'clipPath' }, 0.1)
+        .from('#foto-p img', { scale: 1.25, duration: 1.6, ease: 'power2.out' }, 0.1);
+      gsap.to('#curvas-portada', { rotate: 22, yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.portada', start: 'top top', end: 'bottom top', scrub: true } });
+
+      // 2 · origen: el manifiesto se enciende palabra por palabra y las alturas cuentan hacia arriba
+      var man = SplitText.create('#manifiesto', { type: 'words' });
+      gsap.fromTo(man.words, { opacity: 0.16 }, { opacity: 1, ease: 'none', stagger: 0.1,
+        scrollTrigger: { trigger: '#manifiesto', start: 'top 82%', end: 'bottom 48%', scrub: true } });
+      document.querySelectorAll('[data-cuenta]').forEach(function (el) {
+        var meta = +el.dataset.cuenta, o = { v: 0 };
+        gsap.to(o, { v: meta, duration: 1.6, ease: 'power2.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+          onUpdate: function () { el.textContent = Math.round(o.v).toLocaleString('es-PE').replace(/[.,]/g, ' '); } });
+      });
+      gsap.from('.finca', { y: 30, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out', scrollTrigger: { trigger: '.fincas', start: 'top 85%', once: true } });
+      gsap.to('#curvas-origen', { rotate: -18, ease: 'none', scrollTrigger: { trigger: '.origen', start: 'top bottom', end: 'bottom top', scrub: true } });
+
+      // 3 · la barra: sección fijada bajo la cabecera, el carril pasa de lado y se acomoda en cada producto
+      var carril = document.querySelector('#carril'), items = carril.children, barra = document.querySelector('#avance');
+      var dist = function () { return Math.max(0, carril.scrollWidth - document.documentElement.clientWidth); };
+      var puntos = function () { var pad = parseFloat(getComputedStyle(carril).paddingLeft), d = dist() || 1; return Array.prototype.map.call(items, function (c) { return Math.min(1, (c.offsetLeft - pad) / d); }); };
+      var mueve = gsap.to(carril, { x: function () { return -dist(); }, ease: 'none',
+        scrollTrigger: { trigger: '.barra-sec', start: bajoCab, end: function () { return '+=' + dist(); }, pin: true, scrub: 0.5, invalidateOnRefresh: true,
+          snap: { snapTo: function (v) { return puntos().reduce(function (a, b) { return Math.abs(b - v) < Math.abs(a - v) ? b : a; }); }, duration: { min: 0.2, max: 0.5 }, delay: 0.06, ease: 'power1.inOut', inertia: false },
+          onUpdate: function (st) { barra.style.transform = 'scaleX(' + st.progress.toFixed(3) + ')'; } } });
+      Array.prototype.forEach.call(items, function (it, i) {
+        if (!i) return;
+        gsap.fromTo(it.querySelector('figure'), { clipPath: 'inset(0% 0% 0% 100% round 16px)' }, { clipPath: 'inset(0% 0% 0% 0% round 16px)', ease: 'none',
+          scrollTrigger: { trigger: it, containerAnimation: mueve, start: 'left 96%', end: 'left 55%', scrub: true } });
+      });
+
+      // 4 · carta: los grupos entran escalonados
+      gsap.utils.toArray('.grupo').forEach(function (g) {
+        gsap.from(g.querySelectorAll('h3, li'), { y: 16, opacity: 0, duration: 0.55, stagger: 0.04, ease: 'power2.out', scrollTrigger: { trigger: g, start: 'top 86%', once: true } });
+      });
+
+      // 5 · el lugar: la foto crece desde una tarjeta hasta llenar la pantalla y aparece el texto
+      gsap.timeline({ scrollTrigger: { trigger: '#expande', start: bajoCab, end: '+=120%', pin: true, scrub: true } })
+        .fromTo('#expande-foto', { clipPath: 'inset(16% 9% 30% 9% round 22px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'none', duration: 1 })
+        .fromTo('#expande-foto img', { scale: 1.3 }, { scale: 1, ease: 'none', duration: 1 }, 0)
+        .fromTo('#expande-texto', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35 }, 0.7);
+      gsap.utils.toArray('.rincones .ph img').forEach(function (img) {
+        gsap.fromTo(img, { yPercent: -8, scale: 1.16 }, { yPercent: 8, scale: 1.16, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } });
+      });
+
+      return function () { h1.revert(); man.revert(); };
+    });
+    ScrollTrigger.refresh();
+  });
+  addEventListener('load', function () { ScrollTrigger.refresh(); });
+});
+</script>
+</body>
+</html>
