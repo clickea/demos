@@ -13,13 +13,13 @@
 <meta property="og:locale" content="es_PE">
 <meta property="og:title" content="HORMA · Zapatos de cuero hechos en Trujillo">
 <meta property="og:description" content="Botines, mocasines y zapatillas de cuero hechos a mano. Envíos a todo el Perú y cambio de talla gratis.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1777987601423-f350ac29b3e9?fm=jpg&fit=crop&w=1200&h=630&q=78">
+<meta property="og:image" content="https://clickea.github.io/demos/zapatos/og.jpg">
 <meta property="og:url" content="https://clickea.github.io/demos/zapatos/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
-<link rel="preload" as="image" href="https://images.unsplash.com/photo-1777987601423-f350ac29b3e9?auto=format&fit=crop&w=1000&h=800&q=62" fetchpriority="high">
+<link rel="preload" as="image" href="img/heroe-chelsea.webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
 // Las animaciones se preparan antes de pintar; si GSAP no llega en 3 s, la página se muestra igual, sin animar.
@@ -32,7 +32,7 @@
   "name": "HORMA Calzado",
   "description": "Taller y tienda de calzado de cuero hecho a mano en El Porvenir, Trujillo: botines, mocasines y zapatillas. Envíos a todo el Perú.",
   "url": "https://clickea.github.io/demos/zapatos/",
-  "image": "https://images.unsplash.com/photo-1777987601423-f350ac29b3e9?fm=jpg&fit=crop&w=1200&h=630&q=78",
+  "image": "https://clickea.github.io/demos/zapatos/og.jpg",
   "telephone": "+51900000000",
   "priceRange": "S/ 209 - S/ 319",
   "currenciesAccepted": "PEN",
@@ -90,21 +90,38 @@ h2{font-size:clamp(46px,13vw,104px)}
 .nav a:hover{color:var(--hueso)}
 .cab .btn{margin-left:auto;min-height:40px;padding:0 16px;font-size:14.5px}
 
-/* 1 · portada */
-.portada{position:relative;background:var(--negro);color:var(--hueso);padding:18px 0 52px;overflow:hidden}
-.gigante{display:flex;justify-content:space-between;font:900 clamp(96px,31vw,380px)/.8 var(--ff-t);letter-spacing:-.01em;color:var(--hueso);margin:0;padding-top:.04em;overflow:clip}
+/* 1 · portada: botines flotando alrededor de HORMA. Capas, de atrás hacia adelante: botines lejanos
+   (desenfocados), la palabra, el botín principal, el contorno de la mitad baja de la palabra y los botines cercanos */
+.portada{position:relative;background:radial-gradient(60% 50% at 50% 42%,#2A231D,var(--negro) 72%);color:var(--hueso);padding:6px 0 48px;overflow:clip}
+.escena{position:relative;container-type:size;width:min(100% - 2 * var(--pad),var(--wrap));height:clamp(250px,calc(100svh - var(--hd) - var(--barra) - 330px),470px);margin-inline:auto}
+.gigante{position:absolute;left:0;right:0;top:4%;margin:0;display:flex;justify-content:space-between;font:900 clamp(96px,31vw,380px)/.8 var(--ff-t);letter-spacing:-.01em;color:var(--hueso);padding-top:.04em;overflow:clip;pointer-events:none;user-select:none}
 .gigante span{display:inline-block}
-.portada-g{display:grid;gap:26px;margin-top:22px}
-.foto-p{position:relative;margin:0;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:var(--negro-2)}
-.foto-p img{width:100%;height:100%;object-fit:cover}
-.foto-p .sello{position:absolute;right:12px;top:12px;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;text-align:center;background:var(--cuero-c);color:#fff;font:800 15px/1.05 var(--ff-t);letter-spacing:.04em;text-transform:uppercase;transform:rotate(-10deg);outline:2px dashed rgba(255,255,255,.7);outline-offset:-8px}
-.portada h1{font-size:clamp(34px,9.6vw,60px);line-height:1.1}
+.gigante.atras{z-index:1}
+.gigante.frente{z-index:3;color:transparent;-webkit-text-stroke:1.5px rgba(237,232,223,.9);clip-path:inset(56% 0 0 0)}
+.heroe{position:absolute;z-index:2;left:0;right:0;top:21%;bottom:-2%;pointer-events:none}
+.heroe .capa{height:100%}
+.heroe img{height:100%;width:auto;margin:0 auto;filter:drop-shadow(0 30px 28px rgba(0,0,0,.6));animation:flotar 8s ease-in-out infinite alternate}
+.flota{position:absolute;left:var(--l);top:var(--t,auto);bottom:var(--b,auto);width:var(--w);pointer-events:none}
+.flota img{width:100%;rotate:var(--r);filter:drop-shadow(0 22px 20px rgba(0,0,0,.55));animation:flotar var(--d,7s) ease-in-out var(--dl,0s) infinite alternate}
+.flota.atras{z-index:0}
+.flota.atras img{filter:blur(1.6px) brightness(.6)}
+.flota.frente{z-index:4}
+.f1{--l:-9%;--t:2%;--w:min(42%,54cqh);--r:-16deg;--d:7s}
+.f2{--l:71%;--t:1%;--w:min(36%,46cqh);--r:14deg;--d:8s;--dl:-2s}
+.f3{--l:-13%;--b:4%;--w:min(40%,52cqh);--r:9deg;--d:6.5s;--dl:-1s}
+.f4{--l:74%;--b:8%;--w:min(38%,48cqh);--r:-12deg;--d:7.5s;--dl:-3s}
+@keyframes flotar{from{transform:translateY(-7px) rotate(-1.5deg)}to{transform:translateY(9px) rotate(1.5deg)}}
+.sello{position:absolute;z-index:5;left:58%;top:4%;width:84px;height:84px;border-radius:50%;display:grid;place-items:center;text-align:center;background:var(--cuero-c);color:#fff;font:800 13.5px/1.05 var(--ff-t);letter-spacing:.04em;text-transform:uppercase;rotate:-10deg;outline:2px dashed rgba(255,255,255,.7);outline-offset:-7px}
+.texto{position:relative;z-index:5;width:min(100% - 2 * var(--pad),var(--wrap));margin:16px auto 0}
+.portada h1{font-size:clamp(34px,9.6vw,60px);line-height:1.1;text-wrap:balance}
 .portada h1 em{font-style:normal;color:var(--cuero-c)}
-.portada .bajada{margin-top:14px;color:var(--gris-c);max-width:40ch}
+.portada .bajada{display:none;color:var(--gris-c);max-width:40ch}
 .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
 .portada .btn-l{color:var(--hueso)}
 .garantias{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;padding:0;list-style:none}
 .garantias li{padding:8px 12px;border:1.5px dashed var(--linea-c);border-radius:99px;font-size:13.5px;color:var(--hueso)}
+@media (max-width:599px){.sello{display:none}}
+@media (max-height:700px) and (max-width:959px){.garantias,.portada .ctas .btn-l{display:none}}
 
 /* 2 · modelos */
 .modelos{padding:70px 0}
@@ -118,10 +135,12 @@ h2{font-size:clamp(46px,13vw,104px)}
 .grilla{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:22px 12px}
 .prod[hidden]{display:none}
 .prod-b{display:grid;gap:10px;width:100%;padding:0;border:0;background:none;text-align:left;font:inherit;color:inherit;cursor:pointer}
-.prod .ph{position:relative;display:block;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:var(--hueso)}
-.prod img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--curva)}
-.prod-b:hover img{transform:scale(1.05)}
-.prod .tag{position:absolute;left:8px;top:8px;padding:5px 9px;border-radius:4px;background:var(--rojo);color:#fff;font:700 11.5px/1 var(--ff);letter-spacing:.04em}
+.prod .ph{position:relative;display:grid;place-items:center;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:radial-gradient(70% 55% at 50% 56%,#FBF9F5,var(--hueso) 72%);outline:1.5px dashed rgba(140,74,43,.3);outline-offset:-9px;perspective:700px}
+.prod .ph::after{content:'';position:absolute;left:24%;right:24%;bottom:17%;height:6%;border-radius:50%;background:rgba(20,18,16,.2);filter:blur(9px)}
+.prod .zap{position:relative;z-index:1;display:grid;place-items:center;width:86%;height:76%}
+.prod img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;rotate:var(--r,0deg);filter:drop-shadow(0 14px 12px rgba(20,18,16,.24));transition:translate .6s var(--curva),rotate .6s var(--curva),scale .6s var(--curva)}
+.prod-b:hover img{translate:0 -8px;rotate:calc(var(--r,0deg) - 5deg);scale:1.06}
+.prod .tag{position:absolute;z-index:2;left:8px;top:8px;padding:5px 9px;border-radius:4px;background:var(--rojo);color:#fff;font:700 11.5px/1 var(--ff);letter-spacing:.04em}
 .prod-t b{display:block;font:800 21px/1 var(--ff-t);text-transform:uppercase;letter-spacing:.02em}
 .prod-t span{display:block;margin-top:4px;font-size:13.5px;color:var(--gris)}
 .prod-p{font-weight:700}
@@ -220,8 +239,8 @@ dialog.ficha::backdrop{background:rgba(20,18,16,.62)}
 dialog.ficha[open]{animation:sube .35s var(--curva)}
 @keyframes sube{from{transform:translateY(40px);opacity:0}}
 .ficha-c{display:grid;gap:16px;padding:0 0 calc(18px + env(safe-area-inset-bottom))}
-.ficha-ph{position:relative;aspect-ratio:5/4;overflow:hidden;background:var(--hueso)}
-.ficha-ph img{width:100%;height:100%;object-fit:cover}
+.ficha-ph{position:relative;aspect-ratio:5/4;overflow:hidden;background:radial-gradient(70% 60% at 50% 55%,#FBF9F5,var(--hueso) 75%)}
+.ficha-ph img{width:100%;height:100%;object-fit:contain;padding:9%;filter:drop-shadow(0 18px 16px rgba(20,18,16,.25))}
 .cerrar{position:absolute;right:12px;top:12px;width:44px;height:44px;border:0;border-radius:50%;background:var(--papel);display:grid;place-items:center;cursor:pointer;color:var(--negro)}
 .cerrar svg{width:20px;height:20px}
 .ficha-t{padding:0 var(--pad)}
@@ -267,11 +286,19 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
   .barra{display:none}
   .nav{display:flex}
   .cab .btn{margin-left:0}
-  .portada{padding:24px 0 80px}
-  .foto-p{aspect-ratio:5/4}
-  .gigante{font-size:min(21vw,300px)}
-  .portada-g{grid-template-columns:.9fr 1.1fr;align-items:end;gap:48px;margin-top:30px}
-  .portada-g .texto{order:2;padding-bottom:12px}
+  .portada{display:flex;flex-direction:column;min-height:calc(100vh - var(--hd));min-height:calc(100svh - var(--hd));padding:14px 0 44px}
+  .escena{flex:none;height:clamp(320px,calc(100svh - var(--hd) - 262px),640px)}
+  .gigante{top:50%;margin-top:-.42em;font-size:min(21vw,300px,42svh)}
+  .heroe{top:-1%;bottom:0}
+  .f1{--l:1%;--t:3%;--w:min(21%,46cqh)}
+  .f2{--l:80%;--t:2%;--w:min(17%,42cqh)}
+  .f3{--l:12%;--b:2%;--w:min(19%,46cqh)}
+  .f4{--l:69%;--b:6%;--w:min(18%,44cqh)}
+  .sello{left:auto;right:31%;top:3%;width:96px;height:96px;font-size:15px}
+  .texto{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start;width:min(100% - 2 * var(--pad),var(--wrap));margin:8px auto 0}
+  .portada h1{font-size:clamp(40px,3.9vw,58px)}
+  .portada .bajada{display:block}
+  .garantias{margin-top:16px}
   .grilla{grid-template-columns:repeat(4,1fr);gap:30px 18px}
   .gs .fila li{width:min(24vw,330px,34svh)}
   .gs .fila{gap:24px}
@@ -291,7 +318,12 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
   .ficha-ph{grid-row:1 / span 4;aspect-ratio:4/5;height:100%}
   .ficha-t{padding-top:30px}
 }
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}
+/* scroll suave (Lenis, solo escritorio con mouse) */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}.flota img,.heroe img{animation:none}}
 </style>
 </head>
 <body>
@@ -308,23 +340,26 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
 </header>
 
 <main id="top">
-  <section class="portada" aria-labelledby="t-portada">
-    <div class="wrap">
-      <p class="gigante" id="gigante" aria-hidden="true"><span>H</span><span>O</span><span>R</span><span>M</span><span>A</span></p>
-      <div class="portada-g">
-        <figure class="foto-p" id="foto-p">
-          <img src="https://images.unsplash.com/photo-1777987601423-f350ac29b3e9?auto=format&fit=crop&w=1000&h=800&q=62" srcset="https://images.unsplash.com/photo-1777987601423-f350ac29b3e9?auto=format&fit=crop&w=640&h=512&q=62 640w, https://images.unsplash.com/photo-1777987601423-f350ac29b3e9?auto=format&fit=crop&w=1000&h=800&q=62 1000w" sizes="(min-width: 960px) 46vw, calc(100vw - 40px)" width="1000" height="800" alt="Par de botines chelsea de cuero marrón sobre un tronco de madera" fetchpriority="high">
-          <span class="sello" aria-hidden="true">Hecho<br>a mano</span>
-        </figure>
-        <div class="texto">
-          <h1 id="t-portada">Zapatos de cuero que duran años, <em>hechos a mano en Trujillo.</em></h1>
-          <p class="bajada">Botines, mocasines y zapatillas de cuero de verdad, armados uno por uno en nuestro taller de El Porvenir. Te llegan a cualquier parte del Perú.</p>
-          <div class="ctas">
-            <a class="btn btn-c" href="#modelos">Elige tu par <span class="fl" aria-hidden="true">→</span></a>
-            <a class="btn btn-l wa" href="https://wa.me/51900000000" data-msg="Hola HORMA 👋 Quiero un par. ¿Me ayudan con la talla?" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pregúntanos</a>
-          </div>
-          <ul class="garantias"><li>Cambio de talla gratis</li><li>Envío a todo el Perú</li><li>Yape y Plin</li></ul>
+  <section class="portada" id="portada" aria-labelledby="t-portada">
+    <div class="escena" id="escena">
+      <p class="gigante atras" id="gigante" aria-hidden="true"><span>H</span><span>O</span><span>R</span><span>M</span><span>A</span></p>
+      <div class="flota atras f1" data-p="0.6"><div class="capa"><img src="img/andes-600.webp" srcset="img/andes-600.webp 600w, img/andes.webp 1100w" sizes="(min-width: 960px) 21vw, 42vw" width="600" height="403" decoding="async" alt=""></div></div>
+      <div class="flota atras f2" data-p="0.5"><div class="capa"><img src="img/gamuza-600.webp" srcset="img/gamuza-600.webp 600w, img/gamuza.webp 1100w" sizes="(min-width: 960px) 21vw, 42vw" width="600" height="568" decoding="async" alt=""></div></div>
+      <div class="heroe" id="heroe"><div class="capa"><img src="img/heroe-chelsea.webp" width="643" height="1100" alt="Par de botines chelsea de cuero marrón oscuro, hechos a mano" fetchpriority="high"></div></div>
+      <p class="gigante frente" aria-hidden="true"><span>H</span><span>O</span><span>R</span><span>M</span><span>A</span></p>
+      <div class="flota frente f3" data-p="1.3"><div class="capa"><img src="img/malecon-600.webp" srcset="img/malecon-600.webp 600w, img/malecon.webp 1100w" sizes="(min-width: 960px) 21vw, 42vw" width="600" height="352" decoding="async" alt=""></div></div>
+      <div class="flota frente f4" data-p="1.1"><div class="capa"><img src="img/penny-600.webp" srcset="img/penny-600.webp 600w, img/penny.webp 1100w" sizes="(min-width: 960px) 21vw, 42vw" width="600" height="568" decoding="async" alt=""></div></div>
+      <span class="sello" id="sello" aria-hidden="true">Hecho<br>a mano</span>
+    </div>
+    <div class="texto">
+      <h1 id="t-portada">Zapatos de cuero que duran años, <em>hechos a mano en Trujillo.</em></h1>
+      <div>
+        <p class="bajada">Botines, mocasines y zapatillas de cuero de verdad, armados uno por uno en nuestro taller de El Porvenir. Te llegan a cualquier parte del Perú.</p>
+        <div class="ctas">
+          <a class="btn btn-c" href="#modelos">Elige tu par <span class="fl" aria-hidden="true">→</span></a>
+          <a class="btn btn-l wa" href="https://wa.me/51900000000" data-msg="Hola HORMA 👋 Quiero un par. ¿Me ayudan con la talla?" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pregúntanos</a>
         </div>
+        <ul class="garantias"><li>Cambio de talla gratis</li><li>Envío a todo el Perú</li><li>Yape y Plin</li></ul>
       </div>
     </div>
   </section>
@@ -349,10 +384,10 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
     <p class="cinta-t" id="cinta-t" aria-hidden="true">Hechos en Trujillo · Hechos en Trujillo ·</p>
     <div class="wrap look-cab"><p class="eti" style="color:var(--cuero-c)">Cómo se llevan</p><h2 id="t-look">Para todos <br>los días</h2><p>Con jean, con terno o en la playa: nuestros clientes los usan así.</p></div>
     <ul class="fila" id="fila">
-      <li><div class="ph"><img src="https://images.unsplash.com/photo-1610548194675-3f7a220b26f5?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Piernas con jean y botines chelsea de gamuza camel"></div><p><b>Con jean</b><span>Chelsea Gamuza</span></p></li>
-      <li><div class="ph"><img src="https://images.unsplash.com/photo-1542838687-936f417d2f37?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Persona caminando con botines de pasador color vino"></div><p><b>Para caminar</b><span>Botín Andes, vino</span></p></li>
-      <li><div class="ph"><img src="https://images.unsplash.com/photo-1630837792758-604e4bd13e2c?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Hombre de terno oscuro sentado con botines chelsea negros"></div><p><b>Con terno</b><span>Chelsea negro</span></p></li>
-      <li><div class="ph"><img src="https://images.unsplash.com/photo-1556004583-d2aaffbba592?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Mocasines de gamuza arena con pantalón oscuro"></div><p><b>Fin de semana</b><span>Penny en gamuza</span></p></li>
+      <li><div class="ph" data-sesgo="x"><img src="https://images.unsplash.com/photo-1610548194675-3f7a220b26f5?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Piernas con jean y botines chelsea de gamuza camel"></div><p><b>Con jean</b><span>Chelsea Gamuza</span></p></li>
+      <li><div class="ph" data-sesgo="x"><img src="https://images.unsplash.com/photo-1542838687-936f417d2f37?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Persona caminando con botines de pasador color vino"></div><p><b>Para caminar</b><span>Botín Andes, vino</span></p></li>
+      <li><div class="ph" data-sesgo="x"><img src="https://images.unsplash.com/photo-1630837792758-604e4bd13e2c?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Hombre de terno oscuro sentado con botines chelsea negros"></div><p><b>Con terno</b><span>Chelsea negro</span></p></li>
+      <li><div class="ph" data-sesgo="x"><img src="https://images.unsplash.com/photo-1556004583-d2aaffbba592?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Mocasines de gamuza arena con pantalón oscuro"></div><p><b>Fin de semana</b><span>Penny en gamuza</span></p></li>
     </ul>
   </section>
 
@@ -363,9 +398,9 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
       <div class="pasos-w" id="pasos">
         <svg class="costura" id="costura" viewBox="0 0 14 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M7 0C2 120 12 240 7 360S2 600 7 720 12 900 7 1000"/></svg>
         <ol class="pasos">
-        <li class="paso"><div><span class="num">01 · La horma</span><h3>Todo empieza en la horma</h3><p>Es el molde de madera del pie. Cada modelo tiene la suya en siete tallas, y de ella depende que el zapato no te apriete.</p></div><figure><img src="https://images.unsplash.com/photo-1703304673712-6f6cb3dd32b1?auto=format&fit=crop&w=800&h=600&q=60" width="800" height="600" loading="lazy" alt="Hormas de madera y moldes de zapato sobre una mesa de trabajo"></figure></li>
-        <li class="paso"><div><span class="num">02 · El corte</span><h3>Cortado a mano</h3><p>Marcamos cada pieza sobre el cuero y la cortamos a cuchilla, usando la parte más pareja de la piel.</p></div><figure><img src="https://images.unsplash.com/photo-1787005241178-c9006ea9610b?auto=format&fit=crop&w=800&h=600&q=60" width="800" height="600" loading="lazy" alt="Manos trazando un molde de papel sobre cuero marrón"></figure></li>
-        <li class="paso"><div><span class="num">03 · El armado</span><h3>Montado, cosido y revisado</h3><p>Montamos el cuero sobre la horma, cosemos la suela y lo revisamos par por par antes de meterlo en su caja.</p></div><figure><img src="https://images.unsplash.com/photo-1477517787936-70ba786643fd?auto=format&fit=crop&w=800&h=600&q=60" width="800" height="600" loading="lazy" alt="Artesano dando forma a una horma de zapato con una herramienta"></figure></li>
+        <li class="paso"><div><span class="num">01 · La horma</span><h3>Todo empieza en la horma</h3><p>Es el molde de madera del pie. Cada modelo tiene la suya en siete tallas, y de ella depende que el zapato no te apriete.</p></div><figure data-sesgo="y"><img src="https://images.unsplash.com/photo-1703304673712-6f6cb3dd32b1?auto=format&fit=crop&w=800&h=600&q=60" width="800" height="600" loading="lazy" alt="Hormas de madera y moldes de zapato sobre una mesa de trabajo"></figure></li>
+        <li class="paso"><div><span class="num">02 · El corte</span><h3>Cortado a mano</h3><p>Marcamos cada pieza sobre el cuero y la cortamos a cuchilla, usando la parte más pareja de la piel.</p></div><figure data-sesgo="y"><img src="https://images.unsplash.com/photo-1787005241178-c9006ea9610b?auto=format&fit=crop&w=800&h=600&q=60" width="800" height="600" loading="lazy" alt="Manos trazando un molde de papel sobre cuero marrón"></figure></li>
+        <li class="paso"><div><span class="num">03 · El armado</span><h3>Montado, cosido y revisado</h3><p>Montamos el cuero sobre la horma, cosemos la suela y lo revisamos par por par antes de meterlo en su caja.</p></div><figure data-sesgo="y"><img src="https://images.unsplash.com/photo-1477517787936-70ba786643fd?auto=format&fit=crop&w=800&h=600&q=60" width="800" height="600" loading="lazy" alt="Artesano dando forma a una horma de zapato con una herramienta"></figure></li>
       </ol></div>
     </div>
   </section>
@@ -458,7 +493,7 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
   <a href="#tallas">Tallas</a>
 </nav>
 
-<dialog class="ficha" id="ficha" aria-labelledby="f-nombre">
+<dialog class="ficha" id="ficha" aria-labelledby="f-nombre" data-lenis-prevent>
   <form class="ficha-c" id="f-form" method="dialog">
     <div class="ficha-ph"><img id="f-img" src="" alt="" width="800" height="1000"><button class="cerrar" type="button" id="f-cerrar" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>
     <div class="ficha-t"><h2 id="f-nombre"></h2><p class="pr" id="f-precio"></p><p class="d" id="f-desc"></p></div>
@@ -474,24 +509,23 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
   var WA = 'https://wa.me/51900000000?text=';
   $$('a.wa[data-msg]').forEach(function (a) { a.href = WA + encodeURIComponent(a.dataset.msg); });
-  var U = 'https://images.unsplash.com/';
   var MODELOS = [
-    { id: 'andes', n: 'Botín Andes', c: 'botines', p: 289, img: 'photo-1608256246200-53e635b5b65f', sub: 'Cuero graso · suela de goma', d: 'Botín de pasador en cuero graso, marrón oscuro o vino, forrado en cuero y con suela de goma antideslizante. Aguanta lluvia y caminatas largas.', agot: [44], tag: 'El más vendido' },
-    { id: 'moche', n: 'Botín Moche', c: 'botines', p: 319, img: 'photo-1638609348722-aa2a3a67db26', sub: 'Cuero miel · picado inglés', d: 'Botín con picado inglés en cuero color miel, puntera reforzada y suela de cuero con taco de goma. El más elegante del taller.', agot: [38] },
-    { id: 'gamuza', n: 'Chelsea Gamuza', c: 'botines', p: 259, img: 'photo-1608629601270-a0007becead3', sub: 'Gamuza camel o cuero negro', d: 'Chelsea con elásticos laterales y tirador atrás: se pone en un segundo. En gamuza camel o en cuero negro, con suela de goma liviana.', agot: [] },
-    { id: 'hebilla', n: 'Mocasín Hebilla', c: 'mocasines', p: 239, img: 'photo-1711044541746-e7a4d3fe505d', crop: '&crop=focalpoint&fp-x=.5&fp-y=.8&fp-z=1.7', sub: 'Cuero negro o coñac · hebilla', d: 'Mocasín de cuero con hebilla metálica, en negro o coñac. Para terno o con jean, y cómodo desde el primer día.', agot: [43, 44] },
-    { id: 'penny', n: 'Mocasín Penny', c: 'mocasines', p: 219, img: 'photo-1777987601447-266e128de448', sub: 'Cuero marrón · antifaz cosido', d: 'El clásico mocasín con antifaz cosido a mano, en cuero marrón o gamuza arena. Suela de cuero con plantilla acolchada.', agot: [] },
-    { id: 'costa', n: 'Zapatilla Costa', c: 'zapatillas', p: 229, img: 'photo-1603808033192-082d6919d3e1', sub: 'Cuero blanco · gamuza arena', d: 'Zapatilla de cuero blanco con talón de gamuza arena y suela vulcanizada. La que más se lleva para el día a día.', agot: [], tag: 'Nuevo' },
-    { id: 'malecon', n: 'Zapatilla Malecón', c: 'zapatillas', p: 209, img: 'photo-1727061180303-d91cdeca6f9c', sub: 'Cuero blanco · suela caramelo', d: 'Blanca entera con suela de goma color caramelo. Combina con todo y se limpia con un paño húmedo.', agot: [39] },
-    { id: 'noche', n: 'Zapatilla Noche', c: 'zapatillas', p: 219, img: 'photo-1632497775901-50ba4637399f', sub: 'Cuero negro · total black', d: 'Toda negra, de cuero napa suave y suela negra. Para la oficina sin parecer de oficina.', agot: [] }
+    { id: 'andes', n: 'Botín Andes', c: 'botines', p: 289, r: -4, sub: 'Cuero graso · suela de goma', d: 'Botín de pasador en cuero graso, marrón oscuro o vino, forrado en cuero y con suela de goma antideslizante. Aguanta lluvia y caminatas largas.', agot: [44], tag: 'El más vendido' },
+    { id: 'moche', n: 'Botín Moche', c: 'botines', p: 319, r: -5, sub: 'Cuero miel · picado inglés', d: 'Botín con picado inglés en cuero color miel, puntera reforzada y suela de cuero con taco de goma. El más elegante del taller.', agot: [38] },
+    { id: 'gamuza', n: 'Chelsea Gamuza', c: 'botines', p: 259, r: 3, sub: 'Gamuza camel o cuero negro', d: 'Chelsea con elásticos laterales y tirador atrás: se pone en un segundo. En gamuza camel o en cuero negro, con suela de goma liviana.', agot: [] },
+    { id: 'hebilla', n: 'Mocasín Hebilla', c: 'mocasines', p: 239, r: -10, sub: 'Cuero miel o negro · hebilla metálica', d: 'Mocasín de manejo en cuero suave, con hebilla metálica y suela de taquitos de goma. En miel o negro, cómodo desde el primer día.', agot: [43, 44] },
+    { id: 'penny', n: 'Mocasín Penny', c: 'mocasines', p: 219, r: 4, sub: 'Cuero marrón · antifaz cosido', d: 'El clásico mocasín con antifaz cosido a mano, en cuero marrón o gamuza arena. Suela de cuero con plantilla acolchada.', agot: [] },
+    { id: 'costa', n: 'Zapatilla Costa', c: 'zapatillas', p: 229, r: -3, sub: 'Cuero blanco · gamuza arena', d: 'Zapatilla de cuero blanco con talón de gamuza arena y suela vulcanizada. La que más se lleva para el día a día.', agot: [], tag: 'Nuevo' },
+    { id: 'malecon', n: 'Zapatilla Malecón', c: 'zapatillas', p: 209, r: -3, sub: 'Cuero graso · pasadores de cuero', d: 'Zapatilla de cuero graso con pasadores de cuero y suela blanca cosida. En miel o azul noche: aguanta arena, sol y uso diario.', agot: [39] },
+    { id: 'noche', n: 'Zapatilla Noche', c: 'zapatillas', p: 219, r: 0, sub: 'Cuero negro · total black', d: 'Toda negra, de cuero napa suave y suela negra. Para la oficina sin parecer de oficina.', agot: [] }
   ];
   var TALLAS = [38, 39, 40, 41, 42, 43, 44];
   var grilla = $('#grilla');
   MODELOS.forEach(function (m) {
     var li = document.createElement('li'); li.className = 'prod'; li.dataset.cat = m.c;
-    li.innerHTML = '<button class="prod-b" type="button" aria-haspopup="dialog"><span class="ph"><img src="' + U + m.img + '?auto=format&fit=crop' + (m.crop || '') + '&w=600&h=750&q=60" width="600" height="750" loading="lazy" alt=""></span>' +
+    li.innerHTML = '<button class="prod-b" type="button" aria-haspopup="dialog"><span class="ph"><span class="zap"><img src="img/' + m.id + '-600.webp" width="600" height="600" loading="lazy" decoding="async" alt=""></span></span>' +
       '<span class="prod-t"><b></b><span></span></span><span class="prod-p">S/ ' + m.p + '</span></button>';
-    var img = $('img', li); img.alt = m.n + ': ' + m.sub;
+    var img = $('img', li); img.alt = m.n + ': ' + m.sub; img.style.setProperty('--r', m.r + 'deg');
     if (m.tag) { var t = document.createElement('span'); t.className = 'tag'; t.textContent = m.tag; $('.ph', li).appendChild(t); }
     $('.prod-t b', li).textContent = m.n; $('.prod-t span', li).textContent = m.sub;
     $('button', li).addEventListener('click', function () { abrir(m); });
@@ -503,8 +537,8 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
   chips.forEach(function (ch) {
     ch.addEventListener('click', function () {
       chips.forEach(function (x) { x.setAttribute('aria-pressed', x === ch); });
-      $$('.prod', grilla).forEach(function (li) { li.hidden = ch.dataset.f !== 'todo' && li.dataset.cat !== ch.dataset.f; });
-      if (window.ScrollTrigger) ScrollTrigger.refresh();
+      var cambia = function () { $$('.prod', grilla).forEach(function (li) { li.hidden = ch.dataset.f !== 'todo' && li.dataset.cat !== ch.dataset.f; }); };
+      if (window.flipFiltro) window.flipFiltro(cambia); else { cambia(); if (window.ScrollTrigger) ScrollTrigger.refresh(); }
     });
   });
 
@@ -512,7 +546,7 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
   var ficha = $('#ficha'), pedir = $('#f-pedir'), elegido = null;
   function abrir(m) {
     elegido = m;
-    $('#f-img').src = U + m.img + '?auto=format&fit=crop' + (m.crop || '') + '&w=800&h=1000&q=62'; $('#f-img').alt = m.n + ': ' + m.sub;
+    $('#f-img').src = 'img/' + m.id + '.webp'; $('#f-img').alt = m.n + ': ' + m.sub;
     $('#f-nombre').textContent = m.n; $('#f-precio').textContent = 'S/ ' + m.p; $('#f-desc').textContent = m.d;
     var box = $('#f-tallas'); box.innerHTML = '';
     TALLAS.forEach(function (t) {
@@ -521,17 +555,18 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
       if (agot) l.title = 'Talla ' + t + ' agotada';
       box.appendChild(l);
     });
-    pinta(); ficha.showModal();
+    pinta(); ficha.showModal(); if (window.lenis) lenis.stop();
   }
   function talla() { var i = $('input[name="talla"]:checked', ficha); return i ? i.value : ''; }
   function pinta() {
     var t = talla();
     $('span', pedir).textContent = t ? 'Pedir talla ' + t + ' por WhatsApp' : 'Elige tu talla';
     pedir.setAttribute('aria-disabled', t ? 'false' : 'true');
-    pedir.style.opacity = t ? 1 : 0.55;
+    pedir.style.opacity = t ? 1 : 0.72;
     pedir.href = t ? WA + encodeURIComponent('Hola HORMA 👋 Quiero el ' + elegido.n + ' (S/ ' + elegido.p + ') en talla ' + t + '. ¿Me lo separan?') : '#';
   }
   ficha.addEventListener('change', pinta);
+  ficha.addEventListener('close', function () { if (window.lenis) lenis.start(); });
   pedir.addEventListener('click', function (e) { if (!talla()) { e.preventDefault(); var i = $('#f-tallas input:not(:disabled)'); if (i) i.focus(); } });
   $('#f-cerrar').addEventListener('click', function () { ficha.close(); });
   $('#f-guia').addEventListener('click', function () { ficha.close(); });
@@ -555,32 +590,58 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/SplitText.min.js" integrity="sha384-SWJ0lLVRoipvHh59xj0pL7uC7Ih51F+5smaFtrG+2nr+TlDZU5SYJHmxfolbeNTr" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/Flip.min.js" integrity="sha384-LY8cG/IUULu4u3V3AhwWBt01HIuO/hlekjkqgBx0DOJ/oquEL0Qk2L6qy+1QeRZM" crossorigin="anonymous" defer></script>
 <script>
-// Animaciones con GSAP: HORMA se arma letra por letra, los modelos entran en tanda, el lookbook queda fijo
-// con el texto gigante de fondo y las fotos pasando, y el pespunte del taller se cose solo al bajar.
+// Animaciones con GSAP: HORMA se arma letra por letra y los botines llegan flotando (al bajar se abren girando),
+// los modelos entran en tanda y el filtro los reacomoda con Flip, el lookbook queda fijo con el texto gigante
+// de fondo, y el pespunte del taller se cose solo al bajar. En escritorio con mouse: scroll suave (Lenis),
+// botones magnéticos, botines que siguen al cursor, tarjetas que se inclinan en 3D y fotos que se sesgan con la velocidad.
 addEventListener('DOMContentLoaded', function () {
   var raiz = document.documentElement;
   if (!window.gsap || !window.ScrollTrigger || !window.SplitText || !raiz.classList.contains('gs')) { raiz.classList.remove('gs'); return; }
   gsap.registerPlugin(ScrollTrigger, SplitText);
+  if (window.Flip) gsap.registerPlugin(Flip);
   var cab = document.querySelector('.cab');
   var bajoCab = function () { return 'top top+=' + cab.offsetHeight; };
+  var fino = matchMedia('(hover: hover) and (pointer: fine) and (min-width: 960px)').matches;
 
   document.fonts.ready.then(function () {
     gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', function () {
-      // 1 · portada
+      // 1 · portada: HORMA sube letra por letra, el botín principal cae en su sitio y los demás llegan flotando
       var h1 = SplitText.create('.portada h1', { type: 'lines' }); // sin máscara: no recorta la tilde de la Ñ
-      gsap.set(['#gigante span', '.portada h1'], { visibility: 'visible' });
+      gsap.set(['.gigante span', '.portada h1'], { visibility: 'visible' });
       gsap.timeline({ defaults: { ease: 'power4.out' } })
-        .from('#gigante span', { yPercent: 102, duration: 1.1, stagger: 0.07 })
-        .fromTo('#foto-p', { clipPath: 'inset(50% 50% 50% 50% round 6px)' }, { clipPath: 'inset(0% 0% 0% 0% round 6px)', duration: 1.2, ease: 'power3.inOut', clearProps: 'clipPath' }, 0.25)
-        .from('#foto-p img', { scale: 1.3, duration: 1.6, ease: 'power2.out' }, 0.25)
-        .from('#foto-p .sello', { scale: 0, rotate: -60, duration: 0.7, ease: 'back.out(1.8)' }, 1)
+        .from('.gigante.atras span', { yPercent: 102, duration: 1.1, stagger: 0.07 }, 0)
+        .from('.gigante.frente span', { yPercent: 102, duration: 1.1, stagger: 0.07 }, 0)
+        .from('#heroe .capa', { yPercent: -16, rotate: -14, scale: 0.84, duration: 1.5, ease: 'power3.out' }, 0.15)
+        .from('.flota .capa', { scale: 0.3, opacity: 0, rotate: function (i) { return i % 2 ? 45 : -45; }, duration: 1.3, stagger: 0.09, ease: 'back.out(1.4)' }, 0.4)
+        .from('#sello', { scale: 0, rotate: -60, duration: 0.7, ease: 'back.out(1.8)' }, 1.05)
         .from(h1.lines, { y: 26, opacity: 0, duration: 0.8, stagger: 0.08 }, 0.45)
         .from('.portada .bajada, .portada .ctas > *, .garantias li', { y: 14, opacity: 0, duration: 0.6, stagger: 0.05, ease: 'power2.out' }, 0.75);
+      // al bajar: los botines se abren hacia afuera girando y el principal baja más lento (profundidad)
+      var sale = gsap.timeline({ scrollTrigger: { trigger: '#portada', start: 'top top', end: 'bottom top', scrub: 0.6 } });
+      gsap.utils.toArray('.flota').forEach(function (fl) {
+        var p = +fl.dataset.p, lado = fl.offsetLeft + fl.offsetWidth / 2 < fl.parentNode.offsetWidth / 2 ? -1 : 1;
+        sale.to(fl, { x: lado * 110 * p, y: -150 * p, rotate: lado * 30 * p, ease: 'none' }, 0);
+      });
+      sale.to('#heroe', { y: 80, rotate: 8, scale: 1.06, ease: 'none' }, 0)
+        .to('.gigante', { y: 46, ease: 'none' }, 0)
+        .to('#sello', { rotate: 120, ease: 'none' }, 0);
 
-      // 2 · modelos: entran en tanda cuando aparecen
+      // 2 · modelos: entran en tanda, cada botín cae girando sobre su tarjeta; el filtro los reacomoda con Flip
       gsap.set('.prod', { y: 40, opacity: 0 });
-      ScrollTrigger.batch('.prod', { start: 'top 90%', once: true, onEnter: function (els) { gsap.to(els, { y: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out' }); } });
+      ScrollTrigger.batch('.prod', { start: 'top 90%', once: true, onEnter: function (els) {
+        gsap.to(els, { y: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: 'power3.out' });
+        gsap.from(els.map(function (e) { return e.querySelector('.zap'); }), { y: -40, rotate: -18, scale: 0.8, duration: 1.1, stagger: 0.08, ease: 'back.out(1.5)', clearProps: 'transform' });
+      } });
+      if (window.Flip) window.flipFiltro = function (cambia) {
+        var estado = Flip.getState('.prod');
+        cambia();
+        Flip.from(estado, { duration: 0.6, ease: 'power3.inOut', absolute: true, scale: true,
+          onEnter: function (els) { return gsap.fromTo(els, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, y: 0, duration: 0.5 }); },
+          onLeave: function (els) { return gsap.to(els, { opacity: 0, scale: 0.85, duration: 0.35 }); },
+          onComplete: function () { ScrollTrigger.refresh(); } });
+      };
 
       // 3 · lookbook fijado: el texto gigante va lento hacia la izquierda y las fotos pasan más rápido por encima
       var fila = document.querySelector('#fila'), cinta = document.querySelector('#cinta-t');
@@ -603,11 +664,72 @@ addEventListener('DOMContentLoaded', function () {
       // 5 · tallas: la tabla se llena fila por fila
       gsap.from('.tabla tbody tr', { opacity: 0, x: -16, duration: 0.45, stagger: 0.05, ease: 'power2.out', scrollTrigger: { trigger: '.tabla', start: 'top 85%', once: true } });
 
-      return function () { h1.revert(); };
+      return function () { h1.revert(); window.flipFiltro = null; };
     });
     ScrollTrigger.refresh();
+    if (fino && raiz.classList.contains('gs')) { toques(); seguir(); }
   });
   addEventListener('load', function () { ScrollTrigger.refresh(); });
+
+  // Toques de agencia, solo en escritorio con mouse (en celular el scroll nativo es mejor)
+  function toques() {
+    // scroll suave: Lenis mueve la ventana y ScrollTrigger lo sigue en el mismo reloj
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js';
+    s.integrity = 'sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw'; s.crossOrigin = 'anonymous';
+    s.onload = function () {
+      var lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 0.9 });
+      // enlaces internos: el salto lo hace Lenis (respeta el scroll-padding-top de la cabecera), no el navegador
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a[href^="#"]'), id = a && a.getAttribute('href'), dest = id && id.length > 1 && document.querySelector(id);
+        if (!dest) return;
+        e.preventDefault(); lenis.scrollTo(dest, { force: true });
+      });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+      window.lenis = lenis;
+    };
+    document.head.appendChild(s);
+
+    // botones magnéticos: siguen un poco al cursor y vuelven a su sitio al salir
+    document.querySelectorAll('.btn').forEach(function (b) {
+      var x = gsap.quickTo(b, 'x', { duration: 0.6, ease: 'power3.out' }), y = gsap.quickTo(b, 'y', { duration: 0.6, ease: 'power3.out' });
+      b.addEventListener('pointermove', function (e) { var r = b.getBoundingClientRect(); x((e.clientX - r.left - r.width / 2) * 0.3); y((e.clientY - r.top - r.height / 2) * 0.4); });
+      b.addEventListener('pointerleave', function () { x(0); y(0); });
+    });
+
+    // las imágenes se inclinan según la velocidad del scroll y se enderezan al parar
+    var sesgo = { v: 0 }, clamp = gsap.utils.clamp(-6, 6);
+    var ponY = gsap.quickSetter('[data-sesgo="y"]', 'skewY', 'deg'), ponX = gsap.quickSetter('[data-sesgo="x"]', 'skewX', 'deg');
+    ScrollTrigger.create({ start: 0, end: 'max', onUpdate: function (st) {
+      var v = clamp(st.getVelocity() / -320);
+      if (Math.abs(v) > Math.abs(sesgo.v)) {
+        sesgo.v = v;
+        gsap.to(sesgo, { v: 0, duration: 0.8, ease: 'power3', overwrite: true, onUpdate: function () { ponY(sesgo.v); ponX(sesgo.v * 1.4); } });
+      }
+    } });
+  }
+
+  // botines que siguen al cursor (los cercanos se mueven más) y tarjetas que se inclinan en 3D
+  function seguir() {
+    var portada = document.querySelector('#portada');
+    var capas = gsap.utils.toArray('#escena .capa').map(function (c) {
+      var fl = c.parentNode, d = fl.classList.contains('frente') ? 1.5 : fl.classList.contains('atras') ? 0.5 : 0.9;
+      return { d: d, x: gsap.quickTo(c, 'x', { duration: 1, ease: 'power3.out' }), y: gsap.quickTo(c, 'y', { duration: 1, ease: 'power3.out' }) };
+    });
+    var gx = gsap.quickTo('.gigante', 'x', { duration: 1.2, ease: 'power3.out' });
+    portada.addEventListener('pointermove', function (e) {
+      var r = portada.getBoundingClientRect(), nx = (e.clientX - r.left) / r.width * 2 - 1, ny = (e.clientY - r.top) / r.height * 2 - 1;
+      capas.forEach(function (c) { c.x(nx * 26 * c.d); c.y(ny * 18 * c.d); }); gx(nx * -10);
+    });
+    portada.addEventListener('pointerleave', function () { capas.forEach(function (c) { c.x(0); c.y(0); }); gx(0); });
+    document.querySelectorAll('.prod-b').forEach(function (b) {
+      var z = b.querySelector('.zap'), rx = gsap.quickTo(z, 'rotationX', { duration: 0.6, ease: 'power3.out' }), ry = gsap.quickTo(z, 'rotationY', { duration: 0.6, ease: 'power3.out' });
+      b.addEventListener('pointermove', function (e) { var r = b.getBoundingClientRect(); ry(((e.clientX - r.left) / r.width - 0.5) * 22); rx(((e.clientY - r.top) / r.height - 0.5) * -16); });
+      b.addEventListener('pointerleave', function () { rx(0); ry(0); });
+    });
+  }
 });
 </script>
 </body>

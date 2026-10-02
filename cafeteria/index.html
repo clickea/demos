@@ -13,17 +13,18 @@
 <meta property="og:locale" content="es_PE">
 <meta property="og:title" content="Altura · Café de especialidad en Surquillo">
 <meta property="og:description" content="Café de altura tostado aquí cada martes y brunch todo el día. Pídelo para llevar por WhatsApp.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1670404161009-29548c027d06?fm=jpg&fit=crop&crop=focalpoint&fp-y=.45&w=1200&h=630&q=78">
+<meta property="og:image" content="https://clickea.github.io/demos/cafeteria/og.jpg">
 <meta property="og:url" content="https://clickea.github.io/demos/cafeteria/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
-<link rel="preload" as="image" href="https://images.unsplash.com/photo-1670404161009-29548c027d06?auto=format&fit=crop&w=760&h=900&q=62" fetchpriority="high">
+<link rel="preload" as="image" href="fotogramas/ligera/000.webp" media="(max-width: 899px)" fetchpriority="high">
+<link rel="preload" as="image" href="fotogramas/cine/000.webp" media="(min-width: 900px)" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
 // Las animaciones se preparan antes de pintar; si GSAP no llega en 3 s, la página se muestra igual, sin animar.
-(function (r) { r.classList.add('js'); if (matchMedia('(prefers-reduced-motion: no-preference)').matches) { r.classList.add('gs'); setTimeout(function () { if (!window.ScrollTrigger) r.classList.remove('gs'); }, 3000); } })(document.documentElement);
+(function (r) { r.classList.add('js'); if (matchMedia('(prefers-reduced-motion: no-preference)').matches) { r.classList.add('mv', 'gs'); setTimeout(function () { if (!window.ScrollTrigger) r.classList.remove('gs'); }, 3000); } })(document.documentElement);
 </script>
 <script type="application/ld+json">
 {
@@ -32,7 +33,7 @@
   "name": "Altura Café",
   "description": "Café de especialidad en Surquillo: granos de Villa Rica y Quillabamba tostados en el local cada martes, métodos filtrados y brunch todo el día.",
   "url": "https://clickea.github.io/demos/cafeteria/",
-  "image": "https://images.unsplash.com/photo-1670404161009-29548c027d06?fm=jpg&fit=crop&w=1200&h=630&q=78",
+  "image": "https://clickea.github.io/demos/cafeteria/og.jpg",
   "telephone": "+51900000000",
   "servesCuisine": ["Café", "Brunch"],
   "priceRange": "S/ 7 - S/ 42",
@@ -96,20 +97,33 @@ h2 em,h1 em{font-style:italic;color:var(--cereza)}
 .curvas{position:absolute;pointer-events:none;color:var(--tostado)}
 .curvas use{fill:none;stroke:currentColor;stroke-width:1.2;vector-effect:non-scaling-stroke}
 
-/* 1 · portada */
-.portada{position:relative;overflow:hidden;background:var(--espresso);color:var(--crema);padding:34px 0 56px}
-.portada .curvas{width:min(150vw,1100px);right:-38%;top:-12%;opacity:.42}
-.portada-g{position:relative;display:grid;gap:30px}
-.portada .eti{color:var(--gris-c)}
-.portada h1{font-size:clamp(46px,12.5vw,104px);margin-top:16px}
-.portada .bajada{margin-top:18px;max-width:40ch;color:var(--gris-c);font-size:17.5px}
+/* 1 · portada cinematográfica: la taza 3D se prepara al bajar (sin movimiento queda quieta) */
+.cine{position:relative;background:var(--espresso);color:var(--crema)}
+.pega{position:relative;min-height:calc(100vh - var(--hd));min-height:calc(100svh - var(--hd));overflow:hidden;background:radial-gradient(64% 42% at 50% 76%,rgba(210,74,56,.17),transparent 72%),var(--espresso)}
+.pega .curvas{width:min(175vw,1300px);left:50%;top:60%;opacity:.36;transform:translate(-50%,-50%) rotate(var(--giro,0deg))}
+.escenario{--s:min(100vw,calc(100svh - var(--hd) - var(--barra) - 250px));position:absolute;left:50%;bottom:var(--barra);width:var(--s);height:var(--s);transform:translateX(calc(-50% + var(--x,0px)))}
+.taza,.taza canvas,.taza .poster{position:absolute;inset:0;width:100%;height:100%}
+.taza .poster img{width:100%;height:100%}
+.fase{position:absolute;z-index:2;left:0;right:0;top:18px;padding:0 var(--pad)}
+.fase:not(.fase-a){display:none}
+.fase .eti{color:var(--gris-c)}
+.fase h1{font-size:clamp(40px,11.6vw,64px);margin-top:14px}
+.fase h2{font-size:clamp(36px,10vw,56px);margin-top:12px}
+.fase h2 em,.fase h1 em{color:var(--cereza-c)}
+.fase .bajada{display:none;margin-top:18px;max-width:40ch;color:var(--gris-c);font-size:17.5px}
+.fase .dato{margin-top:12px;max-width:34ch;color:var(--gris-c);font-size:15px}
+.fase .ctas{margin-top:20px}
+.fase .nota{margin-top:14px}
 .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .nota{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:18px;font-size:14px;color:var(--gris-c)}
 .nota span{display:inline-flex;align-items:center;gap:8px}
 .nota span::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--cereza-c)}
-.foto-p{position:relative;margin:0;border-radius:200px 200px 18px 18px;overflow:hidden;aspect-ratio:4/5;background:var(--espresso-2)}
-.foto-p img{width:100%;height:100%;object-fit:cover}
-.foto-p figcaption{position:absolute;left:14px;bottom:14px;padding:8px 12px;border-radius:99px;background:rgba(27,18,13,.78);font-size:13px;font-weight:600}
+.riel,.desliza{display:none}
+.mv .cine{height:330vh}
+.mv .pega{position:sticky;top:var(--hd);height:calc(100vh - var(--hd));height:calc(100svh - var(--hd));min-height:0}
+.mv .fase:not(.fase-a){display:block;opacity:0;visibility:hidden}
+@media (max-height:640px) and (min-width:960px){.fase .bajada{display:none}}
+@media (max-height:700px) and (max-width:959px){.fase .nota{display:none}.fase h1{font-size:clamp(36px,10.6vw,50px)}.fase-a .ctas .btn-l{display:none}.fase .ctas{margin-top:14px}.fase .dato{display:none}}
 
 /* 2 · origen */
 .origen{position:relative;overflow:hidden;padding:76px 0}
@@ -218,7 +232,7 @@ h2 em,h1 em{font-style:italic;color:var(--cereza)}
 .barra svg{width:19px;height:19px}
 
 /* ---------- con animación (GSAP cargado y movimiento permitido) ---------- */
-.gs .portada h1,.gs .portada .bajada{visibility:hidden}
+.gs #t-portada,.gs .fase-a .bajada{visibility:hidden}
 .gs .linea-m{overflow:clip;padding-bottom:.06em;margin-bottom:-.06em}
 .gs .barra-sec{height:calc(100vh - var(--hd));height:calc(100svh - var(--hd));padding:22px 0 calc(var(--barra) + 14px);display:flex;flex-direction:column;overflow:hidden}
 .gs .barra-sec>.barra-cab{margin-top:auto}
@@ -247,10 +261,24 @@ h2 em,h1 em{font-style:italic;color:var(--cereza)}
   .barra{display:none}
   .nav{display:flex}
   .cab .btn{margin-left:0}
-  .portada{padding:56px 0 76px}
-  .portada h1{font-size:clamp(56px,5.6vw,84px)}
-  .portada-g{grid-template-columns:1.15fr .85fr;align-items:center;gap:56px}
-  .portada .curvas{right:-12%;top:-30%}
+  .mv .cine{height:430vh}
+  .pega{--x:20vw}
+  .pega .curvas{top:50%;left:62%}
+  .escenario{--s:min(calc(100svh - var(--hd) - 96px),54vw);top:50%;bottom:auto;transform:translate(calc(-50% + var(--x,0px)),-50%)}
+  .fase{top:50%;left:max(var(--pad),calc((100vw - var(--wrap)) / 2 + var(--pad)));right:auto;width:min(520px,40vw);padding:0;transform:translateY(-50%)}
+  .fase.der{left:auto;right:max(var(--pad),calc((100vw - var(--wrap)) / 2 + var(--pad)));width:min(420px,31vw)}
+  .fase h1{font-size:clamp(54px,5.4vw,86px)}
+  .fase h2{font-size:clamp(44px,4.2vw,70px)}
+  .fase .bajada{display:block}
+  .fase .dato{font-size:16.5px}
+  .mv .riel{position:absolute;z-index:2;left:max(var(--pad),calc((100vw - var(--wrap)) / 2 + var(--pad)));bottom:26px;display:flex;gap:26px;list-style:none;margin:0;padding:12px 0 0;font:700 11px/1 var(--ff);letter-spacing:.16em;text-transform:uppercase;color:var(--gris-c)}
+  .riel::before{content:'';position:absolute;left:0;top:0;width:100%;height:1.5px;background:var(--linea-c)}
+  .riel::after{content:'';position:absolute;left:0;top:0;width:100%;height:1.5px;background:var(--cereza-c);transform-origin:left;transform:scaleX(var(--p,0))}
+  .riel li{transition:color .3s}
+  .riel li.ya{color:var(--crema)}
+  .riel b{font-weight:700;color:var(--cereza-c);margin-right:6px}
+  .mv .desliza{position:absolute;z-index:2;left:50%;bottom:24px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;font:700 11px/1 var(--ff);letter-spacing:.18em;text-transform:uppercase;color:var(--gris-c);pointer-events:none}
+  .desliza i{width:2px;height:28px;background:linear-gradient(var(--cereza-c),transparent);animation:bajar 1.6s var(--curva) infinite}
   .carril{grid-auto-columns:420px}
   .gs .item{width:min(36vw,460px)}
   .gs .carril{gap:30px;padding-right:calc(100vw - min(36vw,460px) - var(--pad))}
@@ -263,6 +291,12 @@ h2 em,h1 em{font-style:italic;color:var(--cereza)}
   .faq-l{margin-top:0}
   .pie .wrap{grid-template-columns:1fr auto}
 }
+@keyframes bajar{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+/* scroll suave (Lenis, solo escritorio con mouse) */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}
 </style>
 </head>
@@ -292,10 +326,20 @@ h2 em,h1 em{font-style:italic;color:var(--cereza)}
 </header>
 
 <main id="top">
-  <section class="portada" aria-labelledby="t-portada">
-    <svg class="curvas" id="curvas-portada" viewBox="0 0 600 600" aria-hidden="true"><use href="#curvas-g"/></svg>
-    <div class="wrap portada-g">
-      <div>
+  <section class="cine" id="cine" aria-labelledby="t-portada">
+    <div class="pega">
+      <svg class="curvas" id="curvas-portada" viewBox="0 0 600 600" aria-hidden="true"><use href="#curvas-g"/></svg>
+      <div class="escenario" id="escenario">
+        <div class="taza" id="taza">
+          <picture class="poster" id="poster">
+            <source media="(min-width: 900px)" srcset="fotogramas/cine/000.webp">
+            <img src="fotogramas/ligera/000.webp" width="600" height="600" alt="Granos de café de Villa Rica flotando sobre una taza blanca de cerámica con su plato" fetchpriority="high">
+          </picture>
+          <canvas id="lienzo" aria-hidden="true"></canvas>
+        </div>
+      </div>
+
+      <div class="fase fase-a" data-de="0" data-a="0.12">
         <p class="eti">Café de especialidad · Surquillo</p>
         <h1 id="t-portada">Café de altura, tostado aquí <em>cada martes.</em></h1>
         <p class="bajada">Granos de fincas peruanas a más de 1&nbsp;600 metros, molidos al momento y servidos sin apuro. Quédate un rato o llévatelo.</p>
@@ -305,10 +349,30 @@ h2 em,h1 em{font-style:italic;color:var(--cereza)}
         </div>
         <p class="nota"><span>Listo en 10 minutos</span><span>Yape, Plin o tarjeta</span></p>
       </div>
-      <figure class="foto-p" id="foto-p">
-        <img src="https://images.unsplash.com/photo-1670404161009-29548c027d06?auto=format&fit=crop&w=760&h=900&q=62" srcset="https://images.unsplash.com/photo-1670404161009-29548c027d06?auto=format&fit=crop&w=520&h=650&q=62 520w, https://images.unsplash.com/photo-1670404161009-29548c027d06?auto=format&fit=crop&w=760&h=900&q=62 760w" sizes="(min-width: 960px) 460px, calc(100vw - 40px)" width="760" height="900" alt="Mano sosteniendo una taza de café con arte latte en la barra" fetchpriority="high">
-        <figcaption>Flat white de Villa Rica</figcaption>
-      </figure>
+
+      <div class="fase fase-b der" data-de="0.27" data-a="0.46">
+        <p class="eti">01 · El espresso</p>
+        <h2>Molido al momento, <em>extraído en 28&nbsp;segundos.</em></h2>
+        <p class="dato">Doble ristretto de Villa Rica: chocolate, panela y un toque de naranja.</p>
+      </div>
+
+      <div class="fase fase-c" data-de="0.56" data-a="0.7">
+        <p class="eti">02 · La leche</p>
+        <h2>Texturizada a 60&nbsp;°C, <em>nunca quemada.</em></h2>
+        <p class="dato">Sedosa y sin burbujas grandes: así sale el corazón en la taza.</p>
+      </div>
+
+      <div class="fase fase-d" data-de="0.82" data-a="1">
+        <p class="eti">03 · Tu taza</p>
+        <h2>Tu flat white, <em>listo en 10&nbsp;minutos.</em></h2>
+        <div class="ctas">
+          <a class="btn btn-c wa" href="https://wa.me/51900000000" data-msg="Hola Altura ☕ Quiero un flat white para llevar. Mi nombre es " target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pídelo por WhatsApp</a>
+          <a class="btn btn-l" href="#carta">Mira la carta</a>
+        </div>
+      </div>
+
+      <ol class="riel" id="riel" aria-hidden="true"><li><b>00</b>Altura</li><li><b>01</b>Espresso</li><li><b>02</b>Leche</li><li><b>03</b>Tu taza</li></ol>
+      <p class="desliza" aria-hidden="true">Desliza<i></i></p>
     </div>
   </section>
 
@@ -331,11 +395,11 @@ h2 em,h1 em{font-style:italic;color:var(--cereza)}
       <p>Lo que la gente pide sin mirar la carta. Si es tu primera vez, empieza por aquí.</p>
     </div>
     <ol class="carril" id="carril">
-      <li class="item"><figure><img src="https://images.unsplash.com/photo-1550948309-0d8983dbdcc3?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Flat white en taza blanca sobre posavasos de madera"></figure><span class="num">01</span><h3>Flat white de altura</h3><p>Doble ristretto de Villa Rica con leche texturizada. Sedoso, sin azúcar que tape el sabor.</p><span class="pr">S/ 12</span></li>
-      <li class="item"><figure><img src="https://images.unsplash.com/photo-1587955245893-389f2215c6eb?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Café filtrándose en un cono de papel visto desde arriba"></figure><span class="num">02</span><h3>V60 de Quillabamba</h3><p>Filtrado a mano en tres minutos y medio. Sale frutal, casi como un té de frutos rojos.</p><span class="pr">S/ 15</span></li>
-      <li class="item"><figure><img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Tostada de pan de masa madre con palta y huevo frito"></figure><span class="num">03</span><h3>Tostada de palta y huevo</h3><p>Pan de masa madre, palta machacada con limón y huevo de corral con la yema suave.</p><span class="pr">S/ 24</span></li>
-      <li class="item"><figure><img src="https://images.unsplash.com/photo-1560055932-595dab110124?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Huevos benedictinos sobre pan con palta y salsa holandesa"></figure><span class="num">04</span><h3>Huevos benedictinos</h3><p>Huevos pochados, palta y holandesa de la casa sobre masa madre tostada.</p><span class="pr">S/ 28</span></li>
-      <li class="item"><figure><img src="https://images.unsplash.com/photo-1599940778173-e276d4acb2bb?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Croissant de mantequilla dorado en plato blanco"></figure><span class="num">05</span><h3>Croissant de mantequilla</h3><p>Hojaldrado aquí cada mañana. Casi siempre se acaba antes de las once.</p><span class="pr">S/ 9</span></li>
+      <li class="item"><figure data-sesgo="x"><img src="https://images.unsplash.com/photo-1550948309-0d8983dbdcc3?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Flat white en taza blanca sobre posavasos de madera"></figure><span class="num">01</span><h3>Flat white de altura</h3><p>Doble ristretto de Villa Rica con leche texturizada. Sedoso, sin azúcar que tape el sabor.</p><span class="pr">S/ 12</span></li>
+      <li class="item"><figure data-sesgo="x"><img src="https://images.unsplash.com/photo-1587955245893-389f2215c6eb?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Café filtrándose en un cono de papel visto desde arriba"></figure><span class="num">02</span><h3>V60 de Quillabamba</h3><p>Filtrado a mano en tres minutos y medio. Sale frutal, casi como un té de frutos rojos.</p><span class="pr">S/ 15</span></li>
+      <li class="item"><figure data-sesgo="x"><img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Tostada de pan de masa madre con palta y huevo frito"></figure><span class="num">03</span><h3>Tostada de palta y huevo</h3><p>Pan de masa madre, palta machacada con limón y huevo de corral con la yema suave.</p><span class="pr">S/ 24</span></li>
+      <li class="item"><figure data-sesgo="x"><img src="https://images.unsplash.com/photo-1560055932-595dab110124?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Huevos benedictinos sobre pan con palta y salsa holandesa"></figure><span class="num">04</span><h3>Huevos benedictinos</h3><p>Huevos pochados, palta y holandesa de la casa sobre masa madre tostada.</p><span class="pr">S/ 28</span></li>
+      <li class="item"><figure data-sesgo="x"><img src="https://images.unsplash.com/photo-1599940778173-e276d4acb2bb?auto=format&fit=crop&w=840&h=630&q=62" width="840" height="630" loading="lazy" alt="Croissant de mantequilla dorado en plato blanco"></figure><span class="num">05</span><h3>Croissant de mantequilla</h3><p>Hojaldrado aquí cada mañana. Casi siempre se acaba antes de las once.</p><span class="pr">S/ 9</span></li>
     </ol>
     <p class="avance" aria-hidden="true"><i id="avance"></i></p>
   </section>
@@ -389,8 +453,8 @@ h2 em,h1 em{font-style:italic;color:var(--cereza)}
       </div>
     </div>
     <div class="wrap rincones">
-      <figure><div class="ph"><img src="https://images.unsplash.com/photo-1564849744694-348ecd00c279?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Sillas vacías junto a una ventana grande con luz de mañana"></div><figcaption>La ventana del fondo: la mesa más pedida</figcaption></figure>
-      <figure><div class="ph"><img src="https://images.unsplash.com/photo-1651783976258-3072215aac82?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Rincón del café con mesas de madera, sillas y plantas colgantes"></div><figcaption>El rincón de las plantas, para leer tranquilo</figcaption></figure>
+      <figure><div class="ph" data-sesgo="y"><img src="https://images.unsplash.com/photo-1564849744694-348ecd00c279?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Sillas vacías junto a una ventana grande con luz de mañana"></div><figcaption>La ventana del fondo: la mesa más pedida</figcaption></figure>
+      <figure><div class="ph" data-sesgo="y"><img src="https://images.unsplash.com/photo-1651783976258-3072215aac82?auto=format&fit=crop&w=600&h=800&q=60" width="600" height="800" loading="lazy" alt="Rincón del café con mesas de madera, sillas y plantas colgantes"></div><figcaption>El rincón de las plantas, para leer tranquilo</figcaption></figure>
     </div>
   </section>
 
@@ -472,6 +536,86 @@ h2 em,h1 em{font-style:italic;color:var(--cereza)}
   var WA = 'https://wa.me/51900000000?text=';
   $$('a.wa[data-msg]').forEach(function (a) { a.href = WA + encodeURIComponent(a.dataset.msg); });
 
+  // ---------- Portada: la taza 3D se prepara al bajar (fotogramas de un render propio) ----------
+  var reducir = !document.documentElement.classList.contains('mv');
+  var ancho = matchMedia('(min-width: 900px)'), pc = matchMedia('(min-width: 960px)');
+  function suave(a, b, x) { var t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); }
+  var cine = $('#cine'), pega = $('.pega', cine), esc = $('#escenario'), lienzo = $('#lienzo'), ctx = lienzo.getContext('2d');
+  var poster = $('#poster'), fases = $$('.fase', cine), riel = $('#riel'), rielLi = $$('li', riel), desliza = $('.desliza', cine), curvas = $('#curvas-portada'), cab = $('.cab');
+  var ahorro = navigator.connection && navigator.connection.saveData;
+  var SET = ancho.matches && !ahorro ? { dir: 'fotogramas/cine/', n: 90 } : { dir: 'fotogramas/ligera/', n: 48 };
+  var MARCAS = [0, 0.27, 0.56, 0.82], cuadros = [], p = 0, meta = 0, pintado = -1, corriendo = false;
+
+  if (reducir) { // sin movimiento: la taza ya servida, con su corazón
+    $('source', poster).srcset = 'fotogramas/cine/089.webp'; $('img', poster).src = 'fotogramas/ligera/047.webp';
+  } else {
+    function avance() { return Math.min(1, p / 0.92); } // el último 8 % deja la taza servida a la vista
+    function idx() { return Math.round(avance() * (SET.n - 1)); }
+    function carga(i) {
+      if (cuadros[i]) return;
+      var im = new Image(); cuadros[i] = im; im.decoding = 'async';
+      im.onload = function () { im.ok = 1; if (Math.abs(i - idx()) <= 2) { pintado = -1; pide(); } };
+      im.src = SET.dir + ('00' + i).slice(-3) + '.webp';
+    }
+    function cercano(k) {
+      for (var d = 0; d < SET.n; d++) {
+        if (cuadros[k - d] && cuadros[k - d].ok) return k - d;
+        if (cuadros[k + d] && cuadros[k + d].ok) return k + d;
+      }
+      return -1;
+    }
+    function medir() {
+      var w = Math.round(lienzo.clientWidth * Math.min(window.devicePixelRatio || 1, 2));
+      if (w && lienzo.width !== w) { lienzo.width = lienzo.height = w; pintado = -1; }
+    }
+    function dibuja() {
+      var k = cercano(idx()); if (k < 0 || k === pintado) return;
+      ctx.clearRect(0, 0, lienzo.width, lienzo.height);
+      ctx.drawImage(cuadros[k], 0, 0, lienzo.width, lienzo.height); pintado = k;
+      if (poster) { poster.style.visibility = 'hidden'; poster = null; }
+    }
+    function ventana(el, t) {
+      var de = +el.dataset.de, a = +el.dataset.a;
+      return (de <= 0 ? 1 : suave(de - 0.05, de, t)) * (a >= 1 ? 1 : 1 - suave(a, a + 0.05, t));
+    }
+    function escena() {
+      medir(); dibuja();
+      var av = avance();
+      fases.forEach(function (f) {
+        var o = ventana(f, av); f.style.opacity = o; f.style.visibility = o < 0.02 ? 'hidden' : 'visible';
+        f.style.translate = '0 ' + ((1 - o) * 24).toFixed(1) + 'px';
+      });
+      // escritorio: la taza a la derecha del título, cruza a la izquierda en "el espresso" y vuelve para la leche
+      var k1 = suave(0.12, 0.25, av), k2 = suave(0.47, 0.55, av);
+      esc.style.setProperty('--x', (pc.matches ? 0.2 * innerWidth * (1 - 2 * k1 + 2 * k2) : 0).toFixed(1) + 'px');
+      curvas.style.setProperty('--giro', (av * 40).toFixed(2) + 'deg');
+      desliza.style.opacity = 1 - suave(0.01, 0.06, av);
+      riel.style.setProperty('--p', av.toFixed(3)); riel.style.opacity = suave(0.07, 0.13, av); // aparece cuando el título se va
+      rielLi.forEach(function (li, j) { li.classList.toggle('ya', av >= MARCAS[j] - 0.04); });
+    }
+    function progreso() {
+      var total = cine.offsetHeight - pega.offsetHeight;
+      return total > 0 ? Math.min(1, Math.max(0, (cab.offsetHeight - cine.getBoundingClientRect().top) / total)) : 0;
+    }
+    function bucle() {
+      var d = meta - p; p = Math.abs(d) < 0.0004 ? meta : p + d * 0.22;
+      escena();
+      if (p !== meta) requestAnimationFrame(bucle); else corriendo = false;
+    }
+    function pide() { meta = progreso(); if (!corriendo) { corriendo = true; requestAnimationFrame(bucle); } }
+
+    carga(0);
+    // primero 1 de cada 12 cuadros (el recorrido ya se ve completo), luego se va rellenando
+    var orden = [];
+    [12, 6, 3, 1].forEach(function (s) { for (var i = 0; i < SET.n; i += s) if (orden.indexOf(i) < 0) orden.push(i); });
+    if (orden.indexOf(SET.n - 1) < 0) orden.push(SET.n - 1);
+    var arranca = function () { setTimeout(function () { orden.forEach(carga); }, 200); };
+    if (document.readyState === 'complete') arranca(); else addEventListener('load', arranca);
+    addEventListener('scroll', pide, { passive: true });
+    addEventListener('resize', function () { pintado = -1; pide(); });
+    pide();
+  }
+
   // Horario en hora de Lima
   var HOR = { 0: [8.5, 20.5], 6: [8.5, 20.5] }, BASE = [7.5, 20.5];
   function hh(n) { var h = Math.floor(n), m = Math.round((n % 1) * 60); return h + ':' + (m < 10 ? '0' : '') + m; }
@@ -499,25 +643,35 @@ h2 em,h1 em{font-style:italic;color:var(--cereza)}
 <script>
 // Animaciones con GSAP: portada que se arma, manifiesto que se enciende, altura que sube,
 // carril de la barra fijado (se acomoda en cada producto) y foto del salón que se expande.
+// En escritorio con mouse: scroll suave (Lenis), botones magnéticos e imágenes que se inclinan con la velocidad.
 addEventListener('DOMContentLoaded', function () {
   var raiz = document.documentElement;
   if (!window.gsap || !window.ScrollTrigger || !window.SplitText || !raiz.classList.contains('gs')) { raiz.classList.remove('gs'); return; }
   gsap.registerPlugin(ScrollTrigger, SplitText);
   var cab = document.querySelector('.cab');
   var bajoCab = function () { return 'top top+=' + cab.offsetHeight; };
+  var fino = matchMedia('(hover: hover) and (pointer: fine) and (min-width: 960px)').matches;
 
   document.fonts.ready.then(function () {
     gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', function () {
-      // 1 · portada: el título sube por líneas, la foto se abre como un arco
-      var h1 = SplitText.create('.portada h1', { type: 'lines', mask: 'lines', linesClass: 'linea-m' });
-      gsap.set(['.portada h1', '.portada .bajada'], { visibility: 'visible' });
+      // 1 · portada: el título sube por líneas y la taza llega flotando (el scroll la prepara, ver arriba)
+      var h1 = SplitText.create('#t-portada', { type: 'lines', mask: 'lines', linesClass: 'linea-m' });
+      gsap.set(['#t-portada', '.fase-a .bajada'], { visibility: 'visible' });
       gsap.timeline({ defaults: { ease: 'power3.out' } })
         .from(h1.lines, { yPercent: 105, duration: 1, stagger: 0.09 })
-        .from('.portada .bajada', { y: 18, opacity: 0, duration: 0.7 }, 0.35)
-        .from('.portada .ctas > *, .portada .nota', { y: 14, opacity: 0, duration: 0.6, stagger: 0.07 }, 0.5)
-        .fromTo('#foto-p', { clipPath: 'inset(100% 0% 0% 0% round 200px 200px 18px 18px)' }, { clipPath: 'inset(0% 0% 0% 0% round 200px 200px 18px 18px)', duration: 1.2, ease: 'power3.inOut', clearProps: 'clipPath' }, 0.1)
-        .from('#foto-p img', { scale: 1.25, duration: 1.6, ease: 'power2.out' }, 0.1);
-      gsap.to('#curvas-portada', { rotate: 22, yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.portada', start: 'top top', end: 'bottom top', scrub: true } });
+        .from('.fase-a .bajada', { y: 18, opacity: 0, duration: 0.7 }, 0.35)
+        .from('.fase-a .ctas > *, .fase-a .nota', { y: 14, opacity: 0, duration: 0.6, stagger: 0.07 }, 0.5)
+        .from('#taza', { yPercent: 9, scale: 0.9, duration: 1.5 }, 0);
+      // las fases que aparecen al bajar: sus líneas suben al entrar
+      var partes = [];
+      gsap.utils.toArray('.fase:not(.fase-a) h2').forEach(function (h) {
+        var sp = SplitText.create(h, { type: 'lines', mask: 'lines', linesClass: 'linea-m' }); partes.push(sp); var fase = h.parentNode, visto = false;
+        new MutationObserver(function () {
+          var v = fase.style.visibility === 'visible';
+          if (v && !visto) gsap.fromTo(sp.lines, { yPercent: 105 }, { yPercent: 0, duration: 0.8, stagger: 0.08, ease: 'power3.out', overwrite: true });
+          visto = v;
+        }).observe(fase, { attributes: true, attributeFilter: ['style'] });
+      });
 
       // 2 · origen: el manifiesto se enciende palabra por palabra y las alturas cuentan hacia arriba
       var man = SplitText.create('#manifiesto', { type: 'words' });
@@ -537,7 +691,7 @@ addEventListener('DOMContentLoaded', function () {
       var puntos = function () { var pad = parseFloat(getComputedStyle(carril).paddingLeft), d = dist() || 1; return Array.prototype.map.call(items, function (c) { return Math.min(1, (c.offsetLeft - pad) / d); }); };
       var mueve = gsap.to(carril, { x: function () { return -dist(); }, ease: 'none',
         scrollTrigger: { trigger: '.barra-sec', start: bajoCab, end: function () { return '+=' + dist(); }, pin: true, scrub: 0.5, invalidateOnRefresh: true,
-          snap: { snapTo: function (v) { return puntos().reduce(function (a, b) { return Math.abs(b - v) < Math.abs(a - v) ? b : a; }); }, duration: { min: 0.2, max: 0.5 }, delay: 0.06, ease: 'power1.inOut', inertia: false },
+          snap: fino ? false : { snapTo: function (v) { return puntos().reduce(function (a, b) { return Math.abs(b - v) < Math.abs(a - v) ? b : a; }); }, duration: { min: 0.2, max: 0.5 }, delay: 0.06, ease: 'power1.inOut', inertia: false },
           onUpdate: function (st) { barra.style.transform = 'scaleX(' + st.progress.toFixed(3) + ')'; } } });
       Array.prototype.forEach.call(items, function (it, i) {
         if (!i) return;
@@ -559,11 +713,52 @@ addEventListener('DOMContentLoaded', function () {
         gsap.fromTo(img, { yPercent: -8, scale: 1.16 }, { yPercent: 8, scale: 1.16, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } });
       });
 
-      return function () { h1.revert(); man.revert(); };
+      return function () { h1.revert(); man.revert(); partes.forEach(function (sp) { sp.revert(); }); };
     });
     ScrollTrigger.refresh();
+    if (fino && raiz.classList.contains('gs')) toques();
   });
   addEventListener('load', function () { ScrollTrigger.refresh(); });
+
+  // Toques de agencia, solo en escritorio con mouse (en celular el scroll nativo es mejor)
+  function toques() {
+    // scroll suave: Lenis mueve la ventana y ScrollTrigger lo sigue en el mismo reloj
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js';
+    s.integrity = 'sha384-jqpi9VmOdhyLoLURgjCn7EpnG9BbnHW57ibIZoeaIU+erWDH3k8fQQg0xH2ySjnw'; s.crossOrigin = 'anonymous';
+    s.onload = function () {
+      var lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 0.9 });
+      // enlaces internos: el salto lo hace Lenis (respeta el scroll-padding-top de la cabecera), no el navegador
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest('a[href^="#"]'), id = a && a.getAttribute('href'), dest = id && id.length > 1 && document.querySelector(id);
+        if (!dest) return;
+        e.preventDefault(); lenis.scrollTo(dest, { force: true });
+      });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+      gsap.ticker.lagSmoothing(0);
+      window.lenis = lenis;
+    };
+    document.head.appendChild(s);
+
+    // botones magnéticos: siguen un poco al cursor y vuelven a su sitio al salir
+    document.querySelectorAll('.btn').forEach(function (b) {
+      var x = gsap.quickTo(b, 'x', { duration: 0.6, ease: 'power3.out' }), y = gsap.quickTo(b, 'y', { duration: 0.6, ease: 'power3.out' });
+      b.addEventListener('pointermove', function (e) { var r = b.getBoundingClientRect(); x((e.clientX - r.left - r.width / 2) * 0.3); y((e.clientY - r.top - r.height / 2) * 0.4); });
+      b.addEventListener('pointerleave', function () { x(0); y(0); });
+    });
+
+    // las imágenes se inclinan según la velocidad del scroll y se enderezan al parar
+    var sesgo = { v: 0 }, clamp = gsap.utils.clamp(-6, 6);
+    var ponY = gsap.quickSetter('[data-sesgo="y"]', 'skewY', 'deg'), ponX = gsap.quickSetter('[data-sesgo="x"]', 'skewX', 'deg');
+    ScrollTrigger.create({ start: 0, end: 'max', onUpdate: function (st) {
+      var v = clamp(st.getVelocity() / -320);
+      if (Math.abs(v) > Math.abs(sesgo.v)) {
+        sesgo.v = v;
+        gsap.to(sesgo, { v: 0, duration: 0.8, ease: 'power3', overwrite: true, onUpdate: function () { ponY(sesgo.v); ponX(sesgo.v * 1.4); } });
+      }
+    } });
+  }
 });
 </script>
 </body>
