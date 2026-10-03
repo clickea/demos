@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Tienes un regalo 🎁</title>
+<meta name="description" content="Un regalo que se abre al deslizar: se desata el lazo, vuela la tapa y sale una sorpresa.">
+<meta name="theme-color" content="#2A1430">
+<link rel="preload" as="image" href="fotogramas/000.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{--fondo:#2A1430;--fondo2:#4B2357;--principal:#FF5C8A;--acento:#FFC94A;--papel:#FFF7EC;--claro:#FFF3F7;--ff-t:'Baloo 2','Arial Rounded MT Bold',sans-serif;--ff:'Nunito',system-ui,sans-serif;--curva:cubic-bezier(.2,.7,.2,1)}
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:#140916;color:var(--claro);font:500 18px/1.5 var(--ff);overflow-x:clip}
+  body.bloqueado{overflow:hidden}
+  img{display:block;max-width:100%}
+  p{margin:0}
+  main{position:relative;max-width:480px;margin:0 auto;background:var(--fondo);overflow-x:clip}
+  .eti{font:800 13px/1 var(--ff);letter-spacing:.22em;text-transform:uppercase;color:var(--acento)}
+
+  .intro{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:24px;text-align:center;background:radial-gradient(80% 60% at 50% 40%,var(--fondo2),var(--fondo));cursor:pointer;transition:opacity .8s,transform .8s var(--curva)}
+  .intro.sale{opacity:0;transform:scale(1.15);pointer-events:none}
+  .intro h1{margin:12px 0 22px;font:800 clamp(40px,12vw,58px)/1 var(--ff-t)}
+  .intro .moño{width:120px;height:120px;margin:0 auto;border-radius:50%;background:var(--principal);display:grid;place-items:center;font-size:56px;animation:salta 1.4s var(--curva) infinite}
+  @keyframes salta{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-12px) rotate(6deg)}}
+  .intro__tap{margin-top:18px;font-weight:700;opacity:.9}
+  .musica{position:fixed;top:14px;right:max(14px,calc(50vw - 226px));z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,201,74,.5);background:rgba(42,20,48,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--acento);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s}
+  .musica.visible{opacity:1;pointer-events:auto}
+  .musica svg{width:20px;height:20px}
+  .musica .off{display:none}.musica.silencio .on{display:none}.musica.silencio .off{display:block}
+
+  /* el regalo: escena fijada que se abre al deslizar */
+  .regalo{position:relative;height:420vh}
+  .pega{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:radial-gradient(70% 45% at 50% 70%,var(--fondo2),var(--fondo) 75%)}
+  .escenario{--s:min(100%,calc((100svh - 170px) * .75));position:absolute;left:50%;bottom:max(14px,3svh);width:var(--s);aspect-ratio:3/4;transform:translateX(-50%)}
+  .escenario canvas,.escenario .poster{position:absolute;inset:0;width:100%;height:100%}
+  .sorpresa{position:absolute;inset:0;pointer-events:none}
+  .foto{position:absolute;left:50%;top:0;width:58%;padding:4% 4% 13%;background:var(--papel);box-shadow:0 18px 40px rgba(0,0,0,.45);transform-origin:50% 0;visibility:hidden}
+  .foto img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .foto figcaption{position:absolute;left:0;right:0;bottom:3.4%;text-align:center;font:800 clamp(15px,4.6vw,21px)/1 var(--ff-t);color:#5a2a3a}
+  .fase{position:absolute;z-index:3;left:0;right:0;top:calc(env(safe-area-inset-top) + 64px);padding:0 22px;text-align:center}
+  .js .fase:not(.fase-a){opacity:0;visibility:hidden}
+  .fase h1,.fase h2{margin:10px 0 0;font:800 clamp(34px,10vw,50px)/1.02 var(--ff-t);text-wrap:balance}
+  .fase h2{font-size:clamp(30px,9vw,44px)}
+  .fase .pista{margin-top:12px;font-weight:700;opacity:.85}
+  .fase-d h1{font-size:clamp(34px,9.4vw,52px);color:var(--acento);text-shadow:0 4px 0 rgba(0,0,0,.25)}
+  .tirar{position:absolute;z-index:2;left:50%;top:13%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 16px;border-radius:99px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);font:800 14px/1 var(--ff);color:#fff;white-space:nowrap;pointer-events:none}
+  .tirar svg{width:22px;height:22px;animation:dedo 1.2s ease-in-out infinite}
+  .dedo{display:inline-block;animation:dedo 1.4s ease-in-out infinite}
+  @keyframes dedo{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+  /* después: mensaje, fotos y cierre */
+  .carta{position:relative;z-index:2;margin:0 14px;padding:40px 24px 42px;border-radius:24px;background:var(--papel);color:#3a1a2a;box-shadow:0 -20px 60px rgba(0,0,0,.35)}
+  .carta .eti{color:#c2335f}
+  .carta h2{margin:12px 0 0;font:800 34px/1.05 var(--ff-t);color:#c2335f}
+  .carta .msg p{margin-top:14px;font-size:19px}
+  .firma{margin-top:20px;font:italic 700 21px/1.2 var(--ff);text-align:right;color:#c2335f}
+  .fotos{padding:56px 0 20px}
+  .fotos .eti{display:block;text-align:center}
+  .tira{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:22px 24px 30px;scrollbar-width:none}
+  .tira::-webkit-scrollbar{display:none}
+  .tira figure{flex:none;width:62%;margin:0;padding:3% 3% 11%;background:var(--papel);box-shadow:0 12px 26px rgba(0,0,0,.35);scroll-snap-align:center;rotate:var(--r)}
+  .tira img{width:100%;aspect-ratio:1;object-fit:cover}
+  .tira figcaption{margin-top:8px;text-align:center;font:800 17px/1 var(--ff-t);color:#5a2a3a}
+  .cierre{padding:30px 22px 90px;text-align:center}
+  .cierre h2{margin:0;font:800 clamp(40px,12vw,56px)/1 var(--ff-t);color:var(--acento)}
+  .cierre p{margin-top:12px}
+  .otra{margin-top:26px;min-height:50px;padding:0 26px;border:0;border-radius:99px;background:var(--principal);color:#fff;font:800 16px/1 var(--ff);cursor:pointer}
+  .credito{padding:0 20px 30px;text-align:center;font-size:14px;opacity:.55}
+  .credito a{color:inherit}
+  .chispa{position:fixed;z-index:65;width:9px;height:14px;pointer-events:none;border-radius:2px;animation:chispa 1.2s ease-out forwards}
+  @keyframes chispa{to{transform:translate(var(--dx),var(--dy)) rotate(var(--rot));opacity:0}}
+  @media (prefers-reduced-motion:reduce){.regalo{height:auto}.pega{position:relative;height:auto;min-height:100svh}.js .fase:not(.fase-d){display:none}.js .fase-d{opacity:1;visibility:visible}.intro .moño,.dedo{animation:none}.foto{visibility:visible}}
+  @media (min-width:600px){body{background:radial-gradient(60% 60% at 50% 30%,#3a1a42,#140916)}main{box-shadow:0 0 80px rgba(0,0,0,.6)}}
+</style>
+</head>
+<body class="bloqueado">
+<!-- =====================================================================
+     REGALO SORPRESA — plantilla de Clickea Studio
+     Para un pedido nuevo solo edita el bloque DATOS en el <script>.
+     La caja viene en rojo con cinta dorada. Para otros colores, renderizar los fotogramas con
+     ESCENA=/portafolio/_3d/regalo/escena.html y los parámetros ?papel=&lunares=&cinta= (ver referencias/detalle.md).
+     ===================================================================== -->
+<div class="intro" id="intro" role="button" tabindex="0" aria-label="Toca para ver tu regalo">
+  <div><p class="eti">Para <span data-d="para"></span></p><h1 data-d="tituloIntro"></h1><div class="moño" aria-hidden="true">🎁</div><p class="intro__tap" data-d="textoTocar"></p></div>
+</div>
+<button class="musica" id="btnMusica" aria-label="Silenciar o activar música">
+  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M2 2l20 20"/></svg>
+</button>
+
+<main>
+  <section class="regalo" id="regalo" aria-label="El regalo">
+    <div class="pega">
+      <div class="escenario" id="escenario">
+        <img class="poster" id="poster" src="fotogramas/000.webp" width="450" height="600" alt="Caja de regalo con lazo dorado">
+        <canvas id="lienzo" aria-hidden="true"></canvas>
+        <p class="tirar" id="tirar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14l6-6 6 6"/></svg>Desliza para abrir</p>
+        <div class="sorpresa" id="sorpresa"><figure class="foto" id="foto"><img id="fotoImg" src="" alt=""><figcaption data-d="pieFoto"></figcaption></figure></div>
+      </div>
+      <div class="fase fase-a" data-de="0" data-a="0.09"><p class="eti" data-d="faseA"></p><h1 data-d="tituloRegalo"></h1><p class="pista">Desliza hacia arriba para abrirlo <span class="dedo" aria-hidden="true">👆</span></p></div>
+      <div class="fase fase-b" data-de="0.19" data-a="0.29" aria-hidden="true"><h2 data-d="faseB"></h2></div>
+      <div class="fase fase-c" data-de="0.39" data-a="0.5" aria-hidden="true"><h2 data-d="faseC"></h2></div>
+      <div class="fase fase-d" data-de="0.62" data-a="1"><p class="eti" data-d="etiFinal"></p><h1 data-d="titulo"></h1></div>
+    </div>
+  </section>
+
+  <section class="carta" aria-labelledby="t-carta">
+    <p class="eti">Un mensaje para ti</p>
+    <h2 id="t-carta" data-d="saludo"></h2>
+    <div class="msg" id="msg"></div>
+    <p class="firma" data-d="firma"></p>
+  </section>
+
+  <section class="fotos" aria-label="Fotos">
+    <p class="eti" data-d="tituloFotos"></p>
+    <div class="tira" id="tira"></div>
+  </section>
+
+  <section class="cierre">
+    <h2 data-d="cierre"></h2>
+    <p data-d="cierreTexto"></p>
+    <button class="otra" id="otra" type="button">Abrirlo otra vez 🎁</button>
+  </section>
+  <p class="credito">Hecho con cariño por <a href="https://clickea.github.io/demos/">Clickea Studio</a></p>
+</main>
+
+<script>
+/* ===================== DATOS DEL PEDIDO — solo se edita esto ===================== */
+const DATOS = {
+  // --- Personas ---
+  para: "Ana",                         // quién recibe
+  de: "Lucía",                         // quién regala
+
+  // --- Pantalla inicial ---
+  tituloIntro: "Tienes un regalo",
+  textoTocar: "Toca para verlo",
+
+  // --- Textos mientras se abre la caja ---
+  faseA: "Para Ana, con cariño",
+  tituloRegalo: "Ábrelo despacito",
+  faseB: "Primero, el lazo…",
+  faseC: "¡Y ahora la tapa!",
+  etiFinal: "Sorpresa",
+  titulo: "¡Feliz cumpleaños, Ana!",   // lo grande que aparece al abrirse (cumpleaños, Navidad, día del padre…)
+
+  // --- La foto que sale de la caja ---
+  foto: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=700&q=75",
+  pieFoto: "¡30 y fabulosa!",
+
+  // --- Mensaje (separa los párrafos con una línea en blanco) ---
+  saludo: "Ana querida:",
+  mensaje: `Treinta años y sigues siendo la que llena de risas cualquier reunión. Gracias por estar en las buenas, en las malas y en las de madrugada.
+
+Que este año te traiga viajes, calma y muchas razones para celebrar. Te quiero muchísimo.`,
+  firma: "Lucía",
+
+  // --- Más fotos (tira deslizable con pie) ---
+  tituloFotos: "Momentos contigo",
+  fotos: [
+    { foto: "https://images.unsplash.com/photo-1542338332-76971ae8c292?auto=format&fit=crop&w=600&q=72", pie: "Nuestros cafecitos" },
+    { foto: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=72", pie: "Ese viaje" },
+    { foto: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=600&q=72", pie: "Atardeceres" }
+  ],
+
+  // --- Cierre ---
+  cierre: "¡Que lo disfrutes!",
+  cierreTexto: "Toca la pantalla para tirar confeti 🎉",
+
+  // --- Colores de la página (la caja se mantiene roja con cinta dorada) ---
+  colores: {
+    fondo: "#2A1430",      // fondo oscuro
+    fondo2: "#4B2357",     // brillo del fondo
+    principal: "#FF5C8A",  // botones
+    acento: "#FFC94A",     // títulos y etiquetas
+    papel: "#FFF7EC"       // carta y fotos
+  },
+
+  // --- Música (melodía original generada en el navegador, sin derechos de autor) ---
+  musica: { activa: true, volumen: 0.5 }
+};
+/* ===================== FIN DE DATOS — no hace falta tocar nada más ===================== */
+
+const $ = (s, c) => (c || document).querySelector(s);
+const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.documentElement.classList.add('js');
+
+/* ---------- Datos a la página ---------- */
+Object.entries({ fondo: '--fondo', fondo2: '--fondo2', principal: '--principal', acento: '--acento', papel: '--papel' }).forEach(([k, v]) => document.documentElement.style.setProperty(v, DATOS.colores[k]));
+$$('[data-d]').forEach((el) => { el.textContent = DATOS[el.dataset.d]; });
+document.title = 'Un regalo para ' + DATOS.para + ' 🎁';
+$('#fotoImg').src = DATOS.foto; $('#fotoImg').alt = DATOS.pieFoto;
+$('#msg').innerHTML = DATOS.mensaje.split(/\n\s*\n/).map((p) => '<p>' + esc(p.trim()) + '</p>').join('');
+$('#tira').innerHTML = DATOS.fotos.map((f, i) => `<figure style="--r:${[-3, 2.5, -1.5, 3][i % 4]}deg"><img src="${esc(f.foto)}" alt="${esc(f.pie)}" loading="lazy"><figcaption>${esc(f.pie)}</figcaption></figure>`).join('');
+
+/* ---------- La caja 3D: fotogramas propios que avanzan con el scroll ---------- */
+// Boca de la caja en cada uno de los 48 fotogramas: [y, ancho] en milésimas del lienzo (sale del render 3D)
+const BOCA = [525,245,522,250,520,258,517,268,516,280,515,294,515,308,517,322,518,335,521,348,524,359,527,369,529,377,532,384,534,388,535,391,535,392,534,392,533,392,533,391,533,389,534,387,534,385,534,383,534,382,534,381,534,379,534,378,534,376,534,375,534,374,536,375,539,377,542,381,547,386,552,392,557,399,563,406,569,414,575,422,580,429,585,436,590,442,593,446,594,448,595,448,595,448,595,448];
+const N = 48, cuadros = [], seccion = $('#regalo'), escenario = $('#escenario'), faseD = $('.fase-d'), tirar = $('#tirar'), lienzo = $('#lienzo'), ctx = lienzo.getContext('2d'), foto = $('#foto'), fases = $$('.fase');
+let poster = $('#poster'), p = 0, meta = 0, pintado = -1, corriendo = false;
+const suave = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+const avance = () => Math.min(1, p / 0.94);
+const idx = () => Math.round(avance() * (N - 1));
+function carga(i) {
+  if (cuadros[i]) return;
+  const im = new Image(); cuadros[i] = im; im.decoding = 'async';
+  im.onload = () => { im.ok = 1; if (Math.abs(i - idx()) <= 2) { pintado = -1; pide(); } };
+  im.src = 'fotogramas/' + String(i).padStart(3, '0') + '.webp';
+}
+function cercano(k) { for (let d = 0; d < N; d++) { if (cuadros[k - d] && cuadros[k - d].ok) return k - d; if (cuadros[k + d] && cuadros[k + d].ok) return k + d; } return -1; }
+function dibuja() {
+  const w = Math.round(lienzo.clientWidth * Math.min(devicePixelRatio || 1, 2)), h = Math.round(w * 4 / 3);
+  if (w && lienzo.width !== w) { lienzo.width = w; lienzo.height = h; pintado = -1; }
+  const k = cercano(idx()); if (k < 0 || k === pintado) return;
+  ctx.clearRect(0, 0, lienzo.width, lienzo.height); ctx.drawImage(cuadros[k], 0, 0, lienzo.width, lienzo.height); pintado = k;
+  if (poster) { poster.style.visibility = 'hidden'; poster = null; }
+}
+function escena() {
+  dibuja();
+  const av = avance();
+  fases.forEach((f) => {
+    const de = +f.dataset.de, a = +f.dataset.a, o = (de <= 0 ? 1 : suave(de - 0.05, de, av)) * (a >= 1 ? 1 : 1 - suave(a, a + 0.05, av));
+    f.style.opacity = o; f.style.visibility = o < 0.02 ? 'hidden' : 'visible'; f.style.translate = '0 ' + ((1 - o) * 20).toFixed(1) + 'px';
+  });
+  // la foto sube desde adentro de la caja (lo que queda debajo del borde no se ve)
+  const fr = av * (N - 1), i0 = Math.floor(fr), t = fr - i0, i1 = Math.min(N - 1, i0 + 1);
+  const bocaY = (BOCA[i0 * 2] * (1 - t) + BOCA[i1 * 2] * t) / 10; // % del alto del lienzo
+  const sube = suave(0.6, 0.9, av), H = foto.parentNode.clientHeight, fh = foto.offsetHeight, boca = bocaY / 100 * H;
+  const texto = faseD.getBoundingClientRect().bottom - escenario.getBoundingClientRect().top + 14; // debajo del titular
+  const sFin = Math.max(0.5, Math.min(1, (boca - texto) / fh)), yFin = Math.max(texto, boca - fh * sFin);
+  const y = boca * (1 - sube) + yFin * sube, esc = 0.5 * (1 - sube) + sFin * sube;
+  foto.style.visibility = sube > 0.001 ? 'visible' : 'hidden';
+  foto.style.transform = 'translate(-50%,' + y.toFixed(1) + 'px) scale(' + esc.toFixed(3) + ') rotate(' + (-4 * sube).toFixed(2) + 'deg)';
+  tirar.style.opacity = (1 - suave(0.02, 0.08, av)).toFixed(3);
+  foto.parentNode.style.clipPath = sube < 0.999 ? 'inset(0 0 ' + (100 - bocaY).toFixed(2) + '% 0)' : 'none';
+}
+function progreso() { const total = seccion.offsetHeight - innerHeight; return total > 0 ? Math.min(1, Math.max(0, -seccion.getBoundingClientRect().top / total)) : 0; }
+function bucle() { const d = meta - p; p = Math.abs(d) < 0.0004 ? meta : p + d * 0.2; escena(); if (p !== meta) requestAnimationFrame(bucle); else corriendo = false; }
+function pide() { meta = progreso(); if (!corriendo) { corriendo = true; requestAnimationFrame(bucle); } }
+if (reducir) { // sin movimiento: la caja ya abierta y la foto afuera
+  poster.src = 'fotogramas/047.webp'; p = meta = 1; addEventListener('load', escena);
+} else {
+  carga(0);
+  const orden = []; [8, 4, 2, 1].forEach((s) => { for (let i = 0; i < N; i += s) if (!orden.includes(i)) orden.push(i); }); if (!orden.includes(N - 1)) orden.push(N - 1);
+  addEventListener('load', () => setTimeout(() => orden.forEach(carga), 150));
+  addEventListener('scroll', pide, { passive: true });
+  addEventListener('resize', () => { pintado = -1; pide(); });
+  pide();
+}
+
+/* ---------- Confeti al tocar (después de abrir el regalo) ---------- */
+const COLORES = ['#FFD166', '#EF476F', '#06D6A0', '#118AB2', '#FFFFFF', '#FFC94A'];
+document.addEventListener('click', (e) => {
+  if (reducir || avance() < 0.6 || e.target.closest('#btnMusica,#intro,button')) return;
+  for (let i = 0; i < 16; i++) {
+    const c = document.createElement('span'); c.className = 'chispa'; c.style.background = COLORES[i % COLORES.length];
+    c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px';
+    const a = Math.random() * Math.PI * 2, r = 60 + Math.random() * 110;
+    c.style.setProperty('--dx', (Math.cos(a) * r).toFixed(0) + 'px'); c.style.setProperty('--dy', (Math.sin(a) * r + 60).toFixed(0) + 'px'); c.style.setProperty('--rot', (Math.random() * 720 - 360).toFixed(0) + 'deg');
+    document.body.appendChild(c); setTimeout(() => c.remove(), 1300);
+  }
+});
+$('#otra').addEventListener('click', () => scrollTo({ top: 0, behavior: reducir ? 'auto' : 'smooth' }));
+
+/* ---------- Música: melodía alegre original (Web Audio API) ---------- */
+// Do mayor, ritmo alegre. Cada compás: acorde (arpegio) + melodía (8 corcheas; null = silencio).
+const COMPASES = [
+  { a: ['C3', 'G3', 'C4', 'E4'], m: ['E5', null, 'G5', null, 'C6', null, 'G5', null] },
+  { a: ['G2', 'D3', 'G3', 'B3'], m: ['F5', null, 'D5', null, 'B4', null, 'D5', null] },
+  { a: ['A2', 'E3', 'A3', 'C4'], m: ['C5', null, 'E5', null, 'A5', null, 'G5', 'E5'] },
+  { a: ['F2', 'C3', 'F3', 'A3'], m: ['F5', null, null, 'E5', 'D5', null, null, null] },
+  { a: ['C3', 'G3', 'C4', 'E4'], m: ['E5', 'F5', 'G5', null, 'E5', null, 'C5', null] },
+  { a: ['F2', 'C3', 'F3', 'A3'], m: ['A5', null, 'G5', null, 'F5', null, 'A5', null] },
+  { a: ['G2', 'D3', 'G3', 'B3'], m: ['G5', null, 'F5', 'E5', 'D5', null, 'B4', null] },
+  { a: ['C3', 'G3', 'C4', 'E4'], m: ['C5', null, null, null, null, null, null, null] }
+];
+function crearMusica(compases, tempo, volumen) {
+  const NOTAS = { C: 0, 'C#': 1, D: 2, 'D#': 3, E: 4, F: 5, 'F#': 6, G: 7, 'G#': 8, A: 9, 'A#': 10, B: 11 };
+  const frec = (n) => { const m = n.match(/^([A-G]#?)(\d)$/); return 440 * Math.pow(2, (NOTAS[m[1]] + (+m[2] + 1) * 12 - 69) / 12); };
+  const patron = [0, 1, 2, 3, 2, 1, 2, 3];
+  let ctx2, salida, paso = 0, proximo = 0, silencio = false;
+  const dur = 60 / tempo / 2;
+  function nota(f, t, vel, largo) {
+    const o = ctx2.createOscillator(), o2 = ctx2.createOscillator(), g = ctx2.createGain(), g2 = ctx2.createGain();
+    o.type = 'triangle'; o.frequency.value = f; o2.type = 'sine'; o2.frequency.value = f * 2; g2.gain.value = .12;
+    o.connect(g); o2.connect(g2).connect(g); g.connect(salida);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vel, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + largo);
+    o.start(t); o2.start(t); o.stop(t + largo + .05); o2.stop(t + largo + .05);
+  }
+  function programar() {
+    while (proximo < ctx2.currentTime + .15) {
+      const c = compases[Math.floor(paso / 8) % compases.length], i = paso % 8;
+      nota(frec(c.a[patron[i]]), proximo, i === 0 ? .12 : .06, 0.9);
+      if (c.m[i]) nota(frec(c.m[i]), proximo + .005, .16, 1.1);
+      proximo += dur; paso++;
+    }
+  }
+  return {
+    iniciar() {
+      if (ctx2) return;
+      ctx2 = new (window.AudioContext || window.webkitAudioContext)();
+      salida = ctx2.createGain(); salida.gain.value = volumen;
+      const eco = ctx2.createDelay(2); eco.delayTime.value = dur * 2; const fb = ctx2.createGain(); fb.gain.value = .2;
+      const filtro = ctx2.createBiquadFilter(); filtro.type = 'lowpass'; filtro.frequency.value = 3600;
+      salida.connect(filtro); filtro.connect(ctx2.destination); filtro.connect(eco); eco.connect(fb).connect(eco); eco.connect(ctx2.destination);
+      proximo = ctx2.currentTime + .1; setInterval(programar, 40); programar();
+    },
+    alternar() { if (!ctx2) return false; silencio = !silencio; if (silencio) ctx2.suspend(); else ctx2.resume(); return silencio; }
+  };
+}
+const musica = crearMusica(COMPASES, 116, DATOS.musica.volumen);
+$('#btnMusica').addEventListener('click', (e) => { e.stopPropagation(); $('#btnMusica').classList.toggle('silencio', musica.alternar()); });
+
+/* ---------- Empezar ---------- */
+let empezado = false;
+function empezar() {
+  if (empezado) return; empezado = true;
+  if (DATOS.musica.activa) { musica.iniciar(); $('#btnMusica').classList.add('visible'); }
+  $('#intro').classList.add('sale'); document.body.classList.remove('bloqueado');
+  setTimeout(() => $('#intro').remove(), reducir ? 0 : 900);
+}
+$('#intro').addEventListener('click', empezar);
+$('#intro').addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); empezar(); } });
+</script>
+</body>
+</html>

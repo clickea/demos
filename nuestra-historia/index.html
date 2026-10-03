@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Nuestra historia 💞</title>
+<meta name="description" content="Una historia de amor contada al deslizar: capítulos, fotos y un contador de todo el tiempo juntos.">
+<meta name="theme-color" content="#170A10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<script>
+// Movimiento permitido: las animaciones con GSAP se preparan antes de pintar (si GSAP no llega en 3 s, todo queda quieto y visible)
+(function (r) { r.classList.add('js'); if (matchMedia('(prefers-reduced-motion: no-preference)').matches) { r.classList.add('gs'); setTimeout(function () { if (!window.ScrollTrigger) r.classList.remove('gs'); }, 3000); } })(document.documentElement);
+</script>
+<style>
+  :root{--fondo:#170A10;--fondo2:#3A1220;--principal:#E8547A;--acento:#F2C46D;--papel:#FBF1E6;--claro:#FFEFE6;--ff-t:'Anton',Impact,sans-serif;--ff:'Cormorant Garamond',Georgia,serif;--curva:cubic-bezier(.2,.7,.2,1)}
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:#0d0609;color:var(--claro);font:500 19px/1.5 var(--ff);overflow-x:clip}
+  body.bloqueado{overflow:hidden}
+  img{display:block;max-width:100%}
+  p{margin:0}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  main{position:relative;max-width:480px;margin:0 auto;background:radial-gradient(120% 60% at 50% 0%,var(--fondo2),var(--fondo) 60%);overflow-x:clip}
+  .eti{font:600 13px/1 var(--ff);letter-spacing:.28em;text-transform:uppercase;color:var(--acento)}
+
+  /* intro: toca para empezar (así puede sonar la música) */
+  .intro{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:24px;text-align:center;background:radial-gradient(80% 60% at 50% 40%,var(--fondo2),var(--fondo));cursor:pointer;transition:clip-path 1s var(--curva);clip-path:circle(150% at 50% 50%)}
+  .intro.sale{clip-path:circle(0% at 50% 50%)}
+  .intro__t{margin:14px 0 26px;font:400 clamp(44px,13vw,64px)/1 var(--ff-t);text-transform:uppercase;letter-spacing:.01em}
+  .latido{display:inline-grid;place-items:center;width:84px;height:84px;border-radius:50%;background:var(--principal);color:#fff;font-size:38px;box-shadow:0 0 0 0 rgba(232,84,122,.6);animation:latido 1.6s infinite}
+  @keyframes latido{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(232,84,122,.55)}40%{transform:scale(1.12)}70%{box-shadow:0 0 0 22px rgba(232,84,122,0)}}
+  .intro__tap{margin-top:18px;font-style:italic;font-size:20px;opacity:.85}
+  .musica{position:fixed;top:14px;right:max(14px,calc(50vw - 226px));z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid rgba(242,196,109,.5);background:rgba(23,10,16,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--acento);display:grid;place-items:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .5s}
+  .musica.visible{opacity:1;pointer-events:auto}
+  .musica svg{width:20px;height:20px}
+  .musica .off{display:none}.musica.silencio .on{display:none}.musica.silencio .off{display:block}
+
+  /* 1 · portada: los nombres gigantes detrás de la pareja y polaroids flotando */
+  .portada{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden}
+  .nombres{position:absolute;left:4%;right:4%;top:9%;margin:0;font:400 100px/.86 var(--ff-t);text-transform:uppercase;color:var(--claro);text-align:center;pointer-events:none;user-select:none}
+  .nombres span{display:block;white-space:nowrap}
+  .nombres .y{color:var(--principal)}
+  .pareja{position:absolute;z-index:2;left:50%;bottom:0;height:77%;width:auto;max-width:none;transform:translateX(-50%);filter:drop-shadow(0 0 1.5px rgba(255,214,226,.55)) drop-shadow(0 20px 40px rgba(0,0,0,.5))}
+  .portada::before{content:"";position:absolute;inset:30% -20% -10%;z-index:1;background:radial-gradient(50% 45% at 50% 50%,rgba(232,84,122,.28),transparent 70%);pointer-events:none}
+  @media (max-height:760px){.pareja{height:68%}}
+  .pola{position:absolute;width:28%;margin:0;pointer-events:none}
+  .pola .incl{transform:rotate(var(--r))}
+  .pola .flota{position:relative;padding:8% 8% 26%;background:var(--papel);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+  .pola img{width:100%;aspect-ratio:1;object-fit:cover}
+  .pola.atras{z-index:0;filter:brightness(.75)}
+  .pola.frente{z-index:3}
+  .pola i{position:absolute;left:0;right:0;bottom:7%;text-align:center;font:italic 600 clamp(12px,3.4vw,16px)/1 var(--ff);color:#3a1a22}
+  .pola:nth-of-type(1){left:-6%;top:calc(var(--fin,30%) + 14px);--r:-9deg}
+  .pola:nth-of-type(2){right:-5%;top:calc(var(--fin,30%) + 40px);--r:8deg}
+  .pola:nth-of-type(3){left:-3%;top:60%;--r:6deg}
+  .pola:nth-of-type(4){right:-4%;top:56%;--r:-7deg}
+  .flota{animation:flota 6s ease-in-out infinite alternate}
+  .pola:nth-of-type(2) .flota,.pola:nth-of-type(3) .flota{animation-duration:7.5s;animation-delay:-2s}
+  @keyframes flota{from{transform:translateY(-6px) rotate(-1deg)}to{transform:translateY(8px) rotate(1.5deg)}}
+  .portada__txt{position:absolute;z-index:4;left:0;right:0;bottom:0;padding:90px 24px 26px;text-align:center;background:linear-gradient(transparent,rgba(23,10,16,.86) 55%,var(--fondo))}
+  .desde{margin-top:8px;font-style:italic;font-size:22px}
+  .baja{margin-top:14px;font:600 12px/1 var(--ff);letter-spacing:.3em;text-transform:uppercase;opacity:.7}
+  .baja i{display:block;width:1.5px;height:26px;margin:10px auto 0;background:linear-gradient(var(--acento),transparent);animation:baja 1.8s ease-in-out infinite}
+  @keyframes baja{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* 2 · capítulos: tarjetas que se apilan al bajar */
+  .capitulos{padding:70px 18px 40px}
+  .cab{text-align:center;margin-bottom:34px}
+  .cab h2{margin:12px 0 0;font:400 clamp(38px,11vw,54px)/1 var(--ff-t);text-transform:uppercase;letter-spacing:.01em}
+  .pila{position:relative}
+  .cap{position:sticky;top:calc(10svh + var(--i) * 14px);margin-bottom:9svh;border-radius:22px;overflow:hidden;background:var(--papel);color:#2a1219;box-shadow:0 -10px 40px rgba(0,0,0,.35);transform-origin:50% 0}
+  .cap:last-child{margin-bottom:0}
+  .cap figure{position:relative;margin:0;aspect-ratio:4/3.4;overflow:hidden}
+  .cap figure img{width:100%;height:100%;object-fit:cover}
+  .cap .fecha{position:absolute;left:16px;bottom:12px;font:400 clamp(44px,13vw,62px)/.9 var(--ff-t);color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.55)}
+  .cap .num{position:absolute;right:14px;top:12px;padding:6px 10px;border-radius:99px;background:rgba(23,10,16,.7);color:var(--acento);font:600 12px/1 var(--ff);letter-spacing:.2em}
+  .cap .txt{padding:18px 20px 24px}
+  .cap h3{margin:0;font:italic 600 30px/1.1 var(--ff);color:#8c1f3e}
+  .cap p{margin-top:8px;font-size:19px;color:#4a2a32}
+
+  /* 3 · contador */
+  .contador{padding:60px 20px 70px;text-align:center}
+  .cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
+  .cifra{padding:18px 6px 14px;border-radius:18px;background:rgba(255,239,230,.06);border:1px solid rgba(242,196,109,.25)}
+  .cifra b{display:block;font:400 clamp(48px,15vw,72px)/1 var(--ff-t);color:var(--claro);font-variant-numeric:tabular-nums}
+  .cifra span{display:block;margin-top:6px;font:600 12px/1 var(--ff);letter-spacing:.22em;text-transform:uppercase;color:var(--acento)}
+  .reloj{margin-top:16px;font-style:italic;font-size:21px;font-variant-numeric:tabular-nums}
+
+  /* 4 · carta */
+  .carta{margin:0 14px;padding:42px 24px 46px;border-radius:24px;background:var(--papel);color:#2a1219}
+  .carta .eti{color:#8c1f3e}
+  .saludo{margin-top:16px;font:italic 600 30px/1.1 var(--ff);color:#8c1f3e}
+  .mensaje p{margin-top:14px;font-size:21px;line-height:1.5}
+  .firma{margin-top:22px;font:italic 600 24px/1.2 var(--ff);text-align:right;color:#8c1f3e}
+
+  /* 5 · final */
+  .final{position:relative;padding:90px 20px 110px;text-align:center}
+  .tinta{margin:0;font:400 clamp(84px,26vw,140px)/.9 var(--ff-t);text-transform:uppercase;color:transparent;-webkit-text-stroke:1.5px rgba(232,84,122,.7);background:linear-gradient(var(--principal),var(--principal)) no-repeat 0 100%/100% var(--llena,100%);-webkit-background-clip:text;background-clip:text}
+  .mfinal{max-width:26ch;margin:20px auto 0;font-style:italic;font-size:23px}
+  .otra{margin-top:30px;min-height:48px;padding:0 24px;border:1px solid rgba(242,196,109,.6);border-radius:99px;background:transparent;color:var(--acento);font:600 15px/1 var(--ff);letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+  .credito{padding:0 20px 30px;text-align:center;font-size:14px;opacity:.55}
+  .credito a{color:inherit}
+  .corazon{position:fixed;z-index:65;pointer-events:none;font-size:22px;color:var(--principal);animation:sube 1.4s ease-out forwards}
+  @keyframes sube{to{transform:translate(var(--dx),-140px) scale(1.4) rotate(var(--rot));opacity:0}}
+
+  /* con GSAP: lo que entra animado empieza oculto */
+  .gs .nombres span,.gs .pareja,.gs .pola,.gs .portada__txt>*{visibility:hidden}
+  @media (prefers-reduced-motion:reduce){.flota,.latido,.baja i{animation:none}.intro{transition:none}}
+  @media (min-width:600px){body{background:radial-gradient(60% 60% at 50% 30%,#2a0f1a,#0d0609)}main{box-shadow:0 0 80px rgba(0,0,0,.6)}}
+</style>
+</head>
+<body class="bloqueado">
+<!-- =====================================================================
+     NUESTRA HISTORIA — plantilla de Clickea Studio
+     Para un pedido nuevo solo edita el bloque DATOS en el <script>.
+     La foto de la pareja va SIN FONDO: node D:/Negocio/mi-marca/herramientas/recortar-fondo.mjs <foto.jpg> fotos/pareja.webp
+     ===================================================================== -->
+<div class="intro" id="intro" role="button" tabindex="0" aria-label="Toca para empezar">
+  <div><p class="eti">Para <span data-d="para"></span></p><p class="intro__t" data-d="tituloIntro"></p><span class="latido" aria-hidden="true">♥</span><p class="intro__tap" data-d="textoTocar"></p></div>
+</div>
+<button class="musica" id="btnMusica" aria-label="Silenciar o activar música">
+  <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+  <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><path d="M2 2l20 20"/></svg>
+</button>
+
+<main>
+  <section class="portada" id="portada" aria-labelledby="t-portada">
+    <h1 class="sr" id="t-portada"></h1>
+    <p class="nombres" id="nombres" aria-hidden="true"><span class="n1"></span><span class="n2"></span></p>
+    <div id="polas"></div>
+    <img class="pareja" id="pareja" src="" alt="" width="656" height="1100">
+    <div class="portada__txt"><p class="eti" data-d="textoPortada"></p><p class="desde" id="desde"></p><p class="baja">Desliza<i></i></p></div>
+  </section>
+
+  <section class="capitulos" aria-labelledby="t-cap">
+    <div class="cab"><p class="eti">Capítulos</p><h2 id="t-cap" data-d="tituloCapitulos"></h2></div>
+    <div class="pila" id="pila"></div>
+  </section>
+
+  <section class="contador" aria-labelledby="t-cont">
+    <p class="eti" id="t-cont" data-d="tituloContador"></p>
+    <div class="cifras"><div class="cifra"><b id="cA">0</b><span>años</span></div><div class="cifra"><b id="cM">0</b><span>meses</span></div><div class="cifra"><b id="cD">0</b><span>días</span></div></div>
+    <p class="reloj" id="reloj"></p>
+  </section>
+
+  <section class="carta" aria-labelledby="t-carta">
+    <p class="eti" id="t-carta">Una carta para ti</p>
+    <p class="saludo" data-d="saludo"></p>
+    <div class="mensaje" id="mensaje"></div>
+    <p class="firma" data-d="firma"></p>
+  </section>
+
+  <section class="final">
+    <p class="tinta" id="tinta"></p>
+    <p class="mfinal" data-d="mensajeFinal"></p>
+    <button class="otra" id="otra" type="button">Ver de nuevo</button>
+  </section>
+  <p class="credito">Hecho con cariño por <a href="https://clickea.github.io/demos/">Clickea Studio</a></p>
+</main>
+
+<script>
+/* ===================== DATOS DEL PEDIDO — solo se edita esto ===================== */
+const DATOS = {
+  // --- Personas ---
+  para: "Valeria",                 // quién recibe (va gigante en la portada)
+  de: "Diego",                     // quién regala
+
+  // --- Fecha en que empezó todo (AAAA-MM-DDTHH:MM): el contador cuenta desde aquí ---
+  fechaInicio: "2021-03-14T20:30",
+
+  // --- Pantalla inicial ---
+  tituloIntro: "Tenemos una historia",
+  textoTocar: "Toca para empezar",
+
+  // --- Portada: foto de los dos SIN FONDO (ver el comentario de arriba) ---
+  fotoPareja: "fotos/pareja.webp",
+  textoPortada: "Nuestra historia",
+
+  // --- Polaroids que flotan en la portada (4 fotos con un pie corto) ---
+  polaroids: [
+    { foto: "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=500&q=70", pie: "Para siempre" },
+    { foto: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=70", pie: "Esa playa" },
+    { foto: "https://images.unsplash.com/photo-1506014299253-3725319c0f69?auto=format&fit=crop&w=500&q=70", pie: "De la mano" },
+    { foto: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=500&q=70", pie: "Atardeceres" }
+  ],
+
+  // --- Capítulos: se apilan como tarjetas al bajar (fecha corta tipo "Jul 2021" u "Hoy", título, texto y foto) ---
+  tituloCapitulos: "Cómo llegamos hasta aquí",
+  capitulos: [
+    { fecha: "Mar 2021", titulo: "El día que todo empezó", texto: "Un café que se convirtió en cuatro horas de conversación. Ninguno quería irse.", foto: "https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=800&q=72" },
+    { fecha: "Jul 2021", titulo: "Nuestro primer viaje", texto: "Bicicletas, atardeceres y ese lugar que desde entonces es nuestro.", foto: "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?auto=format&fit=crop&w=800&q=72" },
+    { fecha: "Ene 2023", titulo: "Aprendimos a ser equipo", texto: "Los días difíciles también fueron nuestros, y los superamos juntos.", foto: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=800&q=72" },
+    { fecha: "Hoy", titulo: "Y lo que falta…", texto: "Todavía tenemos muchísimas fotos por tomar y lugares por conocer.", foto: "https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?auto=format&fit=crop&w=800&q=72" }
+  ],
+
+  // --- Contador ---
+  tituloContador: "Llevamos juntos",
+
+  // --- Carta (separa los párrafos con una línea en blanco) ---
+  saludo: "Mi amor:",
+  mensaje: `Gracias por las risas, por los domingos sin planes y por aguantar mis chistes malos.
+
+Contigo hasta un día normal se siente especial. No sé qué nos toca vivir después, pero sí sé con quién lo quiero vivir.`,
+  firma: "Tuyo, Diego",
+
+  // --- Cierre ---
+  palabraFinal: "Te amo",          // 1 o 2 palabras: se llena de color al bajar
+  mensajeFinal: "Hoy, mañana y todos los capítulos que nos faltan.",
+
+  // --- Colores principales ---
+  colores: {
+    fondo: "#170A10",      // fondo oscuro
+    fondo2: "#3A1220",     // brillo del fondo
+    principal: "#E8547A",  // rosa: detalles y palabra final
+    acento: "#F2C46D",     // dorado: etiquetas
+    papel: "#FBF1E6"       // tarjetas, polaroids y carta
+  },
+
+  // --- Música (melodía original generada en el navegador, sin derechos de autor) ---
+  musica: { activa: true, volumen: 0.5 }
+};
+/* ===================== FIN DE DATOS — no hace falta tocar nada más ===================== */
+
+const $ = (s, c) => (c || document).querySelector(s);
+const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
+const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/* ---------- Datos a la página ---------- */
+Object.entries({ fondo: '--fondo', fondo2: '--fondo2', principal: '--principal', acento: '--acento', papel: '--papel' }).forEach(([k, v]) => document.documentElement.style.setProperty(v, DATOS.colores[k]));
+$$('[data-d]').forEach((el) => { el.textContent = DATOS[el.dataset.d]; });
+document.title = DATOS.para + ' y ' + DATOS.de + ' · Nuestra historia 💞';
+$('#t-portada').textContent = DATOS.para + ' y ' + DATOS.de;
+$('.n1').textContent = DATOS.para;
+$('.n2').innerHTML = '<span class="y">&amp;</span> ' + esc(DATOS.de);
+$('.n2 .y').style.display = 'inline';
+const pareja = $('#pareja'); pareja.src = DATOS.fotoPareja; pareja.alt = DATOS.para + ' y ' + DATOS.de + ' abrazados';
+const inicio = new Date(DATOS.fechaInicio);
+$('#desde').textContent = 'Desde el ' + inicio.toLocaleDateString('es-PE', { day: 'numeric', month: 'long', year: 'numeric' });
+$('#polas').innerHTML = DATOS.polaroids.slice(0, 4).map((p, i) => `<figure class="pola ${i < 2 ? 'atras' : 'frente'}" aria-hidden="true"><div class="incl"><div class="flota"><img src="${esc(p.foto)}" alt="" loading="${i < 2 ? 'eager' : 'lazy'}"><i>${esc(p.pie)}</i></div></div></figure>`).join('');
+$('#pila').innerHTML = DATOS.capitulos.map((c, i) => `<article class="cap" style="--i:${i}"><figure><img src="${esc(c.foto)}" alt="${esc(c.titulo)}" loading="lazy"><span class="num">${String(i + 1).padStart(2, '0')} / ${String(DATOS.capitulos.length).padStart(2, '0')}</span><b class="fecha">${esc(c.fecha)}</b></figure><div class="txt"><h3>${esc(c.titulo)}</h3><p>${esc(c.texto)}</p></div></article>`).join('');
+$('#mensaje').innerHTML = DATOS.mensaje.split(/\n\s*\n/).map((p) => '<p>' + esc(p.trim()).split(/\s+/).map((w) => '<span class="w">' + w + '</span>').join(' ') + '</p>').join('');
+$('#tinta').textContent = DATOS.palabraFinal;
+
+/* ---------- Nombres gigantes: cada línea ocupa todo el ancho ---------- */
+function ajustarNombres() {
+  const caja = $('#nombres'), ancho = caja.clientWidth;
+  $$('#nombres > span').forEach((s) => { s.style.fontSize = '100px'; const f = Math.min(100 * ancho / s.scrollWidth, innerHeight * 0.17); s.style.fontSize = f.toFixed(1) + 'px'; });
+  $('#portada').style.setProperty('--fin', (caja.offsetTop + caja.offsetHeight) + 'px'); // las polaroids de arriba empiezan debajo de los nombres
+}
+ajustarNombres(); addEventListener('resize', ajustarNombres);
+document.fonts && document.fonts.ready.then(ajustarNombres);
+
+/* ---------- Contador en vivo ---------- */
+function diferencia() { // años, meses y días cumplidos desde el inicio, y lo que va del día
+  const ahora = new Date(), mas = (y, mo, da) => { const r = new Date(inicio); r.setFullYear(r.getFullYear() + y, r.getMonth() + mo, r.getDate() + da); return r; };
+  let a = 0, m = 0, d = 0;
+  while (mas(a + 1, 0, 0) <= ahora) a++;
+  while (mas(a, m + 1, 0) <= ahora) m++;
+  while (mas(a, m, d + 1) <= ahora) d++;
+  let s = Math.max(0, Math.floor((ahora - mas(a, m, d)) / 1000)); const h = Math.floor(s / 3600), mi = Math.floor(s / 60) % 60; s %= 60;
+  return { a, m, d, h, mi, s };
+}
+const dos = (n) => String(n).padStart(2, '0');
+let contado = false;
+function pintarContador() {
+  const x = diferencia();
+  if (contado) { $('#cA').textContent = x.a; $('#cM').textContent = x.m; $('#cD').textContent = x.d; }
+  $('#reloj').textContent = 'y ' + dos(x.h) + ' h ' + dos(x.mi) + ' min ' + dos(x.s) + ' s';
+}
+function contar() {
+  if (contado) return; contado = true;
+  const x = diferencia(), t0 = performance.now(), dur = reducir ? 1 : 1600;
+  (function paso(t) { const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); $('#cA').textContent = Math.round(x.a * e); $('#cM').textContent = Math.round(x.m * e); $('#cD').textContent = Math.round(x.d * e); if (k < 1) requestAnimationFrame(paso); })(t0);
+}
+pintarContador(); setInterval(pintarContador, 1000);
+new IntersectionObserver((en, io) => { if (en[0].isIntersecting) { contar(); io.disconnect(); } }, { threshold: 0.4 }).observe($('.contador'));
+
+/* ---------- Corazones al tocar ---------- */
+document.addEventListener('click', (e) => {
+  if (reducir || e.target.closest('#btnMusica,#intro,button')) return;
+  for (let i = 0; i < 4; i++) {
+    const c = document.createElement('span'); c.className = 'corazon'; c.textContent = '♥'; c.setAttribute('aria-hidden', 'true');
+    c.style.left = (e.clientX - 10) + 'px'; c.style.top = (e.clientY - 12) + 'px';
+    c.style.setProperty('--dx', ((Math.random() - 0.5) * 120).toFixed(0) + 'px'); c.style.setProperty('--rot', ((Math.random() - 0.5) * 60).toFixed(0) + 'deg');
+    c.style.animationDelay = (i * 70) + 'ms'; document.body.appendChild(c); setTimeout(() => c.remove(), 1700);
+  }
+});
+$('#otra').addEventListener('click', () => scrollTo({ top: 0, behavior: reducir ? 'auto' : 'smooth' }));
+
+/* ---------- Música: caja musical original (Web Audio API) ---------- */
+// Vals suave en Fa mayor. Cada compás: acorde (arpegio) + notas de la melodía (8 corcheas; null = silencio).
+const COMPASES = [
+  { a: ['F3', 'C4', 'F4', 'A4'],  m: ['C5', null, 'A4', null, 'F5', null, 'E5', null] },
+  { a: ['E3', 'C4', 'E4', 'G4'],  m: ['D5', null, null, 'C5', 'E5', null, null, null] },
+  { a: ['D3', 'A3', 'D4', 'F4'],  m: ['F5', null, 'E5', null, 'D5', null, 'C5', null] },
+  { a: ['A#2', 'F3', 'A#3', 'D4'], m: ['D5', null, 'C5', null, 'A#4', null, null, null] },
+  { a: ['F3', 'C4', 'F4', 'A4'],  m: ['A4', null, 'C5', null, 'F5', null, 'G5', null] },
+  { a: ['A3', 'C4', 'E4', 'A4'],  m: ['A5', null, null, 'G5', 'E5', null, null, null] },
+  { a: ['A#2', 'F3', 'A#3', 'D4'], m: ['F5', null, 'D5', null, 'A#4', null, 'D5', null] },
+  { a: ['C3', 'G3', 'C4', 'E4'],  m: ['C5', null, null, null, null, null, null, null] }
+];
+function crearMusica(compases, tempo, volumen) {
+  const NOTAS = { C: 0, 'C#': 1, D: 2, 'D#': 3, E: 4, F: 5, 'F#': 6, G: 7, 'G#': 8, A: 9, 'A#': 10, B: 11 };
+  const frec = (n) => { const m = n.match(/^([A-G]#?)(\d)$/); return 440 * Math.pow(2, (NOTAS[m[1]] + (+m[2] + 1) * 12 - 69) / 12); };
+  const patron = [0, 1, 2, 3, 2, 1, 2, 3];
+  let ctx, salida, paso = 0, proximo = 0, silencio = false;
+  const dur = 60 / tempo / 2;
+  function nota(f, t, vel, largo) {
+    const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain(), g2 = ctx.createGain();
+    o.type = 'sine'; o.frequency.value = f; o2.type = 'triangle'; o2.frequency.value = f * 3; g2.gain.value = .08;
+    o.connect(g); o2.connect(g2).connect(g); g.connect(salida);
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vel, t + .012); g.gain.exponentialRampToValueAtTime(.0001, t + largo);
+    o.start(t); o2.start(t); o.stop(t + largo + .05); o2.stop(t + largo + .05);
+  }
+  function programar() {
+    while (proximo < ctx.currentTime + .15) {
+      const c = compases[Math.floor(paso / 8) % compases.length], i = paso % 8;
+      nota(frec(c.a[patron[i]]), proximo, i === 0 ? .16 : .09, 1.4);
+      if (c.m[i]) nota(frec(c.m[i]), proximo + .005, .2, 2.2);
+      proximo += dur; paso++;
+    }
+  }
+  return {
+    iniciar() {
+      if (ctx) return;
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      salida = ctx.createGain(); salida.gain.value = volumen;
+      const eco = ctx.createDelay(2); eco.delayTime.value = dur * 3; const fb = ctx.createGain(); fb.gain.value = .28;
+      const filtro = ctx.createBiquadFilter(); filtro.type = 'lowpass'; filtro.frequency.value = 3200;
+      salida.connect(filtro); filtro.connect(ctx.destination); filtro.connect(eco); eco.connect(fb).connect(eco); eco.connect(ctx.destination);
+      proximo = ctx.currentTime + .1; setInterval(programar, 40); programar();
+    },
+    alternar() { if (!ctx) return false; silencio = !silencio; if (silencio) ctx.suspend(); else ctx.resume(); return silencio; }
+  };
+}
+const musica = crearMusica(COMPASES, 84, DATOS.musica.volumen);
+$('#btnMusica').addEventListener('click', (e) => { e.stopPropagation(); $('#btnMusica').classList.toggle('silencio', musica.alternar()); });
+
+/* ---------- Empezar ---------- */
+let empezado = false;
+function empezar() {
+  if (empezado) return; empezado = true;
+  if (DATOS.musica.activa) { musica.iniciar(); $('#btnMusica').classList.add('visible'); }
+  $('#intro').classList.add('sale'); document.body.classList.remove('bloqueado');
+  setTimeout(() => $('#intro').remove(), reducir ? 0 : 1000);
+  if (window.entrada) window.entrada(); else $$('.nombres span,.pareja,.pola,.portada__txt>*').forEach((e) => { e.style.visibility = 'visible'; });
+}
+$('#intro').addEventListener('click', empezar);
+$('#intro').addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); empezar(); } });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js" integrity="sha384-wl5TeDVvOWt30Pbf8aSo2ZrzsOjddu3avOBvHe+p+OhJt9gP6w9YXmDkN5DK2/dF" crossorigin="anonymous" defer></script>
+<script>
+// Animaciones con GSAP: entrada de la portada, polaroids que se abren al bajar, capítulos que se apilan,
+// carta que se enciende palabra por palabra y la palabra final que se llena de color.
+addEventListener('DOMContentLoaded', () => {
+  const raiz = document.documentElement;
+  if (!window.gsap || !window.ScrollTrigger || !raiz.classList.contains('gs')) { raiz.classList.remove('gs'); return; }
+  gsap.registerPlugin(ScrollTrigger);
+  window.entrada = () => {
+    gsap.set('.nombres span,.pareja,.pola,.portada__txt>*', { visibility: 'visible' });
+    gsap.timeline({ defaults: { ease: 'power4.out' } })
+      .from('.nombres span', { yPercent: 60, opacity: 0, duration: 1.3, stagger: 0.15 }, 0.3)
+      .from('.pareja', { y: 80, opacity: 0, scale: 0.94, duration: 1.4 }, 0.55)
+      .from('.pola', { scale: 0, opacity: 0, rotate: (i) => (i % 2 ? 40 : -40), duration: 1.1, stagger: 0.1, ease: 'back.out(1.5)' }, 0.9)
+      .from('.portada__txt>*', { y: 18, opacity: 0, duration: 0.8, stagger: 0.1 }, 1.3);
+  };
+  // portada: al bajar, las polaroids se abren y los nombres bajan más lento que la pareja
+  const sale = gsap.timeline({ scrollTrigger: { trigger: '#portada', start: 'top top', end: 'bottom top', scrub: 0.6 } });
+  $$('.pola').forEach((p, i) => { const lado = i % 2 ? 1 : -1; sale.to(p, { x: lado * 140, y: -220 + i * 40, rotate: lado * 35, ease: 'none' }, 0); });
+  sale.to('#nombres', { y: 120, ease: 'none' }, 0).to('#pareja', { scale: 1.08, y: 40, ease: 'none' }, 0);
+  // capítulos: cada tarjeta que llega empuja hacia atrás a la anterior
+  const caps = $$('.cap');
+  caps.forEach((c, i) => {
+    gsap.from(c.querySelector('img'), { scale: 1.25, ease: 'none', scrollTrigger: { trigger: c, start: 'top bottom', end: 'top 20%', scrub: true } });
+    if (!i) return;
+    gsap.to(caps[i - 1], { scale: 0.92, filter: 'brightness(.6)', ease: 'none', scrollTrigger: { trigger: c, start: 'top bottom', end: 'top 30%', scrub: true } });
+  });
+  // carta: palabra por palabra
+  gsap.fromTo('.mensaje .w', { opacity: 0.14 }, { opacity: 1, ease: 'none', stagger: 0.05, scrollTrigger: { trigger: '#mensaje', start: 'top 80%', end: 'bottom 55%', scrub: true } });
+  // final: la palabra se llena de color de abajo hacia arriba
+  gsap.fromTo('#tinta', { '--llena': '0%' }, { '--llena': '100%', ease: 'none', scrollTrigger: { trigger: '#tinta', start: 'top 85%', end: 'bottom 45%', scrub: true } });
+  addEventListener('load', () => ScrollTrigger.refresh());
+});
+</script>
+</body>
+</html>
