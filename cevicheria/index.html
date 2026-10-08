@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="es-PE">
+<html lang="es-PE" class="e-azulejo">
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Brisa Chalaca · Cevichería — Carta</title>
 <meta name="description" content="Carta digital de Brisa Chalaca, cevichería en Magdalena del Mar. Ceviches, tiraditos, leche de tigre, arroces y jaleas. Pide por WhatsApp.">
-<meta name="theme-color" content="#0B2540">
+<meta name="theme-color" content="#1E4F9C">
 <link rel="canonical" href="https://clickea.github.io/demos/cevicheria/">
 <meta property="og:url" content="https://clickea.github.io/demos/cevicheria/">
 <meta property="og:title" content="Brisa Chalaca · Cevichería — Carta">
@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Outfit:wght@400;500;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&amp;family=Outfit:wght@400;500;600;700&amp;display=swap">
 <style>
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
@@ -36,121 +36,19 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:10px}
 #app{max-width:520px;margin:0 auto;background:var(--bg);min-height:100vh;min-height:100dvh;position:relative;overflow-x:clip}
 @media (min-width:560px){#app{box-shadow:0 0 0 1px var(--line),0 30px 80px -30px rgba(0,0,0,.35)}}
-.hero{position:relative;isolation:isolate;overflow:hidden;color:var(--hero-ink)}
-.hero__img{position:absolute;inset:0;z-index:-2;background:var(--hero-fallback)}
-.hero__img img{width:100%;height:100%;object-fit:cover}
-.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--hero-overlay)}
-.hero__in{position:relative;min-height:var(--hero-h,318px);display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:28px 18px 26px}
-.brand{display:flex;align-items:center;gap:14px}
-.brand__emblem{width:72px;height:72px;flex:none;stroke:none}
-.brand__kicker{margin:0 0 4px;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.92}
-.brand__name{margin:0;font-family:var(--f-display);font-size:34px;line-height:.98;letter-spacing:-.01em}
-.hero__tag{margin:2px 0 0;max-width:34ch;font-size:15px;line-height:1.4;opacity:.95}
-.status{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;margin:4px 0 0;padding:7px 12px 7px 10px;border-radius:999px;font-size:13px;background:var(--status-bg);color:var(--status-ink);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.status strong{font-weight:800}
-.status__txt{opacity:.85}
 .status__dot{width:9px;height:9px;border-radius:50%;background:#2fd06b;box-shadow:0 0 0 0 rgba(47,208,107,.6);animation:pulse 2s infinite}
 .status.is-closed .status__dot{background:#ff5a4e;animation:none}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,208,107,.55)}70%{box-shadow:0 0 0 8px rgba(47,208,107,0)}100%{box-shadow:0 0 0 0 rgba(47,208,107,0)}}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);margin:0 16px;padding:0;border-radius:var(--r);background:var(--card);box-shadow:var(--card-shadow)}
-.fact{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:12px 12px 13px;border-left:1px solid var(--line);min-width:0}
-.fact:first-child{border-left:0}
-.fact svg{color:var(--icon);width:20px;height:20px}
-.fact div{display:flex;flex-direction:column;gap:1px;font-size:12.5px;line-height:1.3;min-width:0}
-.fact strong{font-size:13px;font-weight:750}
-.fact span{color:var(--muted)}
 .skip{position:absolute;left:-999px;top:8px;z-index:99;padding:10px 14px;border-radius:10px;background:var(--ink);color:var(--bg)}
 .skip:focus{left:8px}
-.foot__hours{display:flex;justify-content:center;align-items:flex-start;gap:6px;font-size:12.5px;opacity:.8;max-width:34ch;margin-left:auto!important;margin-right:auto!important;text-align:left}
-.foot__hours svg{width:16px;height:16px;margin-top:1px}
-.search{padding:20px 20px 14px}
-.search__box{display:flex;align-items:center;gap:8px;height:auto;padding:0 2px 9px;border-radius:0;background:transparent;border:0;border-bottom:1.5px solid var(--input-line);color:var(--muted);transition:border-color .2s}
-.search__box svg{width:16px;height:16px;opacity:.7}
-.search__box:focus-within{border-color:var(--brand)}
-.search__box input{flex:1;min-width:0;height:36px;border:0;outline:0;background:transparent;color:var(--ink);font-size:15.5px;font-style:italic}
-.search__box input::placeholder{color:var(--muted);opacity:.85;font-style:italic}
-.catnav{position:sticky;top:0;z-index:20;background:var(--nav-bg);-webkit-backdrop-filter:saturate(1.4) blur(12px);backdrop-filter:saturate(1.4) blur(12px);transition:box-shadow .2s}
-.catnav.stuck{box-shadow:var(--nav-shadow)}
-.chips{display:flex;gap:0;overflow-x:auto;padding:8px 18px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch;counter-reset:catnum;border-bottom:1px solid var(--line)}
-.chips::-webkit-scrollbar{display:none}
-.chip{counter-increment:catnum;flex:none;display:inline-flex;align-items:baseline;gap:6px;min-height:40px;margin:0;padding:0 14px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--chip-ink);font-size:13.5px;font-weight:650;white-space:nowrap;text-decoration:none;opacity:.72;transition:color .2s,border-color .2s,opacity .2s}
-.chip:not(:first-child){border-left:1px solid var(--line)}
-.chip::before{content:counter(catnum,decimal-leading-zero);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.03em}
-.chip[aria-current="true"]{background:transparent;color:var(--brand);border-color:transparent;border-bottom-color:var(--brand);opacity:1}
-.chip[aria-current="true"]::before{color:var(--brand)}
-main{padding-bottom:8px}
-.cat{padding:26px 16px 4px;scroll-margin-top:calc(var(--navh,58px) + 2px)}
-.cat__head{margin:0 2px 14px}
-.cat__head h2{margin:0;font-family:var(--f-display);font-size:26px;line-height:1.1}
-.cat__head p{margin:4px 0 0;color:var(--muted);font-size:13.5px}
-.cat__list{display:block}
-.dish{position:relative;display:block;padding:15px 2px;background:transparent;border-radius:0;box-shadow:none;border-bottom:1px dashed var(--line)}
-.cat__list .dish:last-child{border-bottom:0}
-.dish__body{display:block;min-width:0}
-.dish__row{display:flex;align-items:baseline;gap:8px}
-.dish__leader{flex:1;min-width:14px;align-self:center;border-bottom:1.5px dotted var(--muted);opacity:.4}
-.dish__name{margin:0;font-family:var(--f-name);font-size:16.5px;line-height:1.28;font-weight:var(--w-name,700);flex:none;max-width:72%}
-.dish__desc{margin:5px 0 0;color:var(--muted);font-size:13.5px;line-height:1.45;max-width:48ch}
-.dish__foot{margin-top:8px;display:flex;align-items:center;justify-content:flex-end;gap:8px}
-.dish__num{display:block;font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:2px;text-transform:uppercase}
-.price{font-weight:800;font-size:17px;color:var(--price);white-space:nowrap;font-variant-numeric:tabular-nums}
-.price small{font-size:11px;font-weight:600;color:var(--muted)}
-.tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 7px;padding:0;list-style:none}
-.tag{font-size:11px;font-weight:750;line-height:1;padding:5px 8px;border-radius:999px;background:var(--tag-bg);color:var(--tag-ink);white-space:nowrap}
-.tag--top{background:var(--tag-top-bg);color:var(--tag-top-ink)}
-.tag--spicy{background:var(--tag-spicy-bg);color:var(--tag-spicy-ink)}
-.tag--new{background:var(--tag-new-bg);color:var(--tag-new-ink)}
-.ctl{display:inline-flex}
-.add{display:inline-flex;align-items:center;gap:5px;min-height:44px;padding:0 6px;border:0;border-bottom:1.5px solid var(--brand);border-radius:0;background:transparent;color:var(--brand);font-weight:800;font-size:13.5px;letter-spacing:.02em;text-transform:uppercase;transition:transform .12s,opacity .2s}
-.add svg{display:none}
-.add:active{transform:scale(.96);opacity:.7}
-.stepper{display:inline-flex;align-items:center;height:40px;border-radius:999px;background:var(--step-bg);color:var(--step-ink)}
-.stepper button{display:grid;place-items:center;width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:inherit}
-.stepper button svg{width:18px;height:18px;stroke-width:2.4}
-.stepper output{min-width:20px;text-align:center;font-weight:800;font-size:15px;font-variant-numeric:tabular-nums}
 .ill{position:relative;display:grid;place-items:center;padding-bottom:22%;background:var(--ill-bg);color:var(--ill-ink)}
 .ill svg{width:54%;height:auto;stroke-width:2.4}
 .ill svg .liq{fill:var(--ill);stroke:none}
 .ill__word{position:absolute;left:6px;right:6px;bottom:9%;text-align:center;font-family:var(--f-display);font-size:12px;line-height:1.12;font-weight:700;color:var(--ill-word,var(--ill-ink))}
 .feat__ph.ill svg{width:32%}
 .feat__ph.ill .ill__word{font-size:17px}
-.featured{padding:24px 0 4px}
-.featured__head{padding:0 18px 12px}
-.featured__head h2{margin:0;text-wrap:balance;font-family:var(--f-display);font-size:22px;line-height:1.1}
-.featured__head p{margin:3px 0 0;font-size:13px;color:var(--muted)}
-.rail{display:flex;flex-direction:column;gap:22px;padding:2px 18px 22px;overflow:visible}
-.feat{flex:none;width:100%;display:block;border-radius:2px;overflow:hidden;background:transparent;box-shadow:none;border-bottom:1px solid var(--line);padding-bottom:20px}
-.rail .feat:last-child{border-bottom:0}
-.feat__ph{width:100%;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--ph-bg)}
-.feat__ph img{width:100%;height:100%;object-fit:cover}
-.feat__body{display:flex;flex-direction:column;gap:6px;padding:12px 2px 0}
-.feat__name{margin:0;text-wrap:balance;font-family:var(--f-name);font-size:19px;line-height:1.25;font-weight:var(--w-name,700)}
-.feat__foot{margin-top:6px;display:flex;align-items:center;justify-content:space-between;gap:6px}
-.feat .price{font-size:16.5px}
-.feat .add{min-height:44px}
-.feat .add span{display:inline}
-.feat .stepper{min-height:44px}
-.feat .stepper button{width:40px;height:40px}
 .empty{margin:30px 24px 10px;text-align:center;font-size:16px;font-weight:700}
 .empty span{display:block;margin-top:6px;font-weight:400;font-size:14px;color:var(--muted)}
-.foot{margin-top:26px;padding:30px 20px 36px;text-align:center;background:var(--foot-bg);color:var(--foot-ink)}
-body.has-cart .foot{padding-bottom:112px}
-.foot p{margin:0 0 8px}
-.foot__name{font-family:var(--f-display);font-size:22px}
-.foot__addr,.foot__wa a{display:inline-flex;align-items:center;gap:6px;font-size:14px;opacity:.9;text-decoration:none}
-.foot__wa a{padding:8px 14px;border-radius:999px;border:1px solid currentColor;margin-top:4px}
-.foot__small{font-size:12px;opacity:.7;margin-top:10px!important}
-.credit{margin-top:18px!important;font-size:11.5px;letter-spacing:.04em;opacity:.55}
-.cartbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;padding:16px 12px calc(12px + env(safe-area-inset-bottom));pointer-events:none}
-.cartbar button{position:relative;pointer-events:auto;width:min(100%,496px);display:flex;align-items:center;gap:12px;min-height:58px;padding:0 10px 0 10px;border:0;border-radius:4px 4px var(--r-bar) var(--r-bar);background:var(--bar-bg);color:var(--bar-ink);box-shadow:0 14px 34px -10px rgba(0,0,0,.45);font-weight:750;font-size:15.5px;text-align:left}
-.cartbar button::before{content:"";position:absolute;left:10px;right:10px;top:-6px;height:7px;background-image:linear-gradient(45deg,var(--bar-bg) 50%,transparent 50%),linear-gradient(-45deg,var(--bar-bg) 50%,transparent 50%);background-size:12px 7px;background-position:0 0;background-repeat:repeat-x}
-.cartbar__count{display:grid;place-items:center;min-width:36px;height:36px;padding:0 8px;border-radius:6px;background:var(--bar-count-bg);color:var(--bar-count-ink);font-weight:800;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-.cartbar__label{flex:1;letter-spacing:.01em}
-.cartbar__total{padding:9px 13px;border-radius:6px;background:var(--bar-total-bg);color:var(--bar-total-ink);font-weight:800;font-variant-numeric:tabular-nums;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-.cartbar.pop button{animation:rise .35s cubic-bezier(.2,.9,.3,1.2)}
-.cartbar.bump button{animation:bump .3s ease}
-@keyframes rise{from{transform:translateY(120%)}to{transform:none}}
-@keyframes bump{0%{transform:scale(1)}35%{transform:scale(1.045) translateY(-2px)}100%{transform:scale(1)}}
 .fly1{position:fixed;z-index:50;transform:translate(-50%,-50%);font-weight:800;font-size:13px;pointer-events:none;animation:fly1 .65s ease forwards}
 @keyframes fly1{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--dx,0px)),calc(-50% + var(--dy,0px))) scale(.6)}}
 .toast{position:fixed;left:50%;bottom:92px;z-index:40;max-width:calc(100% - 40px);transform:translate(-50%,20px);padding:10px 16px;border-radius:999px;background:var(--toast-bg);color:var(--toast-ink);font-size:13.5px;font-weight:650;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -174,8 +72,8 @@ body:not(.has-cart) .toast{bottom:24px}
 .line__info span{font-size:12.5px;color:var(--muted)}
 .line .ctl{grid-area:ctl}
 .line__sub{grid-area:sub;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-.line .stepper{height:36px}
-.line .stepper button{width:36px;height:36px}
+.line .stepper{height:42px}
+.line .stepper button{width:42px;height:42px}
 .line--empty{display:block;color:var(--muted);text-align:center;padding:24px 0}
 .sum{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:15px}
 .sum strong{font-size:21px;font-variant-numeric:tabular-nums;color:var(--price);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
@@ -205,23 +103,11 @@ body:not(.has-cart) .toast{bottom:24px}
 .wa-btn{display:flex;align-items:center;justify-content:flex-start;padding:0 10px 0 18px;gap:10px;min-height:56px;border-radius:16px;background:#1faa55;color:#fff;font-weight:800;font-size:16.5px;text-decoration:none;box-shadow:0 10px 24px -10px rgba(31,170,85,.7)}
 .wa-btn svg{width:24px;height:24px}
 .fine{margin:0 4px 4px;text-align:center;font-size:12px;color:var(--muted)}
-.link-btn{display:block;margin:4px auto 0;padding:10px;border:0;background:transparent;color:var(--muted);font-size:13px;text-decoration:underline}
-@media (min-width:560px){
-.brand__name{font-size:38px}
-}
-@media (max-width:359px){
-.brand__name{font-size:29px}
-.seg__opts--3 span{font-size:13px}
-}
+.link-btn{display:block;min-height:44px;margin:4px auto 0;padding:10px 14px;border:0;background:transparent;color:var(--muted);font-size:13px;text-decoration:underline}
+@media (max-width:359px){.seg__opts--3 span{font-size:13px}}
 @media (prefers-reduced-motion:reduce){
 *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
-.cat{transition:background-color .6s ease}
-.cat:nth-of-type(even){background:var(--page-alt,var(--surface-2))}
-.cat__head.reveal{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s ease}
-.cat__head.reveal.in{opacity:1;transform:none}
-.facts{background:transparent;box-shadow:none;border-radius:0;border-top:1.5px solid currentColor;border-bottom:1.5px solid currentColor;margin-top:14px;opacity:.95}
-.facts .fact + .fact{border-left:1px dashed color-mix(in srgb, currentColor 35%, transparent)}
 .pz{position:relative;width:100%;aspect-ratio:1}
 .pz__c{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;-webkit-user-select:none;user-select:none}
 .pz--intro .pz__masa-horneada,.pz--intro .pz__queso-fundido{opacity:0}
@@ -231,10 +117,6 @@ body:not(.has-cart) .toast{bottom:24px}
 .pz__p{position:absolute;height:auto;transform:translate(-50%,-50%) rotate(var(--r,0deg));filter:drop-shadow(0 2px 2px rgba(40,10,0,.4))}
 .pz.gira{animation:girar 120s linear infinite;will-change:transform}
 @keyframes girar{to{transform:rotate(360deg)}}
-.hero--pz::before{display:none}
-.hero--pz .hero__in{min-height:0;justify-content:flex-start;padding-bottom:6px}
-.hero__pz{position:relative;order:2;width:min(92%,440px);margin:0 auto -16%}
-.hero--pz{display:flex;flex-direction:column}
 .vapor{position:absolute;left:30%;right:30%;top:-6%;height:40%;pointer-events:none;opacity:0;transition:opacity 1.2s}
 .vapor.on{opacity:1}
 .vapor i{position:absolute;bottom:0;width:26%;height:100%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.28),transparent);filter:blur(6px);animation:vapor 3.6s ease-in infinite}
@@ -255,7 +137,7 @@ body:not(.has-cart) .toast{bottom:24px}
 .ings{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .ing{position:relative;display:grid;justify-items:center;gap:2px;padding:8px 4px 7px;border-radius:14px;border:1.5px solid var(--input-line);background:var(--input-bg);font-size:12.5px;font-weight:700;line-height:1.15;transition:transform .15s,border-color .15s,background .15s}
 .ing img{width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 2px 2px rgba(0,0,0,.2));transition:transform .3s cubic-bezier(.3,1.6,.4,1)}
-.ing small{font-weight:500;font-size:11px;opacity:.75}
+.ing small{font-weight:500;font-size:12px;opacity:.8}
 .ing:active{transform:scale(.95)}
 .ing[aria-pressed="true"]{border-color:var(--brand);background:var(--seg-on-bg);color:var(--seg-on-ink)}
 .ing[aria-pressed="true"] img{transform:scale(1.15) rotate(-8deg)}
@@ -269,59 +151,133 @@ body:not(.has-cart) .toast{bottom:24px}
 @media (max-width:359px){.ings{grid-template-columns:repeat(3,1fr)}}
 @media (prefers-reduced-motion:reduce){.pz.gira,.vapor i{animation:none}#armaPz{transition:none}}
 .has-cart .arma__add{bottom:calc(var(--barh,84px) + 6px)}
+:root{--tile:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Crect width='56' height='56' fill='%23F7FAFD'/%3E%3Cg fill='none' stroke='%231E4F9C' stroke-width='2'%3E%3Ccircle cx='28' cy='28' r='9'/%3E%3Cpath d='M28 6c6 8 6 14 0 22-6-8-6-14 0-22zM28 50c6-8 6-14 0-22-6 8-6 14 0 22zM6 28c8-6 14-6 22 0-8 6-14 6-22 0zM50 28c-8-6-14-6-22 0 8 6 14 6 22 0z'/%3E%3Cpath d='M0 10A10 10 0 0 0 10 0M46 0a10 10 0 0 0 10 10M56 46a10 10 0 0 0-10 10M10 56A10 10 0 0 0 0 46'/%3E%3C/g%3E%3Ccircle cx='28' cy='28' r='3' fill='%231E4F9C'/%3E%3C/svg%3E")}
+#app{background:var(--bg)}
+.hero{position:relative;isolation:isolate;padding:30px 18px 26px;text-align:center;background:var(--tile) 0 0/56px 56px;color:var(--ink)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(75% 48% at 50% 60%,color-mix(in srgb,var(--bg) 92%,transparent) 30%,transparent 75%)}
+.placa{position:relative;display:inline-block;max-width:100%;padding:12px 24px 14px;border-radius:14px;background:linear-gradient(170deg,color-mix(in srgb,#fff 18%,var(--brand)) 0%,var(--brand) 42%,color-mix(in srgb,#000 18%,var(--brand)) 100%);color:#fff;box-shadow:inset 0 0 0 4px var(--brand),inset 0 0 0 6.5px #fff,0 10px 22px -10px rgba(11,37,64,.6);transform:rotate(-1.5deg)}
+.placa::after{content:"";position:absolute;left:10%;right:10%;top:7px;height:28%;border-radius:10px;background:linear-gradient(rgba(255,255,255,.28),transparent);pointer-events:none}
+.placa__k{margin:0;font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;opacity:.9}
+.brand__name{margin:2px 0 0;font-family:var(--f-display);font-weight:800;font-size:min(52px,13.5vw);line-height:.95;letter-spacing:.03em;text-transform:uppercase}
+.hero__foto{display:block;width:min(86%,400px);height:auto;margin:6px auto 0;transform:rotate(-5deg);filter:drop-shadow(0 18px 18px rgba(11,37,64,.35))}
+.hero__tag{display:inline-block;margin:10px auto 0;max-width:32ch;padding:9px 14px;border-radius:10px;background:#fff;box-shadow:0 0 0 2px var(--brand);font-size:15px;line-height:1.38;font-weight:500}
+.hero .status{display:flex;align-items:center;justify-content:center;gap:7px;width:max-content;max-width:100%;margin:12px auto 0;padding:7px 14px;border-radius:999px;background:var(--ink);color:#fff;font-size:13px}
+.hero .status strong{font-weight:700}
+.status__dot{width:8px;height:8px;border-radius:50%;background:#3FE08A}
+.status.is-closed .status__dot{background:var(--accent)}
+.status__txt{opacity:.8}
+.datos{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margin:0;padding:12px 16px;background:var(--ink);color:#fff;font-size:13.5px;font-weight:500}
+.datos span+span::before{content:"·";margin-right:14px;opacity:.6}
+.datos b{font-weight:700;color:var(--accent)}
+.indice{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:18px 16px 4px}
+.indice h2{grid-column:1/-1;margin:0 0 4px;font-family:var(--f-display);font-weight:800;font-size:20px;letter-spacing:.06em;text-transform:uppercase}
+.indice a{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:92px;padding:10px 10px 9px;border-radius:6px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:inset 0 0 0 2px var(--brand);overflow:hidden}
+.indice a:nth-of-type(odd){background:var(--brand);color:#fff;box-shadow:inset 0 0 0 2px var(--brand),inset 0 0 0 4px #fff}
+.indice a::after{content:"";position:absolute;right:-14px;bottom:-14px;width:42px;height:42px;border-radius:50%;border:2px solid currentColor;opacity:.35}
+.indice a b{font-family:var(--f-display);font-weight:800;font-size:14px;opacity:.75}
+.indice a span{font-family:var(--f-display);font-weight:800;font-size:17px;line-height:1;text-transform:uppercase}
+.indice a i{display:none}
+.indice a small{font-size:11px;opacity:.75}
+.search{padding:16px 16px 12px}
+.search__box{display:flex;align-items:center;gap:8px;height:48px;padding:0 14px;border-radius:12px;background:#fff;box-shadow:inset 0 0 0 2px var(--brand)}
+.search__box svg{width:18px;height:18px;color:var(--brand)}
+.search__box input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;font-size:16px}
+.search__box input::placeholder{color:var(--muted)}
+.catnav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:2px solid var(--brand)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:8px 12px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;display:flex;align-items:center;min-height:44px;padding:2px 14px 0;border-radius:8px;color:var(--brand);text-decoration:none;font-family:var(--f-display);font-weight:800;font-size:16px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.chip[aria-current="true"]{background:var(--brand);color:#fff;box-shadow:inset 0 0 0 2px var(--brand),inset 0 0 0 3.5px #fff}
+.featured{padding:26px 16px 6px}
+.featured__head h2{margin:0;font-family:var(--f-display);font-weight:800;font-size:32px;line-height:1;text-transform:uppercase;letter-spacing:.02em}
+.featured__head p{margin:6px 0 12px;font-size:14px;color:var(--muted)}
+.rail{display:grid;gap:12px}
+.feat{position:relative;display:grid;grid-template-columns:44% 1fr;min-height:150px;border-radius:16px;overflow:hidden;background:radial-gradient(circle at 20% 50%,#fff 0,var(--ice) 70%);box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--brand) 22%,transparent)}
+.feat__ph{position:relative;align-self:center;margin-left:-14px}
+.feat__ph>img{width:100%;height:auto;filter:drop-shadow(0 10px 12px rgba(11,37,64,.3))}
+.feat__ph:not(.feat__ph--recorte){align-self:stretch;margin:0}
+.feat__ph:not(.feat__ph--recorte)>img{height:100%;object-fit:cover}
+.feat__no{display:none}
+.feat__body{display:flex;flex-direction:column;justify-content:center;padding:14px 14px 14px 6px}
+.feat__name{margin:0;font-family:var(--f-display);font-weight:800;font-size:23px;line-height:1;text-transform:uppercase}
+.feat__desc{margin:5px 0 10px;font-size:12.5px;line-height:1.35;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.feat__foot{display:flex;align-items:center;justify-content:space-between;gap:8px}
+main{padding-bottom:8px}
+.cat{padding:30px 16px 8px;scroll-margin-top:calc(var(--navh,56px) - 1px)}
+.cat__head{display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center;margin:0 0 6px}
+.cat__num{grid-row:1/span 2;display:grid;place-items:center;width:42px;height:42px;border-radius:6px;background:var(--brand);color:#fff;font-family:var(--f-display);font-weight:800;font-size:17px;box-shadow:inset 0 0 0 2px var(--brand),inset 0 0 0 3.5px #fff}
+.cat__head h2{margin:0;font-family:var(--f-display);font-weight:800;font-size:32px;line-height:1;text-transform:uppercase;letter-spacing:.02em}
+.cat__head p{grid-column:2;margin:3px 0 0;font-size:13.5px;line-height:1.4;color:var(--muted)}
+.cat__head.reveal .cat__num{transform:rotate(-90deg) scale(.6);opacity:0;transition:transform .5s cubic-bezier(.3,1.6,.4,1),opacity .3s}
+.cat__head.reveal.in .cat__num{transform:none;opacity:1}
+.dish{padding:15px 0;border-bottom:1.5px dashed var(--line)}
+.dish__body{position:relative;display:block;min-height:92px;padding-right:112px}
+.dish__row{display:contents}
+.dish__leader{display:none}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 5px;padding:0;list-style:none}
+.tag{padding:3px 7px 2px;border-radius:4px;background:var(--ice);color:var(--brand);font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.tag--top{background:var(--accent);color:var(--ink)}
+.tag--spicy{background:#FFE1D8;color:#B4321A}
+.dish__name{margin:0 0 3px;font-weight:700;font-size:17px;line-height:1.25}
+.dish__desc{margin:0;font-size:13.5px;line-height:1.42;color:var(--muted)}
+.price{padding:5px 9px 4px;border-radius:6px;background:var(--brand);color:#fff;font-family:var(--f-display);font-weight:800;font-size:18px;letter-spacing:.02em;white-space:nowrap;font-variant-numeric:tabular-nums;box-shadow:inset 0 0 0 1.5px var(--brand),inset 0 0 0 2.5px #fff}
+.price small{font-size:11px;font-weight:700;opacity:.85}
+.dish .price{position:absolute;right:0;top:0}
+.dish__foot{position:absolute;right:0;bottom:0}
+.ctl{display:inline-flex}
+.add{display:grid;place-items:center;width:42px;height:42px;padding:0;border:0;border-radius:8px;background:#fff;color:var(--brand);box-shadow:inset 0 0 0 2px var(--brand)}
+.add svg{width:20px;height:20px;stroke-width:2.6}
+.add span{display:none}
+.add:active{transform:scale(.92)}
+.stepper{display:inline-flex;align-items:center;height:42px;border-radius:8px;background:var(--brand);color:#fff}
+.stepper button{display:grid;place-items:center;width:40px;height:42px;border:0;background:none;color:inherit}
+.stepper button svg{width:17px;height:17px;stroke-width:2.6}
+.stepper output{min-width:16px;text-align:center;font-family:var(--f-display);font-weight:800;font-size:19px}
+.empty{margin:30px 24px 10px;text-align:center;font-family:var(--f-display);font-weight:800;font-size:22px;text-transform:uppercase}
+.empty span{display:block;margin-top:6px;font-family:var(--f-body);font-weight:400;text-transform:none;font-size:14px;color:var(--muted)}
+.foot{margin-top:26px;padding:44px 20px 36px;text-align:center;background:linear-gradient(var(--ink),var(--ink)) 0 18px/100% 100% no-repeat,var(--tile) 0 0/18px 18px;color:#fff}
+body.has-cart .foot{padding-bottom:116px}
+.foot p{margin:0 0 8px}
+.foot__name{font-family:var(--f-display);font-weight:800;font-size:28px;text-transform:uppercase;letter-spacing:.04em}
+.foot__addr,.foot__wa a{display:inline-flex;align-items:center;gap:6px;font-size:14px;text-decoration:none}
+.foot__hours{display:flex;justify-content:center;align-items:flex-start;gap:6px;font-size:13px;opacity:.85;max-width:34ch;margin-left:auto!important;margin-right:auto!important;text-align:left}
+.foot__hours svg,.foot__addr svg{width:16px;height:16px;margin-top:1px;color:var(--accent)}
+.foot__wa a{padding:10px 16px;border-radius:10px;box-shadow:inset 0 0 0 2px #fff;margin-top:6px;font-weight:600}
+.foot__small{font-size:12px;opacity:.7;margin-top:10px!important}
+.credit{margin-top:18px!important;font-size:11.5px;letter-spacing:.04em;opacity:.55}
+.cartbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;padding:12px 12px calc(12px + env(safe-area-inset-bottom));pointer-events:none}
+.cartbar button{pointer-events:auto;width:min(100%,496px);display:flex;align-items:center;gap:12px;min-height:60px;padding:0 16px 0 12px;border:0;border-radius:14px;background:linear-gradient(170deg,color-mix(in srgb,#fff 16%,var(--brand)),var(--brand) 45%,color-mix(in srgb,#000 16%,var(--brand)));color:#fff;box-shadow:inset 0 0 0 3px var(--brand),inset 0 0 0 5px #fff,0 14px 30px -10px rgba(11,37,64,.6);text-align:left}
+.cartbar__count{display:grid;place-items:center;min-width:34px;height:34px;padding:0 6px;border-radius:17px;background:#fff;color:var(--brand);font-family:var(--f-display);font-weight:800;font-size:18px}
+.cartbar__label{flex:1;font-family:var(--f-display);font-weight:800;font-size:19px;letter-spacing:.06em;text-transform:uppercase}
+.cartbar__total{font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--accent);font-variant-numeric:tabular-nums}
+.cartbar.pop button{animation:rise .35s cubic-bezier(.2,.9,.3,1.2)}
+.cartbar.bump button{animation:bump .3s ease}
+@keyframes rise{from{transform:translateY(120%)}to{transform:none}}
+@keyframes bump{0%{transform:scale(1)}35%{transform:scale(1.04) rotate(-1deg)}100%{transform:scale(1)}}
+.fly1{color:var(--brand);font-family:var(--f-display);font-weight:800}
+.sheet__head h2{font-family:var(--f-display);font-weight:800;font-size:28px;text-transform:uppercase;letter-spacing:.03em}
+.line__sub,.sum strong,.wa-btn b{font-family:var(--f-display);font-weight:800;letter-spacing:.02em}
+.sum strong{font-size:28px;color:var(--brand)}
+.form{border-radius:14px;background:var(--ice)}
+.field input,.field textarea{border:2px solid var(--brand);border-radius:10px}
+.seg span{border:2px solid var(--brand);border-radius:10px;font-family:var(--f-display);font-weight:800;font-size:16px;letter-spacing:.04em;text-transform:uppercase}
+.seg input:checked+span{background:var(--brand);color:#fff;box-shadow:inset 0 0 0 2px var(--brand),inset 0 0 0 3.5px #fff}
+@media (max-width:359px){.indice{grid-template-columns:repeat(2,1fr)}.feat{grid-template-columns:40% 1fr}}
 :root{
---page:#D6E6EF;--bg:#F4F9FB;--card:#FFFFFF;--surface-2:#EAF3F8;--ink:#0B2540;--muted:#566F86;--line:#DDE9F0;
---brand:#0E5E9C;--icon:#0E7CC2;--price:#0B2540;--focus:#FF7A59;
---f-display:'DM Serif Display',Georgia,serif;--f-name:'Outfit',system-ui,sans-serif;--f-body:'Outfit',system-ui,sans-serif;--w-name:650;
---r:22px;--r-ph:16px;--r-input:16px;--r-bar:22px;
---card-shadow:0 1px 2px rgba(11,37,64,.05),0 12px 28px -18px rgba(11,37,64,.35);
---hero-ink:#FFFFFF;--hero-fallback:linear-gradient(160deg,#1C7FC4,#0B2540);
---hero-overlay:linear-gradient(180deg,rgba(6,28,52,.05) 0%,rgba(6,28,52,.25) 40%,rgba(7,33,60,.92) 100%);
---status-bg:rgba(255,255,255,.16);--status-ink:#fff;
---input-bg:#fff;--input-line:#D3E3EC;
---nav-bg:rgba(244,249,251,.93);--nav-shadow:0 8px 18px -12px rgba(11,37,64,.35);
---chip-bg:transparent;--chip-line:#C3D7E4;--chip-ink:#12375C;--chip-on-bg:#0B2540;--chip-on-ink:#D8F06A;
---btn-bg:#D8F06A;--btn-ink:#0B2540;--step-bg:#0B2540;--step-ink:#fff;
---tag-bg:#E6F1F8;--tag-ink:#12507F;--tag-top-bg:#FFE7DF;--tag-top-ink:#C2412A;--tag-spicy-bg:#FFE7DF;--tag-spicy-ink:#C2412A;--tag-new-bg:#EEF8C8;--tag-new-ink:#3E5A06;
---ph-bg:#E2EEF5;--ill-bg:linear-gradient(165deg,#12507F 0%,#0B2540 100%);--ill-ink:#D8F06A;--ill-word:#fff;--ill-default:#7FC4E8;
---foot-bg:#0B2540;--foot-ink:#E4F1F8;
---bar-bg:#0B2540;--bar-ink:#fff;--bar-count-bg:#D8F06A;--bar-count-ink:#0B2540;--bar-total-bg:#FF7A59;--bar-total-ink:#fff;
---toast-bg:#0B2540;--toast-ink:#fff;--sheet-bg:#FFFFFF;--warn-bg:#FFF1EC;--warn-ink:#8A2F1C;--danger:#D4412A;--seg-on-bg:#EAF3FB;--seg-on-ink:#0B2540;
+--page:#D9E6F0;--bg:#FBFDFF;--ink:#0B2540;--muted:#4D6680;--line:#CFDDEA;
+--brand:#1E4F9C;--ice:#DCEBF5;--accent:#F2C94C;--price:#1E4F9C;--focus:#F2A900;
+--f-display:'Big Shoulders Display',Impact,sans-serif;--f-body:'Outfit',system-ui,sans-serif;--f-name:var(--f-body);
+--r:12px;--surface-2:#EAF2F9;--sheet-bg:#FBFDFF;--input-bg:#fff;--input-line:#B9CCDE;--seg-on-bg:#DCEBF5;--seg-on-ink:#1E4F9C;
+--warn-bg:#FFF4D6;--warn-ink:#6B4A00;--danger:#C2361C;--toast-bg:#0B2540;--toast-ink:#fff;
+--btn-bg:#1E4F9C;--btn-ink:#fff;--ill-bg:linear-gradient(160deg,#2F66B8,#123A75);--ill-ink:#F2C94C;--ill-word:#fff;--ill-default:#DCEBF5;
 }
-body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),linear-gradient(180deg,#CFE3EE,#E7F1F6);background-size:16px 16px,auto;background-repeat:repeat,no-repeat}
-.hero{--hero-h:350px}
-.hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:34px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 34' preserveAspectRatio='none'%3E%3Cpath d='M0 20C50 4 100 4 150 16s100 16 150 4 70-14 100-6v20H0z' fill='%23F4F9FB'/%3E%3C/svg%3E") no-repeat bottom/100% 100%}
-.hero__deco{position:absolute;left:0;right:0;top:16px;width:100%;height:auto;opacity:.4;pointer-events:none}
-.hero__in{padding-bottom:46px}
-.brand__name{font-size:42px;font-weight:400;line-height:.95}
-.brand__name em{font-style:italic;color:#D8F06A}
-.brand__kicker{color:#9FD3F0;letter-spacing:.22em}
-.facts{margin-top:-8px;position:relative;z-index:1}
-.cat__head{display:grid;grid-template-columns:auto 1fr;align-items:end;column-gap:10px}
-.cat__head .wave{grid-row:1;width:36px;height:14px;color:#FF7A59;margin-bottom:8px;stroke-width:2.4}
-.cat__head.reveal .wave{stroke-dasharray:50;stroke-dashoffset:50;transition:stroke-dashoffset .7s ease}
-.cat__head.reveal.in .wave{stroke-dashoffset:0}
-.cat__head h2{grid-row:1;font-size:32px;font-weight:400;letter-spacing:-.005em}
-.cat__head p{grid-column:1/-1}
-.featured__head h2{font-weight:400;font-size:26px}
-.price{font-family:var(--f-display);font-weight:400;font-size:21px;background:linear-gradient(transparent 62%,#E6F59A 62%,#E6F59A 92%,transparent 92%);padding:0 2px}
-.feat .price{font-size:19px}
-.feat__name{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.08}
-.feat__ph{aspect-ratio:16/11}
-.sum strong{font-weight:600;font-size:24px}
-.sheet__head h2,.foot__name{font-weight:400}
-.foot{position:relative;padding-top:56px}
-.foot::before{content:"";position:absolute;left:0;right:0;top:-1px;height:30px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 30' preserveAspectRatio='none'%3E%3Cpath d='M0 0h400v10c-40-10-80 6-130 12S150 8 100 14 30 22 0 12z' fill='%23F4F9FB'/%3E%3C/svg%3E") no-repeat top/100% 100%}
-.foot__name{font-size:28px}
-.foot__name em{color:#D8F06A}
-.ill__word{font-family:var(--f-display);font-weight:400;font-size:13px;letter-spacing:.01em}
-.dish--big .ill{aspect-ratio:16/11}
+body{background:var(--page)}
 </style>
 </head>
 <body>
 <a class="skip" href="#menu">Saltar al menú</a>
 <div id="app"><noscript><p style="padding:24px">Activa JavaScript para ver la carta y hacer tu pedido.</p></noscript></div>
-<script>window.MENU={"id":"cevicheria","name":"Brisa Chalaca","nameHTML":"Brisa \u003cem>Chalaca\u003c/em>","kicker":"Cevichería · Cocina marina","tagline":"Pesca del día, limón recién exprimido y ají limo. Ceviche como manda la costa.","address":"Calle Los Pescadores 318, Magdalena del Mar","hero":{"img":"1761314037195-1508e44c6bd2"},"hours":{"0":[["11:00","17:30"]],"2":[["11:00","17:00"]],"3":[["11:00","17:00"]],"4":[["11:00","17:00"]],"5":[["11:00","17:00"]],"6":[["11:00","17:30"]]},"hoursLabel":"Mar a vie 11:00 a. m. – 5:00 p. m. · Sáb y dom 11:00 a. m. – 5:30 p. m. · Lunes cerrado","delivery":"S/ 6 a S/ 10 según zona · llega en 30–45 min","deliveryFee":"S/ 6 a S/ 10","pickup":"Listo en 15 min","deliveryShort":"30–45 min · desde S/ 6","pickupShort":"Listo en 15 min","searchPh":"Busca “ceviche”, “jalea”, “causa”…","emptyHint":"Prueba con “ceviche”, “leche de tigre” o “arroz”.","notePh":"Ej.: sin cebolla, ají aparte, bien picante","featuredTitle":"Lo que pide la mesa","featuredSub":"Los clásicos de la casa, recién salidos del mar","layout":"row","featured":["v3","l1","h1","k1","e3"],"categories":[{"id":"ceviches","name":"Ceviches","note":"Pescado del día cortado al momento, limón norteño, ají limo, camote y choclo.","layout":"big","items":[{"id":"v1","name":"Ceviche clásico","desc":"Pesca del día en leche de tigre de la casa, cebolla roja, ají limo, camote glaseado y choclo desgranado.","price":36,"img":"1535399831218-d5bd36d1a6b3","alt":"Ceviche de pescado con cebolla roja y camote","tags":["top"]},{"id":"v2","name":"Ceviche mixto","desc":"Pescado, pulpo, langostinos y calamar en leche de tigre al ají amarillo, con cancha y choclo.","price":42,"img":"1654018334224-4887d9e85ffe","alt":"Ceviche mixto con mariscos y cebolla"},{"id":"v3","name":"Ceviche carretillero","desc":"Nuestro clásico coronado con chicharrón de calamar crocante. El engreído del malecón.","price":44,"img":"1761314036959-42fa6eac59db","alt":"Ceviche con chicharrón de calamar, camote y choclo","tags":["top","house"]},{"id":"v4","name":"Ceviche al rocoto","desc":"Pesca del día en leche de tigre de rocoto, con chicharrón de calamar, camote y choclo. Picantito, como pide el cuerpo.","price":40,"img":"1761314036615-f1a9e69514d3","alt":"Ceviche en leche de tigre de rocoto con calamar frito","tags":["spicy"]},{"id":"v5","name":"Ceviche de conchas negras","desc":"Conchas negras de Tumbes en su jugo, con limón, rocoto picado y cancha serrana.","price":48,"ill":"shell","color":"#FF7A59","illWord":"Conchas negras","tags":["spicy"]}]},{"id":"tiraditos","name":"Tiraditos","items":[{"id":"t1","name":"Tiradito al ají amarillo","desc":"Láminas finas de pescado bañadas en crema de ají amarillo y limón, con choclo y camote.","price":36,"ill":"fish","color":"#F2B632","illWord":"Tiradito","tags":["top"]},{"id":"t2","name":"Tiradito bicolor","desc":"Mitad ají amarillo, mitad rocoto. Para los que no saben elegir.","price":38,"ill":"fish","color":"#FF7A59","illWord":"Bicolor","tags":["spicy","new"]},{"id":"t3","name":"Tiradito nikkei","desc":"Pescado en láminas con salsa ponzu, ajonjolí tostado, cebollita china y un toque de sillao.","price":39,"ill":"fish","color":"#9BD37A","illWord":"Nikkei"}]},{"id":"leche","name":"Leche de tigre","items":[{"id":"l1","name":"Leche de tigre clásica","desc":"El jugo del ceviche en copa, con trocitos de pescado, choclo y cancha. Levanta a cualquiera.","price":22,"img":"1562707774-553917f561df","alt":"Leche de tigre con pescado y cebolla","tags":["top"]},{"id":"l2","name":"Leche de pantera","desc":"Con conchas negras y un toque de rocoto. Intensa y bien marina.","price":28,"ill":"glass","color":"#5B6B78","illWord":"Leche de pantera","tags":["spicy"]},{"id":"l3","name":"Vuelve a la vida","desc":"Copa de mariscos: pulpo, langostinos y conchas en leche de tigre bien helada.","price":30,"ill":"cocktail","color":"#FF7A59","illWord":"Vuelve a la vida"}]},{"id":"arroces","name":"Arroces","items":[{"id":"a1","name":"Arroz con mariscos","desc":"Arroz meloso al ají panca y ají amarillo con langostinos, pulpo, calamar y conchas.","price":42,"img":"1680674774705-90b4904b3a7f","alt":"Arroz con mariscos y langostinos","tags":["top"]},{"id":"a2","name":"Arroz norteño con mariscos","desc":"Arroz al culantro con conchas, calamares y ají amarillo. Sabor de Chiclayo.","price":44,"img":"1768204039740-9e418a65328b","alt":"Arroz amarillo con calamares y conchas","tags":["new"]},{"id":"a3","name":"Chaufa de mariscos","desc":"Salteado al wok con langostinos, pulpo, calamar, huevo y cebollita china.","price":40,"img":"1761314025611-957a20e3e8a3","alt":"Arroz chaufa con langostino y ajonjolí"}]},{"id":"chicharrones","name":"Chicharrones","items":[{"id":"h1","name":"Jalea mixta","desc":"Pescado, calamar, pulpo y langostinos crocantes, con yuca frita, salsa criolla y tártara. Para compartir.","price":58,"img":"1761314025807-34cfab3c18e6","alt":"Jalea de mariscos fritos con salsa criolla","tags":["top","share"]},{"id":"h2","name":"Chicharrón de pescado","desc":"Trozos de pescado apanados y crujientes, con yuca frita y salsa criolla.","price":36,"img":"1697748836791-9ddf7e616ece","alt":"Pescado frito crocante con papas y limón"},{"id":"h3","name":"Chicharrón de calamar","desc":"Anillos de calamar crocantes con tres cremas de la casa y limón.","price":38,"img":"1778600731531-7d836a32704c","alt":"Calamares fritos con tres salsas"},{"id":"h4","name":"Pescado frito entero","desc":"Pescado del día frito entero, con arroz, yuca y ensalada criolla.","price":46,"img":"1665401015549-712c0dc5ef85","alt":"Pescado frito entero con limón y tomate"}]},{"id":"causas","name":"Causas y entradas","items":[{"id":"k1","name":"Causa limeña de langostinos","desc":"Papa amarilla prensada al ají amarillo, rellena de langostinos, palta y huevo.","price":32,"img":"1766456127047-806cdecdc139","alt":"Causa limeña con salsa de ají amarillo","tags":["top"]},{"id":"k2","name":"Causa acevichada","desc":"Causa suave coronada con ceviche de pescado y crema de rocoto.","price":34,"ill":"plate","color":"#F2C94C","illWord":"Causa acevichada","tags":["house"]},{"id":"k3","name":"Conchitas a la parmesana (12 u.)","desc":"Conchas de abanico gratinadas con queso parmesano, mantequilla y limón.","price":38,"img":"1761314037083-329b3050b351","alt":"Conchitas a la parmesana gratinadas"}]},{"id":"bebidas","name":"Bebidas","layout":"grid","items":[{"id":"e1","name":"Chicha morada (jarra)","desc":"Maíz morado, piña y canela. De la casa.","price":16,"img":"1542518392-13317b1ee2a2","alt":"Chicha morada con hielo"},{"id":"e2","name":"Limonada (jarra)","desc":"Limón recién exprimido, con o sin hierbabuena.","price":16,"img":"1507281549113-040fcfef650e","alt":"Limonada con limones"},{"id":"e3","name":"Pisco sour","desc":"Pisco quebranta, limón y amargo de angostura. Solo +18.","price":24,"img":"1674752722934-e9bcc59cb058","alt":"Pisco sour espumoso","tags":["top"]},{"id":"e4","name":"Maracuyá sour","desc":"Pisco con maracuyá fresco. Frutal y espumoso. Solo +18.","price":24,"img":"1696594935685-1ad6ba69e83e","alt":"Cóctel de maracuyá"},{"id":"e5","name":"Cerveza 620 ml","desc":"Cusqueña o Pilsen, bien heladas. Solo +18.","price":14,"img":"1608270586620-248524c67de9","alt":"Jarra de cerveza"},{"id":"e6","name":"Inca Kola 500 ml","desc":"Para acompañar el ceviche como se debe.","price":6,"ill":"bottle","color":"#F2C200","illWord":"Inca Kola"}]},{"id":"postres","name":"Postres","layout":"grid","items":[{"id":"z1","name":"Suspiro a la limeña","desc":"Manjar blanco con merengue al oporto.","price":14,"ill":"dessert","color":"#F4D9A6","illWord":"Suspiro"},{"id":"z2","name":"Picarones","desc":"Con miel de chancaca y canela.","price":16,"ill":"rings","color":"#E39B4B","illWord":"Picarones","tags":["top"]},{"id":"z3","name":"Crema volteada","desc":"Flan casero con caramelo.","price":12,"img":"1780798465831-de1e4d58ee46","alt":"Flan con caramelo"},{"id":"z4","name":"Arroz con leche","desc":"Cremoso, con canela y pasas.","price":10,"img":"1777613112969-d7511ddfbe15","alt":"Arroz con leche cremoso"}]}],"emblem":"\u003csvg class=\"brand__emblem\" viewBox=\"0 0 100 100\" role=\"img\" aria-label=\"Emblema de Brisa Chalaca\">\n\u003cdefs>\u003cclipPath id=\"bcClip\">\u003ccircle cx=\"50\" cy=\"50\" r=\"40\"/>\u003c/clipPath>\u003c/defs>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"49\" fill=\"#F4F9FB\"/>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"45\" fill=\"#0B2540\"/>\n\u003cg clip-path=\"url(#bcClip)\">\n\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"#12507F\"/>\n\u003ccircle cx=\"50\" cy=\"52\" r=\"17\" fill=\"#D8F06A\"/>\n\u003cpath d=\"M0 55c8-6 17-6 25 0s17 6 25 0 17-6 25 0 17 6 25 0v45H0z\" fill=\"#0B2540\"/>\n\u003cpath d=\"M4 56c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0\" fill=\"none\" stroke=\"#fff\" stroke-width=\"3.2\" stroke-linecap=\"round\"/>\n\u003cpath d=\"M-4 68c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0 14-5 21 0\" fill=\"none\" stroke=\"#7FC4E8\" stroke-width=\"2.6\" stroke-linecap=\"round\"/>\n\u003cpath d=\"M4 80c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0\" fill=\"none\" stroke=\"#FF7A59\" stroke-width=\"2.4\" stroke-linecap=\"round\"/>\n\u003c/g>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"40\" fill=\"none\" stroke=\"#D8F06A\" stroke-width=\"1.6\"/>\n\u003c/svg>","heroDeco":"\u003csvg class=\"hero__deco\" viewBox=\"0 0 400 60\" preserveAspectRatio=\"none\" aria-hidden=\"true\">\u003cpath d=\"M0 30c40-18 80-18 120 0s80 18 120 0 80-18 120 0 40 9 40 9\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\"/>\u003cpath d=\"M0 46c40-14 80-14 120 0s80 14 120 0 80-14 120 0 40 7 40 7\" fill=\"none\" stroke=\"#9FD3F0\" stroke-width=\"1.6\" opacity=\".8\"/>\u003c/svg>","catDeco":"\u003csvg class=\"wave\" viewBox=\"0 0 36 14\" aria-hidden=\"true\">\u003cpath d=\"M1 9c4-6 8-6 12 0s8 6 12 0 7-5 10-2\"/>\u003c/svg>","footDeco":""};</script>
+<script>window.MENU={"id":"cevicheria","estilo":"azulejo","portada":{"foto":"img/ceviche-plato.webp","fotoW":640,"fotoH":403,"fotoAlt":"Ceviche de pescado con camote, choclo y lechuga"},"name":"Brisa Chalaca","nameHTML":"Brisa \u003cem>Chalaca\u003c/em>","kicker":"Cevichería · Cocina marina","tagline":"Pesca del día, limón recién exprimido y ají limo. Ceviche como manda la costa.","address":"Calle Los Pescadores 318, Magdalena del Mar","hero":{"img":"1761314037195-1508e44c6bd2"},"hours":{"0":[["11:00","22:30"]],"1":[["11:00","22:30"]],"2":[["11:00","22:30"]],"3":[["11:00","22:30"]],"4":[["11:00","22:30"]],"5":[["11:00","23:00"]],"6":[["11:00","23:00"]]},"hoursLabel":"Dom a jue 11:00 a. m. – 10:30 p. m. · Vie y sáb 11:00 a. m. – 11:00 p. m.","delivery":"S/ 6 a S/ 10 según zona · llega en 30–45 min","deliveryFee":"S/ 6 a S/ 10","pickup":"Listo en 15 min","deliveryShort":"30–45 min · desde S/ 6","pickupShort":"Listo en 15 min","searchPh":"Busca “ceviche”, “jalea”, “causa”…","emptyHint":"Prueba con “ceviche”, “leche de tigre” o “arroz”.","notePh":"Ej.: sin cebolla, ají aparte, bien picante","featuredTitle":"Lo que pide la mesa","featuredSub":"Los clásicos de la casa, recién salidos del mar","layout":"row","featured":["v3","l1","h1","k1","e3"],"categories":[{"id":"ceviches","name":"Ceviches","note":"Pescado del día cortado al momento, limón norteño, ají limo, camote y choclo.","layout":"big","items":[{"id":"v1","name":"Ceviche clásico","desc":"Pesca del día en leche de tigre de la casa, cebolla roja, ají limo, camote glaseado y choclo desgranado.","price":36,"img":"1535399831218-d5bd36d1a6b3","alt":"Ceviche de pescado con cebolla roja y camote","tags":["top"]},{"id":"v2","name":"Ceviche mixto","desc":"Pescado, pulpo, langostinos y calamar en leche de tigre al ají amarillo, con cancha y choclo.","price":42,"img":"1654018334224-4887d9e85ffe","alt":"Ceviche mixto con mariscos y cebolla"},{"id":"v3","recorte":"img/rec-v3.webp","recorteW":480,"recorteH":334,"name":"Ceviche carretillero","desc":"Nuestro clásico coronado con chicharrón de calamar crocante. El engreído del malecón.","price":44,"img":"1761314036959-42fa6eac59db","alt":"Ceviche con chicharrón de calamar, camote y choclo","tags":["top","house"]},{"id":"v4","name":"Ceviche al rocoto","desc":"Pesca del día en leche de tigre de rocoto, con chicharrón de calamar, camote y choclo. Picantito, como pide el cuerpo.","price":40,"img":"1761314036615-f1a9e69514d3","alt":"Ceviche en leche de tigre de rocoto con calamar frito","tags":["spicy"]},{"id":"v5","name":"Ceviche de conchas negras","desc":"Conchas negras de Tumbes en su jugo, con limón, rocoto picado y cancha serrana.","price":48,"ill":"shell","color":"#FF7A59","illWord":"Conchas negras","tags":["spicy"]}]},{"id":"tiraditos","name":"Tiraditos","items":[{"id":"t1","name":"Tiradito al ají amarillo","desc":"Láminas finas de pescado bañadas en crema de ají amarillo y limón, con choclo y camote.","price":36,"ill":"fish","color":"#F2B632","illWord":"Tiradito","tags":["top"]},{"id":"t2","name":"Tiradito bicolor","desc":"Mitad ají amarillo, mitad rocoto. Para los que no saben elegir.","price":38,"ill":"fish","color":"#FF7A59","illWord":"Bicolor","tags":["spicy","new"]},{"id":"t3","name":"Tiradito nikkei","desc":"Pescado en láminas con salsa ponzu, ajonjolí tostado, cebollita china y un toque de sillao.","price":39,"ill":"fish","color":"#9BD37A","illWord":"Nikkei"}]},{"id":"leche","name":"Leche de tigre","items":[{"id":"l1","recorte":"img/rec-l1.webp","recorteW":480,"recorteH":340,"name":"Leche de tigre clásica","desc":"El jugo del ceviche en copa, con trocitos de pescado, choclo y cancha. Levanta a cualquiera.","price":22,"img":"1562707774-553917f561df","alt":"Leche de tigre con pescado y cebolla","tags":["top"]},{"id":"l2","name":"Leche de pantera","desc":"Con conchas negras y un toque de rocoto. Intensa y bien marina.","price":28,"ill":"glass","color":"#5B6B78","illWord":"Leche de pantera","tags":["spicy"]},{"id":"l3","name":"Vuelve a la vida","desc":"Copa de mariscos: pulpo, langostinos y conchas en leche de tigre bien helada.","price":30,"ill":"cocktail","color":"#FF7A59","illWord":"Vuelve a la vida"}]},{"id":"arroces","name":"Arroces","items":[{"id":"a1","name":"Arroz con mariscos","desc":"Arroz meloso al ají panca y ají amarillo con langostinos, pulpo, calamar y conchas.","price":42,"img":"1680674774705-90b4904b3a7f","alt":"Arroz con mariscos y langostinos","tags":["top"]},{"id":"a2","name":"Arroz norteño con mariscos","desc":"Arroz al culantro con conchas, calamares y ají amarillo. Sabor de Chiclayo.","price":44,"img":"1768204039740-9e418a65328b","alt":"Arroz amarillo con calamares y conchas","tags":["new"]},{"id":"a3","name":"Chaufa de mariscos","desc":"Salteado al wok con langostinos, pulpo, calamar, huevo y cebollita china.","price":40,"img":"1761314025611-957a20e3e8a3","alt":"Arroz chaufa con langostino y ajonjolí"}]},{"id":"chicharrones","name":"Chicharrones","items":[{"id":"h1","recorte":"img/rec-h1.webp","recorteW":480,"recorteH":461,"name":"Jalea mixta","desc":"Pescado, calamar, pulpo y langostinos crocantes, con yuca frita, salsa criolla y tártara. Para compartir.","price":58,"img":"1761314025807-34cfab3c18e6","alt":"Jalea de mariscos fritos con salsa criolla","tags":["top","share"]},{"id":"h2","name":"Chicharrón de pescado","desc":"Trozos de pescado apanados y crujientes, con yuca frita y salsa criolla.","price":36,"img":"1697748836791-9ddf7e616ece","alt":"Pescado frito crocante con papas y limón"},{"id":"h3","name":"Chicharrón de calamar","desc":"Anillos de calamar crocantes con tres cremas de la casa y limón.","price":38,"img":"1778600731531-7d836a32704c","alt":"Calamares fritos con tres salsas"},{"id":"h4","name":"Pescado frito entero","desc":"Pescado del día frito entero, con arroz, yuca y ensalada criolla.","price":46,"img":"1665401015549-712c0dc5ef85","alt":"Pescado frito entero con limón y tomate"}]},{"id":"causas","name":"Causas y entradas","items":[{"id":"k1","recorte":"img/rec-k1.webp","recorteW":411,"recorteH":480,"name":"Causa limeña de langostinos","desc":"Papa amarilla prensada al ají amarillo, rellena de langostinos, palta y huevo.","price":32,"img":"1766456127047-806cdecdc139","alt":"Causa limeña con salsa de ají amarillo","tags":["top"]},{"id":"k2","name":"Causa acevichada","desc":"Causa suave coronada con ceviche de pescado y crema de rocoto.","price":34,"ill":"plate","color":"#F2C94C","illWord":"Causa acevichada","tags":["house"]},{"id":"k3","name":"Conchitas a la parmesana (12 u.)","desc":"Conchas de abanico gratinadas con queso parmesano, mantequilla y limón.","price":38,"img":"1761314037083-329b3050b351","alt":"Conchitas a la parmesana gratinadas"}]},{"id":"bebidas","name":"Bebidas","layout":"grid","items":[{"id":"e1","name":"Chicha morada (jarra)","desc":"Maíz morado, piña y canela. De la casa.","price":16,"img":"1542518392-13317b1ee2a2","alt":"Chicha morada con hielo"},{"id":"e2","name":"Limonada (jarra)","desc":"Limón recién exprimido, con o sin hierbabuena.","price":16,"img":"1507281549113-040fcfef650e","alt":"Limonada con limones"},{"id":"e3","recorte":"img/rec-e3.webp","recorteW":252,"recorteH":360,"name":"Pisco sour","desc":"Pisco quebranta, limón y amargo de angostura. Solo +18.","price":24,"img":"1674752722934-e9bcc59cb058","alt":"Pisco sour espumoso","tags":["top"]},{"id":"e4","name":"Maracuyá sour","desc":"Pisco con maracuyá fresco. Frutal y espumoso. Solo +18.","price":24,"img":"1696594935685-1ad6ba69e83e","alt":"Cóctel de maracuyá"},{"id":"e5","name":"Cerveza 620 ml","desc":"Cusqueña o Pilsen, bien heladas. Solo +18.","price":14,"img":"1608270586620-248524c67de9","alt":"Jarra de cerveza"},{"id":"e6","name":"Inca Kola 500 ml","desc":"Para acompañar el ceviche como se debe.","price":6,"ill":"bottle","color":"#F2C200","illWord":"Inca Kola"}]},{"id":"postres","name":"Postres","layout":"grid","items":[{"id":"z1","name":"Suspiro a la limeña","desc":"Manjar blanco con merengue al oporto.","price":14,"ill":"dessert","color":"#F4D9A6","illWord":"Suspiro"},{"id":"z2","name":"Picarones","desc":"Con miel de chancaca y canela.","price":16,"ill":"rings","color":"#E39B4B","illWord":"Picarones","tags":["top"]},{"id":"z3","name":"Crema volteada","desc":"Flan casero con caramelo.","price":12,"img":"1780798465831-de1e4d58ee46","alt":"Flan con caramelo"},{"id":"z4","name":"Arroz con leche","desc":"Cremoso, con canela y pasas.","price":10,"img":"1777613112969-d7511ddfbe15","alt":"Arroz con leche cremoso"}]}],"emblem":"\u003csvg class=\"brand__emblem\" viewBox=\"0 0 100 100\" role=\"img\" aria-label=\"Emblema de Brisa Chalaca\">\n\u003cdefs>\u003cclipPath id=\"bcClip\">\u003ccircle cx=\"50\" cy=\"50\" r=\"40\"/>\u003c/clipPath>\u003c/defs>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"49\" fill=\"#F4F9FB\"/>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"45\" fill=\"#0B2540\"/>\n\u003cg clip-path=\"url(#bcClip)\">\n\u003crect x=\"0\" y=\"0\" width=\"100\" height=\"100\" fill=\"#12507F\"/>\n\u003ccircle cx=\"50\" cy=\"52\" r=\"17\" fill=\"#D8F06A\"/>\n\u003cpath d=\"M0 55c8-6 17-6 25 0s17 6 25 0 17-6 25 0 17 6 25 0v45H0z\" fill=\"#0B2540\"/>\n\u003cpath d=\"M4 56c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0\" fill=\"none\" stroke=\"#fff\" stroke-width=\"3.2\" stroke-linecap=\"round\"/>\n\u003cpath d=\"M-4 68c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0 14-5 21 0\" fill=\"none\" stroke=\"#7FC4E8\" stroke-width=\"2.6\" stroke-linecap=\"round\"/>\n\u003cpath d=\"M4 80c7-5 14-5 21 0s14 5 21 0 14-5 21 0 14 5 21 0\" fill=\"none\" stroke=\"#FF7A59\" stroke-width=\"2.4\" stroke-linecap=\"round\"/>\n\u003c/g>\n\u003ccircle cx=\"50\" cy=\"50\" r=\"40\" fill=\"none\" stroke=\"#D8F06A\" stroke-width=\"1.6\"/>\n\u003c/svg>","heroDeco":"","catDeco":"","footDeco":""};</script>
 <script>
 (function () {
   'use strict';
@@ -340,6 +296,11 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
   var behavior = function () { return mqReduce.matches ? 'auto' : 'smooth'; };
   // Acepta un ID de Unsplash (demos) o una ruta/URL propia (fotos reales del cliente, p. ej. "img/lomo.webp").
   var IMG = function (id) { return /[\/.]/.test(id) ? id : 'https://images.unsplash.com/photo-' + id + '?auto=format&fit=crop&w=800&q=75'; };
+  // Estilo de la carta: cambia la estructura (portada, índice, destacados, líneas, ticket), no solo los colores.
+  // 'cartel' (rótulo y pizarra de precios), 'comanda' (carta impresa que se anota a mano), 'nocturna' (oscura,
+  // con fotos recortadas y barra flotante) o 'clasico'. Los datos de su portada van en C.portada.
+  var E = C.estilo || 'clasico', P = C.portada || {};
+  var ROM = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
 
   /* ---------- Almacenamiento seguro ---------- */
   var store = {
@@ -378,8 +339,10 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
     fries: '<svg viewBox="0 0 80 80" aria-hidden="true"><path class="liq" d="M22 38h36l-5 32H27z"/><path d="M28 38l-4-24 6-1 3 25M36 38V10h6v28M46 38l3-24 6 1-3 23M20 36h40l-6 36H26z"/></svg>'
   };
 
-  var TAGS = Object.assign({
+  var TAGS = Object.assign(E === 'clasico' ? {
     top: '🔥 Más pedido', spicy: '🌶️ Picante', 'new': 'Nuevo', share: 'Para compartir', veg: '🌱 Vegetariano', house: '★ De la casa', cold: '❄️ Heladita'
+  } : {
+    top: 'El que más sale', spicy: 'Picante', 'new': 'Nuevo', share: 'Para compartir', veg: 'Vegetariano', house: 'De la casa', cold: 'Heladita'
   }, C.tagLabels || {});
 
   /* ---------- Índice de platos ---------- */
@@ -465,20 +428,46 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
       '<output aria-live="polite">' + q + '</output>' +
       '<button type="button" data-add="' + id + '" aria-label="Añadir uno más">' + ICON.plus + '</button></div>';
   }
-  /* Línea de carta: nombre, puntos guía y precio; sin miniatura (las fotos quedan solo para los destacados) */
-  function dishHTML(it) {
+  // Precio: en el cartel va como en los rótulos (S/ chico, entero grande, céntimos arriba)
+  function priceHTML(p, desde) {
+    if (E === 'cartel') {
+      var s = p.toFixed(2).split('.');
+      return '<span class="price">' + (desde ? '<small class="desde">desde</small>' : '') + '<small>' + esc(CURRENCY) + '</small>' + s[0] + '<sup>.' + s[1] + '</sup></span>';
+    }
+    return '<span class="price">' + (desde ? '<small>desde</small> ' : '') + fmt(p) + '</span>';
+  }
+  var TRAZO = '<svg class="trazo" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M30 8C70 0 170 2 192 22c10 16-30 34-100 34C30 56 4 46 8 28 11 15 40 7 90 5"/></svg>';
+  /* Línea de carta: nombre, puntos guía y precio; sin miniatura (las fotos quedan solo para los destacados).
+     lay = diseño de la categoría: 'pizarra' (fracción grande, cartel), 'afiche' (combo con lo que trae en lista) o 'lista'. */
+  function dishHTML(it, lay) {
     var numLabel = C.numbered ? '<span class="dish__num">N.º ' + (it.n < 10 ? '0' : '') + it.n + '</span>' : '';
-    return '<article class="dish" data-dish="' + it.id + '" data-search="' + esc(norm(it.name + ' ' + it.desc + ' ' + (it.kw || ''))) + '">' +
+    var desc = '<p class="dish__desc">' + esc(it.desc) + '</p>';
+    if (lay === 'afiche' && it.desc.indexOf(' + ') > 0) {
+      desc = '<ul class="dish__desc dish__lista">' + it.desc.replace(/\.?\s*Para \d+ personas?\.?\s*$/, '').replace(/\.\s*$/, '').split(' + ').map(function (x) { return '<li>' + nb(x) + '</li>'; }).join('') + '</ul>';
+    }
+    return '<article class="dish' + (cart[it.id] ? ' en' : '') + '" data-dish="' + it.id + '" data-search="' + esc(norm(it.name + ' ' + it.desc + ' ' + (it.kw || '') + ' ' + (it.corto || ''))) + '">' +
       '<div class="dish__body">' + tagsHTML(it) + numLabel +
-      '<div class="dish__row"><h3 class="dish__name">' + nb(it.name) + '</h3><span class="dish__leader" aria-hidden="true"></span><span class="price">' + (it.from ? '<small>desde</small> ' : '') + fmt(it.price) + '</span></div>' +
-      '<p class="dish__desc">' + esc(it.desc) + '</p>' +
+      (it.corto ? '<span class="dish__corto' + (it.corto.length > 3 ? ' dish__corto--largo' : '') + '" aria-hidden="true">' + esc(it.corto) + '</span>' : '') +
+      '<div class="dish__row"><h3 class="dish__name">' + nb(it.name) + (E === 'comanda' ? TRAZO : '') + '</h3><span class="dish__leader" aria-hidden="true"></span>' + priceHTML(it.price, it.from) + '</div>' +
+      desc + (it.para ? '<span class="dish__para">Para ' + it.para + '</span>' : '') +
       '<div class="dish__foot"><span class="ctl" data-ctl="' + it.id + '">' + ctlHTML(it.id) + '</span></div>' +
       '</div></article>';
   }
   function featHTML(it) {
+    var foot = '<div class="feat__foot">' + priceHTML(it.price) + '<span class="ctl" data-ctl="' + it.id + '">' + ctlHTML(it.id) + '</span></div>';
+    if (E === 'comanda') {
+      return '<article class="feat"><h3 class="feat__name">' + nb(it.name) + '</h3><p class="feat__desc">' + esc(it.desc) + '</p>' + foot + '</article>';
+    }
+    if (E === 'nocturna' || E === 'azulejo') {
+      // it.pizza = ingredientes del armador: la foto es una pizza armada con las capas propias
+      var ph = it.pizza && C.armador ? '<div class="ph feat__ph feat__ph--pz" role="img" aria-label="Pizza ' + esc(it.name) + '">' + pzHTML('fz-' + it.id, false) + '</div>' : it.recorte
+        ? '<div class="ph feat__ph feat__ph--recorte"><img src="' + IMG(it.recorte) + '" alt="' + esc(it.alt || ('Foto referencial de ' + it.name)) + '" loading="lazy" decoding="async" width="' + (it.recorteW || 800) + '" height="' + (it.recorteH || 800) + '"></div>'
+        : media(it, 'feat__ph');
+      return '<article class="feat">' + ph + '<span class="feat__no">N.º ' + (it.n < 10 ? '0' : '') + it.n + '</span>' +
+        '<div class="feat__body"><h3 class="feat__name">' + nb(it.name) + '</h3><p class="feat__desc">' + esc(it.desc) + '</p>' + foot + '</div></article>';
+    }
     return '<article class="feat">' + media(it, 'feat__ph') +
-      '<div class="feat__body"><h3 class="feat__name">' + nb(it.name) + '</h3>' +
-      '<div class="feat__foot"><span class="price">' + fmt(it.price) + '</span><span class="ctl" data-ctl="' + it.id + '">' + ctlHTML(it.id) + '</span></div></div></article>';
+      '<div class="feat__body"><h3 class="feat__name">' + nb(it.name) + '</h3>' + foot + '</div></article>';
   }
 
   /* ---------- Armador ("Arma tu pizza"): capas de la pizza e ingredientes que caen encima ---------- */
@@ -624,6 +613,10 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
   }
   function armaInit() {
     var A = C.armador;
+    (C.featured || []).forEach(function (id) {
+      var it = ITEMS[id], pz = it && it.pizza && $('#fz-' + id); if (!pz) return;
+      var pos = reparte(it.pizza, id); it.pizza.forEach(function (g) { poner(pz, g.id, pos[g.id], false); });
+    });
     POS = reparte(A.ingredientes, 'arma');
     (A.inicial || []).forEach(function (id) { armaSel.push(id); poner($('#armaPz'), id, POS[id], false); $('.ing[data-ing="' + id + '"]').setAttribute('aria-pressed', 'true'); });
     $$('.ing').forEach(function (b) { b.addEventListener('click', function () { armaToggle(b); }); });
@@ -636,36 +629,86 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
   function build() {
     var st = status();
     var root = $('#app');
-    var featured = C.featured.map(function (id) { return ITEMS[id]; });
+    var featured = (C.featured || []).map(function (id) { return ITEMS[id]; });
     var html = '';
     var heroPz = C.armador && C.armador.hero;
-    html += '<header class="hero' + (heroPz ? ' hero--pz' : '') + '">' +
-      (heroPz ? '<div class="hero__pz" aria-hidden="true">' + pzHTML('heroPz', true) + '<div class="vapor"><i></i><i></i><i></i></div></div>'
-        : '<div class="hero__img"><img src="' + IMG(C.hero.img) + '" alt="" width="800" height="600" fetchpriority="high" data-fallback="hero"></div>') +
-      (C.heroDeco || '') +
-      '<div class="hero__in">' +
-        '<div class="brand">' + C.emblem + '<div class="brand__txt"><p class="brand__kicker">' + esc(C.kicker) + '</p><h1 class="brand__name">' + C.nameHTML + '</h1></div></div>' +
-        '<p class="hero__tag">' + esc(C.tagline) + '</p>' +
-        '<p class="status ' + (st.open ? 'is-open' : 'is-closed') + '" id="status"><span class="status__dot" aria-hidden="true"></span><strong>' + (st.open ? 'Abierto ahora' : 'Cerrado') + '</strong><span class="status__txt">' + esc(st.text) + '</span></p>' +
-      '</div></header>';
-    html += '<section class="facts" aria-label="Información del local">' +
-      '<div class="fact">' + ICON.clock + '<div><strong>Hoy</strong><span id="todayHours">' + esc(todayHours()) + '</span></div></div>' +
-      '<div class="fact">' + ICON.moto + '<div><strong>Delivery</strong><span>' + esc(C.deliveryShort) + '</span></div></div>' +
-      '<div class="fact">' + ICON.bag + '<div><strong>Recojo</strong><span>' + esc(C.pickupShort) + '</span></div></div>' +
-      '</section>';
-    html += '<div class="search"><label class="search__box">' + ICON.search + '<span class="sr-only">Buscar platos</span><input id="q" type="search" placeholder="' + esc(C.searchPh) + '" autocomplete="off" enterkeyhint="search"></label></div>';
+    var statusHTML = '<p class="status ' + (st.open ? 'is-open' : 'is-closed') + '" id="status"><span class="status__dot" aria-hidden="true"></span><strong>' + (st.open ? 'Abierto ahora' : 'Cerrado') + '</strong><span class="status__txt">' + esc(st.text) + '</span></p>';
+    var pzHero = heroPz ? '<div class="hero__pz" aria-hidden="true">' + pzHTML('heroPz', true) + '<div class="vapor"><i></i><i></i><i></i></div></div>' : '';
+    var foto = function (cls) { return P.foto ? '<img class="' + cls + '" src="' + IMG(P.foto) + '" alt="' + esc(P.fotoAlt || '') + '" width="' + (P.fotoW || 900) + '" height="' + (P.fotoH || 800) + '" fetchpriority="high" decoding="async">' : ''; };
+    if (E === 'cartel') {
+      html += '<header class="hero">' +
+        '<div class="top">' + C.emblem + '<p class="top__name"><strong>' + esc(C.name) + '</strong><small>' + esc(C.kicker) + '</small></p>' + statusHTML + '</div>' +
+        '<div class="rotulo">' + (C.heroDeco || '') +
+          '<h1 class="rotulo__t">' + (P.titulo || [C.name]).map(function (l, i) { return '<span class="l' + (i + 1) + '">' + esc(l) + '</span>'; }).join(' ') + '</h1>' +
+          '<p class="hero__tag">' + esc(P.bajada || C.tagline) + '</p>' +
+          (P.sello ? '<p class="sello"><span><b>' + esc(P.sello[0]) + '</b> ' + esc(P.sello[1]) + '</span></p>' : '') +
+          (pzHero || foto('rotulo__foto')) +
+        '</div></header>';
+    } else if (E === 'comanda') {
+      html += '<header class="hero">' + (C.heroDeco || '') +
+        '<div class="sello" aria-hidden="true">' + C.emblem + '</div>' +
+        '<p class="hero__kicker">' + esc(C.kicker) + '</p>' +
+        '<h1 class="brand__name">' + C.nameHTML + '</h1><div class="doble" aria-hidden="true"></div>' +
+        '<p class="hero__tag">' + esc(P.bajada || C.tagline) + '</p>' + statusHTML +
+        (pzHero || (P.foto ? '<div class="grabado">' + foto('grabado__img') + '</div>' : '')) +
+        '</header>';
+    } else if (E === 'azulejo') {
+      html += '<header class="hero">' + (C.heroDeco || '') +
+        '<div class="placa"><p class="placa__k">' + esc(C.kicker) + '</p><h1 class="brand__name">' + esc(C.name) + '</h1></div>' +
+        (pzHero || foto('hero__foto')) +
+        '<p class="hero__tag">' + esc(P.bajada || C.tagline) + '</p>' + statusHTML +
+        '</header>';
+    } else if (E === 'nocturna') {
+      html += '<header class="hero' + (heroPz ? ' hero--pz' : '') + '">' +
+        '<div class="hero__top"><p class="hero__name">' + C.emblem + '<span>' + esc(C.name) + '</span></p>' + statusHTML + '</div>' +
+        (pzHero || foto('hero__foto')) + (C.heroDeco || '') +
+        '<div class="chispas" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>' +
+        '<div class="hero__in"><p class="hero__kicker">' + esc(C.kicker) + '</p>' +
+          '<h1 class="hero__t">' + (P.tituloHTML || C.nameHTML) + '</h1>' +
+          '<p class="hero__tag">' + esc(P.bajada || C.tagline) + '</p>' +
+          '<div class="hero__cta"><a class="btn btn--b" href="' + (C.armador ? '#arma' : '#featured') + '">' + esc(P.cta || 'Pedir ahora') + '</a><a class="btn btn--g" href="#' + C.categories[0].id + '">Ver la carta</a></div>' +
+        '</div></header>';
+    } else {
+      html += '<header class="hero' + (heroPz ? ' hero--pz' : '') + '">' +
+        (pzHero || '<div class="hero__img"><img src="' + IMG(C.hero.img) + '" alt="" width="800" height="600" fetchpriority="high" data-fallback="hero"></div>') +
+        (C.heroDeco || '') +
+        '<div class="hero__in">' +
+          '<div class="brand">' + C.emblem + '<div class="brand__txt"><p class="brand__kicker">' + esc(C.kicker) + '</p><h1 class="brand__name">' + C.nameHTML + '</h1></div></div>' +
+          '<p class="hero__tag">' + esc(C.tagline) + '</p>' + statusHTML +
+        '</div></header>';
+    }
+    if (E === 'clasico') {
+      html += '<section class="facts" aria-label="Información del local">' +
+        '<div class="fact">' + ICON.clock + '<div><strong>Hoy</strong><span id="todayHours">' + esc(todayHours()) + '</span></div></div>' +
+        '<div class="fact">' + ICON.moto + '<div><strong>Delivery</strong><span>' + esc(C.deliveryShort) + '</span></div></div>' +
+        '<div class="fact">' + ICON.bag + '<div><strong>Recojo</strong><span>' + esc(C.pickupShort) + '</span></div></div>' +
+        '</section>';
+    } else {
+      html += '<p class="datos" aria-label="Información del local"><span>Hoy <b id="todayHours">' + esc(todayHours()) + '</b></span>' +
+        '<span>Delivery ' + esc(C.deliveryShort) + '</span><span>Recojo · ' + esc(C.pickupShort) + '</span></p>';
+    }
     var A = C.armador;
+    if (E === 'comanda' || E === 'azulejo') {
+      html += '<nav class="indice" aria-label="Índice de la carta"><h2>Índice</h2>' +
+        (A ? '<a href="#arma" data-chip="arma"><b>★</b><span>' + esc(A.titulo || 'Arma la tuya') + '</span><i aria-hidden="true"></i><small></small></a>' : '') +
+        C.categories.map(function (c, i) { return '<a href="#' + c.id + '" data-chip="' + c.id + '"><b>' + (E === 'comanda' ? ROM[i + 1] + '.' : (i < 9 ? '0' : '') + (i + 1)) + '</b><span>' + esc(c.name) + '</span><i aria-hidden="true"></i><small>' + c.items.length + (i && E === 'comanda' ? '' : ' platos') + '</small></a>'; }).join('') +
+        '</nav>';
+    }
+    html += '<div class="search"><label class="search__box">' + ICON.search + '<span class="sr-only">Buscar platos</span><input id="q" type="search" placeholder="' + esc(C.searchPh) + '" autocomplete="off" enterkeyhint="search"></label></div>';
     html += '<nav class="catnav" aria-label="Categorías del menú"><div class="chips" id="chips">' +
       (A ? '<a class="chip chip--arma" href="#arma" data-chip="arma" aria-current="true">' + esc(A.chip || 'Arma la tuya') + '</a>' : '') +
       C.categories.map(function (c, i) { return '<a class="chip" href="#' + c.id + '" data-chip="' + c.id + '"' + (i === 0 && !A ? ' aria-current="true"' : '') + '>' + esc(c.name) + '</a>'; }).join('') +
       '</div></nav>';
     html += '<main id="menu">';
     if (A) html += armaHTML();
-    html += '<section class="featured" id="featured" aria-labelledby="featT"><div class="featured__head"><h2 id="featT">' + esc(C.featuredTitle) + '</h2><p>' + esc(C.featuredSub) + '</p></div><div class="rail">' + featured.map(featHTML).join('') + '</div></section>';
-    C.categories.forEach(function (c) {
-      html += '<section class="cat" id="' + c.id + '" aria-labelledby="h-' + c.id + '">' +
-        '<div class="cat__head">' + (C.catDeco || '') + '<h2 id="h-' + c.id + '">' + esc(c.name) + '</h2>' + (c.note ? '<p>' + esc(c.note) + '</p>' : '') + '</div>' +
-        '<div class="cat__list">' + c.items.map(function (it) { return dishHTML(it); }).join('') + '</div></section>';
+    html += featured.length
+      ? '<section class="featured" id="featured" aria-labelledby="featT"><div class="featured__head"><h2 id="featT">' + esc(C.featuredTitle) + '</h2><p>' + esc(C.featuredSub) + '</p></div><div class="rail">' + featured.map(featHTML).join('') + '</div></section>'
+      : '<div id="featured"></div>';
+    C.categories.forEach(function (c, i) {
+      html += '<section class="cat cat--' + (c.layout || 'lista') + '" id="' + c.id + '" aria-labelledby="h-' + c.id + '">' +
+        '<div class="cat__head">' + (C.catDeco || '') + '<span class="cat__num" aria-hidden="true">' + (E === 'comanda' ? ROM[i + 1] + '.' : (i < 9 ? '0' : '') + (i + 1)) + '</span>' +
+        '<h2 id="h-' + c.id + '">' + esc(c.name) + '</h2>' + (c.note ? '<p>' + esc(c.note) + '</p>' : '') + '</div>' +
+        '<div class="cat__list">' + c.items.map(function (it) { return dishHTML(it, c.layout); }).join('') + '</div></section>';
     });
     html += '<p class="empty" id="empty" hidden></p>';
     html += '</main>';
@@ -679,12 +722,12 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
       (C.credit === '' ? '' : '<p class="credit">' + esc(C.credit || 'Menú de muestra · Diseñado por Clickea Studio') + '</p>') + '</footer>';
 
     html += '<div class="cartbar" id="cartbar" hidden><button type="button" id="openCart" aria-haspopup="dialog">' +
-      '<span class="cartbar__count" id="barCount">0</span><span class="cartbar__label">Tu pedido</span><span class="cartbar__total" id="barTotal">' + fmt(0) + '</span></button></div>';
+      '<span class="cartbar__count" id="barCount">0</span><span class="cartbar__label">' + esc(C.cartLabel || { cartel: 'Ver mi pedido', comanda: 'Tu comanda', nocturna: 'Ver pedido' }[E] || 'Tu pedido') + '</span><span class="cartbar__total" id="barTotal">' + fmt(0) + '</span></button></div>';
     html += '<div class="toast" id="toast" role="status" aria-live="polite"></div>';
 
     html += '<dialog class="sheet" id="sheet" aria-labelledby="sheetT"><div class="sheet__in">' +
       '<div class="sheet__grab" aria-hidden="true"></div>' +
-      '<header class="sheet__head"><h2 id="sheetT">Tu pedido</h2><button type="button" class="icon-btn" data-close aria-label="Cerrar pedido">' + ICON.close + '</button></header>' +
+      '<header class="sheet__head"><h2 id="sheetT">' + (E === 'comanda' ? 'Tu comanda' : 'Tu pedido') + '</h2><button type="button" class="icon-btn" data-close aria-label="Cerrar pedido">' + ICON.close + '</button></header>' +
       '<p class="sheet__closed" id="closedNote" hidden></p>' +
       '<ul class="lines" id="lines"></ul>' +
       '<div class="sum"><span>Total de productos</span><strong id="sumTotal">' + fmt(0) + '</strong></div>' +
@@ -744,6 +787,7 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
     if (q > 0) cart[id] = Math.min(q, 50); else delete cart[id];
     store.set(KEY_CART, cart);
     $$('[data-ctl="' + id + '"]').forEach(function (el) { el.innerHTML = ctlHTML(id); });
+    $$('[data-dish="' + id + '"]').forEach(function (d) { d.classList.toggle('en', !!cart[id]); });
     if (!cart[id] && CUSTOM[id]) { delete CUSTOM[id]; delete ITEMS[id]; store.set(KEY_CUSTOM, CUSTOM); }
     refresh();
   }
@@ -752,6 +796,7 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
     var bar = $('#cartbar');
     var wasHidden = bar.hidden;
     bar.hidden = c === 0;
+    bar.setAttribute('data-n', c);
     document.body.classList.toggle('has-cart', c > 0);
     if (wasHidden && c > 0) { bar.classList.remove('pop'); void bar.offsetWidth; bar.classList.add('pop'); }
     $('#barCount').textContent = c;
@@ -859,7 +904,7 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
   function spy() {
     spyTick = false;
     if (Date.now() < manualUntil) return;
-    var off = navEl.offsetHeight + 40, cur = null, vis = sections.filter(function (s) { return !s.hidden; });
+    var off = (E === 'nocturna' ? 0 : navEl.offsetHeight) + 40, cur = null, vis = sections.filter(function (s) { return !s.hidden; });
     if (!vis.length) return;
     cur = vis[0];
     vis.forEach(function (s) { if (s.getBoundingClientRect().top - off <= 0) cur = s; });
@@ -874,11 +919,11 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
     var any = false;
     $('#featured').hidden = !!q;
     sections.forEach(function (s) {
-      if (s.id === 'arma') { s.hidden = !!q; var ca = $('[data-chip="arma"]'); if (ca) ca.hidden = !!q; return; }
+      if (s.id === 'arma') { s.hidden = !!q; $$('[data-chip="arma"]').forEach(function (ca) { ca.hidden = !!q; }); return; }
       var n = 0;
       $$('.dish', s).forEach(function (d) { var hit = !q || d.getAttribute('data-search').indexOf(q) !== -1; d.hidden = !hit; if (hit) n++; });
       s.hidden = n === 0;
-      var chip = $('[data-chip="' + s.id + '"]'); if (chip) chip.hidden = n === 0;
+      $$('[data-chip="' + s.id + '"]').forEach(function (chip) { chip.hidden = n === 0; });
       if (n) any = true;
     });
     var e = $('#empty');
@@ -919,6 +964,7 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
 
     document.addEventListener('click', function (e) {
       var t = e.target.closest('[data-add],[data-dec],[data-chip],[data-close],#openCart,#clearCart,#waBtn');
+      if (!t && E === 'comanda') { var fila = e.target.closest('.cat .dish'); if (fila && !e.target.closest('button,a')) t = $('[data-add]', fila); }
       if (!t) return;
       if (t.hasAttribute('data-add')) {
         var id = t.getAttribute('data-add'), was = cart[id] || 0;
@@ -926,7 +972,7 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
         var barShown = !$('#cartbar').hidden;
         setQty(id, was + 1);
         if (!was) toast('Agregado: ' + ITEMS[id].name);
-        var foto = box && box.classList.contains('feat') && $('.ph img', box);
+        var foto = box && box.classList.contains('feat') && ($('.ph .pz', box) || $('.ph img', box));
         if (!(foto && vuela(foto))) { flyPlusOne(t); if (barShown) bumpBar(); }
         if (box && box.isConnected) { var again = $('[data-add]', box); if (again) again.focus({ preventScroll: true }); }
       } else if (t.hasAttribute('data-dec')) {
@@ -948,6 +994,7 @@ body{background-image:radial-gradient(rgba(11,37,64,.05) 1px,transparent 1.2px),
       } else if (t.id === 'clearCart') {
         cart = {}; store.set(KEY_CART, cart);
         $$('[data-ctl]').forEach(function (el) { el.innerHTML = ctlHTML(el.getAttribute('data-ctl')); });
+        $$('.dish.en').forEach(function (d) { d.classList.remove('en'); });
         if (C.armador) { Object.keys(CUSTOM).forEach(function (k) { delete ITEMS[k]; }); CUSTOM = {}; store.set(KEY_CUSTOM, CUSTOM); }
         refresh(); closeSheet(); toast('Pedido vaciado');
       } else if (t.id === 'waBtn') {
