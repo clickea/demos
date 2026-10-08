@@ -5,8 +5,8 @@
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Demos · Clickea Studio</title>
-<meta name="description" content="Muestras de páginas web, cartas y menús para restaurantes y detalles digitales creados por Clickea Studio. Ábrelas desde tu celular.">
-<meta name="theme-color" content="#16123a">
+<meta name="description" content="Webs, cartas y menús para restaurantes y detalles digitales hechos por Clickea Studio. 20 demos reales para abrir desde tu celular.">
+<meta name="theme-color" content="#8d7be8">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://clickea.github.io/demos/">
@@ -14,215 +14,387 @@
 <meta property="og:locale" content="es_PE">
 <meta property="og:site_name" content="Clickea Studio">
 <meta property="og:title" content="Mira cómo quedaría la web de tu negocio · Clickea Studio">
-<meta property="og:description" content="Demos reales: páginas web, cartas y menús para restaurantes y detalles digitales.">
+<meta property="og:description" content="20 demos reales: páginas web, cartas y menús para restaurantes y detalles digitales.">
 <meta property="og:image" content="https://clickea.github.io/demos/og-clickea.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://clickea.github.io/demos/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="portada/videos/portada-m.webp" media="(max-width:759px)" fetchpriority="high">
+<link rel="preload" as="image" href="portada/videos/portada.webp" media="(min-width:760px)" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" href="portada/fuentes/outfit.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="portada/fuentes/instrument-serif-italic.woff2" crossorigin>
 <style>
-  :root { --violet:#6d4aff; --violet2:#8b6dff; --dark:#16123a; --deep:#0d0a26; --lime:#c8ff3d; --soft:rgba(255,255,255,.7); --line:rgba(255,255,255,.12); }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  html { scroll-behavior:smooth; overflow-x:clip; }
-  body { font-family:'Outfit',system-ui,sans-serif; color:#fff; background:var(--dark); overflow-x:clip; }
-  a { color:inherit; text-decoration:none; }
-  img { display:block; max-width:100%; }
+@font-face{font-family:'Outfit';font-style:normal;font-weight:400 800;font-display:swap;src:url(portada/fuentes/outfit.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:400 800;font-display:swap;src:url(portada/fuentes/outfit-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(portada/fuentes/instrument-serif-italic.woff2) format('woff2')}
+:root{--violeta:#6d4aff;--noche:#0b0920;--lima:#c8ff3d;--blanco:#fff;--suave:rgba(255,255,255,.78);--f:'Outfit',system-ui,sans-serif;--s:'Instrument Serif',Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{font-family:var(--f);color:#fff;background:var(--noche);overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+em{font-family:var(--s);font-style:italic;font-weight:400;letter-spacing:0}
+:focus-visible{outline:3px solid var(--lima);outline-offset:4px;border-radius:10px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-  /* Fondo vivo: manchas de color que se mueven lento + grano */
-  .fondo { position:fixed; inset:0; z-index:-1; overflow:hidden; background:var(--dark); }
-  .fondo i { position:absolute; border-radius:50%; filter:blur(70px); opacity:.55; animation:flotar 22s ease-in-out infinite alternate; }
-  .fondo i:nth-child(1) { width:60vmax; height:60vmax; background:var(--violet); top:-25vmax; right:-20vmax; }
-  .fondo i:nth-child(2) { width:40vmax; height:40vmax; background:#3b1f9e; bottom:-15vmax; left:-15vmax; animation-duration:28s; }
-  .fondo i:nth-child(3) { width:22vmax; height:22vmax; background:var(--lime); opacity:.12; top:40%; left:55%; animation-duration:18s; }
-  .fondo::after { content:''; position:absolute; inset:0; opacity:.08;
-    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); }
-  @keyframes flotar { to { transform:translate(-8vmax, 6vmax) scale(1.15); } }
+/* ---------- Barra ---------- */
+.barra{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;transition:background .3s,backdrop-filter .3s}
+.barra.pegada{background:rgba(11,9,32,.55);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:17px;letter-spacing:-.01em}
+.logo svg{width:34px;height:34px;flex:none}
+.logo span{opacity:.75;font-weight:400}
+.menu{display:none;gap:4px;padding:5px;border-radius:999px;background:rgba(255,255,255,.16);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.25)}
+.menu a{padding:8px 14px;border-radius:999px;font-size:14px;font-weight:500}
+.menu a:hover{background:rgba(255,255,255,.18)}
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:999px;font-weight:600;font-size:15px;white-space:nowrap;transition:transform .2s,box-shadow .2s}
+.boton:active{transform:scale(.97)}
+.boton--claro{background:#fff;color:#1b1446;box-shadow:0 10px 30px -10px rgba(40,20,90,.5)}
+.boton--vidrio{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.45);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.boton--lima{background:var(--lima);color:#16123a;box-shadow:0 12px 34px -10px rgba(200,255,61,.6)}
+.boton svg{width:18px;height:18px}
+.barra .boton{min-height:42px;padding:0 16px;font-size:14px}
 
-  .wrap { max-width:1160px; margin:0 auto; padding:0 16px; }
-  header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:20px 0; }
-  .logo { display:flex; align-items:center; gap:10px; font-size:21px; }
-  .logo svg { width:38px; height:38px; }
-  .logo b { font-weight:800; } .logo span { font-weight:300; color:var(--lime); }
-  .pill { font-weight:800; font-size:15px; padding:11px 18px; border-radius:999px; background:var(--lime); color:var(--dark); min-height:44px; display:inline-flex; align-items:center; }
+/* ---------- Portada: flota sobre el agua ---------- */
+.portada{position:relative;height:max(660px,100svh);overflow:hidden;isolation:isolate;--hz:54%;background:#b9a3e6}
+.portada__cielo{position:absolute;inset:0;z-index:-3}
+.portada__foto img,.lamina__foto img,.mar__foto img,.fondo-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* el video aparece encima de su póster (mismo primer cuadro) solo cuando ya está corriendo */
+.fondo-video{opacity:0;transition:opacity .5s}
+.fondo-video.lista{opacity:1}
+.portada__cielo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(60,40,140,.18),transparent 22%,transparent 62%,rgba(70,40,130,.38))}
+.objeto{position:absolute;left:50%;bottom:calc(100% - var(--hz) - 3vh);width:min(92vw,560px,62svh);aspect-ratio:1;transform:translateX(-50%);z-index:1}
+.objeto canvas,.objeto img{width:100%;height:100%;display:block}
+.objeto__flota{width:100%;height:100%;animation:flota 4.6s ease-in-out infinite alternate}
+.reflejo{position:absolute;left:50%;top:calc(var(--hz) - 3vh);width:min(92vw,560px,62svh);aspect-ratio:1;transform:translateX(-50%) scaleY(-1);opacity:.42;filter:blur(1.5px) saturate(1.2);mask:linear-gradient(to top,#000 0%,transparent 62%);-webkit-mask:linear-gradient(to top,#000 0%,transparent 62%);z-index:0;pointer-events:none}
+.reflejo canvas{width:100%;height:100%;display:block;animation:flota-r 4.6s ease-in-out infinite alternate}
+@keyframes flota{from{transform:translateY(0) rotate(-1.5deg)}to{transform:translateY(-16px) rotate(1.5deg)}}
+@keyframes flota-r{from{transform:translateY(0)}to{transform:translateY(-16px)}}
+.burbuja{position:absolute;z-index:2;border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.95) 0 5%,rgba(255,255,255,.18) 14%,transparent 42%),radial-gradient(circle at 70% 78%,rgba(255,190,230,.35),transparent 55%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),inset -10px -14px 26px rgba(150,210,255,.38),inset 8px 10px 22px rgba(255,170,220,.3);animation:burbuja 9s ease-in-out infinite alternate;pointer-events:none}
+.burbuja--1{width:min(30vw,170px);aspect-ratio:1;left:-6vw;top:26%}
+.burbuja--2{width:min(12vw,66px);aspect-ratio:1;right:9vw;top:calc(var(--hz) - 9%);animation-duration:7s}
+.burbuja--3{width:min(7vw,38px);aspect-ratio:1;right:24vw;top:16%;animation-duration:11s}
+@keyframes burbuja{from{transform:translate(0,0)}to{transform:translate(12px,-22px)}}
+.portada__txt{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:0 18px calc(26px + env(safe-area-inset-bottom))}
+.portada h1{font-size:min(13.2vw,88px);font-weight:600;line-height:.95;letter-spacing:-.035em;text-shadow:0 2px 30px rgba(60,30,110,.35)}
+.portada h1 em{font-size:1.08em}
+.portada__sub{margin-top:14px;max-width:34ch;font-size:16px;line-height:1.45;color:rgba(255,255,255,.92);text-shadow:0 1px 14px rgba(60,30,110,.4)}
+.acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.bucea{position:absolute;right:0;bottom:calc(150px + env(safe-area-inset-bottom));z-index:3;display:none;padding:14px 18px;border-radius:16px 0 0 16px;background:rgba(80,60,170,.35);border:1px solid rgba(255,255,255,.35);border-right:0;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-size:14px;line-height:1.3}
 
-  /* Portada */
-  .hero { display:grid; gap:28px; padding:28px 0 12px; align-items:center; }
-  .hero h1 { font-size:clamp(46px, 11vw, 104px); font-weight:900; line-height:.92; letter-spacing:-.045em; }
-  .hero h1 em { font-style:normal; color:var(--lime); position:relative; white-space:nowrap; }
-  .hero h1 em svg { position:absolute; left:-2%; bottom:-.14em; width:104%; height:.3em; overflow:visible; }
-  .hero h1 em path { stroke:var(--lime); stroke-width:7; fill:none; stroke-linecap:round; stroke-dasharray:420; stroke-dashoffset:420; animation:trazo 1s .5s ease-out forwards; }
-  @keyframes trazo { to { stroke-dashoffset:0; } }
-  .hero p { margin-top:20px; font-size:clamp(17px, 2.3vw, 21px); color:var(--soft); max-width:560px; line-height:1.45; }
-  .datos { display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
-  .datos span { font-size:14px; font-weight:600; padding:8px 13px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.06); }
-  .datos b { color:var(--lime); }
+/* ---------- Abanico de tarjetas que brillan ---------- */
+.brillo{position:relative;padding:96px 18px 40px;text-align:center;overflow:hidden;background:radial-gradient(60% 40% at 50% 70%,rgba(109,74,255,.35),transparent 70%),radial-gradient(40% 30% at 20% 30%,rgba(255,120,200,.16),transparent 70%),var(--noche)}
+.brillo h2,.mar h2{font-size:min(11vw,64px);font-weight:600;line-height:1;letter-spacing:-.03em}
+.brillo__sub{margin:14px auto 0;max-width:36ch;font-size:16px;line-height:1.45;color:var(--suave)}
+/* Las tarjetas giran desde un punto bajo ellas: las de los costados bajan. --baja reserva ese espacio (según el giro
+   máximo, 3 × --paso) para que ninguna tape los números de abajo. --abre lo anima GSAP (0 = mazo cerrado, 1 = abierto). */
+.abanico{--paso:8deg;--baja:.3;--abre:1;--w:min(34vw,190px);position:relative;height:calc(var(--w) * (1.8 + var(--baja)) + 60px);max-width:900px;margin:30px auto 0}
+.abanico a{position:absolute;left:50%;bottom:calc(var(--w) * var(--baja) + 26px);width:var(--w);aspect-ratio:390/700;margin-left:calc(var(--w) / -2);border-radius:20px;overflow:hidden;transform-origin:50% 160%;transform:rotate(calc(var(--i) * var(--paso) * var(--abre))) translateY(calc(var(--y,0px) * var(--abre)));box-shadow:0 0 0 1px rgba(255,255,255,.18),0 20px 60px -10px var(--g),0 0 70px -10px var(--g);transition:box-shadow .3s}
+.abanico a img{width:100%;height:100%;object-fit:cover;object-position:top}
+.abanico a::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,255,255,.28),transparent 40%);pointer-events:none}
+.datos{position:relative;z-index:10;display:flex;justify-content:center;flex-wrap:wrap;gap:8px 16px;margin-top:12px;font-size:13px;color:var(--suave)}
+.datos b{display:block;font-size:30px;font-weight:600;color:#fff;letter-spacing:-.02em}
 
-  /* Tres celulares en abanico */
-  .abanico { position:relative; height:clamp(380px, 100vw, 540px); max-width:520px; width:100%; margin:0 auto; container-type:inline-size; }
-  .tel { position:absolute; top:50%; left:50%; width:min(38cqi, 200px); border-radius:26px; padding:6px; background:#0b0920;
-    box-shadow:0 30px 60px rgba(0,0,0,.5), inset 0 0 0 1.5px rgba(255,255,255,.14); transition:transform .35s cubic-bezier(.2,.8,.2,1); }
-  .tel img { border-radius:20px; aspect-ratio:390/760; object-fit:cover; object-position:top; width:100%; height:auto; }
-  .tel::before { content:''; position:absolute; top:12px; left:50%; width:30%; height:5px; margin-left:-15%; border-radius:9px; background:#0b0920; z-index:1; }
-  .tel.t1 { --r:-11deg; --x:-118%; z-index:1; animation:ola 6s ease-in-out infinite; }
-  .tel.t2 { --r:0deg; --x:-50%; z-index:2; width:min(44cqi, 232px); animation:ola 6s -2s ease-in-out infinite; }
-  .tel.t3 { --r:11deg; --x:18%; z-index:1; animation:ola 6s -4s ease-in-out infinite; }
-  .tel { transform:translate(var(--x), -50%) rotate(var(--r)); }
-  @keyframes ola { 50% { transform:translate(var(--x), -54%) rotate(var(--r)); } }
-  .tel:hover, .tel:focus-visible { animation:none; transform:translate(var(--x), -56%) rotate(0deg) scale(1.04); z-index:3; }
-  .tel .tag { position:absolute; left:50%; bottom:-14px; transform:translateX(-50%); white-space:nowrap; font-size:12px; font-weight:800;
-    padding:6px 11px; border-radius:999px; background:var(--lime); color:var(--dark); box-shadow:0 6px 16px rgba(0,0,0,.35); }
+/* ---------- Láminas: título grande sobre paisaje de cine ---------- */
+.lamina{position:relative;isolation:isolate;overflow:hidden;padding:26px 0 46px;scroll-margin-top:60px}
+.lamina__cielo{position:absolute;inset:0;z-index:-1;background:var(--suelo)}
+.lamina__foto img{height:min(100%,150svh);object-position:center 34%;-webkit-mask:linear-gradient(#000 82%,transparent);mask:linear-gradient(#000 82%,transparent)}
+.lamina__cielo::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(14,10,36,.34),transparent 30%,transparent 55%,rgba(8,6,22,.5))}
+.lamina__cielo::after{content:"";position:absolute;inset:0;z-index:1;opacity:.1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
+.lamina--atardecer{--suelo:#26331b}.lamina--noche{--suelo:#120c26}.lamina--dorado{--suelo:#3d2d10}.lamina--pastel{--suelo:#9a76c0}
+.lamina__cab{display:flex;justify-content:space-between;padding:0 18px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;opacity:.9}
+.lamina__tit{text-align:center;padding:46px 18px 0}
+.lamina h2{font-size:min(12vw,96px);font-weight:700;line-height:.92;letter-spacing:-.03em;text-transform:uppercase;text-shadow:0 4px 40px rgba(0,0,0,.25)}
+.lamina__sub{margin-top:10px;font-size:min(4.6vw,22px);font-weight:500;text-transform:uppercase;letter-spacing:.06em;opacity:.95}
+.escenario{position:relative;margin:48px auto 0;width:min(92vw,880px)}
+.escenario--ventanas{aspect-ratio:1120/880}
+.ventana{position:absolute;left:0;right:0;top:4%;display:block;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 40px 80px -24px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.25)}
+.ventana img{width:100%;aspect-ratio:1120/700;object-fit:cover;object-position:top}
+.ventana__barra{display:flex;align-items:center;gap:5px;height:26px;padding:0 10px;background:#f1eef6;color:#4a4560}
+.ventana__barra i{width:8px;height:8px;border-radius:50%;background:#ff6058}.ventana__barra i:nth-child(2){background:#ffbd2e}.ventana__barra i:nth-child(3){background:#28c940}
+.ventana__barra b{flex:1;margin-left:8px;padding:3px 10px;border-radius:999px;background:#fff;font-size:10px;font-weight:500;text-align:center;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.ventana--atras{transform:translate(-8%,-17%) scale(.84) rotate(-4deg);filter:brightness(.82);z-index:-1}
+.escenario--telefonos{height:min(122vw,600px)}
+.telefono{position:absolute;left:50%;top:0;width:min(52vw,270px);aspect-ratio:390/800;margin-left:calc(min(52vw,270px) / -2 + 8%);border-radius:30px;overflow:hidden;background:#0b0920;border:6px solid #0b0920;box-shadow:0 40px 80px -20px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.2)}
+.telefono img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:24px}
+.telefono--atras{transform:translate(-62%,8%) rotate(-8deg) scale(.88);filter:brightness(.8);z-index:-1}
+.lamina__texto{max-width:36ch;margin:22px auto 0;padding:0 18px;text-align:center;font-size:16px;line-height:1.45;text-shadow:0 1px 16px rgba(0,0,0,.35)}
+.fila{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:26px 18px 8px;scrollbar-width:none;overscroll-behavior-x:contain}
+.fila::-webkit-scrollbar{display:none}
+.card{flex:none;width:min(42vw,200px);scroll-snap-align:start;display:block}
+.marco{position:relative;border-radius:22px;padding:5px;background:rgba(11,9,32,.85);box-shadow:0 18px 40px -10px rgba(0,0,0,.5),inset 0 0 0 1.5px rgba(255,255,255,.18);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.marco img{border-radius:17px;aspect-ratio:390/640;object-fit:cover;object-position:top;width:100%}
+.card:hover .marco{transform:translateY(-6px);box-shadow:0 28px 50px -12px rgba(0,0,0,.6),inset 0 0 0 2px var(--lima)}
+.nuevo{position:absolute;top:-8px;right:-6px;z-index:1;padding:5px 10px;border-radius:999px;background:var(--lima);color:#16123a;font-size:12px;font-weight:800;transform:rotate(6deg)}
+.card h3{display:flex;justify-content:space-between;gap:6px;margin-top:12px;font-size:16px;font-weight:700;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.card h3::after{content:"→";color:var(--lima)}
+.card p{margin-top:2px;font-size:13px;line-height:1.35;opacity:.88;text-shadow:0 1px 12px rgba(0,0,0,.35)}
 
-  .tel.t1 .tag { left:24%; } .tel.t3 .tag { left:76%; }
-  /* El cursor de Clickea que hace clic */
-  .cursor { position:absolute; z-index:4; left:58%; top:58%; width:64px; pointer-events:none; animation:clic 4s ease-in-out infinite; }
-  .cursor .rayos { transform-origin:39px 30px; animation:rayos 4s ease-in-out infinite; }
-  .onda { position:absolute; z-index:3; left:calc(58% + 8px); top:calc(58% + 6px); width:60px; height:60px; margin:-30px 0 0 -30px; border-radius:50%;
-    border:3px solid var(--lime); opacity:0; pointer-events:none; animation:onda 4s ease-out infinite; }
-  @keyframes clic { 0% { transform:translate(70px, 60px); opacity:0; } 20% { opacity:1; } 45% { transform:translate(0,0); } 52% { transform:translate(0,0) scale(.82); } 60%, 85% { transform:translate(0,0) scale(1); opacity:1; } 100% { transform:translate(0,0); opacity:0; } }
-  @keyframes rayos { 0%, 50% { opacity:0; transform:scale(.6); } 58% { opacity:1; transform:scale(1.15); } 75%, 100% { opacity:0; transform:scale(1); } }
-  @keyframes onda { 0%, 51% { opacity:0; transform:scale(.3); } 55% { opacity:.9; } 80%, 100% { opacity:0; transform:scale(2.4); } }
+/* ---------- Bajo el mar: final ---------- */
+.mar{position:relative;isolation:isolate;overflow:hidden;padding:120px 18px 40px;text-align:center;background:#0f4f7e}
+.mar__fondo{position:absolute;inset:0;z-index:-1}
+.mar__foto img,.mar__fondo video{object-position:center 70%}
+.mar__fondo::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 45% at 50% 42%,rgba(6,40,70,.35),transparent 70%),linear-gradient(180deg,transparent 55%,rgba(4,22,44,.72))}
+.mar::before{content:"";position:absolute;left:0;right:0;top:0;height:70px;background:linear-gradient(180deg,rgba(255,255,255,.65),transparent);mask:radial-gradient(60px 22px at 50% 0,#000 60%,transparent 61%) 0 0/120px 70px repeat-x;-webkit-mask:radial-gradient(60px 22px at 50% 0,#000 60%,transparent 61%) 0 0/120px 70px repeat-x;opacity:.6}
+.nadador{width:min(34vw,170px);margin:0 auto;animation:nada 6s ease-in-out infinite alternate}
+@keyframes nada{from{transform:translate(-14px,0) rotate(-6deg)}to{transform:translate(14px,-12px) rotate(6deg)}}
+.mar__marca{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-weight:600;font-size:17px;opacity:.95}
+.mar__marca svg{width:26px;height:26px}
+.mar h2{margin-top:10px}
+.mar__sub{margin:14px auto 0;max-width:34ch;font-size:16px;line-height:1.45;color:rgba(255,255,255,.88)}
+.mar .acciones{justify-content:center}
+.pie{display:grid;grid-template-columns:repeat(3,auto);justify-content:center;gap:10px 40px;margin-top:70px;text-align:left;font-size:14px}
+.pie h3{margin-bottom:8px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.pie a{display:block;padding:5px 0;opacity:.92}
+.pie a:hover{color:var(--lima)}
+.nota{margin-top:30px;font-size:12px;opacity:.65}
 
-  /* Cinta de rubros */
-  .cinta { margin:44px 0 8px; transform:rotate(-2deg); background:var(--lime); color:var(--dark); overflow:hidden; box-shadow:0 12px 30px rgba(0,0,0,.3); }
-  .cinta div { display:flex; width:max-content; animation:marquee 32s linear infinite; }
-  .cinta p { font-weight:900; font-size:clamp(18px, 3vw, 26px); letter-spacing:-.01em; padding:12px 0; white-space:nowrap; }
-  .cinta p span { margin:0 18px; color:var(--violet); }
-  @keyframes marquee { to { transform:translateX(-50%); } }
-
-  /* Secciones y tarjetas */
-  section { padding-top:64px; }
-  .tit { display:flex; align-items:baseline; gap:14px; margin-bottom:22px; }
-  .tit small { font-weight:800; color:var(--lime); font-size:15px; letter-spacing:.1em; }
-  .tit h2 { font-size:clamp(30px, 5.5vw, 52px); font-weight:900; letter-spacing:-.035em; line-height:1; }
-  .tit p { color:var(--soft); margin-top:8px; font-size:16px; }
-  .grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:22px 14px; }
-  @media (min-width:700px) { .grid { grid-template-columns:repeat(3, 1fr); gap:30px 22px; } }
-  @media (min-width:1000px) { .grid { grid-template-columns:repeat(5, 1fr); } .grid.g4 { grid-template-columns:repeat(4, 1fr); } .grid.g3 { grid-template-columns:repeat(3, minmax(0, 250px)); justify-content:start; gap:30px 36px; } }
-  .card { display:block; perspective:900px; border-radius:22px; }
-  .card:focus-visible { outline:3px solid var(--lime); outline-offset:6px; }
-  .marco { position:relative; border-radius:24px; padding:5px; background:#0b0920; box-shadow:0 18px 40px rgba(0,0,0,.4), inset 0 0 0 1.5px rgba(255,255,255,.12);
-    transition:transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s; transform-style:preserve-3d; }
-  .marco img { border-radius:19px; aspect-ratio:390/640; object-fit:cover; object-position:top; width:100%; height:auto; background:#221c55; }
-  .card:hover .marco, .card:focus-visible .marco { transform:translateY(-8px) rotateX(6deg) rotateY(-6deg); box-shadow:0 30px 60px rgba(109,74,255,.45), inset 0 0 0 2px var(--lime); }
-  .nuevo { position:absolute; top:-8px; right:-6px; z-index:1; font-size:12px; font-weight:900; padding:5px 10px; border-radius:999px; background:var(--lime); color:var(--dark); transform:rotate(6deg); }
-  .card h3 { font-size:18px; font-weight:800; margin-top:14px; display:flex; justify-content:space-between; gap:8px; }
-  .card h3::after { content:'→'; color:var(--lime); transition:transform .3s; }
-  .card:hover h3::after { transform:translateX(4px); }
-  .card p { font-size:14px; color:var(--soft); margin-top:2px; line-height:1.35; }
-
-  /* Aparición al hacer scroll (solo si el navegador la soporta; si no, todo se ve normal) */
-  @supports (animation-timeline: view()) {
-    .card, .tit { animation:subir linear both; animation-timeline:view(); animation-range:entry 0% entry 70%; }
-    @keyframes subir { from { opacity:0; transform:translateY(50px) scale(.96); } }
-  }
-
-  .cta { position:relative; overflow:hidden; margin-top:80px; padding:clamp(28px, 5vw, 56px); border-radius:32px; background:var(--lime); color:var(--dark);
-    display:grid; gap:20px; align-items:center; }
-  .cta h2 { font-size:clamp(34px, 7vw, 72px); font-weight:900; letter-spacing:-.045em; line-height:.95; }
-  .cta p { font-weight:600; font-size:18px; margin-top:10px; max-width:460px; }
-  .cta a { justify-self:start; display:inline-flex; align-items:center; gap:10px; background:var(--dark); color:#fff; font-weight:800; font-size:18px; padding:16px 26px; border-radius:18px; min-height:52px; transition:transform .2s; }
-  .cta a:hover { transform:translateY(-3px); }
-  .cta::after { content:''; position:absolute; right:-80px; top:-80px; width:260px; height:260px; border-radius:50%; border:40px solid rgba(109,74,255,.18); animation:girar 14s linear infinite; }
-  @keyframes girar { to { transform:rotate(360deg) translate(10px); } }
-  @media (min-width:800px) { .hero { grid-template-columns:1.1fr 1fr; padding-top:48px; } .cta { grid-template-columns:1fr auto; } .cta a { justify-self:end; } }
-  footer { padding:40px 0 56px; font-size:13px; color:var(--soft); text-align:center; }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation:none !important; transition:none !important; }
-    .hero h1 em path { stroke-dashoffset:0; }
-    .cursor { transform:none; } .onda, .cursor .rayos { opacity:0; }
-  }
+@media (min-width:760px){
+  .barra{padding:18px 28px}
+  .menu{display:flex}
+  .portada__txt{padding:0 40px 44px;max-width:900px}
+  .bucea{display:block}
+  .lamina__cab{padding:0 40px}
+  .lamina{padding:34px 0 70px}
+  .fila{justify-content:center;flex-wrap:wrap;overflow:visible;padding:40px 40px 0}
+  .card{width:200px}
+  .abanico{--paso:13deg;--baja:.56}
+  .datos{gap:8px 26px;font-size:14px}
+  .escenario--ventanas{margin-top:120px}
+  .objeto,.reflejo{width:min(560px,50svh)}
+  .objeto{left:58%}.reflejo{left:58%}
+}
+/* lo que GSAP mueve al bajar va en su propia capa: así el celular no repinta fotos grandes ni sombras en cada cuadro */
+.objeto,.portada__txt,.abanico a,.ventana,.telefono,.lamina__foto img{will-change:transform}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.fondo-video{display:none}}
 </style>
 </head>
 <body>
-<div class="fondo" aria-hidden="true"><i></i><i></i><i></i></div>
-<div class="wrap">
-  <header>
-    <a class="logo" href="./" aria-label="Clickea Studio">
-      <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#6d4aff"/><g transform="translate(8 6) scale(.84)"><g stroke="#c8ff3d" stroke-width="6" stroke-linecap="round"><line x1="27" y1="33" x2="17" y2="33"/><line x1="30" y1="24" x2="23" y2="17"/><line x1="39" y1="21" x2="39" y2="11"/></g><path d="M40 32 L40 78 L52 66 L60 84 L69 80 L61 62 L77 62 Z" fill="#fff" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></g></svg>
-      <div><b>clickea</b><span>.studio</span></div>
-    </a>
-    <a class="pill" href="https://instagram.com/clickea.studio" target="_blank" rel="noopener">Quiero una</a>
-  </header>
+<header class="barra" id="barra">
+  <a class="logo" href="./" aria-label="Clickea Studio, inicio">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#6d4aff"/><g transform="translate(8 6) scale(.84)"><g stroke="#c8ff3d" stroke-width="6" stroke-linecap="round"><line x1="27" y1="33" x2="17" y2="33"/><line x1="30" y1="24" x2="23" y2="17"/><line x1="39" y1="21" x2="39" y2="11"/></g><path d="M40 32 L40 78 L52 66 L60 84 L69 80 L61 62 L77 62 Z" fill="#fff"/></g></svg>
+    clickea<span>.studio</span>
+  </a>
+  <nav class="menu" aria-label="Secciones"><a href="#webs">Webs</a><a href="#mueven">Animadas</a><a href="#menus">Menús</a><a href="#detalles">Detalles</a></nav>
+  <a class="boton boton--claro" href="https://wa.me/51992103569?text=Hola%2C%20vi%20sus%20demos%20y%20quiero%20una%20web%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero la mía</a>
+</header>
 
-  <section class="hero" style="padding-top:28px">
-    <div>
-      <h1>Toca y <em>míralo<svg viewBox="0 0 400 30" preserveAspectRatio="none" aria-hidden="true"><path d="M4 20 C 90 6, 250 4, 396 16"/></svg></em><br>funcionando.</h1>
-      <p>Estas son muestras reales de lo que hacemos. Ábrelas desde tu celular: así las verían tus clientes, con reservas y pedidos directo a WhatsApp.</p>
-      <div class="datos"><span><b>20</b> demos para tocar</span><span>Hechas para celular</span><span>Cargan al toque</span></div>
-    </div>
-    <div class="abanico">
-      <a class="tel t1" href="nikkei/" aria-label="Ver demo: carta QR nikkei"><img src="capturas/nikkei.jpg" alt="Carta de mesa con QR del bar nikkei Kōji" width="390" height="844" fetchpriority="high"><span class="tag">Carta QR</span></a>
-      <a class="tel t2" href="criollo/" aria-label="Ver demo: restaurante criollo"><img src="capturas/criollo.jpg" alt="Web del restaurante criollo Mesa Larga" width="390" height="844" fetchpriority="high"><span class="tag">Web con reservas</span></a>
-      <a class="tel t3" href="huarique/" aria-label="Ver demo: menú del día"><img src="capturas/huarique.jpg" alt="Pizarra del menú del día del Huarique de la Tía Carmen" width="390" height="844" fetchpriority="high"><span class="tag">Menú del día</span></a>
-      <span class="onda" aria-hidden="true"></span>
-      <svg class="cursor" viewBox="0 0 100 100" aria-hidden="true"><g class="rayos" stroke="#c8ff3d" stroke-width="7" stroke-linecap="round"><line x1="27" y1="33" x2="15" y2="33"/><line x1="30" y1="24" x2="21" y2="15"/><line x1="39" y1="21" x2="39" y2="9"/></g><path d="M40 32 L40 78 L52 66 L60 84 L69 80 L61 62 L77 62 Z" fill="#fff" stroke="#16123a" stroke-width="3" stroke-linejoin="round"/></svg>
-    </div>
-  </section>
-</div>
-
-<div class="cinta" aria-hidden="true"><div>
-  <p>Restaurantes<span>✦</span>Webs animadas<span>✦</span>Barberías<span>✦</span>Consultorios<span>✦</span>Tiendas de ropa<span>✦</span>Cartas con QR<span>✦</span>Menú del día<span>✦</span>Pedidos por WhatsApp<span>✦</span>Detalles para regalar<span>✦</span></p>
-  <p>Restaurantes<span>✦</span>Webs animadas<span>✦</span>Barberías<span>✦</span>Consultorios<span>✦</span>Tiendas de ropa<span>✦</span>Cartas con QR<span>✦</span>Menú del día<span>✦</span>Pedidos por WhatsApp<span>✦</span>Detalles para regalar<span>✦</span></p>
-</div></div>
-
-<main class="wrap">
-  <section>
-    <div class="tit"><small>01</small><div><h2>Webs para negocios</h2><p>Tu negocio abierto las 24 horas, con reservas por WhatsApp.</p></div></div>
-    <div class="grid g4">
-      <a class="card" href="criollo/"><div class="marco"><img src="capturas/criollo.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Restaurante criollo</h3><p>Mesa Larga · Barranco</p></a>
-      <a class="card" href="barberia/"><div class="marco"><img src="capturas/barberia.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Barbería</h3><p>Filo Cobre · Surco</p></a>
-      <a class="card" href="dental/"><div class="marco"><img src="capturas/dental.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Consultorio dental</h3><p>Brisa Dental · Miraflores</p></a>
-      <a class="card" href="ropa/"><div class="marco"><img src="capturas/ropa.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Tienda de ropa</h3><p>Tela Brava · Jesús María</p></a>
-    </div>
-  </section>
-
-  <section>
-    <div class="tit"><small>02</small><div><h2>Webs que se mueven</h2><p>Animaciones al bajar: un 3D que se desarma, secciones que se quedan fijas y textos que se arman solos.</p></div></div>
-    <div class="grid g3">
-      <a class="card" href="hamburgueseria/"><div class="marco"><span class="nuevo">3D</span><img src="capturas/hamburgueseria.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Hamburguesería</h3><p>PRENSA · se arma en 3D</p></a>
-      <a class="card" href="cafeteria/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/cafeteria.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Cafetería</h3><p>Altura · Surquillo</p></a>
-      <a class="card" href="zapatos/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/zapatos.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Zapatos de cuero</h3><p>HORMA · Trujillo</p></a>
-    </div>
-  </section>
-
-  <section>
-    <div class="tit"><small>03</small><div><h2>Cartas y menús para restaurantes</h2><p>Para la mesa, para el menú de hoy o para pedir delivery.</p></div></div>
-    <div class="grid">
-      <a class="card" href="pizzeria/"><div class="marco"><span class="nuevo">Arma tu pizza</span><img src="capturas/pizzeria.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Pizzería</h3><p>La Leñera · arma la tuya</p></a>
-      <a class="card" href="nikkei/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/nikkei.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Carta de mesa QR</h3><p>Kōji · español e inglés</p></a>
-      <a class="card" href="huarique/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/huarique.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Menú del día</h3><p>Huarique de la Tía Carmen</p></a>
-      <a class="card" href="polleria/"><div class="marco"><img src="capturas/polleria.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Pollería</h3><p>El Tizón Dorado · delivery</p></a>
-      <a class="card" href="cevicheria/"><div class="marco"><img src="capturas/cevicheria.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Cevichería</h3><p>Brisa Chalaca · delivery</p></a>
-      <a class="card" href="chifa/"><div class="marco"><img src="capturas/chifa.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Chifa</h3><p>Chifa Kam Ho · delivery</p></a>
-    </div>
-  </section>
-
-  <section>
-    <div class="tit"><small>04</small><div><h2>Detalles digitales</h2><p>Un link y un QR para regalar algo que emociona.</p></div></div>
-    <div class="grid">
-      <a class="card" href="regalo-sorpresa/"><div class="marco"><span class="nuevo">3D</span><img src="capturas/regalo-sorpresa.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Regalo sorpresa</h3><p>Una caja que se abre</p></a>
-      <a class="card" href="nuestra-historia/"><div class="marco"><span class="nuevo">Nuevo</span><img src="capturas/nuestra-historia.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Nuestra historia</h3><p>Su historia al deslizar</p></a>
-      <a class="card" href="aniversario/"><div class="marco"><img src="capturas/aniversario.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Aniversario</h3><p>Carta que se abre sola</p></a>
-      <a class="card" href="declaracion/"><div class="marco"><img src="capturas/declaracion.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Declaración</h3><p>¿Quieres ser mi enamorada?</p></a>
-      <a class="card" href="cumpleanos/"><div class="marco"><img src="capturas/cumpleanos.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Cumpleaños</h3><p>Sopla las velas</p></a>
-      <a class="card" href="dia-de-la-madre/"><div class="marco"><img src="capturas/dia-de-la-madre.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Día de la Madre</h3><p>Flores que florecen</p></a>
-      <a class="card" href="baby-shower/"><div class="marco"><img src="capturas/baby-shower.jpg" alt="" width="390" height="844" loading="lazy"></div><h3>Baby shower</h3><p>Invitación con confirmación</p></a>
-    </div>
-  </section>
-
-  <div class="cta">
-    <div>
-      <h2>¿Tu negocio con una así?</h2>
-      <p>Escríbenos, cuéntanos de tu negocio y te mostramos cómo quedaría.</p>
-    </div>
-    <a href="https://instagram.com/clickea.studio" target="_blank" rel="noopener">Escríbenos a @clickea.studio</a>
+<main>
+<section class="portada" aria-labelledby="t-portada">
+  <div class="portada__cielo" aria-hidden="true"><picture class="portada__foto"><source media="(max-width:759px)" srcset="portada/videos/portada-m.webp"><img src="portada/videos/portada.webp" alt="" width="1280" height="720" decoding="async" fetchpriority="high"></picture><video class="fondo-video" data-video="portada" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" tabindex="-1"></video></div>
+  <div class="objeto" aria-hidden="true"><div class="objeto__flota"><img id="cursorImg" src="portada/cursor/000.webp" alt="" width="560" height="560"><canvas id="cursor" width="560" height="560" hidden></canvas></div></div>
+  <div class="reflejo" aria-hidden="true"><canvas id="reflejo" width="560" height="560"></canvas></div>
+  <i class="burbuja burbuja--1" aria-hidden="true"></i><i class="burbuja burbuja--2" aria-hidden="true"></i><i class="burbuja burbuja--3" aria-hidden="true"></i>
+  <div class="portada__txt">
+    <h1 id="t-portada">Webs que paran<br>el <em>scroll</em>.</h1>
+    <p class="portada__sub">Webs, menús con QR y detalles digitales que tus clientes no dejan de mirar. Listos en días y hechos para el celular.</p>
+    <div class="acciones"><a class="boton boton--claro" href="#demos">Ver las demos</a><a class="boton boton--vidrio" href="https://wa.me/51992103569?text=Hola%2C%20vi%20sus%20demos%20y%20quiero%20una%20web%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero la mía</a></div>
   </div>
+  <a class="bucea" href="#demos">Desliza<br>y entra ↓</a>
+</section>
 
-  <footer>Los negocios de estas muestras son ficticios. Diseñado por Clickea Studio · Lima, Perú.</footer>
+<section class="brillo" id="demos" aria-labelledby="t-brillo">
+  <h2 id="t-brillo">Toca y míralo <em>funcionando</em>.</h2>
+  <p class="brillo__sub">Muestras reales para abrir desde tu celular: así las verían tus clientes, con pedidos y reservas directo a WhatsApp.</p>
+  <div class="abanico" id="abanico">
+    <a href="regalo-sorpresa/" style="--i:-3;--y:12px;z-index:1;--g:hsl(290 95% 62% / .75)" aria-label="Abrir la demo: regalo sorpresa"><img src="capturas/regalo-sorpresa.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></a>
+    <a href="cafeteria/" style="--i:-2;--y:8px;z-index:2;--g:hsl(25 95% 62% / .75)" aria-label="Abrir la demo: cafeteria"><img src="capturas/cafeteria.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></a>
+    <a href="pizzeria/" style="--i:-1;--y:4px;z-index:3;--g:hsl(15 95% 62% / .75)" aria-label="Abrir la demo: pizzeria"><img src="capturas/pizzeria.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></a>
+    <a href="dental/" style="--i:0;--y:0px;z-index:4;--g:hsl(170 95% 62% / .75)" aria-label="Abrir la demo: dental"><img src="capturas/dental.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></a>
+    <a href="hamburgueseria/" style="--i:1;--y:4px;z-index:3;--g:hsl(45 95% 62% / .75)" aria-label="Abrir la demo: hamburgueseria"><img src="capturas/hamburgueseria.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></a>
+    <a href="cevicheria/" style="--i:2;--y:8px;z-index:2;--g:hsl(205 95% 62% / .75)" aria-label="Abrir la demo: cevicheria"><img src="capturas/cevicheria.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></a>
+    <a href="nuestra-historia/" style="--i:3;--y:12px;z-index:1;--g:hsl(330 95% 62% / .75)" aria-label="Abrir la demo: nuestra historia"><img src="capturas/nuestra-historia.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></a>
+  </div>
+  <div class="datos"><span><b>20</b>demos para tocar</span><span><b>4</b>tipos de pieza</span><span><b>100%</b>pensadas para celular</span></div>
+</section>
+
+<section class="lamina lamina--atardecer" id="webs" aria-labelledby="t-webs">
+  <div class="lamina__cielo" aria-hidden="true"><picture class="lamina__foto"><source media="(max-width:759px)" srcset="portada/fondos/lomas-verdes-m.webp"><img src="portada/fondos/lomas-verdes.webp" alt="" width="2400" height="1340" decoding="async" loading="lazy"></picture></div>
+  <div class="lamina__cab" aria-hidden="true"><span>01 / 04</span><span>@clickea.studio</span><span>Demos</span></div>
+  <div class="lamina__tit">
+    <h2 id="t-webs">Webs para negocios</h2>
+    <p class="lamina__sub">Tu negocio abierto las 24 horas</p>
+  </div>
+  <div class="escenario escenario--ventanas">
+    <a class="ventana ventana--atras" href="barberia/" tabindex="-1" aria-hidden="true"><span class="ventana__barra"><i></i><i></i><i></i><b>clickea.github.io/demos/barberia</b></span><img src="portada/ventanas/barberia.webp" alt="" width="1120" height="700" loading="lazy" decoding="async"></a>
+    <a class="ventana" href="dental/" aria-label="Abrir la demo: dental"><span class="ventana__barra"><i></i><i></i><i></i><b>clickea.github.io/demos/dental</b></span><img src="portada/ventanas/dental.webp" alt="" width="1120" height="700" loading="lazy" decoding="async"></a>
+  </div>
+  <p class="lamina__texto">Reservas y pedidos directo a tu WhatsApp, con tu ubicación, horario y precios a la vista.</p>
+  <div class="fila" role="list">
+    <a role="listitem" class="card" href="dental/"><div class="marco"><img src="capturas/dental.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Consultorio dental</h3><p>Brisa Dental · Miraflores</p></a>
+    <a role="listitem" class="card" href="barberia/"><div class="marco"><img src="capturas/barberia.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Barbería</h3><p>Filo Cobre · Surco</p></a>
+    <a role="listitem" class="card" href="criollo/"><div class="marco"><img src="capturas/criollo.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Restaurante criollo</h3><p>Mesa Larga · Barranco</p></a>
+    <a role="listitem" class="card" href="ropa/"><div class="marco"><img src="capturas/ropa.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Tienda de ropa</h3><p>Tela Brava · Jesús María</p></a>
+  </div>
+</section>
+
+<section class="lamina lamina--noche" id="mueven" aria-labelledby="t-mueven">
+  <div class="lamina__cielo" aria-hidden="true"><picture class="lamina__foto"><source media="(max-width:759px)" srcset="portada/fondos/dunas-m.webp"><img src="portada/fondos/dunas.webp" alt="" width="2400" height="1340" decoding="async" loading="lazy"></picture></div>
+  <div class="lamina__cab" aria-hidden="true"><span>02 / 04</span><span>@clickea.studio</span><span>Demos</span></div>
+  <div class="lamina__tit">
+    <h2 id="t-mueven">Webs que se mueven</h2>
+    <p class="lamina__sub">Animaciones que se quedan en la cabeza</p>
+  </div>
+  <div class="escenario escenario--ventanas">
+    <a class="ventana ventana--atras" href="cafeteria/" tabindex="-1" aria-hidden="true"><span class="ventana__barra"><i></i><i></i><i></i><b>clickea.github.io/demos/cafeteria</b></span><img src="portada/ventanas/cafeteria.webp" alt="" width="1120" height="700" loading="lazy" decoding="async"></a>
+    <a class="ventana" href="hamburgueseria/" aria-label="Abrir la demo: hamburgueseria"><span class="ventana__barra"><i></i><i></i><i></i><b>clickea.github.io/demos/hamburgueseria</b></span><img src="portada/ventanas/hamburgueseria.webp" alt="" width="1120" height="700" loading="lazy" decoding="async"></a>
+  </div>
+  <p class="lamina__texto">Un 3D que se desarma, una taza que se sirve sola, zapatos que flotan al bajar.</p>
+  <div class="fila" role="list">
+    <a role="listitem" class="card" href="hamburgueseria/"><div class="marco"><span class="nuevo">3D</span><img src="capturas/hamburgueseria.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Hamburguesería</h3><p>PRENSA · se arma en 3D</p></a>
+    <a role="listitem" class="card" href="cafeteria/"><div class="marco"><img src="capturas/cafeteria.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Cafetería</h3><p>Altura · Surquillo</p></a>
+    <a role="listitem" class="card" href="zapatos/"><div class="marco"><img src="capturas/zapatos.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Zapatos de cuero</h3><p>HORMA · Trujillo</p></a>
+  </div>
+</section>
+
+<section class="lamina lamina--dorado" id="menus" aria-labelledby="t-menus">
+  <div class="lamina__cielo" aria-hidden="true"><picture class="lamina__foto"><source media="(max-width:759px)" srcset="portada/fondos/trigo-m.webp"><img src="portada/fondos/trigo.webp" alt="" width="2400" height="1340" decoding="async" loading="lazy"></picture></div>
+  <div class="lamina__cab" aria-hidden="true"><span>03 / 04</span><span>@clickea.studio</span><span>Demos</span></div>
+  <div class="lamina__tit">
+    <h2 id="t-menus">Cartas y menús</h2>
+    <p class="lamina__sub">Pedidos por WhatsApp, sin comisiones</p>
+  </div>
+  <div class="escenario escenario--telefonos">
+    <a class="telefono telefono--atras" href="polleria/" tabindex="-1" aria-hidden="true"><img src="capturas/polleria.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></a>
+    <a class="telefono" href="pizzeria/" aria-label="Abrir la demo: pizzeria"><img src="capturas/pizzeria.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></a>
+  </div>
+  <p class="lamina__texto">Cada carta con su propia cara: rótulo de pollería, comanda de chifa, noche de pizzería o azulejo del Callao.</p>
+  <div class="fila" role="list">
+    <a role="listitem" class="card" href="pizzeria/"><div class="marco"><span class="nuevo">Arma tu pizza</span><img src="capturas/pizzeria.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Pizzería</h3><p>La Leñera · arma la tuya</p></a>
+    <a role="listitem" class="card" href="polleria/"><div class="marco"><img src="capturas/polleria.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Pollería</h3><p>El Tizón Dorado · delivery</p></a>
+    <a role="listitem" class="card" href="chifa/"><div class="marco"><img src="capturas/chifa.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Chifa</h3><p>Kam Ho · delivery</p></a>
+    <a role="listitem" class="card" href="cevicheria/"><div class="marco"><img src="capturas/cevicheria.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Cevichería</h3><p>Brisa Chalaca · delivery</p></a>
+    <a role="listitem" class="card" href="nikkei/"><div class="marco"><img src="capturas/nikkei.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Carta de mesa QR</h3><p>Kōji · español e inglés</p></a>
+    <a role="listitem" class="card" href="huarique/"><div class="marco"><img src="capturas/huarique.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Menú del día</h3><p>Huarique de la Tía Carmen</p></a>
+  </div>
+</section>
+
+<section class="lamina lamina--pastel" id="detalles" aria-labelledby="t-detalles">
+  <div class="lamina__cielo" aria-hidden="true"><picture class="lamina__foto"><source media="(max-width:759px)" srcset="portada/fondos/lomas-pastel-m.webp"><img src="portada/fondos/lomas-pastel.webp" alt="" width="2400" height="1340" decoding="async" loading="lazy"></picture></div>
+  <div class="lamina__cab" aria-hidden="true"><span>04 / 04</span><span>@clickea.studio</span><span>Demos</span></div>
+  <div class="lamina__tit">
+    <h2 id="t-detalles">Detalles digitales</h2>
+    <p class="lamina__sub">Un link y un QR que emocionan</p>
+  </div>
+  <div class="escenario escenario--telefonos">
+    <a class="telefono telefono--atras" href="nuestra-historia/" tabindex="-1" aria-hidden="true"><img src="capturas/nuestra-historia.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></a>
+    <a class="telefono" href="regalo-sorpresa/" aria-label="Abrir la demo: regalo sorpresa"><img src="capturas/regalo-sorpresa.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></a>
+  </div>
+  <p class="lamina__texto">Para aniversarios, cumpleaños o una sorpresa: se abren en el celular y se guardan para siempre.</p>
+  <div class="fila" role="list">
+    <a role="listitem" class="card" href="regalo-sorpresa/"><div class="marco"><span class="nuevo">3D</span><img src="capturas/regalo-sorpresa.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Regalo sorpresa</h3><p>Una caja que se abre</p></a>
+    <a role="listitem" class="card" href="nuestra-historia/"><div class="marco"><img src="capturas/nuestra-historia.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Nuestra historia</h3><p>Su historia al deslizar</p></a>
+    <a role="listitem" class="card" href="aniversario/"><div class="marco"><img src="capturas/aniversario.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Aniversario</h3><p>Carta que se abre sola</p></a>
+    <a role="listitem" class="card" href="declaracion/"><div class="marco"><img src="capturas/declaracion.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Declaración</h3><p>¿Quieres ser mi enamorada?</p></a>
+    <a role="listitem" class="card" href="cumpleanos/"><div class="marco"><img src="capturas/cumpleanos.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Cumpleaños</h3><p>Sopla las velas</p></a>
+    <a role="listitem" class="card" href="dia-de-la-madre/"><div class="marco"><img src="capturas/dia-de-la-madre.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Día de la Madre</h3><p>Flores que florecen</p></a>
+    <a role="listitem" class="card" href="baby-shower/"><div class="marco"><img src="capturas/baby-shower.webp" alt="" width="390" height="844" loading="lazy" decoding="async"></div><h3>Baby shower</h3><p>Invitación con confirmación</p></a>
+  </div>
+</section>
+
+<section class="mar" aria-labelledby="t-mar">
+  <div class="mar__fondo" aria-hidden="true"><picture class="mar__foto"><source media="(max-width:759px)" srcset="portada/videos/mar-m.webp"><img src="portada/videos/mar.webp" alt="" width="1280" height="720" decoding="async" loading="lazy"></picture><video class="fondo-video" data-video="mar" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" tabindex="-1"></video></div>
+  <img class="nadador" src="portada/cursor/010.webp" alt="" width="560" height="560" loading="lazy" aria-hidden="true">
+  <p class="mar__marca"><svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#6d4aff"/><g transform="translate(8 6) scale(.84)"><g stroke="#c8ff3d" stroke-width="6" stroke-linecap="round"><line x1="27" y1="33" x2="17" y2="33"/><line x1="30" y1="24" x2="23" y2="17"/><line x1="39" y1="21" x2="39" y2="11"/></g><path d="M40 32 L40 78 L52 66 L60 84 L69 80 L61 62 L77 62 Z" fill="#fff"/></g></svg>clickea.studio</p>
+  <h2 id="t-mar">Empieza a construir<br>tu web <em>hoy</em>.</h2>
+  <p class="mar__sub">Cuéntanos de tu negocio por WhatsApp y te mostramos cómo quedaría. Atendemos todos los días.</p>
+  <div class="acciones"><a class="boton boton--lima" href="https://wa.me/51992103569?text=Hola%2C%20vi%20sus%20demos%20y%20quiero%20una%20web%20para%20mi%20negocio" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.2 1.2z"/></svg>Escríbenos por WhatsApp</a><a class="boton boton--vidrio" href="https://instagram.com/clickea.studio" target="_blank" rel="noopener">@clickea.studio</a></div>
+  <div class="pie">
+    <div><h3>Demos</h3><a href="#webs">Webs</a><a href="#mueven">Animadas</a><a href="#menus">Menús</a><a href="#detalles">Detalles</a></div>
+    <div><h3>Redes</h3><a href="https://instagram.com/clickea.studio" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=61594805456917" target="_blank" rel="noopener">Facebook</a></div>
+    <div><h3>Contacto</h3><a href="https://wa.me/51992103569?text=Hola%2C%20vi%20sus%20demos%20y%20quiero%20una%20web%20para%20mi%20negocio" target="_blank" rel="noopener">+51 992 103 569</a><a href="https://wa.me/51992103569?text=Hola%2C%20vi%20sus%20demos%20y%20quiero%20una%20web%20para%20mi%20negocio" target="_blank" rel="noopener">Atención 24/7</a></div>
+  </div>
+  <p class="nota">Los negocios de estas muestras son ficticios. Diseñado por Clickea Studio · Lima, Perú.</p>
+</section>
 </main>
+
+<script src="portada/js/gsap.min.js" defer></script>
+<script src="portada/js/ScrollTrigger.min.js" defer></script>
+<script>
+(function () {
+  var quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Barra con vidrio al bajar
+  var barra = document.getElementById('barra'), pegada = false;
+  var pega = function () { if ((scrollY > 40) !== pegada) barra.classList.toggle('pegada', pegada = !pegada); };
+  addEventListener('scroll', pega, { passive: true }); pega();
+
+  // Fondos animados: WebM donde se puede (pesa la mitad), MP4 en iPhone; versión vertical en celular.
+  // La portada arranca de una; el mar recién cuando se acerca. Fuera de pantalla se pausan.
+  var celular = matchMedia('(max-width:759px)').matches;
+  document.querySelectorAll('.fondo-video').forEach(function (v) {
+    if (quieto) return;
+    var webm = v.canPlayType('video/webm; codecs="vp9"') ? '.webm' : '.mp4';
+    var ruta = 'portada/videos/' + v.dataset.video + (celular ? '-m' : '') + webm;
+    v.muted = true;
+    v.addEventListener('playing', function () { v.classList.add('lista'); }, { once: true });
+    new IntersectionObserver(function (e) {
+      if (!e[0].isIntersecting) return v.pause();
+      if (!v.src) { v.src = ruta; v.preload = 'auto'; }
+      var p = v.play(); if (p) p.catch(function () {});
+    }, { rootMargin: '400px 0px' }).observe(v);
+  });
+
+  // Cursor 3D en bucle (40 cuadros) y su reflejo ondulado en el agua
+  var N = 39, cuadros = [], listos = 0;
+  var cv = document.getElementById('cursor'), cx = cv.getContext('2d');
+  var rv = document.getElementById('reflejo'), rx = rv.getContext('2d');
+  var img0 = document.getElementById('cursorImg');
+  function onda(t) { // el reflejo se dibuja en tiras que se mecen
+    rx.clearRect(0, 0, 560, 560);
+    for (var y = 0; y < 560; y += 4) rx.drawImage(cv, 0, y, 560, 4, Math.sin(y / 18 + t * 2.2) * 5, y, 560, 4);
+  }
+  function dibuja(i, t) { cx.clearRect(0, 0, 560, 560); cx.drawImage(cuadros[i], 0, 0); onda(t); }
+  // Ya cargado lo de arriba, el resto de fotos se piden de a pocas en segundo plano (en orden de la página):
+  // así al bajar rápido ya están listas y no aparecen cajas vacías
+  function adelanta() {
+    var fotos = [].slice.call(document.querySelectorAll('img[loading="lazy"]'));
+    (function tanda() {
+      fotos.splice(0, 4).forEach(function (im) { im.loading = 'eager'; });
+      if (fotos.length) setTimeout(tanda, 250);
+    })();
+  }
+  addEventListener('load', function () { (window.requestIdleCallback || setTimeout)(adelanta, { timeout: 1500 }); }, { once: true });
+
+  // los cuadros se piden cuando ya cargó lo que se ve (mientras tanto el cursor quieto ya está en pantalla)
+  function pideCuadros() {
+    for (var i = 0; i < N; i++) {
+      var im = new Image(); im.decoding = 'async';
+      im.onload = function () { if (++listos === N) arranca(); };
+      im.src = 'portada/cursor/' + String(i).padStart(3, '0') + '.webp';
+      cuadros.push(im);
+    }
+  }
+  if (!quieto) document.readyState === 'complete' ? pideCuadros() : addEventListener('load', pideCuadros, { once: true });
+  else { var fijo = function () { cx.drawImage(img0, 0, 0); onda(0); }; img0.complete ? fijo() : img0.addEventListener('load', fijo); }
+  function arranca() {
+    cv.hidden = false; img0.remove(); dibuja(0, 0);
+    var t0 = performance.now(), ultimo = -1, visible = true;
+    new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(cv);
+    (function bucle(ahora) {
+      requestAnimationFrame(bucle);
+      if (!visible) return;
+      var t = Math.max(0, ahora - t0) / 1000, i = Math.floor(t * 11) % N;
+      if (i !== ultimo) { ultimo = i; dibuja(i, t); } else if (Math.floor(t * 30) % 2) onda(t);
+    })(t0);
+  }
+
+  // Animaciones al bajar (GSAP): el abanico se abre, las ventanas llegan flotando, las fotos hacen paralaje.
+  // Arrancan apenas está el HTML (sin esperar fotos), y se recalculan cuando llegan las fuentes.
+  addEventListener('DOMContentLoaded', function () {
+    if (quieto || !window.gsap || !window.ScrollTrigger) return;
+    gsap.registerPlugin(ScrollTrigger);
+    if (document.fonts) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+    gsap.to('.objeto', { yPercent: -18, scale: .9, ease: 'none', scrollTrigger: { trigger: '.portada', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.portada__txt', { opacity: 0, y: -40, ease: 'none', scrollTrigger: { trigger: '.portada', start: '35% top', end: '85% top', scrub: true } });
+    gsap.fromTo('#abanico', { '--abre': 0, y: 80, opacity: 0 }, { '--abre': 1, y: 0, opacity: 1, ease: 'power2.out', scrollTrigger: { trigger: '#abanico', start: 'top 85%', end: 'center 55%', scrub: .6 } });
+    gsap.utils.toArray('.lamina').forEach(function (s) {
+      gsap.from(s.querySelector('.lamina__tit'), { y: 40, opacity: 0, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: s, start: 'top 70%' } });
+      gsap.from(s.querySelectorAll('.ventana,.telefono'), { y: 90, rotateX: 18, opacity: 0, duration: 1.1, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: s.querySelector('.escenario'), start: 'top 85%' } });
+      gsap.fromTo(s.querySelector('.lamina__foto img'), { yPercent: -4 }, { yPercent: 4, ease: 'none', scrollTrigger: { trigger: s, start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+    gsap.from('.mar h2, .mar__sub, .mar .acciones', { y: 30, opacity: 0, stagger: .1, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: '.mar', start: 'top 60%' } });
+  });
+})();
+</script>
 </body>
 </html>
