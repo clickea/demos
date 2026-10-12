@@ -394,12 +394,12 @@ dialog.hoja[open]{animation:sube .35s var(--curva)}
         <p class="nota"><span>Delivery 35–45 min</span><span>Yape, Plin o efectivo</span></p>
       </div>
 
-      <div class="fase fase-b" data-de="0.36" data-a="0.6" aria-hidden="true">
+      <div class="fase fase-b" data-de="0.32" data-a="0.52" aria-hidden="true">
         <p class="eyebrow">Por dentro</p>
         <h2>Esto es lo que muerdes</h2>
       </div>
 
-      <div class="fase fase-c" data-de="0.86" data-a="1">
+      <div class="fase fase-c" data-de="0.88" data-a="1">
         <p class="eyebrow">A tu puerta</p>
         <h2>Llega caliente. Todavía crujiente.</h2>
         <p class="bajada">Delivery a Barranco, Miraflores, Chorrillos y Surco en caja que respira, para que el pan no se humedezca.</p>
@@ -652,32 +652,38 @@ dialog.hoja[open]{animation:sube .35s var(--curva)}
   var ancho = matchMedia('(min-width: 900px)');
   function suave(a, b, x) { var t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); }
 
-  // ---------- Portada: la hamburguesa (foto real hecha con IA; _ia/hamburguesa) se desarma al bajar, flota con sus etiquetas y se vuelve a armar ----------
+  // ---------- Portada: la hamburguesa (foto real hecha con IA; _ia/hamburguesa) se desarma al bajar, flota con sus etiquetas, se vuelve a armar y se empaca en su caja ----------
   // Altura (‰ del lienzo) de cada ingrediente etiquetado en el último cuadro, con la hamburguesa abierta.
   var ABIERTA = [145, 330, 400, 540, 668, 722, 852];
   var cine = $('#cine') || $('.cine'), esc = $('#escenario'), lienzo = $('#lienzo'), ctx = lienzo.getContext('2d');
   var poster = $('#poster'), fases = $$('.fase'), etqs = $$('.etq'), palabra = $('#palabra'), desliza = $('.desliza'), riel = $('#riel'), rielLi = $$('li', riel);
   var ahorro = navigator.connection && navigator.connection.saveData;
-  var SET = ancho.matches && !ahorro ? { dir: 'fotogramas/cine/', n: 72 } : { dir: 'fotogramas/ligera/', n: 48 };
-  var cuadros = [], p = 0, meta = 0, pintado = -1, corriendo = false;
+  // Dos secuencias seguidas: n cuadros de armada → abierta (se recorre de ida y vuelta) y m de armada → empacada en su caja.
+  var SET = ancho.matches && !ahorro ? { dir: 'fotogramas/cine/', n: 72, caja: 'fotogramas/caja-cine/', m: 60 } : { dir: 'fotogramas/ligera/', n: 48, caja: 'fotogramas/caja-ligera/', m: 40 };
+  var TOTAL = SET.n + SET.m, cuadros = [], p = 0, meta = 0, pintado = -1, corriendo = false;
 
   function avance() { return Math.min(1, p / 0.92); } // el último 8 % del scroll deja la caja cerrada a la vista
   function abre(t) { // 0 = armada, 1 = abierta
-    return t < 0.06 ? 0 : t < 0.34 ? suave(0.06, 0.34, t) : t < 0.62 ? 1 : t < 0.84 ? 1 - suave(0.62, 0.84, t) : 0;
+    return t < 0.05 ? 0 : t < 0.3 ? suave(0.05, 0.3, t) : t < 0.54 ? 1 : t < 0.72 ? 1 - suave(0.54, 0.72, t) : 0;
   }
-  function idx() { return Math.round(abre(avance()) * (SET.n - 1)); }
+  function empaca(t) { return suave(0.74, 0.93, t); } // 0 = armada, 1 = caja cerrada
+  function idx() {
+    var t = avance(), e = empaca(t);
+    return e > 0 ? SET.n + Math.round(e * (SET.m - 1)) : Math.round(abre(t) * (SET.n - 1));
+  }
   function carga(i) {
     if (cuadros[i]) return;
     var im = new Image(); cuadros[i] = im; im.decoding = 'async';
     im.onload = function () { im.ok = 1; if (Math.abs(i - idx()) <= 2) { pintado = -1; pide(); } };
-    im.src = SET.dir + ('00' + i).slice(-3) + '.webp';
+    im.src = i < SET.n ? SET.dir + ('00' + i).slice(-3) + '.webp' : SET.caja + ('00' + (i - SET.n)).slice(-3) + '.webp';
   }
-  function cercano(k) {
-    for (var d = 0; d < SET.n; d++) {
-      if (cuadros[k - d] && cuadros[k - d].ok) return k - d;
-      if (cuadros[k + d] && cuadros[k + d].ok) return k + d;
+  function cercano(k) { // el cuadro listo más cercano, sin saltar de una secuencia a la otra
+    var lo = k < SET.n ? 0 : SET.n, hi = k < SET.n ? SET.n - 1 : TOTAL - 1;
+    for (var d = 0; d <= hi - lo; d++) {
+      if (k - d >= lo && cuadros[k - d] && cuadros[k - d].ok) return k - d;
+      if (k + d <= hi && cuadros[k + d] && cuadros[k + d].ok) return k + d;
     }
-    return -1;
+    return lo && cuadros[0] && cuadros[0].ok ? 0 : -1; // la caja empieza con la hamburguesa armada, igual que el cuadro 0
   }
   function medir() {
     var w = Math.round(lienzo.clientWidth * Math.min(window.devicePixelRatio || 1, 2));
@@ -701,20 +707,20 @@ dialog.hoja[open]{animation:sube .35s var(--curva)}
       f.style.translate = '0 ' + ((1 - o) * 24).toFixed(1) + 'px';
     });
     var av = avance();
-    var oe = suave(0.36, 0.42, av) * (1 - suave(0.58, 0.64, av));
+    var oe = suave(0.31, 0.36, av) * (1 - suave(0.5, 0.55, av));
     etqs.forEach(function (e, j) {
       e.style.top = (ABIERTA[j] / 10).toFixed(1) + '%';
       e.style.opacity = oe; e.style.translate = (e.classList.contains('izq') ? -1 : 1) * (1 - oe) * 14 + 'px 0';
     });
     // escritorio: a la derecha del título (A), un poco a la derecha con las etiquetas (B), a la izquierda del texto final (C)
-    var k1 = suave(0.1, 0.3, av), k2 = suave(0.68, 0.84, av);
+    var k1 = suave(0.1, 0.28, av), k2 = suave(0.62, 0.76, av);
     var x = ancho.matches ? ((0.15 - 0.04 * k1) * (1 - k2) - 0.17 * k2) * innerWidth : 0;
     esc.style.setProperty('--x', x.toFixed(1) + 'px');
     palabra.style.setProperty('--aplasta', suave(0.86, 0.98, av).toFixed(3));
     desliza.style.opacity = 1 - suave(0.01, 0.06, av);
     riel.style.opacity = (1 - oe) * (1 - suave(0.78, 0.84, av)); // se esconde mientras se ven las etiquetas
     riel.style.setProperty('--p', p.toFixed(3));
-    rielLi.forEach(function (li, j) { li.classList.toggle('ya', av >= [0, 0.36, 0.86][j]); });
+    rielLi.forEach(function (li, j) { li.classList.toggle('ya', av >= [0, 0.31, 0.74][j]); });
   }
   function progreso() {
     var total = cine.offsetHeight - innerHeight;
@@ -729,10 +735,12 @@ dialog.hoja[open]{animation:sube .35s var(--curva)}
 
   carga(0);
   if (!reducir) {
-    // primero 1 de cada 12 cuadros (el recorrido ya se ve completo), luego se va rellenando
-    var orden = [];
-    [12, 6, 3, 1].forEach(function (s) { for (var i = 0; i < SET.n; i += s) if (orden.indexOf(i) < 0) orden.push(i); });
-    if (orden.indexOf(SET.n - 1) < 0) orden.push(SET.n - 1);
+    // primero 1 de cada 12 cuadros de cada secuencia (el recorrido ya se ve completo), luego se va rellenando
+    var orden = [], tanda = function (de, n, pasos) {
+      pasos.forEach(function (s) { for (var i = 0; i < n; i += s) if (orden.indexOf(de + i) < 0) orden.push(de + i); });
+      if (orden.indexOf(de + n - 1) < 0) orden.push(de + n - 1);
+    };
+    tanda(0, SET.n, [12, 6]); tanda(SET.n, SET.m, [12, 6]); tanda(0, SET.n, [3, 1]); tanda(SET.n, SET.m, [3, 1]);
     var arranca = function () { setTimeout(function () { orden.forEach(carga); }, 200); };
     if (document.readyState === 'complete') arranca(); else addEventListener('load', arranca);
     addEventListener('scroll', pide, { passive: true });
