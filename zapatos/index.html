@@ -172,6 +172,48 @@ h2{font-size:clamp(46px,13vw,104px)}
 .paso figure{margin:0;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:var(--hueso)}
 .paso img{width:100%;height:100%;object-fit:cover}
 
+/* 4b · por dentro: el botín (foto real hecha con IA, _ia/zapatos) se desarma en sus 7 piezas al bajar.
+   Sin JS o con movimiento reducido se ve quieto y desarmado, con la lista completa. */
+.dentro{background:radial-gradient(70% 50% at 50% 46%,#2A231D,var(--negro) 74%);color:var(--hueso);padding:70px 0}
+.dentro-g{display:grid;gap:22px}
+.dentro h2{font-size:clamp(44px,12vw,96px)}
+.desliza{display:none}
+.bota-w{min-width:0}
+.bota{position:relative;width:min(100%,560px);aspect-ratio:1;margin-inline:auto}
+.bota canvas,.bota .poster,.bota .poster img{position:absolute;inset:0;width:100%;height:100%}
+.bota canvas{display:none}
+.puntos{list-style:none;margin:0;padding:0;position:absolute;inset:0;pointer-events:none}
+.puntos li{position:absolute;left:var(--x);top:var(--y);display:grid;place-items:center;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:rgba(20,18,16,.72);border:1.5px solid var(--hueso);font:800 14px/1 var(--ff-t);color:var(--hueso);transition:background .3s,border-color .3s,transform .35s var(--curva)}
+.puntos li.on{background:var(--cuero-c);border-color:var(--cuero-c);transform:scale(1.3)}
+.puntos li.on::after{content:'';position:absolute;inset:-7px;border-radius:50%;border:1.5px solid var(--cuero-c);animation:late 1.6s ease-out infinite}
+@keyframes late{from{opacity:.9;transform:scale(.7)}to{opacity:0;transform:scale(1.5)}}
+.piezas{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:pz}
+.piezas li{display:grid;grid-template-columns:34px 1fr;grid-template-rows:auto 1fr;column-gap:10px;counter-increment:pz}
+.piezas li::before{content:counter(pz,decimal-leading-zero);grid-row:span 2;font:800 22px/1 var(--ff-t);color:var(--cuero-c);padding-top:1px}
+.piezas b{font:800 24px/1 var(--ff-t);text-transform:uppercase;letter-spacing:.02em}
+.piezas span{min-height:0;overflow:hidden;color:var(--gris-c);font-size:15px;line-height:1.4;padding-top:3px}
+.dentro-fin{display:grid;gap:14px;justify-items:start;margin-top:26px}
+.dentro-fin .frase{font:800 30px/1.05 var(--ff-t);text-transform:uppercase;text-wrap:balance}
+
+/* con JS: la sección se queda fija mientras el botín se desarma (el alto de la sección es el recorrido) */
+.dentro.vivo{height:420vh;height:420svh;padding:0}
+.vivo .dentro-pin{position:sticky;top:var(--hd);height:calc(100vh - var(--hd));height:calc(100svh - var(--hd));padding:12px 0 calc(var(--barra) + 10px);overflow:hidden}
+.vivo .dentro-g{height:100%;grid-template-rows:auto minmax(0,1fr) 126px;gap:6px}
+.vivo h2{font-size:clamp(34px,min(6.4svh,10.5vw),96px)}
+.vivo .desliza{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:14px;color:var(--gris-c)}
+.vivo .desliza::after{content:'';width:8px;height:8px;border:solid currentColor;border-width:0 2px 2px 0;rotate:45deg;animation:baja 1.4s ease-in-out infinite}
+@keyframes baja{50%{translate:0 4px}}
+.vivo .bota-w{container-type:size;display:grid;place-items:center}
+.vivo .bota{width:min(100cqw,100cqh);height:min(100cqw,100cqh)}
+.vivo .bota canvas{display:block}
+.vivo .puntos{opacity:var(--oe,0)}
+.vivo .leyenda{display:grid;align-items:start}
+.vivo .leyenda>*,.vivo .piezas li{grid-area:1/1}
+.vivo .piezas li{opacity:0;translate:0 10px;transition:opacity .35s,translate .45s var(--curva)}
+.vivo .piezas li.on{opacity:1;translate:0 0}
+.vivo .dentro-fin{margin-top:0;gap:10px;opacity:0;visibility:hidden}
+.vivo .dentro-fin .frase{font-size:24px}
+
 /* 5 · tallas */
 .tallas{padding:70px 0;background:var(--hueso)}
 .tallas-g{display:grid;gap:26px;margin-top:28px}
@@ -307,6 +349,18 @@ dialog.ficha[open]{animation:sube .35s var(--curva)}
   .costura{left:18px}
   .paso{grid-template-columns:1fr 1.1fr;align-items:center;gap:40px}
   .paso:nth-child(even) figure{order:-1}
+  .dentro-g{grid-template-columns:1.1fr .9fr;grid-template-areas:'bota cab' 'bota leyenda';column-gap:48px;align-items:center}
+  .dentro-cab{grid-area:cab}.bota-w{grid-area:bota}.leyenda{grid-area:leyenda}
+  .dentro h2{font-size:clamp(48px,5vw,80px)}
+  .vivo .dentro-pin{padding:20px 0 24px}
+  .vivo .dentro-g{grid-template-columns:minmax(0,.8fr) minmax(0,1.3fr) minmax(0,.8fr);grid-template-rows:minmax(0,1fr);grid-template-areas:'cab bota leyenda';column-gap:28px}
+  .vivo h2{font-size:clamp(46px,min(4.6vw,9svh),84px)}
+  .vivo .bota-w{align-self:stretch;height:100%}
+  .vivo .leyenda{display:flex;flex-direction:column;justify-content:center;gap:24px}
+  .vivo .piezas{gap:12px}
+  .vivo .piezas li{grid-area:auto;opacity:.4;translate:none;grid-template-rows:auto 0fr;transition:opacity .35s,grid-template-rows .45s var(--curva)}
+  .vivo .piezas li.on{opacity:1;grid-template-rows:auto 1fr}
+  .vivo .dentro-fin .frase{font-size:28px}
   .tallas-g{grid-template-columns:1.3fr .7fr;align-items:start}
   .envios-g{grid-template-columns:1fr 1fr 1.2fr}
   .mapa{grid-column:3;grid-row:1 / span 2;min-height:100%}
@@ -402,6 +456,43 @@ html.lenis,html.lenis body{height:auto}
         <li class="paso"><div><span class="num">02 · El corte</span><h3>Cortado a mano</h3><p>Marcamos cada pieza sobre el cuero y la cortamos a cuchilla, usando la parte más pareja de la piel.</p></div><figure data-sesgo="y"><img src="https://images.unsplash.com/photo-1787005241178-c9006ea9610b?auto=format&fit=crop&w=800&h=600&q=60" width="800" height="600" loading="lazy" alt="Manos trazando un molde de papel sobre cuero marrón"></figure></li>
         <li class="paso"><div><span class="num">03 · El armado</span><h3>Montado, cosido y revisado</h3><p>Montamos el cuero sobre la horma, cosemos la suela y lo revisamos par por par antes de meterlo en su caja.</p></div><figure data-sesgo="y"><img src="https://images.unsplash.com/photo-1477517787936-70ba786643fd?auto=format&fit=crop&w=800&h=600&q=60" width="800" height="600" loading="lazy" alt="Artesano dando forma a una horma de zapato con una herramienta"></figure></li>
       </ol></div>
+    </div>
+  </section>
+
+  <section class="dentro" id="dentro" aria-labelledby="t-dentro">
+    <div class="dentro-pin">
+      <div class="wrap dentro-g">
+        <div class="dentro-cab">
+          <p class="eti">Por dentro</p>
+          <h2 id="t-dentro">Desármalo y verás por qué dura</h2>
+          <p class="desliza">Baja y mira sus 7 piezas</p>
+        </div>
+        <div class="bota-w"><div class="bota">
+          <picture class="poster" id="b-poster">
+            <source media="(min-width: 900px)" srcset="fotogramas/cine/071.webp">
+            <img src="fotogramas/ligera/047.webp" width="600" height="600" loading="lazy" decoding="async" alt="Botín chelsea de cuero coñac separado en sus piezas: el cuero con el tirador, los elásticos, la plantilla, la vira cosida, la suela y el taco">
+          </picture>
+          <canvas id="b-lienzo" aria-hidden="true"></canvas>
+          <ol class="puntos" aria-hidden="true">
+            <li style="--x:74%;--y:9%">1</li><li style="--x:41%;--y:38%">2</li><li style="--x:64%;--y:40%">3</li><li style="--x:45%;--y:60%">4</li><li style="--x:30%;--y:73.5%">5</li><li style="--x:40%;--y:81%">6</li><li style="--x:71%;--y:82%">7</li>
+          </ol>
+        </div></div>
+        <div class="leyenda">
+          <ol class="piezas">
+            <li><b>Tirador</b><span>Lo jalas y el botín entra en un segundo.</span></li>
+            <li><b>Cuero vacuno</b><span>Curtido en Trujillo. Con el uso se ablanda y toma la forma de tu pie.</span></li>
+            <li><b>Elásticos</b><span>Reforzados a los lados: entra fácil y no se afloja con el tiempo.</span></li>
+            <li><b>Plantilla de cuero</b><span>Respira, absorbe el sudor y se amolda a tu pisada.</span></li>
+            <li><b>Vira cosida</b><span>Une el cuero con la suela con hilo, no solo con pegamento.</span></li>
+            <li><b>Suela</b><span>Va cosida a la vira: cuando se gaste, te la cambiamos en el taller.</span></li>
+            <li><b>Taco apilado</b><span>Capas de cuero prensadas una sobre otra. Firme y parejo.</span></li>
+          </ol>
+          <div class="dentro-fin">
+            <p class="frase">7 piezas, cosidas a mano. Por eso duran años.</p>
+            <a class="btn btn-c wa" href="https://wa.me/51900000000" data-msg="Hola HORMA 👋 Vi cómo arman sus botines y quiero un par. ¿Me ayudan con la talla?" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Quiero un par así</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -585,6 +676,84 @@ html.lenis,html.lenis body{height:auto}
     f.title = 'Mapa del taller de HORMA en El Porvenir, Trujillo'; f.referrerPolicy = 'no-referrer-when-downgrade';
     this.replaceWith(f);
   });
+
+  // ---------- Por dentro: el botín (foto real hecha con IA; _ia/zapatos) se desarma en sus 7 piezas y se vuelve a armar ----------
+  // No depende de GSAP: dibuja en un lienzo el cuadro que toca según el scroll. Los cuadros se piden cuando la sección se acerca.
+  (function () {
+    var sec = $('#dentro');
+    if (!sec || !matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
+    sec.classList.add('vivo');
+    var ahorro = navigator.connection && navigator.connection.saveData;
+    var SET = matchMedia('(min-width: 900px)').matches && !ahorro ? { dir: 'fotogramas/cine/', n: 72 } : { dir: 'fotogramas/ligera/', n: 48 };
+    var pin = $('.dentro-pin', sec), lienzo = $('#b-lienzo'), ctx = lienzo.getContext('2d'), poster = $('#b-poster');
+    var piezas = $$('.piezas li', sec), puntos = $$('.puntos li', sec), desliza = $('.desliza', sec), fin = $('.dentro-fin', sec);
+    var cuadros = [], p = 0, meta = 0, pintado = -1, corriendo = false, activa = -2, cargando = false;
+    function suave(a, b, x) { var t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); }
+    function abre(t) { // 0 = armado, 1 = desarmado
+      return t < 0.04 ? 0 : t < 0.26 ? suave(0.04, 0.26, t) : t < 0.84 ? 1 : t < 0.95 ? 1 - suave(0.84, 0.95, t) : 0;
+    }
+    function idx() { return Math.round(abre(p) * (SET.n - 1)); }
+    function carga(i) {
+      if (cuadros[i]) return;
+      var im = new Image(); cuadros[i] = im; im.decoding = 'async';
+      im.onload = function () { im.ok = 1; if (Math.abs(i - idx()) <= 2) { pintado = -1; pide(); } };
+      im.src = SET.dir + ('00' + i).slice(-3) + '.webp';
+    }
+    function cercano(k) {
+      for (var d = 0; d < SET.n; d++) {
+        if (cuadros[k - d] && cuadros[k - d].ok) return k - d;
+        if (cuadros[k + d] && cuadros[k + d].ok) return k + d;
+      }
+      return -1;
+    }
+    function dibuja() {
+      var w = Math.round(lienzo.clientWidth * Math.min(window.devicePixelRatio || 1, 2));
+      if (w && lienzo.width !== w) { lienzo.width = lienzo.height = w; pintado = -1; }
+      var k = cercano(idx()); if (k < 0 || k === pintado) return;
+      ctx.clearRect(0, 0, lienzo.width, lienzo.height);
+      ctx.drawImage(cuadros[k], 0, 0, lienzo.width, lienzo.height); pintado = k;
+      if (poster) { poster.style.visibility = 'hidden'; poster = null; }
+    }
+    function escena() {
+      dibuja();
+      // las piezas se nombran una por una mientras el botín está desarmado
+      var oe = suave(0.25, 0.29, p) * (1 - suave(0.82, 0.86, p));
+      var k = oe > 0.5 ? Math.min(6, Math.floor(Math.max(0, p - 0.29) / 0.53 * 7)) : -1;
+      sec.style.setProperty('--oe', oe.toFixed(3));
+      if (k !== activa) {
+        activa = k;
+        piezas.forEach(function (li, j) { li.classList.toggle('on', j === k); });
+        puntos.forEach(function (li, j) { li.classList.toggle('on', j === k); });
+      }
+      desliza.style.opacity = 1 - suave(0.01, 0.05, p);
+      var of = suave(0.9, 0.96, p);
+      fin.style.opacity = of; fin.style.visibility = of < 0.02 ? 'hidden' : 'visible';
+    }
+    function progreso() {
+      var total = sec.offsetHeight - pin.offsetHeight, tope = parseFloat(getComputedStyle(pin).top) || 0;
+      return total > 0 ? Math.min(1, Math.max(0, (tope - sec.getBoundingClientRect().top) / total)) : 0;
+    }
+    function bucle() {
+      var d = meta - p; p = Math.abs(d) < 0.0004 ? meta : p + d * 0.25;
+      escena();
+      if (p !== meta) requestAnimationFrame(bucle); else corriendo = false;
+    }
+    function pide() { meta = progreso(); if (!corriendo) { corriendo = true; requestAnimationFrame(bucle); } }
+    function arranca() { // primero 1 de cada 12 cuadros (el recorrido ya se ve completo) y luego se rellena
+      if (cargando) return; cargando = true;
+      var orden = [];
+      [12, 6, 3, 1].forEach(function (s) { for (var i = 0; i < SET.n; i += s) if (orden.indexOf(i) < 0) orden.push(i); });
+      if (orden.indexOf(SET.n - 1) < 0) orden.splice(1, 0, SET.n - 1);
+      orden.forEach(carga);
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { arranca(); io.disconnect(); } }, { rootMargin: '150% 0px' });
+      io.observe(sec);
+    } else arranca();
+    addEventListener('scroll', pide, { passive: true });
+    addEventListener('resize', function () { pintado = -1; pide(); });
+    pide();
+  })();
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js" integrity="sha384-XmJ9SoHtVOHoQUcKvFAzVXwdkKo1Ie3bhmSoIAkcdsHGaIrVJIkmozyq0FJeb/Ly" crossorigin="anonymous" defer></script>
