@@ -122,10 +122,10 @@ p{margin:0}
 .etq b{display:block;font:400 13px/1.1 var(--ff-h);letter-spacing:.04em;text-transform:uppercase;color:var(--mostaza)}
 .etq small{display:none;font-size:13px;color:var(--crema);opacity:.8}
 .etq::before{content:'';width:12px;height:1.5px;background:var(--linea-f);flex:none}
-.etq.izq{right:69%;text-align:right}
+.etq.izq{right:77%;text-align:right}
 .etq.izq::before{order:2}
-.etq.der{left:69%}
-@media (max-width:400px){.etq{white-space:normal;width:29%}.etq.izq{justify-content:flex-end}.etq b{font-size:12px;line-height:1.05}}
+.etq.der{left:77%}
+@media (max-width:400px){.etq{white-space:normal;width:22%}.etq.izq{justify-content:flex-end}.etq b{font-size:12px;line-height:1.05}}
 .riel{display:none}
 
 /* Cinta */
@@ -309,7 +309,7 @@ dialog.hoja[open]{animation:sube .35s var(--curva)}
   .nav{gap:8px}
   .cine{height:430vh}
   .palabra{top:58%;font-size:30vw}
-  .escenario{--s:min(calc(100svh - var(--hd) - 8px),60vw);top:calc(50% + var(--hd) / 2);bottom:auto;transform:translate(calc(-50% + var(--x,0px)),-50%)}
+  .escenario{--s:min(calc(100svh - var(--hd) - 8px),52vw);top:calc(50% + var(--hd) / 2);bottom:auto;transform:translate(calc(-50% + var(--x,0px)),-50%)}
   .fase{top:50%;left:max(var(--pad),calc((100vw - var(--wrap)) / 2 + var(--pad)));right:auto;width:min(480px,38vw);padding:0;transform:translateY(-50%)}
   .fase-b{width:min(280px,20vw)}
   .fase-b h2{font-size:clamp(44px,4vw,64px)}
@@ -426,25 +426,25 @@ dialog.hoja[open]{animation:sube .35s var(--curva)}
 
       <ul class="platos">
         <li class="plato rv">
-          <div class="foto"><img src="img/burger-clasica.webp" width="441" height="356" loading="lazy" alt="Hamburguesa Clásica con una carne smash, cheddar, tomate y lechuga"></div>
+          <div class="foto"><img src="img/burger-clasica.webp" width="470" height="398" loading="lazy" alt="Hamburguesa Clásica con una carne smash, cheddar, tomate y lechuga"></div>
           <div class="info"><h3>Clásica</h3><p>Una carne smash de 90 g, cheddar, lechuga, tomate, cebolla morada y salsa de la casa.</p><p class="precio">S/ 19</p></div>
           <label class="combo"><input type="checkbox" data-combo><span>Hazlo combo<small>papas nativas + chicha</small></span><b>+S/ 10</b></label>
           <button class="btn btn-t agregar" type="button" data-id="clasica" data-n="Clásica" data-p="19">Agregar · S/ 19</button>
         </li>
         <li class="plato rv">
-          <div class="foto"><img src="img/burger-doble.webp" width="443" height="393" loading="lazy" alt="Hamburguesa Doble Prensa con dos carnes smash y doble cheddar derretido"></div>
+          <div class="foto"><img src="img/burger-doble.webp" width="470" height="398" loading="lazy" alt="Hamburguesa Doble Prensa con dos carnes smash y doble cheddar derretido"></div>
           <div class="info"><span class="tag">La de la portada</span><h3>Doble Prensa</h3><p>Dos carnes smash, doble cheddar derretido, lechuga, tomate, cebolla morada y salsa de la casa.</p><p class="precio">S/ 26</p></div>
           <label class="combo"><input type="checkbox" data-combo><span>Hazlo combo<small>papas nativas + chicha</small></span><b>+S/ 10</b></label>
           <button class="btn btn-t agregar" type="button" data-id="doble" data-n="Doble Prensa" data-p="26">Agregar · S/ 26</button>
         </li>
         <li class="plato rv">
-          <div class="foto"><img src="img/burger-picante.webp" width="444" height="380" loading="lazy" alt="Hamburguesa Brava con doble carne, cheddar y rodajas de jalapeño"></div>
+          <div class="foto"><img src="img/burger-picante.webp" width="470" height="398" loading="lazy" alt="Hamburguesa Brava con doble carne, cheddar y rodajas de jalapeño"></div>
           <div class="info"><span class="tag pica">Picante</span><h3>Brava</h3><p>Doble carne, doble cheddar, jalapeños y mayo de rocoto. Pica rico, no castiga.</p><p class="precio">S/ 28</p></div>
           <label class="combo"><input type="checkbox" data-combo><span>Hazlo combo<small>papas nativas + chicha</small></span><b>+S/ 10</b></label>
           <button class="btn btn-t agregar" type="button" data-id="brava" data-n="Brava" data-p="28">Agregar · S/ 28</button>
         </li>
         <li class="plato rv">
-          <div class="foto"><img src="img/burger-bestia.webp" width="470" height="421" loading="lazy" alt="Hamburguesa La Bestia con triple carne, triple cheddar y tocino ahumado"></div>
+          <div class="foto"><img src="img/burger-bestia.webp" width="470" height="377" loading="lazy" alt="Hamburguesa La Bestia con triple carne, triple cheddar y tocino ahumado"></div>
           <div class="info"><span class="tag">Para valientes</span><h3>La Bestia</h3><p>Triple carne, triple cheddar y tocino ahumado crocante. Para compartir (o no).</p><p class="precio">S/ 34</p></div>
           <label class="combo"><input type="checkbox" data-combo><span>Hazlo combo<small>papas nativas + chicha</small></span><b>+S/ 10</b></label>
           <button class="btn btn-t agregar" type="button" data-id="bestia" data-n="La Bestia" data-p="34">Agregar · S/ 34</button>
@@ -652,17 +652,20 @@ dialog.hoja[open]{animation:sube .35s var(--curva)}
   var ancho = matchMedia('(min-width: 900px)');
   function suave(a, b, x) { var t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); }
 
-  // ---------- Portada: la hamburguesa 3D se desarma y se mete en su caja al bajar ----------
-  // Altura (‰ del lienzo) de cada ingrediente etiquetado en 48 momentos del recorrido; sale del render 3D.
-  var POS = [356,447,462,495,596,615,663,356,447,462,495,596,615,663,356,447,462,495,596,615,663,356,447,462,495,596,615,663,356,447,462,495,596,615,663,356,447,462,495,596,615,663,356,447,462,495,596,615,663,355,446,461,494,596,616,664,347,439,456,492,600,622,672,330,426,447,487,608,633,687,308,408,436,481,617,649,707,283,387,422,474,628,666,729,257,366,408,466,640,684,753,231,345,394,459,651,702,776,207,325,381,452,662,719,798,185,307,370,446,671,734,818,166,291,359,440,680,748,836,150,278,351,435,687,759,851,137,268,344,432,693,768,863,128,260,339,429,697,775,871,123,256,336,428,699,778,876,122,255,335,427,700,779,877,122,255,335,427,700,779,877,122,255,335,427,700,779,877,122,255,335,427,700,779,877,122,255,335,427,700,779,877,122,255,335,427,700,779,877,122,255,335,427,700,779,877,128,260,338,429,697,775,872,150,279,351,436,687,759,850,189,310,372,447,670,732,815,240,352,399,461,647,696,768,295,397,429,477,623,658,718,341,434,453,490,602,625,676,331,421,436,467,566,585,630,281,370,383,412,506,524,565,227,315,327,353,441,458,494,193,278,290,313,396,412,444,200,283,294,316,394,409,439,266,343,353,374,446,460,488,347,416,425,444,509,521,547,397,461,469,485,545,556,578,405,464,471,487,541,551,572,409,463,471,485,536,545,565,412,463,470,484,532,540,559,414,464,470,483,529,537,555,415,464,470,483,528,536,553,415,464,470,483,528,536,553];
+  // ---------- Portada: la hamburguesa (foto real hecha con IA; _ia/hamburguesa) se desarma al bajar, flota con sus etiquetas y se vuelve a armar ----------
+  // Altura (‰ del lienzo) de cada ingrediente etiquetado en el último cuadro, con la hamburguesa abierta.
+  var ABIERTA = [145, 330, 400, 540, 668, 722, 852];
   var cine = $('#cine') || $('.cine'), esc = $('#escenario'), lienzo = $('#lienzo'), ctx = lienzo.getContext('2d');
   var poster = $('#poster'), fases = $$('.fase'), etqs = $$('.etq'), palabra = $('#palabra'), desliza = $('.desliza'), riel = $('#riel'), rielLi = $$('li', riel);
   var ahorro = navigator.connection && navigator.connection.saveData;
-  var SET = ancho.matches && !ahorro ? { dir: 'fotogramas/cine/', n: 90 } : { dir: 'fotogramas/ligera/', n: 48 };
+  var SET = ancho.matches && !ahorro ? { dir: 'fotogramas/cine/', n: 72 } : { dir: 'fotogramas/ligera/', n: 48 };
   var cuadros = [], p = 0, meta = 0, pintado = -1, corriendo = false;
 
   function avance() { return Math.min(1, p / 0.92); } // el último 8 % del scroll deja la caja cerrada a la vista
-  function idx() { return Math.round(avance() * (SET.n - 1)); }
+  function abre(t) { // 0 = armada, 1 = abierta
+    return t < 0.06 ? 0 : t < 0.34 ? suave(0.06, 0.34, t) : t < 0.62 ? 1 : t < 0.84 ? 1 - suave(0.62, 0.84, t) : 0;
+  }
+  function idx() { return Math.round(abre(avance()) * (SET.n - 1)); }
   function carga(i) {
     if (cuadros[i]) return;
     var im = new Image(); cuadros[i] = im; im.decoding = 'async';
@@ -697,19 +700,19 @@ dialog.hoja[open]{animation:sube .35s var(--curva)}
       var o = ventana(f); f.style.opacity = o; f.style.visibility = o < 0.02 ? 'hidden' : 'visible';
       f.style.translate = '0 ' + ((1 - o) * 24).toFixed(1) + 'px';
     });
-    var av = avance(), fr = av * 47, i0 = Math.floor(fr), t = fr - i0, i1 = Math.min(47, i0 + 1);
+    var av = avance();
     var oe = suave(0.36, 0.42, av) * (1 - suave(0.58, 0.64, av));
     etqs.forEach(function (e, j) {
-      e.style.top = ((POS[i0 * 7 + j] * (1 - t) + POS[i1 * 7 + j] * t) / 10).toFixed(2) + '%';
+      e.style.top = (ABIERTA[j] / 10).toFixed(1) + '%';
       e.style.opacity = oe; e.style.translate = (e.classList.contains('izq') ? -1 : 1) * (1 - oe) * 14 + 'px 0';
     });
     // escritorio: a la derecha del título (A), un poco a la derecha con las etiquetas (B), a la izquierda del texto final (C)
     var k1 = suave(0.1, 0.3, av), k2 = suave(0.68, 0.84, av);
-    var x = ancho.matches ? ((0.17 - 0.09 * k1) * (1 - k2) - 0.17 * k2) * innerWidth : 0;
+    var x = ancho.matches ? ((0.15 - 0.04 * k1) * (1 - k2) - 0.17 * k2) * innerWidth : 0;
     esc.style.setProperty('--x', x.toFixed(1) + 'px');
     palabra.style.setProperty('--aplasta', suave(0.86, 0.98, av).toFixed(3));
     desliza.style.opacity = 1 - suave(0.01, 0.06, av);
-    riel.style.opacity = 1 - suave(0.78, 0.84, av);
+    riel.style.opacity = (1 - oe) * (1 - suave(0.78, 0.84, av)); // se esconde mientras se ven las etiquetas
     riel.style.setProperty('--p', p.toFixed(3));
     rielLi.forEach(function (li, j) { li.classList.toggle('ya', av >= [0, 0.36, 0.86][j]); });
   }
