@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="es-PE">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BioSketch 3D · Pads de sutura de 3 capas | Hecho en Perú</title>
+<meta name="description" content="Pads de silicona de 3 capas (piel, grasa y músculo) para practicar suturas. Para estudiantes de medicina y enfermería. Envíos a todo el Perú.">
+<meta name="theme-color" content="#0f4c4a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cg transform='rotate(-10 100 100)'%3E%3Crect x='30' y='40' width='140' height='132' rx='30' fill='%23efa27e'/%3E%3Crect x='30' y='30' width='140' height='130' rx='30' fill='%23f8cdb3'/%3E%3Cpath d='M58 118C85 70 120 70 146 88' stroke='%237a2e22' stroke-width='9' fill='none' stroke-linecap='round'/%3E%3Cpath d='M63.6 83.5 86.4 105.9M86.4 67 100 96M111 61l1.2 32M134.5 64.4l-10 30.4' stroke='%232b59ff' stroke-width='10' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="canonical" href="https://clickea.github.io/demos/biosketch3d/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_PE">
+<meta property="og:title" content="BioSketch 3D · Que tu primer punto no sea en un paciente">
+<meta property="og:description" content="Pads de silicona de 3 capas para practicar suturas en casa. Envíos a todo el Perú.">
+<meta property="og:image" content="https://clickea.github.io/demos/biosketch3d/og.jpg">
+<meta property="og:url" content="https://clickea.github.io/demos/biosketch3d/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="img/heroe.webp" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://clickea.github.io/demos/biosketch3d/#marca",
+      "name": "BioSketch 3D",
+      "description": "Pads de silicona de 3 capas para practicar suturas, hechos en Perú con moldes impresos en 3D. Envíos a todo el Perú.",
+      "url": "https://clickea.github.io/demos/biosketch3d/",
+      "logo": "https://clickea.github.io/demos/biosketch3d/og.jpg",
+      "areaServed": { "@type": "Country", "name": "Perú" },
+      "contactPoint": { "@type": "ContactPoint", "contactType": "ventas", "telephone": "+51900000000", "availableLanguage": "es" }
+    },
+    {
+      "@type": "Product",
+      "name": "Pad de sutura liso de 3 capas",
+      "description": "Pad de silicona con capa de piel, grasa y músculo para practicar cortes, suturas y cierre por planos.",
+      "image": "https://clickea.github.io/demos/biosketch3d/img/pad-liso.webp",
+      "brand": { "@id": "https://clickea.github.io/demos/biosketch3d/#marca" }
+    },
+    {
+      "@type": "Product",
+      "name": "Pad de sutura con heridas",
+      "description": "Pad de silicona con heridas ya marcadas: rectas, curvas, en estrella y en cruz.",
+      "image": "https://clickea.github.io/demos/biosketch3d/img/pad-heridas.webp",
+      "brand": { "@id": "https://clickea.github.io/demos/biosketch3d/#marca" }
+    }
+  ]
+}
+</script>
+<style>
+:root{
+  /* marca BioSketch 3D (colores y letras del kit de redes: perfil-redes/src/marca.css) */
+  --campo:#0f4c4a;--campo-2:#0a3836;--campo-3:#16635f;--menta:#8fe3cf;--menta-c:#dff6ef;
+  --piel:#f8cdb3;--piel-2:#efa27e;--piel-3:#e8875f;--piel-c:#fde6d8;--grasa:#F2C24E;--musculo:#D25B55;--herida:#7a2e22;--hilo:#2b59ff;
+  --papel:#fff7f1;--tinta:#0b2b2a;--gris:#4e6361;--gris-c:#a8c4c0;--linea:rgba(11,43,42,.12);--linea-c:rgba(255,255,255,.16);
+  --ff:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;--ff-t:'Bricolage Grotesque','DM Sans',system-ui,sans-serif;--ff-m:var(--ff);
+  --pad:20px;--wrap:1160px;--hd:62px;--barra:64px;--r:14px;--curva:cubic-bezier(.2,.7,.2,1)
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--hd) + 10px)}
+body{margin:0;background:var(--papel);color:var(--tinta);font:400 17px/1.55 var(--ff);overflow-x:clip;padding-bottom:calc(var(--barra) + env(safe-area-inset-bottom))}
+img,video{display:block;max-width:100%;height:auto}
+a{color:inherit}
+p{margin:0}
+h1,h2,h3{margin:0;font-family:var(--ff-t);font-weight:800;line-height:1;letter-spacing:-.035em;text-wrap:balance}
+h2{font-size:clamp(34px,8.6vw,62px)}
+h3{font-size:22px;letter-spacing:-.015em}
+.wrap{width:min(100% - 2 * var(--pad),var(--wrap));margin-inline:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--hilo);outline-offset:3px;border-radius:6px}
+/* etiqueta de paquete estéril: el dato técnico va en mono */
+.ref{display:inline-flex;align-items:center;gap:8px;font:700 12.5px/1 var(--ff);letter-spacing:.1em;text-transform:uppercase;color:var(--campo-3)}
+.ref::before{content:'';width:18px;height:2px;background:currentColor}
+.lead{font-size:18px;color:var(--gris);max-width:46ch}
+
+/* botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border:0;border-radius:999px;font:700 16px/1 var(--ff);text-decoration:none;cursor:pointer;transition:transform .2s var(--curva),background .2s,box-shadow .2s}
+.btn:active{transform:scale(.97)}
+.btn svg{width:20px;height:20px;flex:none}
+.btn .fl{transition:transform .25s var(--curva)}
+.btn:hover .fl{transform:translateX(4px)}
+.btn-p{background:var(--piel);color:var(--tinta);box-shadow:0 8px 24px -10px rgba(248,205,179,.7)}
+.btn-p:hover{background:#fbdcc8}
+.btn-o{background:var(--campo);color:#fff}
+.btn-o:hover{background:var(--campo-2)}
+.btn-l{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+
+/* cabecera */
+.cab{position:sticky;top:0;z-index:40;height:var(--hd);background:rgba(15,76,74,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff}
+.cab .wrap{height:100%;display:flex;align-items:center;gap:20px}
+.marca{display:flex;align-items:center;gap:8px;text-decoration:none;font:800 25px/1 var(--ff-t);letter-spacing:-.045em}
+.marca svg{width:36px;height:36px;flex:none}
+.marca .pl{display:inline-block;margin-left:6px;padding:4px 6px 3px;border-radius:7px;background:var(--piel);color:var(--campo);font-size:15px;line-height:1;letter-spacing:0;transform:translateY(-3px)}
+.nav{display:none;gap:26px;margin-left:auto}
+.nav a{text-decoration:none;font-weight:500;font-size:15px;color:var(--gris-c)}
+.nav a:hover{color:#fff}
+.cab .btn{margin-left:auto;min-height:40px;padding:0 16px;font-size:14.5px}
+
+/* 1 · portada: el campo quirúrgico */
+.portada{position:relative;background:radial-gradient(90% 60% at 70% 40%,var(--campo-3),var(--campo) 70%);color:#fff;overflow:hidden;padding:26px 0 0}
+.portada::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.35;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 2px,transparent 2px 6px)}
+.portada .wrap{position:relative;z-index:1;display:grid;gap:22px}
+.portada .ref{color:var(--menta)}
+.portada h1{font-size:clamp(40px,11vw,80px);line-height:.98}
+.portada h1 em{font-style:normal;color:var(--piel)}
+.portada .lead{color:#CFE3DE}
+.portada .btn-l{color:#fff}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.chips li{display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--linea-c);font:500 13.5px/1 var(--ff)}
+.chips svg{width:15px;height:15px;color:var(--piel)}
+.foto-h{position:relative;margin:4px calc(var(--pad) * -1) 0;aspect-ratio:4/5;max-height:72svh}
+.foto-h img{width:100%;height:100%;object-fit:cover}
+.foto-h::before{content:'';position:absolute;inset:0 0 auto;height:22%;background:linear-gradient(var(--campo),transparent);z-index:1}
+.etiqueta{position:absolute;z-index:2;right:14px;bottom:16px;display:grid;gap:3px;padding:10px 12px;border-radius:10px;background:var(--papel);color:var(--tinta);font:600 11.5px/1.25 var(--ff-m);letter-spacing:.04em;text-transform:uppercase;box-shadow:0 12px 30px -12px rgba(0,0,0,.5)}
+.etiqueta b{font:800 16px/1.1 var(--ff-t);letter-spacing:-.01em;text-transform:none}
+.etiqueta span{color:var(--gris)}
+
+/* la sutura que se cose sola: firma de la marca */
+.sutura{display:block;width:100%;height:46px;overflow:visible}
+.sutura .corte{stroke:var(--herida);stroke-width:3;stroke-linecap:round}
+.sutura .punto{fill:none;stroke:var(--hilo);stroke-width:3;stroke-linecap:round;stroke-dasharray:40;stroke-dashoffset:40}
+.sutura .nudo{fill:var(--hilo);transform-box:fill-box;transform-origin:center;scale:0}
+.sutura.cosida .punto{animation:cose .5s var(--curva) forwards;animation-delay:calc(var(--i) * .12s)}
+.sutura.cosida .nudo{animation:anuda .35s var(--curva) forwards;animation-delay:calc(var(--i) * .12s + .35s)}
+@keyframes cose{to{stroke-dashoffset:0}}
+@keyframes anuda{to{scale:1}}
+.costura-s{padding:18px 0}
+.costura-s .sutura{max-width:var(--wrap);margin-inline:auto}
+
+/* 2 · modelos */
+.modelos{padding:64px 0 70px}
+.cabeza{display:grid;gap:12px;margin-bottom:28px}
+.pads{display:grid;gap:16px}
+.pad{display:grid;grid-template-rows:auto 1fr;border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--linea)}
+.pad .ph{position:relative;aspect-ratio:1;background:var(--campo)}
+.pad .ph img{width:100%;height:100%;object-fit:cover;transition:scale .6s var(--curva)}
+.pad:hover .ph img{scale:1.04}
+.pad .num{position:absolute;left:12px;top:12px;padding:6px 9px;border-radius:7px;background:var(--papel);font:600 11.5px/1 var(--ff-m);letter-spacing:.06em;text-transform:uppercase}
+.pad-t{display:grid;gap:12px;align-content:start;padding:20px 20px 22px}
+.pad-t p{color:var(--gris)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{padding:5px 9px;border-radius:6px;background:var(--menta-c);color:var(--campo);font:600 12px/1 var(--ff-m);letter-spacing:.03em}
+.pad .btn{justify-self:start;margin-top:4px}
+.grupo{display:grid;gap:14px;margin-top:16px;padding:22px;border-radius:var(--r);background:var(--campo);color:#fff}
+.grupo p{color:#CFE3DE}
+.grupo h3{font-size:24px}
+.grupo .btn{justify-self:start}
+
+/* 3 · por dentro: las 3 capas */
+.capas{padding:70px 0;background:var(--piel-c)}
+.capas-g{display:grid;gap:26px}
+.corte-g{display:grid;gap:14px}
+.bloque{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:1;background:var(--campo)}
+.bloque img{width:100%;height:100%;object-fit:cover}
+.tabs{display:grid;gap:8px}
+.capa-b{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%;padding:14px 16px;border:1.5px solid var(--linea);border-radius:12px;background:#fff;font:inherit;text-align:left;color:inherit;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.capa-b i{width:34px;height:22px;border-radius:5px;background:var(--c)}
+.capa-b b{font-weight:700;font-size:17px}
+.capa-b small{display:block;font:500 12px/1.3 var(--ff-m);color:var(--gris);letter-spacing:.02em}
+.capa-b::after{content:'+';font:600 24px/1 var(--ff);color:var(--campo-3);transition:rotate .3s var(--curva)}
+.capa-b[aria-expanded="true"]{border-color:var(--campo-3);box-shadow:0 10px 26px -16px rgba(15,76,74,.6)}
+.capa-b[aria-expanded="true"]::after{rotate:45deg}
+.capa-p{padding:2px 16px 8px 64px;color:var(--gris)}
+.capa-p[hidden]{display:none}
+
+/* 4 · técnicas */
+.tecnicas{padding:70px 0}
+.tec{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tec li{display:grid;gap:10px;align-content:start;padding:16px;border-radius:var(--r);background:#fff;border:1px solid var(--linea)}
+.tec svg{width:100%;height:auto;aspect-ratio:2;border-radius:9px;background:var(--piel-c)}
+.tec .inc{stroke:var(--herida);stroke-width:2.4;stroke-linecap:round}
+.tec .h{fill:none;stroke:var(--hilo);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.tec .h.o{stroke-dasharray:3 4;opacity:.5}
+.tec .k{fill:var(--hilo)}
+.tec span{font:600 11px/1 var(--ff-m);letter-spacing:.08em;text-transform:uppercase;color:var(--campo-3)}
+.tec b{font-size:17px;line-height:1.15;letter-spacing:-.01em}
+.tec p{font-size:14.5px;line-height:1.45;color:var(--gris)}
+
+/* 5 · hecho en Perú */
+.taller{padding:70px 0;background:var(--campo);color:#fff}
+.taller-g{display:grid;gap:26px}
+.taller .ref{color:var(--menta)}
+.taller .lead{color:#CFE3DE}
+.clip{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--campo-2)}
+.clip video,.clip img{width:100%;height:100%;object-fit:cover}
+.clip figcaption{position:absolute;left:12px;bottom:12px;padding:7px 10px;border-radius:8px;background:rgba(15,76,74,.88);font:600 11.5px/1.2 var(--ff-m);letter-spacing:.04em;text-transform:uppercase}
+.manos{display:none}
+.para{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.para li{padding:9px 13px;border-radius:999px;border:1px solid var(--linea-c);font-size:15px}
+
+/* 6 · cómo pedir */
+.pedir{padding:70px 0}
+.pasos{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:paso}
+.pasos li{position:relative;display:grid;gap:6px;padding:18px 18px 18px 64px;border-radius:var(--r);background:#fff;border:1px solid var(--linea);counter-increment:paso}
+.pasos li::before{content:counter(paso,decimal-leading-zero);position:absolute;left:18px;top:18px;font:600 14px/1 var(--ff-m);color:var(--hilo)}
+.pasos p{color:var(--gris);font-size:15.5px}
+
+/* 7 · preguntas */
+.faq{padding:0 0 70px}
+.faq-l{margin-top:22px;border-top:2px solid var(--tinta)}
+.faq details{border-bottom:1px solid var(--linea)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:60px;padding:12px 0;font-weight:700;font-size:17px;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font:500 28px/1 var(--ff);color:var(--campo-3);transition:rotate .25s var(--curva)}
+.faq details[open] summary::after{rotate:45deg}
+.faq details p{padding:0 0 18px;color:var(--gris);max-width:62ch}
+
+/* cierre */
+.cierre{position:relative;padding:76px 0 80px;background:var(--campo);color:#fff;text-align:center;overflow:hidden}
+.cierre h2{font-size:clamp(38px,10vw,84px);max-width:16ch;margin-inline:auto}
+.cierre h2 em{font-style:normal;color:var(--piel)}
+.cierre p{margin:14px auto 0;max-width:40ch;color:#CFE3DE}
+.cierre .ctas{justify-content:center;margin-top:24px}
+.cierre .btn-l{color:#fff}
+.pie{padding:26px 0 30px;background:var(--campo-2);color:var(--gris-c);font-size:14px}
+.pie .wrap{display:grid;gap:8px}
+.pie b{color:#fff}
+.pie a{color:#fff}
+
+/* barra de WhatsApp en celular */
+.barra{position:fixed;z-index:45;left:0;right:0;bottom:0;display:grid;grid-template-columns:1.4fr 1fr;height:calc(var(--barra) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:var(--campo);color:#fff;box-shadow:0 -8px 24px -12px rgba(0,0,0,.35)}
+.barra a{display:flex;align-items:center;justify-content:center;gap:9px;font-weight:700;font-size:15px;text-decoration:none}
+.barra a:first-child{background:var(--piel);color:var(--tinta)}
+.barra svg{width:20px;height:20px}
+
+/* aparición al bajar (sin JS todo se ve) */
+.js .rv{opacity:0;translate:0 22px;transition:opacity .7s var(--curva),translate .7s var(--curva)}
+.js .rv.in{opacity:1;translate:0 0}
+
+@media (min-width:600px){
+  .pads{grid-template-columns:1fr 1fr}
+  .grupo{grid-column:1 / -1;grid-template-columns:1fr auto;align-items:center}
+  .tec{grid-template-columns:repeat(3,1fr)}
+}
+@media (min-width:960px){
+  :root{--pad:36px;--hd:70px;--barra:0px}
+  body{padding-bottom:0}
+  .barra{display:none}
+  .nav{display:flex}
+  .cab .btn{margin-left:0}
+  .portada{padding:0}
+  .portada .wrap{grid-template-columns:1.05fr .95fr;align-items:center;gap:48px;min-height:calc(100svh - var(--hd));padding:40px 0 56px}
+  .portada h1{font-size:clamp(52px,5.4vw,84px)}
+  .foto-h{margin:0;max-height:none;border-radius:20px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
+  .foto-h::before{display:none}
+  .cabeza{grid-template-columns:1fr 1fr;align-items:end;gap:40px}
+  h2{font-size:clamp(44px,4.6vw,66px)}
+  .modelos{padding:96px 0}
+  .pad .ph{aspect-ratio:4/3}
+  .pad-t{padding:26px 24px}
+  .capas{padding:96px 0}
+  .capas-g{grid-template-columns:1fr 1fr;align-items:center;gap:56px}
+  .tecnicas{padding:96px 0}
+  .taller{padding:96px 0}
+  .taller-g{grid-template-columns:1fr .62fr .62fr;align-items:center;gap:28px}
+  .manos{display:block}
+  .pedir{padding:96px 0}
+  .pasos{grid-template-columns:repeat(4,1fr)}
+  .pasos li{padding:64px 20px 22px}
+  .faq .wrap{display:grid;grid-template-columns:4fr 8fr;gap:48px}
+  .faq-l{margin-top:0}
+  .pie .wrap{grid-template-columns:1fr auto}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;translate:none;transition:none}
+  .sutura .punto{stroke-dashoffset:0}.sutura .nudo{scale:1}
+  .sutura.cosida .punto,.sutura.cosida .nudo{animation:none}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.4-1.5-.9-.8-1.5-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.6-1.5-3.4-1.5-5.2C2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.9 1.9 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zM20.5 3.5C18.2 1.2 15.2 0 12 0 5.4 0 .1 5.3.1 11.9c0 2.1.6 4.2 1.6 6L0 24l6.3-1.6c1.8 1 3.8 1.5 5.7 1.5 6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.4-8.5z"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-logo" viewBox="0 0 200 200"><g transform="rotate(-10 100 100)"><rect x="30" y="40" width="140" height="132" rx="30" fill="#efa27e"/><rect x="30" y="30" width="140" height="130" rx="30" fill="#f8cdb3"/><path d="M58 118C85 70 120 70 146 88" stroke="#7a2e22" stroke-width="7" fill="none" stroke-linecap="round"/><g stroke="#2b59ff" stroke-width="7.5" stroke-linecap="round"><path d="M63.6 83.5 86.4 105.9M86.4 67 100 96M111 61l1.2 32M134.5 64.4l-10 30.4"/></g></g></symbol>
+</defs></svg>
+
+<header class="cab">
+  <div class="wrap">
+    <a class="marca" href="#top" aria-label="BioSketch 3D, inicio"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>BioSketch<span class="pl">3D</span></span></a>
+    <nav class="nav" aria-label="Secciones"><a href="#modelos">Modelos</a><a href="#capas">Las 3 capas</a><a href="#tecnicas">Qué practicas</a><a href="#pedir">Cómo pedir</a></nav>
+    <a class="btn btn-p wa" href="https://wa.me/51900000000" data-msg="Hola BioSketch 3D 👋 Quiero un pad de sutura. ¿Me pasan el precio?" target="_blank" rel="noopener">Pide tu pad</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="portada" aria-labelledby="t-portada">
+    <div class="wrap">
+      <div class="texto">
+        <p class="ref">Pads de sutura · Hecho en Perú</p>
+        <h1 id="t-portada" style="margin-top:14px">Que tu primer punto <em>no sea en un paciente.</em></h1>
+        <p class="lead" style="margin-top:16px">Pads de silicona con piel, grasa y músculo que se cortan y se cosen como tejido. Practica en tu casa, retira los puntos y vuelve a empezar.</p>
+        <div class="ctas" style="margin-top:22px">
+          <a class="btn btn-p wa" href="https://wa.me/51900000000" data-msg="Hola BioSketch 3D 👋 Quiero un pad de sutura. ¿Me pasan el precio y el costo de envío?" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Quiero mi pad <span class="fl" aria-hidden="true">→</span></a>
+          <a class="btn btn-l" href="#modelos">Ver los modelos</a>
+        </div>
+        <ul class="chips" style="margin-top:20px">
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Piel, grasa y músculo</li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Reutilizable</li>
+          <li><svg aria-hidden="true"><use href="#i-ok"/></svg>Envíos a todo el Perú</li>
+        </ul>
+      </div>
+      <figure class="foto-h" style="margin-block:0">
+        <img src="img/heroe.webp" width="900" height="1125" fetchpriority="high" alt="Pad de sutura BioSketch 3D con heridas marcadas sobre un campo quirúrgico verde, con una herida cerrada con puntos de hilo azul, porta agujas y pinza">
+        <figcaption class="etiqueta"><span>Ref. BS-02</span><b>Pad con heridas</b><span>4 tipos de herida</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="costura-s" aria-hidden="true"><div class="wrap">
+    <svg class="sutura" viewBox="0 0 1000 46" preserveAspectRatio="none"><path class="corte" d="M8 23H992"/></svg>
+  </div></div>
+
+  <section class="modelos" id="modelos" aria-labelledby="t-modelos">
+    <div class="wrap">
+      <div class="cabeza">
+        <div><p class="ref">Los modelos</p><h2 id="t-modelos" style="margin-top:12px">Elige con qué empiezas</h2></div>
+        <p class="lead">Los dos tienen las 3 capas. La diferencia es si tú haces el corte o si las heridas ya vienen listas para suturar.</p>
+      </div>
+      <div class="pads">
+        <article class="pad rv">
+          <div class="ph"><img src="img/pad-heridas.webp" width="800" height="600" loading="lazy" alt="Pad de sutura con heridas en relieve: curvas, rectas, en estrella y en cruz"><span class="num">Ref. BS-02</span></div>
+          <div class="pad-t">
+            <h3>Pad con heridas</h3>
+            <p>Llegas y suturas. Trae heridas ya marcadas para practicar distintas formas y direcciones.</p>
+            <div class="tags"><span>Rectas</span><span>Curvas</span><span>En estrella</span><span>En cruz</span></div>
+            <a class="btn btn-o wa" href="https://wa.me/51900000000" data-msg="Hola BioSketch 3D 👋 Me interesa el pad con heridas. ¿Me pasan el precio?" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Lo quiero con heridas</a>
+          </div>
+        </article>
+        <article class="pad rv">
+          <div class="ph"><img src="img/pad-liso.webp" width="800" height="600" loading="lazy" alt="Pad de sutura liso de silicona color piel, con sus capas visibles en el borde"><span class="num">Ref. BS-01</span></div>
+          <div class="pad-t">
+            <h3>Pad liso de 3 capas</h3>
+            <p>Tú haces el corte con bisturí, del largo y la forma que quieras, y practicas el cierre por planos.</p>
+            <div class="tags"><span>Piel</span><span>Grasa</span><span>Músculo</span></div>
+            <a class="btn btn-o wa" href="https://wa.me/51900000000" data-msg="Hola BioSketch 3D 👋 Me interesa el pad liso de 3 capas. ¿Me pasan el precio?" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Lo quiero liso</a>
+          </div>
+        </article>
+        <div class="grupo rv">
+          <div><h3>¿Es para toda tu promo o tu academia?</h3><p style="margin-top:6px">Dinos cuántos pads necesitan y te pasamos el precio para el grupo.</p></div>
+          <a class="btn btn-p wa" href="https://wa.me/51900000000" data-msg="Hola BioSketch 3D 👋 Somos un grupo y necesitamos ___ pads de sutura. ¿Nos pasan el precio?" target="_blank" rel="noopener">Cotiza para tu grupo <span class="fl" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="capas" id="capas" aria-labelledby="t-capas">
+    <div class="wrap capas-g">
+      <div class="bloque rv"><img src="img/capas.webp" width="900" height="900" loading="lazy" alt="Corte en un pad BioSketch 3D que deja ver sus tres capas: piel color durazno, grasa amarilla y músculo rojo, con un surjete de hilo azul"></div>
+      <div class="corte-g">
+        <p class="ref">Por dentro</p>
+        <h2 id="t-capas">Tres capas, como en sala</h2>
+        <p class="lead">No es una lámina: cada capa se siente distinta bajo la aguja, para que aprendas a cerrar plano por plano.</p>
+        <div class="tabs" style="margin-top:8px">
+          <button type="button" class="capa-b" aria-expanded="true" aria-controls="cp-1" style="--c:var(--piel)"><i aria-hidden="true"></i><span><b>Piel</b><small>Capa 1 · la de arriba</small></span></button>
+          <p class="capa-p" id="cp-1">Aquí haces los puntos que se ven: simples, colchoneros e intradérmicos, cuidando que los bordes queden parejos.</p>
+          <button type="button" class="capa-b" aria-expanded="false" aria-controls="cp-2" style="--c:var(--grasa)"><i aria-hidden="true"></i><span><b>Grasa</b><small>Capa 2 · tejido subcutáneo</small></span></button>
+          <p class="capa-p" id="cp-2" hidden>Practicas puntos subcutáneos para no dejar espacio muerto debajo de la piel.</p>
+          <button type="button" class="capa-b" aria-expanded="false" aria-controls="cp-3" style="--c:var(--musculo)"><i aria-hidden="true"></i><span><b>Músculo</b><small>Capa 3 · la más profunda</small></span></button>
+          <p class="capa-p" id="cp-3" hidden>Cierras primero lo profundo y luego subes: el orden que te van a pedir en cirugía.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tecnicas" id="tecnicas" aria-labelledby="t-tecnicas">
+    <div class="wrap">
+      <div class="cabeza">
+        <div><p class="ref">Qué vas a practicar</p><h2 id="t-tecnicas" style="margin-top:12px">Los puntos que te van a tomar</h2></div>
+        <p class="lead">Todo lo que se pide en el curso de cirugía y en las prácticas de emergencia, en un mismo pad.</p>
+      </div>
+      <ul class="tec">
+        <li class="rv"><svg viewBox="0 0 120 60" aria-hidden="true"><path class="inc" d="M8 30h104"/><path class="h" d="M24 16v28M48 16v28M72 16v28M96 16v28"/><circle class="k" cx="24" cy="16" r="3"/><circle class="k" cx="48" cy="16" r="3"/><circle class="k" cx="72" cy="16" r="3"/><circle class="k" cx="96" cy="16" r="3"/></svg><span>Técnica 01</span><b>Punto simple</b><p>La base de todo: cada punto con su propio nudo.</p></li>
+        <li class="rv"><svg viewBox="0 0 120 60" aria-hidden="true"><path class="inc" d="M8 30h104"/><path class="h o" d="M24 44 36 16M48 44 60 16M72 44 84 16"/><path class="h" d="M14 16 24 44M36 16 48 44M60 16 72 44M84 16 96 44"/><circle class="k" cx="14" cy="16" r="3"/><circle class="k" cx="96" cy="44" r="3"/></svg><span>Técnica 02</span><b>Surjete continuo</b><p>Un solo hilo de punta a punta, rápido y hermético.</p></li>
+        <li class="rv"><svg viewBox="0 0 120 60" aria-hidden="true"><path class="inc" d="M8 30h104"/><path class="h" d="M30 8v44M38 20v20M30 8q4-6 8 12M82 8v44M90 20v20M82 8q4-6 8 12"/><circle class="k" cx="34" cy="8" r="3"/><circle class="k" cx="86" cy="8" r="3"/></svg><span>Técnica 03</span><b>Colchonero vertical</b><p>Evierte los bordes cuando la piel tiende a hundirse.</p></li>
+        <li class="rv"><svg viewBox="0 0 120 60" aria-hidden="true"><path class="inc" d="M8 30h104"/><path class="h" d="M22 14v32h18V14M70 14v32h18V14"/><path class="h o" d="M22 14h18M70 14h18"/><circle class="k" cx="31" cy="14" r="3"/><circle class="k" cx="79" cy="14" r="3"/></svg><span>Técnica 04</span><b>Colchonero horizontal</b><p>Reparte la tensión en heridas que tiran.</p></li>
+        <li class="rv"><svg viewBox="0 0 120 60" aria-hidden="true"><path class="inc" d="M8 30h104"/><path class="h o" d="M14 30 24 25 34 35 44 25 54 35 64 25 74 35 84 25 94 35 104 30"/><path class="h" d="M6 22 14 30M104 30l10 8"/><circle class="k" cx="6" cy="22" r="3"/><circle class="k" cx="114" cy="38" r="3"/></svg><span>Técnica 05</span><b>Intradérmico</b><p>Va por dentro de la piel y casi no deja marca.</p></li>
+        <li class="rv"><svg viewBox="0 0 120 60" aria-hidden="true"><path class="inc" d="M8 30h104"/><path class="h" d="M20 46c14-30 42-38 48-20s-22 22-26 6 30-26 58-10"/><circle class="k" cx="20" cy="46" r="3"/></svg><span>Técnica 06</span><b>Nudo instrumental</b><p>Con porta agujas, hasta que te salga sin pensar.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="taller" id="taller" aria-labelledby="t-taller">
+    <div class="wrap taller-g">
+      <div>
+        <p class="ref">Hecho en Perú</p>
+        <h2 id="t-taller" style="margin-top:12px">Del molde 3D a tu mesa de práctica</h2>
+        <p class="lead" style="margin-top:14px">Diseñamos los moldes, los imprimimos en 3D y vaciamos la silicona capa por capa. Por eso cada pad sale con sus tres capas parejas.</p>
+        <ul class="para" aria-label="Para quién es">
+          <li>Medicina</li><li>Enfermería</li><li>Obstetricia</li><li>Odontología</li><li>Veterinaria</li><li>Internos y residentes</li><li>Docentes y academias</li>
+        </ul>
+      </div>
+      <figure class="clip rv" style="margin:0">
+        <video src="img/moldes.mp4" poster="img/moldes.webp" width="480" height="600" muted loop playsinline preload="none" aria-label="Silicona color piel curándose en moldes impresos en 3D sobre una impresora"></video>
+        <figcaption>Nuestro taller · moldes impresos en 3D</figcaption>
+      </figure>
+      <figure class="clip manos" style="margin:0">
+        <img src="img/manos.webp" width="800" height="1000" loading="lazy" alt="Manos con guantes azules suturando una herida curva en un pad BioSketch 3D con porta agujas y pinza">
+        <figcaption>Práctica con porta agujas y pinza</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="pedir" id="pedir" aria-labelledby="t-pedir">
+    <div class="wrap">
+      <div class="cabeza">
+        <div><p class="ref">Cómo pedir</p><h2 id="t-pedir" style="margin-top:12px">Lo pides hoy por WhatsApp</h2></div>
+        <p class="lead">Sin registrarte en ninguna página: nos escribes y lo coordinamos contigo.</p>
+      </div>
+      <ol class="pasos">
+        <li class="rv"><h3>Escríbenos</h3><p>Dinos qué modelo quieres y cuántos.</p></li>
+        <li class="rv"><h3>Te cotizamos</h3><p>Te pasamos el precio, el costo de envío y cómo pagar.</p></li>
+        <li class="rv"><h3>Confirmas</h3><p>Haces el pago y preparamos tu pedido.</p></li>
+        <li class="rv"><h3>Te llega</h3><p>En Lima por delivery y a provincias por agencia de envíos.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="faq" aria-labelledby="t-faq">
+    <div class="wrap">
+      <div><p class="ref">Preguntas</p><h2 id="t-faq" style="margin-top:12px">Antes de pedir</h2></div>
+      <div class="faq-l">
+        <details><summary>¿Cuál me conviene si recién empiezo?</summary><p>El pad con heridas: llegas y suturas, sin preocuparte por el corte. Cuando ya quieras practicar cortes y cierre por planos, el liso de 3 capas.</p></details>
+        <details><summary>¿Lo puedo usar varias veces?</summary><p>Sí. Retiras los puntos y vuelves a suturar en otra zona del pad.</p></details>
+        <details><summary>¿Envían a provincia?</summary><p>Sí, a todo el Perú. En Lima por delivery y a provincias por agencia de envíos; te pasamos el costo antes de pagar.</p></details>
+        <details><summary>¿Viene con instrumental o hilo?</summary><p>Escríbenos y te contamos qué incluye cada pedido y qué te conviene tener para empezar.</p></details>
+        <details><summary>¿Hacen pedidos para universidades o academias?</summary><p>Sí. Dinos cuántos pads necesitan y te pasamos el precio para el grupo.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cierre" aria-labelledby="t-cierre">
+    <div class="wrap">
+      <h2 id="t-cierre">Llega a tu primera guardia <em>con la mano suelta.</em></h2>
+      <p>Pídelo hoy y empieza a practicar esta semana.</p>
+      <div class="ctas">
+        <a class="btn btn-p wa" href="https://wa.me/51900000000" data-msg="Hola BioSketch 3D 👋 Quiero un pad de sutura. ¿Me pasan el precio y el costo de envío?" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pide tu pad por WhatsApp</a>
+        <a class="btn btn-l" href="#modelos">Ver los modelos</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <p><b>BioSketch 3D</b> · Pads de sutura de 3 capas hechos en Perú · Envíos a todo el Perú</p>
+    <p>© <span id="yr">2026</span> BioSketch 3D · Web por <a href="https://clickea.github.io/demos/" target="_blank" rel="noopener">Clickea Studio</a></p>
+  </div>
+</footer>
+
+<nav class="barra" aria-label="Pedir">
+  <a class="wa" href="https://wa.me/51900000000" data-msg="Hola BioSketch 3D 👋 Quiero un pad de sutura. ¿Me pasan el precio?" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pide tu pad</a>
+  <a href="#modelos">Ver modelos</a>
+</nav>
+
+<script>
+(function () {
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  // Número de WhatsApp de BioSketch 3D: [PENDIENTE] reemplazar 51900000000 por el real (51 + 9 dígitos)
+  var WA = 'https://wa.me/51900000000?text=';
+  $$('a.wa[data-msg]').forEach(function (a) { a.href = WA + encodeURIComponent(a.dataset.msg); });
+  $('#yr').textContent = new Date().getFullYear();
+  var reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // La línea de sutura: se dibujan los puntos sobre el corte y se cosen solos al aparecer
+  $$('.sutura').forEach(function (s) {
+    var n = innerWidth < 600 ? 9 : 17, ns = 'http://www.w3.org/2000/svg';
+    for (var i = 0; i < n; i++) {
+      var x = 40 + i * (920 / (n - 1));
+      var p = document.createElementNS(ns, 'path'); p.setAttribute('class', 'punto'); p.setAttribute('d', 'M' + x + ' 6V40'); p.style.setProperty('--i', i);
+      var k = document.createElementNS(ns, 'circle'); k.setAttribute('class', 'nudo'); k.setAttribute('cx', x); k.setAttribute('cy', 6); k.setAttribute('r', 4.5); k.style.setProperty('--i', i);
+      s.appendChild(p); s.appendChild(k);
+    }
+  });
+
+  // Las 3 capas: se abre una a la vez
+  var capas = $$('.capa-b');
+  capas.forEach(function (b) {
+    b.addEventListener('click', function () {
+      capas.forEach(function (o) { var on = o === b; o.setAttribute('aria-expanded', on); $('#' + o.getAttribute('aria-controls')).hidden = !on; });
+    });
+  });
+
+  // Aparición al bajar, costura que se cose y video del taller que solo corre cuando se ve
+  var vid = $('.clip video');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in', 'cosida'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    $$('.rv, .sutura').forEach(function (el) { io.observe(el); });
+    if (vid && !reducir) new IntersectionObserver(function (en) { en[0].isIntersecting ? vid.play().catch(function () {}) : vid.pause(); }, { threshold: 0.3 }).observe(vid);
+  } else $$('.rv, .sutura').forEach(function (el) { el.classList.add('in', 'cosida'); });
+})();
+</script>
+</body>
+</html>
